@@ -24,7 +24,7 @@ const TestPage = () => {
         color={ButtonColor.PRIMARY}
         onClick={getSports}
       >
-        Нажми на меня
+        Нажми на меняfdfdfdf
       </Button>
       <div>
         {sports.length
