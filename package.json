@@ -15,7 +15,7 @@
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "server": "json-server -w server/db.json -p 3001 --delay 1000",
+    "server": "json-server -w server/db.json -p 3001 --delay 300",
     "dev:server": "concurrently --kill-others \"npm run server\" \"npm run dev\"",
     "prepare": "husky install"
   },
