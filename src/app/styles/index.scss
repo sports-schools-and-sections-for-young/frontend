@@ -2,11 +2,11 @@
 @import "variables/global";
 
 .app {
-    color: var(--primary-color);
-    font: var(--font-m);
-    background: var(--bg-color);
-    min-height: 100vh;
-    min-width: 100vw;
-    display: grid;
-    grid-template-rows: auto 1fr auto;
+  color: var(--primary-color);
+  font: var(--font-m);
+  background: var(--bg-color);
+  min-height: 100vh;
+  min-width: 100vw;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
 }

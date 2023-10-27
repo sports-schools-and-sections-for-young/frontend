@@ -15,9 +15,25 @@ function App() {
   return (
     <AppContext.Provider value={value}>
       <div className="app">
-        <header style={{borderBottom: '1px solid red', display: 'flex', justifyContent: 'center'}}>Я хедер</header>
+        <header
+          style={{
+            borderBottom: "1px solid red",
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          Я хедер
+        </header>
         <AppRouter />
-        <footer style={{borderTop: '1px solid red', display: 'flex', justifyContent: 'center'}}>Я футер</footer>
+        <footer
+          style={{
+            borderTop: "1px solid red",
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          Я футер
+        </footer>
       </div>
     </AppContext.Provider>
   );

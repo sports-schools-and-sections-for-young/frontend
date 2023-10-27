@@ -1,4 +1,4 @@
-import {useContext} from "react";
+import { useContext } from "react";
 import { API_URL } from "../../../utils/variables.ts";
 import Button, {
   ButtonColor,
@@ -8,7 +8,7 @@ import styles from "./TestPage.module.scss";
 import AppContext from "../../../context";
 
 const TestPage = () => {
-  const {sports, setSports} = useContext(AppContext)
+  const { sports, setSports } = useContext(AppContext);
 
   const getSports = async () => {
     const res = await fetch(`${API_URL}/sports`);
