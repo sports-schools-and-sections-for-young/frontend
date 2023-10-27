@@ -15,7 +15,8 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "server": "json-server -w server/db.json -p 3001 --delay 1000",
-    "dev:server": "concurrently --kill-others \"npm run server\" \"npm run dev\""
+    "dev:server": "concurrently --kill-others \"npm run server\" \"npm run dev\"",
+    "prepare": "husky install"
   },
   "dependencies": {
     "classnames": "^2.3.2",
@@ -46,7 +47,9 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
     "eslint-plugin-storybook": "^0.6.15",
+    "husky": "^8.0.0",
     "json-server": "^0.17.4",
+    "lint-staged": "^15.0.2",
     "prettier": "3.0.3",
     "sass": "^1.69.4",
     "storybook": "^7.5.1",
@@ -59,5 +62,9 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": "npm run eslint:fix",
+    "*.{ts,tsx,scss,md,html,json}": "npm run prettier"
   }
 }
