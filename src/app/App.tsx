@@ -8,12 +8,12 @@ function App() {
   const [sports, setSports] = useState<Sport[]>([]);
   const [schools, setSchools] = useState<School[]>([]);
 
-  const value = useMemo(() => {
+  const appContextValues = useMemo(() => {
     return { sports, schools, setSports, setSchools };
   }, [sports, schools]);
 
   return (
-    <AppContext.Provider value={value}>
+    <AppContext.Provider value={appContextValues}>
       <div className="app">
         <header
           style={{

@@ -1,5 +1,5 @@
 :root {
-  // Шрифт
+  // Fonts
   --font-family_main: consolas, "Times New Roman", serif;
   --font-size-m: 16px;
   --font-line-m: 24px;
@@ -8,12 +8,10 @@
   --font-line-l: 32px;
   --font-l: var(--font-size-l) / var(--font-line-l) var(--font-family_main);
 
-  // Цвета
+  // Colors
   --bg-color: #e8e8ea;
   --primary-color: #0232c2;
   --secondary-color: #0452ff;
   --button-primary-color: #084500;
   --button-secondary-color: #984f49;
-
-  // Размеры
 }
