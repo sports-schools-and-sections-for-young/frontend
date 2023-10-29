@@ -22,7 +22,7 @@ function App() {
             justifyContent: "center",
           }}
         >
-          Я хедер
+          HEADER
         </header>
         <AppRouter />
         <footer
@@ -32,7 +32,7 @@ function App() {
             justifyContent: "center",
           }}
         >
-          Я футер
+          FOOTER
         </footer>
       </div>
     </AppContext.Provider>
