@@ -1,37 +1,53 @@
-import { ButtonHTMLAttributes, FC } from "react";
+import { FC } from "react";
 import classnames from "classnames";
 import styles from "./Button.module.scss";
-
-export enum ButtonSize {
-  SMALL = "small",
-  MEDIUM = "medium",
-  LARGE = "large",
-}
-
-export enum ButtonColor {
-  PRIMARY = "primary",
-  SECONDARY = "secondary",
-}
-
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  className?: string;
-  size: ButtonSize;
-  color: ButtonColor;
-}
+import { ButtonFeature, ButtonProps, IconSide } from "./types";
 
 const Button: FC<ButtonProps> = (props) => {
-  const { className = "", children, size, color, ...rest } = props;
+  const {
+    className = "",
+    height,
+    withMinWidth = false,
+    color,
+    icon = null,
+    iconSide = "",
+    iconAlt = "",
+    mainFont = false,
+    feature,
+    title,
+    ...rest
+  } = props;
 
   const buttonClass = classnames({
-    [styles.button]: true,
-    [styles[size]]: true,
-    [styles[color]]: true,
     [className]: true,
+    [styles.button]: true,
+    [styles[height]]: true,
+    [styles.withMinWidth]: withMinWidth,
+    [styles[color]]: true,
+    [styles.withLeftIcon]: iconSide === IconSide.LEFT,
+    [styles.withRightIcon]: iconSide === IconSide.RIGHT,
+    [styles.mainFont]: mainFont,
+  });
+
+  const iconClass = classnames({
+    [styles[iconSide]]: true,
+    [styles.iconPadding]: feature === ButtonFeature.CANCEL,
   });
 
   return (
-    <button type="button" className={buttonClass} {...rest}>
-      {children}
+    <button
+      data-testid={feature}
+      type="button"
+      className={buttonClass}
+      {...rest}
+    >
+      {icon && iconSide === IconSide.LEFT && (
+        <img src={icon} alt={iconAlt} className={iconClass} />
+      )}
+      <span className={styles.text}>{title}</span>
+      {icon && iconSide === IconSide.RIGHT && (
+        <img src={icon} alt={iconAlt} className={iconClass} />
+      )}
     </button>
   );
 };

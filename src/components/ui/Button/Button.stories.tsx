@@ -1,5 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import Button, { ButtonColor, ButtonSize } from "./Button.tsx";
+import Button from "./Button.tsx";
+import { ButtonColor, ButtonFeature, ButtonHeight, IconSide } from "./types";
+import rightArrow from "../../../assets/images/icons/icon-arrow right.svg";
+import leftArrow from "../../../assets/images/icons/icon-arrow left.svg";
+import cross from "../../../assets/images/icons/X.svg";
 
 const meta = {
   title: "ui/Button",
@@ -14,50 +18,79 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const SmallPrimary: Story = {
+export const Forward: Story = {
   args: {
-    size: ButtonSize.SMALL,
+    type: "button",
+    feature: ButtonFeature.FORWARD,
+    height: ButtonHeight.HIGH,
     color: ButtonColor.PRIMARY,
-    children: "Кнопка",
+    icon: rightArrow,
+    iconSide: IconSide.RIGHT,
+    iconAlt: "Стрелка вправо",
+    title: "Продолжить",
+    withMinWidth: true,
   },
 };
 
-export const MediumPrimary: Story = {
+export const Back: Story = {
   args: {
-    size: ButtonSize.MEDIUM,
+    type: "button",
+    feature: ButtonFeature.BACK,
+    height: ButtonHeight.HIGH,
+    color: ButtonColor.SECONDARY,
+    icon: leftArrow,
+    iconSide: IconSide.LEFT,
+    iconAlt: "Стрелка влево",
+    title: "Назад",
+    withMinWidth: true,
+  },
+};
+
+export const Login: Story = {
+  args: {
+    type: "button",
+    feature: ButtonFeature.FORWARD,
+    height: ButtonHeight.MEDIUM,
     color: ButtonColor.PRIMARY,
-    children: "Кнопка",
+    icon: rightArrow,
+    iconSide: IconSide.RIGHT,
+    iconAlt: "Стрелка вправо",
+    title: "Войти",
   },
 };
 
-export const LargePrimary: Story = {
+export const WithoutIcon: Story = {
   args: {
-    size: ButtonSize.LARGE,
+    type: "button",
+    feature: ButtonFeature.OTHER,
+    height: ButtonHeight.HIGH,
     color: ButtonColor.PRIMARY,
-    children: "Кнопка",
+    title: "Пройти квиз!",
+    withMinWidth: true,
   },
 };
 
-export const SmallSecondary: Story = {
+export const Select: Story = {
   args: {
-    size: ButtonSize.SMALL,
-    color: ButtonColor.SECONDARY,
-    children: "Кнопка",
+    type: "button",
+    feature: ButtonFeature.SELECT,
+    height: ButtonHeight.LOW,
+    color: ButtonColor.PALE,
+    title: "Футбол",
+    mainFont: true,
   },
 };
 
-export const MediumSecondary: Story = {
+export const Cancel: Story = {
   args: {
-    size: ButtonSize.MEDIUM,
-    color: ButtonColor.SECONDARY,
-    children: "Кнопка",
-  },
-};
-
-export const LargeSecondary: Story = {
-  args: {
-    size: ButtonSize.LARGE,
-    color: ButtonColor.SECONDARY,
-    children: "Кнопка",
+    type: "button",
+    feature: ButtonFeature.CANCEL,
+    height: ButtonHeight.LOW,
+    color: ButtonColor.PRIMARY,
+    icon: cross,
+    iconSide: IconSide.RIGHT,
+    iconAlt: "Крестик",
+    title: "Футбол",
+    mainFont: true,
   },
 };
