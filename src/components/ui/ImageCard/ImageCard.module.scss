@@ -6,26 +6,30 @@
   max-width: 100%;
   max-height: 100%;
   overflow: hidden;
-  border-radius: 10px;
+  border-radius: var(--narrow-radius);
 }
 
 .small {
-  width: 210px;
+  max-width: 210px;
+  aspect-ratio: 16/11;
   max-height: 170px;
 }
 
 .medium {
   max-width: 349px;
+  aspect-ratio: 16/11;
   max-height: 196px;
 }
 
 .large {
   max-width: 349px;
+  aspect-ratio: 16/11;
   max-height: 305px;
 }
 
 .extra-large {
   max-width: 444px;
+  aspect-ratio: 16/11;
   max-height: 389px;
 }
 
