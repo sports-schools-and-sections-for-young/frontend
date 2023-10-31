@@ -10799,16 +10799,14 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
           { style: { color: n.base } },
           "[\u2026]",
         );
-      let o = e
-          .slice(0, 3)
-          .map((l) =>
-            d.createElement(We, {
-              key: JSON.stringify(l),
-              value: l,
-              nested: !0,
-              callsById: r,
-            }),
-          ),
+      let o = e.slice(0, 3).map((l) =>
+          d.createElement(We, {
+            key: JSON.stringify(l),
+            value: l,
+            nested: !0,
+            callsById: r,
+          }),
+        ),
         a = Bf(o, d.createElement("span", null, ", "));
       return e.length <= 3
         ? d.createElement("span", { style: { color: n.base } }, "[", a, "]")
