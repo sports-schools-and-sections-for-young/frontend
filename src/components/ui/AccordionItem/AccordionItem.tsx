@@ -1,6 +1,6 @@
 import { FC } from "react";
 import styles from "./AccordionItem.module.scss";
-import { AccordionItemProps } from "../Accordion/types";
+import { AccordionItemProps } from "./types";
 
 const AccordionItem: FC<AccordionItemProps> = (props) => {
   const { title, description } = props;

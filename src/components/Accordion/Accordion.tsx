@@ -1,6 +1,6 @@
 import { FC } from "react";
 import styles from "./Accordion.module.scss";
-import AccordionItem from "../AccordionItem/AccordionItem";
+import AccordionItem from "../ui/AccordionItem/AccordionItem.tsx";
 import { AccordionProps } from "./types";
 
 const Accordion: FC<AccordionProps> = (props) => {
