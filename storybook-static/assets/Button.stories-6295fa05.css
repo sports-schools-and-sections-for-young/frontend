@@ -1,0 +1,67 @@
+._button_jrfsf_1 {
+  cursor: pointer;
+  border-radius: var(--common-radius);
+  padding: 8px 16px;
+  font-family: var(--font-family_secondary);
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 32px;
+  letter-spacing: 0.2px;
+  display: grid;
+  grid-template-areas: "leftIcon text rightIcon";
+  align-items: center;
+  gap: 8px;
+  border: none;
+  position: relative;
+}
+._text_jrfsf_19 {
+  grid-area: text;
+}
+._mainFont_jrfsf_23 {
+  font-family: var(--font-family_main);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 135%;
+}
+._low_jrfsf_31 {
+  height: 38px;
+}
+._medium_jrfsf_35 {
+  height: 48px;
+  padding: 4px 16px;
+}
+._high_jrfsf_40 {
+  height: 56px;
+}
+._withMinWidth_jrfsf_44 {
+  min-width: 210px;
+}
+._withLeftIcon_jrfsf_48 {
+  padding-left: 6px;
+}
+._withRightIcon_jrfsf_52 {
+  padding-right: 6px;
+}
+._leftIcon_jrfsf_56 {
+  grid-area: leftIcon;
+}
+._rightIcon_jrfsf_60 {
+  grid-area: rightIcon;
+}
+._iconPadding_jrfsf_64 {
+  padding-right: 4px;
+}
+._primary_jrfsf_68 {
+  background: var(--button-primary-bg-color);
+  color: var(--button-primary-color);
+}
+._secondary_jrfsf_73 {
+  background: var(--button-secondary-bg-color);
+  color: var(--button-secondary-color);
+}
+._pale_jrfsf_78 {
+  background: var(--button-secondary-bg-color);
+  color: var(--button-pale-color);
+}
