@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "./TestPage.module.scss";
-import Input, { InputType } from "../../../components/ui/Input/Input.tsx";
+import Input from "../../../components/ui/Input/Input.tsx";
 
 const TestPage = () => {
   const [value, setValue] = useState("");
@@ -12,11 +12,12 @@ const TestPage = () => {
   return (
     <div className={styles.testPage}>
       <Input
-        label="Улица"
-        type={InputType.SEARCH}
+        inputName="Улица"
         placeholder="Поиск"
         value={value}
         onChange={handleChange}
+        hasError
+        errorMessage="Ошибка"
       />
     </div>
   );
