@@ -1,4 +1,4 @@
-import { FC, InputHTMLAttributes } from "react";
+import { FC, forwardRef, InputHTMLAttributes } from "react";
 import classnames from "classnames";
 import styles from "./InputField.module.scss";
 
@@ -7,16 +7,12 @@ export interface InputFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   hasError?: boolean;
   errorMessage?: string;
 }
-const InputField: FC<InputFieldProps> = (props) => {
-  const {
-    value,
-    labelId = "",
-    onChange,
-    hasError,
-    errorMessage,
-    disabled,
-    ...rest
-  } = props;
+
+const InputField: FC<InputFieldProps> = forwardRef<
+  HTMLInputElement,
+  InputFieldProps
+>((props, ref) => {
+  const { labelId = "", hasError, errorMessage, disabled, ...rest } = props;
 
   const inputClassName = classnames({
     [styles.input]: true,
@@ -24,21 +20,21 @@ const InputField: FC<InputFieldProps> = (props) => {
     [styles.disabled]: disabled,
   });
 
+  console.log(ref);
+
   return (
     <div>
       <input
         {...(labelId && { id: labelId })}
-        type="text"
         className={inputClassName}
-        value={value}
-        onChange={onChange}
+        ref={ref}
         {...rest}
       />
       {errorMessage && (
-        <strong className={styles.errorMessage}>{errorMessage}</strong>
+        <div className={styles.errorMessage}>{errorMessage}</div>
       )}
     </div>
   );
-};
+});
 
 export default InputField;
