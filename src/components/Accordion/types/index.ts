@@ -1,5 +1,8 @@
-import { AccordionItemProps } from "../../ui/AccordionItem/types";
+export interface AccordionText {
+  title: string;
+  description: string;
+}
 
 export interface AccordionProps {
-  dataArr: Array<AccordionItemProps>;
+  accordionArr: Array<AccordionText>;
 }
