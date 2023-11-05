@@ -1,5 +1,4 @@
 :root {
-  // Fonts
   --font-family_main: manrope, sans-serif;
   --font-family_secondary: inter, sans-serif;
   --font-size-m: 16px;
@@ -8,29 +7,20 @@
   --font-size-l: 24px;
   --font-line-l: 32px;
   --font-l: var(--font-size-l) / var(--font-line-l) var(--font-family_main);
-
-  // Colors
   --bg-color: #e8e8ea;
   --primary-color: #0232c2;
   --secondary-color: #0452ff;
   --button-primary-color: #fff;
   --button-secondary-color: #000;
   --button-pale-color: #817676;
-  --button-primary-bg-color: #000; // лучше переназвать как-то универсально, он есть и в текстах, типа  --black-color, и белый тоже
+  --button-primary-bg-color: #000;
   --button-secondary-bg-color: #d9d9d9;
   --text-gray-color: #807c7c;
-
-
   --label-color: #817676;
-
-  // добавила новые цвета(Юля)
   --blue-background-color: #cbe5e4;
   --light-text-color: #6f89a4;
-
-
-  // BorderRadii
+  --black-color: // BorderRadii
     --narrow-radius: 10px;
-
   --common-radius: 12px;
   --wide-radius: 16px;
 }
@@ -43,7 +33,6 @@
       format("truetype-variations"),
     url("src/assets/fonts/Manrope-VariableFont_wght.ttf") format("truetype");
 }
-
 @font-face {
   font-family: Inter;
   font-style: normal;
