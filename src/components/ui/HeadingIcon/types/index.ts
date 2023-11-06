@@ -1,6 +1,6 @@
 export enum headingLevel {
-  H1 = "1",
   H2 = "2",
+  H4 = "4",
 }
 
 export enum view {
@@ -9,6 +9,7 @@ export enum view {
 }
 
 export interface HeadingIconProps {
+  className?: string;
   headingLevel: headingLevel;
   title: string;
   view: view;
