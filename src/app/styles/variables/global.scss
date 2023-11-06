@@ -1,6 +1,6 @@
 :root {
   // Fonts
-  --font-family_main: manrope, sans-serif;
+  --font-family_main: Manrope, sans-serif;
   --font-family_secondary: inter, sans-serif;
   --font-size-m: 16px;
   --font-line-m: 24px;
@@ -10,16 +10,16 @@
   --font-l: var(--font-size-l) / var(--font-line-l) var(--font-family_main);
 
   // Colors
-  --bg-color: #e8e8ea;
+  --bg-color: #fffefd;
   --primary-color: #0232c2;
   --secondary-color: #0452ff;
-  --button-primary-color: #fff;
-  --button-secondary-color: #000;
-  --button-pale-color: #817676;
-  --button-primary-bg-color: #000; // лучше переназвать как-то универсально, он есть и в текстах, типа  --black-color, и белый тоже
-  --button-secondary-bg-color: #d9d9d9;
+  --ui-primary-color: #ffffff;
+  --ui-secondary-color: #2b5fc7;
+  --ui-disabled-color: #828091;
+  --ui-primary-bg-color: #003fbc;
+  --ui-secondary-bg-color: #fffefd;
+  --ui-disabled-bg-color: #d0cfd5;
   --text-gray-color: #807c7c;
-
 
   --label-color: #817676;
 
@@ -27,10 +27,9 @@
   --blue-background-color: #cbe5e4;
   --light-text-color: #6f89a4;
 
-
   // BorderRadii
-    --narrow-radius: 10px;
-
+  --extra-narrow-radius: 8px;
+  --narrow-radius: 10px;
   --common-radius: 12px;
   --wide-radius: 16px;
 }

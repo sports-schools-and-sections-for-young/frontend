@@ -9,8 +9,9 @@ declare module "*.jpeg";
 declare module "*.jpg";
 declare module "*.gif";
 declare module "*.svg" {
-  import type React from "react";
+  import React = require("react");
 
-  const SVG: React.VFC<React.SVGProps<SVGSVGElement>>;
-  export default SVG;
+  export const ReactComponent: React.FC<React.SVGProps<SVGSVGElement>>;
+  const src: string;
+  export default src;
 }

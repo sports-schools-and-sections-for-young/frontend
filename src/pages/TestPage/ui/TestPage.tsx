@@ -1,23 +1,20 @@
-import React, { useState } from "react";
 import styles from "./TestPage.module.scss";
-import Input, { InputType } from "../../../components/ui/Input/Input.tsx";
+import Button from "../../../components/ui/Button/Button.tsx";
+import { ButtonColor, ButtonTestId } from "../../../components/ui/Button/types";
+import Icon from "../../../components/ui/Icon/Icon.tsx";
+import { IconColor, IconTypes } from "../../../components/ui/Icon/types";
 
 const TestPage = () => {
-  const [value, setValue] = useState("");
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(e.target.value);
-  };
-
   return (
     <div className={styles.testPage}>
-      <Input
-        label="Улица"
-        type={InputType.SEARCH}
-        placeholder="Поиск"
-        value={value}
-        onChange={handleChange}
-      />
+      <Button
+        color={ButtonColor.PRIMARY}
+        testId={ButtonTestId.FORWARD}
+        withMinWidth
+      >
+        Продолжить
+        <Icon type={IconTypes.RIGHT_ICON} color={IconColor.SECONDARY} />
+      </Button>
     </div>
   );
 };

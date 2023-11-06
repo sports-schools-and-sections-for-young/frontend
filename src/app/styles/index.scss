@@ -5,6 +5,7 @@
 .app {
   min-height: 100vh;
   min-width: 100vw;
+  font-family: var(--font-family_main);
   display: grid;
   grid-template-rows: auto 1fr auto;
   justify-content: center;
