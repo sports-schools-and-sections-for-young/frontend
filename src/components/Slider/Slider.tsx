@@ -2,12 +2,9 @@ import React, { useState } from "react";
 import styles from "./Slider.module.scss";
 import footballImage from "../../assets/images/icons/path_to_football_image.jpg";
 import Button from "../ui/Button/Button";
-import {
-  ButtonColor,
-  ButtonHeight,
-  ButtonFeature,
-  IconSide,
-} from "../ui/Button/types";
+import { ButtonColor, ButtonTestId } from "../ui/Button/types";
+import Icon from "../ui/Icon/Icon.tsx";
+import { IconTypes } from "../ui/Icon/types";
 
 interface SportItem {
   name: string;
@@ -97,17 +94,10 @@ const Slider: React.FC = () => {
           />
         </div>
         <div className={styles.containerButton}>
-          <Button
-            color={ButtonColor.PRIMARY}
-            feature={ButtonFeature.FORWARD}
-            height={ButtonHeight.HIGH}
-            icon="/src/assets/images/icons/icon-arrow right.svg"
-            iconAlt="Стрелка вправо"
-            iconSide={IconSide.RIGHT}
-            title="Записаться"
-            type="button"
-            withMinWidth
-          />
+          <Button color={ButtonColor.PRIMARY} testId={ButtonTestId.FORWARD}>
+            Записаться
+            <Icon type={IconTypes.RIGHT_ICON} />
+          </Button>
           <span className={styles.numberSlider}>
             <span className={styles.leadingNumbers}>
               {formatNumber(currentSlide + 1)}
