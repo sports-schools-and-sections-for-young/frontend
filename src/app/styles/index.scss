@@ -1,5 +1,6 @@
 @import "reset";
 @import "variables/global";
+@import "mixins";
 
 .app {
   color: var(--primary-color);
@@ -10,4 +11,5 @@
   min-width: 100vw;
   display: grid;
   grid-template-rows: auto 1fr auto;
+  justify-content: center;
 }

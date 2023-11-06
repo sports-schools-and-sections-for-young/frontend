@@ -13,7 +13,11 @@ const HeadingIcon: FC<HeadingIconProps> = (props) => {
 
   return (
     <div className={headingClassName} data-testid="headingIcon">
-      {headingLevel === "2" ? <h2>{title}</h2> : <h3>{title}</h3>}
+      {headingLevel === "1" ? (
+        <h1 className={styles.headingTitle}>{title}</h1>
+      ) : (
+        <h2 className={styles.headingTitle}>{title}</h2>
+      )}
     </div>
   );
 };
