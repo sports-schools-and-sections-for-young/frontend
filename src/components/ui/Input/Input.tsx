@@ -1,46 +1,30 @@
-import { FC, InputHTMLAttributes } from "react";
-import classnames from "classnames";
-import IconSearch from "../../../assets/images/icons/icon-search.svg";
+import { v4 as uuidv4 } from "uuid";
+import { forwardRef } from "react";
+import InputLabel from "../InputLabel/InputLabel.tsx";
+import InputField, { InputFieldProps } from "../InputField/InputField.tsx";
 import styles from "./Input.module.scss";
 
-export enum InputType {
-  COMMON = "common",
-  SEARCH = "search",
+export interface InputProps extends InputFieldProps {
+  labelName?: string;
 }
 
-export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
-  label?: string;
-  type: InputType;
-}
-const Input: FC<InputProps> = (props) => {
-  const { type, value, label = "", onChange, ...rest } = props;
+const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
+  const { labelName = "", hasError, errorMessage, ...rest } = props;
 
-  const inputClassName = classnames({
-    [styles.input]: true,
-  });
+  const labelId = `label-${uuidv4()}`;
 
   return (
-    <div>
-      {label && (
-        <label className={styles.label} htmlFor={label}>
-          {label}
-        </label>
-      )}
-      <div className={styles.inputWrapper}>
-        {type === InputType.SEARCH && (
-          <img src={IconSearch} alt="Иконка поиска." className={styles.icon} />
-        )}
-        <input
-          {...(label && { id: label })}
-          type="text"
-          className={inputClassName}
-          value={value}
-          onChange={onChange}
-          {...rest}
-        />
-      </div>
+    <div className={styles.input}>
+      {labelName && <InputLabel labelId={labelId}>{labelName}</InputLabel>}
+      <InputField
+        labelId={labelId}
+        hasError={hasError}
+        errorMessage={errorMessage}
+        ref={ref}
+        {...rest}
+      />
     </div>
   );
-};
+});
 
 export default Input;
