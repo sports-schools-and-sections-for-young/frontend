@@ -4,9 +4,12 @@
   @include section(column);
 
   padding: 68px 116px 106px 165px;
-  padding-top: 68px;
-  padding-left: 165px;
-  padding-right: 116px;
+  align-items: center;
+}
+
+.sectionContainer {
+  max-width: 1159px;
+  width: 100%;
 }
 
 .twoColumns {
