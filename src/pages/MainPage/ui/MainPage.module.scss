@@ -1,0 +1,7 @@
+@import "../../../app/styles/mixins";
+
+.main {
+  @include section(column);
+
+  align-items: center;
+}
