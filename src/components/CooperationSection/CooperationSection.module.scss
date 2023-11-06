@@ -1,0 +1,43 @@
+@import "../../app/styles/mixins";
+
+.cooperation {
+  @include section(column);
+
+  padding: 68px 116px 106px 165px;
+  align-items: center;
+}
+
+.sectionContainer {
+  max-width: 1159px;
+  width: 100%;
+}
+
+.twoColumns {
+  @include section(row);
+
+  justify-content: space-between;
+  gap: 54px;
+}
+
+.headerQuestion {
+  padding-top: 28px;
+
+  @include manrope-header(44px, 700);
+}
+
+.description {
+  padding-top: 20px;
+  padding-bottom: 60px;
+  max-width: 465px;
+  color: #6f89a4;
+  font-family: var(--font-family_main);
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 155%;
+}
+
+.image {
+  position: relative;
+  top: 108px;
+}

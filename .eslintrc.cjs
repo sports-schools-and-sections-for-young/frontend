@@ -41,6 +41,8 @@ module.exports = {
     "import/extensions": "off",
     "react/jsx-props-no-spreading": "off",
     "react/require-default-props": "off",
+    "jsx-a11y/no-noninteractive-element-interactions": "off",
+    "jsx-a11y/click-events-have-key-events": "off",
   },
   settings: {
     "import/resolver": {
