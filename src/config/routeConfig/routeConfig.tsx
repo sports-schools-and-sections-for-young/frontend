@@ -11,8 +11,8 @@ export enum AppRoutes {
 
 export const RoutePath: Record<AppRoutes, string> = {
   [AppRoutes.MAIN_PAGE]: "/",
+  [AppRoutes.TEST_PAGE]: "/test",
   [AppRoutes.NOT_FOUND]: "*",
-  [AppRoutes.TEST_PAGE]: "test",
 };
 
 export const routeConfig: Record<AppRoutes, RouteProps> = {

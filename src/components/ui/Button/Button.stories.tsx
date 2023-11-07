@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import Button from "./Button.tsx";
-import { ButtonColor, ButtonFeature, ButtonHeight, IconSide } from "./types";
-import rightArrow from "../../../assets/images/icons/icon-arrow right.svg";
-import leftArrow from "../../../assets/images/icons/icon-arrow left.svg";
-import cross from "../../../assets/images/icons/X.svg";
+import { ButtonColor, ButtonTestId } from "./types";
+import Icon from "../Icon/Icon.tsx";
+import { IconColor, IconTypes } from "../Icon/types";
+import styles from "./Button.module.scss";
 
 const meta = {
   title: "ui/Button",
@@ -21,76 +21,44 @@ type Story = StoryObj<typeof meta>;
 export const Forward: Story = {
   args: {
     type: "button",
-    feature: ButtonFeature.FORWARD,
-    height: ButtonHeight.HIGH,
+    testId: ButtonTestId.FORWARD,
     color: ButtonColor.PRIMARY,
-    icon: rightArrow,
-    iconSide: IconSide.RIGHT,
-    iconAlt: "Стрелка вправо",
-    title: "Продолжить",
-    withMinWidth: true,
+    children: (
+      <>
+        {" "}
+        Продолжить
+        <Icon type={IconTypes.RIGHT_ICON} />
+      </>
+    ),
   },
 };
 
 export const Back: Story = {
   args: {
     type: "button",
-    feature: ButtonFeature.BACK,
-    height: ButtonHeight.HIGH,
+    testId: ButtonTestId.BACK,
     color: ButtonColor.SECONDARY,
-    icon: leftArrow,
-    iconSide: IconSide.LEFT,
-    iconAlt: "Стрелка влево",
-    title: "Назад",
-    withMinWidth: true,
+    children: (
+      <>
+        <Icon type={IconTypes.LEFT_ICON} color={IconColor.SECONDARY} />
+        Назад
+      </>
+    ),
   },
 };
 
 export const Login: Story = {
   args: {
     type: "button",
-    feature: ButtonFeature.FORWARD,
-    height: ButtonHeight.MEDIUM,
+    testId: ButtonTestId.FORWARD,
     color: ButtonColor.PRIMARY,
-    icon: rightArrow,
-    iconSide: IconSide.RIGHT,
-    iconAlt: "Стрелка вправо",
-    title: "Войти",
-  },
-};
-
-export const WithoutIcon: Story = {
-  args: {
-    type: "button",
-    feature: ButtonFeature.OTHER,
-    height: ButtonHeight.HIGH,
-    color: ButtonColor.PRIMARY,
-    title: "Пройти квиз!",
-    withMinWidth: true,
-  },
-};
-
-export const Select: Story = {
-  args: {
-    type: "button",
-    feature: ButtonFeature.SELECT,
-    height: ButtonHeight.LOW,
-    color: ButtonColor.PALE,
-    title: "Футбол",
-    mainFont: true,
-  },
-};
-
-export const Cancel: Story = {
-  args: {
-    type: "button",
-    feature: ButtonFeature.CANCEL,
-    height: ButtonHeight.LOW,
-    color: ButtonColor.PRIMARY,
-    icon: cross,
-    iconSide: IconSide.RIGHT,
-    iconAlt: "Крестик",
-    title: "Футбол",
-    mainFont: true,
+    className: styles.login,
+    children: (
+      <>
+        {" "}
+        Войти
+        <Icon type={IconTypes.RIGHT_ICON} />
+      </>
+    ),
   },
 };
