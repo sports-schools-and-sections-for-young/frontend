@@ -2,9 +2,10 @@ import styles from "./CooperationSection.module.scss";
 import Accordeon from "../Accordion/Accordion";
 import HeadingIcon from "../ui/HeadingIcon/HeadingIcon";
 import { view, headingLevel } from "../ui/HeadingIcon/types";
-import ImageCard, { ImageCardSize } from "../ui/ImageCard/ImageCard";
+import ImageCard from "../ui/ImageCard/ImageCard";
+import { ImageCardSize } from "../ui/ImageCard/types/index";
 import accordionData from "../../utils/constants/accordionData";
-import cooperation from "../../assets/images/cooperation.png";
+import cooperation from "../../assets/images/main-image-cooperation.png";
 
 const CooperationSection = () => {
   return (
@@ -30,7 +31,7 @@ const CooperationSection = () => {
             className={styles.image}
             src={cooperation}
             alt="Дети с мячами"
-            size={ImageCardSize.EXTRA_LARGE}
+            size={ImageCardSize.REASON_IMG}
           />
         </div>
       </div>

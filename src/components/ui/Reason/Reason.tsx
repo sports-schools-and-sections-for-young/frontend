@@ -1,7 +1,8 @@
 import { FC } from "react";
 import styles from "./Reason.module.scss";
 import { ReasonProps } from "./types";
-import ImageCard, { ImageCardSize } from "../ImageCard/ImageCard";
+import ImageCard from "../ImageCard/ImageCard";
+import { ImageCardSize } from "../ImageCard/types/index";
 import HeadingIcon from "../HeadingIcon/HeadingIcon";
 import { headingLevel, view } from "../HeadingIcon/types";
 
@@ -12,7 +13,7 @@ const Reason: FC<ReasonProps> = (props) => {
       <div className={styles.imageBlock}>
         <ImageCard
           className={styles.image}
-          size={ImageCardSize.LARGE}
+          size={ImageCardSize.WHY_WE_IMG}
           src={img}
           alt={title}
         />
