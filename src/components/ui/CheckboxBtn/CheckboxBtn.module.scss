@@ -1,12 +1,14 @@
 .button {
-  padding: 12px 30px;
+  padding: 4px;
+  align-items: center;
+  height: 40px;
+  width: 135px;
   border: none;
   border-radius: var(--extra-narrow-radius);
   background-color: var(--lightblue-background-color);
   color: var(--ui-primary-bg-color);
   cursor: pointer;
   font-size: var(--font-size-m);
-  margin-right: 4px;
   outline: none;
   font-family: var(--font-family_main);
 }
