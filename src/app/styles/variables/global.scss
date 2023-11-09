@@ -1,10 +1,12 @@
 :root {
   // Fonts
-  --font-family_main: Manrope, sans-serif;
+  --font-family_main: manrope, sans-serif;
   --font-family_secondary: inter, sans-serif;
   --font-weight-700: 700;
   --font-weight-600: 600;
   --font-weight-500: 500;
+  --font-size-xl: 24px;
+  --font-line-xl: 20px;
   --font-size-l: 18px;
   --font-line-l: 28px;
   --font-l: var(--font-size-l) / var(--font-line-l) / var(--font-weight-500)
@@ -38,20 +40,20 @@
   --bg-color: #fffefd;
   --primary-color: #0232c2;
   --secondary-color: #0452ff;
-  --ui-primary-color: #ffffff;
+  --ui-primary-color: #fff;
   --ui-secondary-color: #2b5fc7;
   --ui-disabled-color: #828091;
   --ui-primary-bg-color: #003fbc;
   --ui-secondary-bg-color: #fffefd;
   --ui-disabled-bg-color: #d0cfd5;
   --text-gray-color: #807c7c;
+  --text-black-color: #020842;
   --label-color: #817676;
 
   // добавила новые цвета(Юля)
   --blue-background-color: #cbe5e4;
   --light-text-color: #6f89a4;
   --light-black-color: #111;
-
   --lightblue-background-color: #e5ecf8;
 
   // BorderRadii

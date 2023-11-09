@@ -11,11 +11,16 @@
 .sectionContainer {
   max-width: 1108px;
   width: 100%;
+
+  @include section(column);
+
+  align-items: center;
 }
 
 .title {
   @include manrope-header(44px, 700, 100%);
 
+  color: var(--text-black-color);
   letter-spacing: 0.2px;
   padding-top: 24px;
 }
