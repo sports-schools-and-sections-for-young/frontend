@@ -3,6 +3,7 @@ import AppRouter from "./providers/Router/AppRouter.tsx";
 import "./styles/index.scss";
 import { School, Sport } from "../types";
 import AppContext from "../context";
+import Header from "../components/ui/Header/Header.tsx";
 
 function App() {
   const [sports, setSports] = useState<Sport[]>([]);
@@ -15,15 +16,7 @@ function App() {
   return (
     <AppContext.Provider value={appContextValues}>
       <div className="app">
-        <header
-          style={{
-            borderBottom: "1px solid red",
-            display: "flex",
-            justifyContent: "center",
-          }}
-        >
-          HEADER
-        </header>
+        <Header />
         <AppRouter />
         <footer
           style={{
