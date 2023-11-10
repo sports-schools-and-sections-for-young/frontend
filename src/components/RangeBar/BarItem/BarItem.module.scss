@@ -1,5 +1,6 @@
 .item {
-  background-color: chartreuse;
+  background-color: rgb(33 29 59 / 18%);
+  border-radius: 2px 2px 0 0;
   width: 12px;
   max-height: 75px;
 }
@@ -9,5 +10,5 @@
 }
 
 .itemActive {
-  background-color: rgb(255 115 0);
+  background-color: #003fbc;
 }

@@ -1,71 +1,90 @@
-import React, { FC } from "react";
+import React, { FC, useState, useEffect } from "react";
 import { IRangeBarProps } from "./rangeBarTypes";
 import styles from "./RangeBar.module.scss";
+
 import BarItem from "./BarItem/BarItem";
 
 const RangeBar: FC<IRangeBarProps> = (props) => {
-  const { prices, value, setValue } = props;
-  const step = 12;
+  const { prices, currentPrice, setCurrentPrice } = props;
+  const rangeCapacity = 30;
   const maxPrice = Math.max(...prices);
-  const rangeChunk = maxPrice / step;
+  const rangeChunk = maxPrice / rangeCapacity;
   const sortedPrices = [...prices].sort((min, max) => min - max);
+  let maxHeight = 0;
+
+  const [progress, setProgress] = useState<number>(0);
+
+  type groupPrice = {
+    range: number;
+    prices: number[];
+  }[];
 
   const devideArrToChunk = (arrayOfPrices: number[]) => {
-    const bars: object[][] = [[], [], [], [], [], [], [], [], [], [], [], []];
+    const bars: groupPrice = Array.from({ length: rangeCapacity }, () => {
+      return { prices: [], range: 0 };
+    });
     let range = rangeChunk;
     let index = 0;
-
     arrayOfPrices.forEach((price) => {
       if (price <= range) {
-        bars[index].push({ [`${range}`]: price });
+        bars[index].range = range;
+        bars[index].prices.push(price);
       } else {
         while (!(price <= range)) {
           index += 1;
           range = rangeChunk * (index + 1);
         }
-        bars[index].push({ [`${range}`]: price });
+        bars[index].range = range;
+        bars[index].prices.push(price);
+      }
+    });
+    bars.forEach((item) => {
+      if (item.prices.length > maxHeight) {
+        maxHeight = item.prices.length;
       }
     });
     return bars;
   };
 
-  const [graphPrice, setGraphPrice] = React.useState<object[][]>([[{}]]);
-
-  React.useEffect(() => {
-    setGraphPrice(devideArrToChunk(sortedPrices));
-  }, []);
+  const graphPrice = devideArrToChunk(sortedPrices);
 
   const handleChangePrice = (e: React.ChangeEvent<HTMLInputElement>) => {
     const priceValue = e.target.value;
     if (!priceValue) {
-      setValue(0);
+      setCurrentPrice(0);
     }
-    setValue(parseInt(priceValue, 10));
+    setCurrentPrice(parseInt(priceValue, 10));
   };
+
+  useEffect(() => {
+    setProgress((currentPrice / maxPrice) * 100);
+  }, [currentPrice, maxPrice]);
 
   return (
     <label htmlFor="rangeBar" className={styles.rangebar}>
       <ul className={styles.barlist}>
-        {graphPrice.map((bar) => {
+        {graphPrice.map((bar, id) => {
           return (
             <BarItem
-              key={Math.floor(Math.random() * 10000)}
+              // eslint-disable-next-line react/no-array-index-key
+              key={id}
               barChunk={bar}
-              value={value}
-              maxHeight={10}
+              currentPrice={currentPrice}
+              maxHeight={maxHeight}
             />
           );
         })}
       </ul>
       <input
-        className={styles.input}
+        className={`${styles.input}`}
+        style={{ backgroundSize: `${progress}% 100%` }}
         id="rangeBar"
         type="range"
         min="0"
         max={maxPrice}
-        value={value}
+        value={currentPrice}
         onChange={handleChangePrice}
-        step={step}
+        step="1"
       />
     </label>
   );

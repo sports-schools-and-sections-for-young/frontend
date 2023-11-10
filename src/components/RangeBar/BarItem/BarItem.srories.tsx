@@ -12,8 +12,8 @@ type Story = StoryObj<typeof meta>;
 
 export const BarItemWiget: Story = {
   args: {
-    barChunk: [{ price: 300 }, { price: 300 }, { price: 300 }],
-    value: 10,
+    barChunk: { prices: [300], range: 2 },
+    currentPrice: 10,
     maxHeight: 4,
   },
 };

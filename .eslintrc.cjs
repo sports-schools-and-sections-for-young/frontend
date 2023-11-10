@@ -43,6 +43,7 @@ module.exports = {
     "react/require-default-props": "off",
     "jsx-a11y/no-noninteractive-element-interactions": "off",
     "jsx-a11y/click-events-have-key-events": "off",
+    "import/no-extraneous-dependencies": ["error", { devDependencies: true }],
   },
   settings: {
     "import/resolver": {

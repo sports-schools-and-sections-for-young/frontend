@@ -1,5 +1,6 @@
 export interface IRangeBarProps {
-  value: number;
+  id?: number;
+  currentPrice: number;
   prices: number[];
-  setValue: (price: number) => void;
+  setCurrentPrice: (price: number) => void;
 }

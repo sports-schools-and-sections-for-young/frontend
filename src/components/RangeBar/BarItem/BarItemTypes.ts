@@ -1,5 +1,8 @@
 export interface IBarItemProps {
-  barChunk: object[];
-  value: number;
+  barChunk: {
+    range: number;
+    prices: number[];
+  };
+  currentPrice: number;
   maxHeight: number;
 }

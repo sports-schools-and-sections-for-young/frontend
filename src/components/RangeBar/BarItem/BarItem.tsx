@@ -4,22 +4,17 @@ import { IBarItemProps } from "./BarItemTypes.ts";
 import styles from "./BarItem.module.scss";
 
 const BarItem: FC<IBarItemProps> = (props) => {
-  const { maxHeight, barChunk, value } = props;
-
-  const maxPrice: number = +Object.keys(barChunk).reduce(
-    (a, b) => (barChunk[+a] > barChunk[+b] ? a : b),
-    {},
-  );
-  const height = (barChunk.length / maxHeight) * 100;
+  const { maxHeight, barChunk, currentPrice } = props;
+  const barHeight = (barChunk.prices.length / maxHeight) * 100;
   const [isActive, setIsActive] = React.useState(false);
 
   React.useEffect(() => {
-    if (maxPrice >= value) {
+    if (barChunk.range <= currentPrice) {
       setIsActive(true);
     } else {
       setIsActive(false);
     }
-  }, [value, maxPrice]);
+  }, [currentPrice]);
 
   const itemClassNames = classnames({
     [styles.item]: true,
@@ -28,7 +23,7 @@ const BarItem: FC<IBarItemProps> = (props) => {
   });
 
   return (
-    <div className={itemClassNames} style={{ width: height }}>
+    <div className={itemClassNames} style={{ height: `${barHeight}%` }}>
       {}
     </div>
   );
