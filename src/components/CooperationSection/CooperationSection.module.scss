@@ -21,6 +21,7 @@
 
 .headerQuestion {
   padding-top: 28px;
+  color: var(--text-black-color);
 
   @include manrope-header(44px, 700);
 }

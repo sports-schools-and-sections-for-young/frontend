@@ -1,81 +1,41 @@
 .button {
   cursor: pointer;
   border-radius: var(--common-radius);
-  padding: 8px 16px;
-  font-family: var(--font-family_secondary);
-  font-size: 18px;
+  padding: 12px 24px;
+  height: 48px;
+  font-size: 16px;
   font-style: normal;
-  font-weight: 700;
-  line-height: 32px;
-  letter-spacing: 0.2px;
-  display: grid;
-  grid-template-areas: "leftIcon text rightIcon";
+  font-weight: 600;
+  line-height: 16px;
+  display: flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
   border: none;
   position: relative;
-}
-
-.text {
-  grid-area: text;
-}
-
-.mainFont {
-  font-family: var(--font-family_main);
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 135%;
-}
-
-.low {
-  height: 38px;
-}
-
-.medium {
-  height: 48px;
-  padding: 4px 16px;
-}
-
-.high {
-  height: 56px;
 }
 
 .withMinWidth {
   min-width: 210px;
 }
 
-.withLeftIcon {
-  padding-left: 6px;
-}
-
-.withRightIcon {
-  padding-right: 6px;
-}
-
-.leftIcon {
-  grid-area: leftIcon;
-}
-
-.rightIcon {
-  grid-area: rightIcon;
-}
-
-.iconPadding {
-  padding-right: 4px;
-}
-
 .primary {
-  background: var(--button-primary-bg-color);
-  color: var(--button-primary-color);
+  background: var(--ui-primary-bg-color);
+  color: var(--ui-primary-color);
 }
 
 .secondary {
-  background: var(--button-secondary-bg-color);
-  color: var(--button-secondary-color);
+  background: var(--ui-secondary-bg-color);
+  color: var(--ui-secondary-color);
+  border: 2px solid var(--ui-secondary-color);
 }
 
-.pale {
-  background: var(--button-secondary-bg-color);
-  color: var(--button-pale-color);
+.disabled {
+  background: var(--ui-disabled-bg-color);
+  color: var(--ui-disabled-color);
+}
+
+.login {
+  background: #ff7a60;
+  width: 159px;
 }

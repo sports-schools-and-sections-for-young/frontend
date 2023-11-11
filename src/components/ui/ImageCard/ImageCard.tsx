@@ -1,20 +1,7 @@
-import { ImgHTMLAttributes, FC } from "react";
+import { FC } from "react";
 import classnames from "classnames";
 import styles from "./ImageCard.module.scss";
-
-export enum ImageCardSize {
-  SMALL = "small",
-  MEDIUM = "medium",
-  LARGE = "large",
-  EXTRA_LARGE = "extra-large",
-}
-
-interface ImageCardProps extends ImgHTMLAttributes<HTMLImageElement> {
-  className?: string;
-  size: ImageCardSize;
-  src: string;
-  alt: string;
-}
+import { ImageCardProps } from "./types";
 
 const ImageCard: FC<ImageCardProps> = (props) => {
   const { className = "", src, alt, size, ...rest } = props;
@@ -26,9 +13,12 @@ const ImageCard: FC<ImageCardProps> = (props) => {
   });
 
   return (
-    <div className={imageCardClass} {...rest}>
-      <img src={src} alt={alt} className={styles.imageSize} />
-    </div>
+    <img
+      src={src}
+      alt={alt}
+      className={`${imageCardClass} ${styles.imageSize}`}
+      {...rest}
+    />
   );
 };
 
