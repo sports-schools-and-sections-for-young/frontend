@@ -2,6 +2,8 @@ export enum IconTypes {
   RIGHT_ICON = "right-icon",
   LEFT_ICON = "left-icon",
   PERSON = "person",
+  BOY = "boy",
+  GIRL = "girl",
   BALL = "ball",
   LOCATION = "location",
   COINS = "coins",
