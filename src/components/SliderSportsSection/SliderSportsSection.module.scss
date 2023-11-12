@@ -1,0 +1,42 @@
+@import "../../app/styles/mixins";
+
+.sliderSection {
+  padding-top: 68px;
+
+  @include section(column);
+
+  align-items: center;
+}
+
+.title {
+  position: relative;
+  display: block;
+  margin: 24px 0 24px 160px;
+
+  @include manrope-header(48px, 700);
+
+  align-self: flex-start;
+  letter-spacing: 0.2px;
+  max-width: 544px;
+  color: var(--text-black-color);
+
+  &::after {
+    position: absolute;
+    top: 0;
+    left: 576px;
+    width: 544px;
+    height: 147px;
+    content: "";
+    background-image: url("../../assets/images/slider-header-background.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+}
+
+.container {
+  max-width: 1440px;
+
+  @include section(column);
+
+  align-items: center;
+}
