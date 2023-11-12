@@ -14,7 +14,7 @@ const BarItem: FC<IBarItemProps> = (props) => {
     } else {
       setIsActive(false);
     }
-  }, [currentPrice]);
+  }, [currentPrice, barChunk.range]);
 
   const itemClassNames = classnames({
     [styles.item]: true,
