@@ -65,9 +65,17 @@
   line-height: 27.9px;
 }
 
+.buttonLeft {
+  margin-right: 64px;
+  transform: scaleX(-1);
+}
+
 .buttonRight,
 .buttonLeft {
   background-image: url("../../assets/images/icons/accordion-arrow.svg");
+  margin-right: 28px;
+  fill: #2b5fc7;
+  color: #2b5fc7;
   border: none;
   cursor: pointer;
   width: 100px;
@@ -76,15 +84,6 @@
   background-position: center;
   background-size: contain;
   background-color: transparent;
-}
-
-.buttonRight {
-  margin-right: 28px;
-}
-
-.buttonLeft {
-  margin-right: 64px;
-  transform: scaleX(-1);
 }
 
 .hidden {
@@ -110,4 +109,4 @@
 
 .containerText > .containerButton {
   margin-top: auto;
-}
+} /*# sourceMappingURL=Slider.module.css.map */

@@ -3,12 +3,15 @@
 .cooperation {
   @include section(column);
 
-  padding: 68px 116px 106px 165px;
+  box-sizing: border-box;
+  min-height: 875px;
   align-items: center;
 }
 
 .sectionContainer {
-  max-width: 1159px;
+  box-sizing: border-box;
+  padding: 68px 160px 0 160px;
+  max-width: 1440px;
   width: 100%;
 }
 
@@ -16,7 +19,7 @@
   @include section(row);
 
   justify-content: space-between;
-  gap: 54px;
+  gap: 30px;
 }
 
 .headerQuestion {

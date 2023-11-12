@@ -9,7 +9,7 @@
 }
 
 .sectionContainer {
-  max-width: 1108px;
+  max-width: 1120px;
   width: 100%;
 
   @include section(column);
@@ -31,6 +31,6 @@
   @include section(row);
 
   padding-top: 60px;
-  gap: 29px;
+  gap: 35px;
   justify-content: space-between;
 }
