@@ -1,0 +1,26 @@
+name: Build and Deploy Storybook
+
+on:
+  push:
+    branches:
+      - develop  # Активируется при изменениях в ветке develop
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0  # Получает полную историю для корректной работы
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Build Storybook
+      run: npm run build-storybook  
+
+    - name: Deploy to GitHub Pages
+      uses: JamesIves/github-pages-deploy-action@4.1.4
+      with:
+        branch: gh-pages
+        folder: storybook-static  # Папка с собранным Storybook
