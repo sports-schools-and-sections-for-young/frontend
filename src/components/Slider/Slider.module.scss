@@ -39,14 +39,13 @@
   line-height: 87.42px;
   font-weight: bold;
   color: var(--text-black-color);
-  text-align: start;
   letter-spacing: 0.2px;
   text-align: start;
 }
 
 .kindOfSport {
   margin-top: 24px;
-  font-weight: bold; 
+  font-weight: bold;
   font-size: 64px;
   line-height: 87.42px;
   font-family: var(--font-family_main);
@@ -58,49 +57,17 @@
 .textSlider {
   margin-top: 32px;
   max-width: 541px;
-  color: #6F89A4;
-  font-family: Manrope;
+  color: #6f89a4;
+  font-family: var(--font-family_main);
   font-size: 18px;
   font-style: normal;
   font-weight: 500;
   line-height: 27.9px;
-
 }
 
-// .buttonRight, .buttonLeft {
-//   background-image: url("../../assets/images/icons/accordion-arrow.svg");
-//   margin-right: 28px;
-// }
-
-// .buttonLeft {
-//   margin-right: 64px;
-//   transform: scaleX(-1);
-// }
-
-// .buttonRight, .buttonLeft {
-//   border: none;
-//   cursor: pointer;
-//   width: 100px;
-//   height: 100px;
-//   background-repeat: no-repeat;
-//   background-position: center;
-//   background-size: contain;
-//   background-color: transparent;
-// }
-
-.buttonRight, .buttonLeft {
-  background-image: url("../../assets/images/icons/accordion-arrow.svg");
-  margin-right: 28px;
-  fill: #2b5fc7;
-  color: #2b5fc7;
-}
-
+.buttonRight,
 .buttonLeft {
-  margin-right: 64px;
-  transform: scaleX(-1);
-}
-
-.buttonRight, .buttonLeft {
+  background-image: url("../../assets/images/icons/accordion-arrow.svg");
   border: none;
   cursor: pointer;
   width: 100px;
@@ -111,28 +78,36 @@
   background-color: transparent;
 }
 
+.buttonRight {
+  margin-right: 28px;
+}
 
-  .hidden {
-    visibility: hidden;
+.buttonLeft {
+  margin-right: 64px;
+  transform: scaleX(-1);
+}
+
+.hidden {
+  visibility: hidden;
 }
 
 .img {
-    width: 174px;
-    height: 165px;
-    object-fit: cover;
-    border-radius: var(--common-radius);
-  }
+  width: 174px;
+  height: 165px;
+  object-fit: cover;
+  border-radius: var(--common-radius);
+}
 
-  .numberSlider {
-    font-size: 24px;
-    font-family: var(--font-family_main);
-  }
-  
-  .leadingNumbers {
-    font-size: 32px;
-    font-family: var(--font-family_main);
-  }
+.numberSlider {
+  font-size: 24px;
+  font-family: var(--font-family_main);
+}
 
-  .containerText > .containerButton {
-    margin-top: auto;
-  }
+.leadingNumbers {
+  font-size: 32px;
+  font-family: var(--font-family_main);
+}
+
+.containerText > .containerButton {
+  margin-top: auto;
+}
