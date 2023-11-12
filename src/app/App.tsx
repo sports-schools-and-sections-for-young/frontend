@@ -4,6 +4,7 @@ import "./styles/index.scss";
 import { School, Sport } from "../types";
 import AppContext from "../context";
 import Header from "../components/ui/Header/Header.tsx";
+import MainFooter from "../components/MainFooter/MainFooter.tsx";
 
 function App() {
   const [sports, setSports] = useState<Sport[]>([]);
@@ -18,15 +19,7 @@ function App() {
       <div className="app">
         <Header />
         <AppRouter />
-        <footer
-          style={{
-            borderTop: "1px solid red",
-            display: "flex",
-            justifyContent: "center",
-          }}
-        >
-          FOOTER
-        </footer>
+        <MainFooter />
       </div>
     </AppContext.Provider>
   );

@@ -9,21 +9,20 @@
   font-weight: 600;
   letter-spacing: 0.2px;
   cursor: pointer;
-
-  &::before {
-    position: absolute;
-    display: block;
-    top: 0;
-    right: 0;
-    height: 40px;
-    width: 40px;
-    content: "";
-    background-image: url("../../../assets/images/icons/accordion-arrow.svg");
-    background-size: 40px;
-    background-repeat: no-repeat;
-    background-position: top right;
-    transition: transform 0.3s linear;
-  }
+}
+.item::before {
+  position: absolute;
+  display: block;
+  top: 0;
+  right: 0;
+  height: 40px;
+  width: 40px;
+  content: "";
+  background-image: url("../../../assets/images/icons/accordion-arrow.svg");
+  background-size: 40px;
+  background-repeat: no-repeat;
+  background-position: top right;
+  transition: transform 0.3s linear;
 }
 
 .hiddenCheckbox {
@@ -77,4 +76,4 @@
 .underline {
   width: 70%;
   border-bottom: 1px solid #807c7c;
-}
+} /*# sourceMappingURL=AccordionItem.module.css.map */

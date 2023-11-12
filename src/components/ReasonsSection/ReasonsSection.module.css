@@ -1,8 +1,7 @@
-@import "../../app/styles/mixins";
-
 .reasons {
-  @include section(column);
-
+  width: 100%;
+  display: flex;
+  flex-direction: column;
   background-color: var(--blue-background-color);
   padding: 68px 165px 116px;
   align-items: center;
@@ -11,15 +10,18 @@
 .sectionContainer {
   max-width: 1120px;
   width: 100%;
-
-  @include section(column);
-
+  width: 100%;
+  display: flex;
+  flex-direction: column;
   align-items: center;
 }
 
 .title {
-  @include manrope-header(44px, 700, 100%);
-
+  font-family: var(--font-family_main);
+  font-size: 44px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 100%;
   color: var(--text-black-color);
   letter-spacing: 0.2px;
   padding-top: 24px;
@@ -27,10 +29,10 @@
 
 .container {
   width: 100%;
-
-  @include section(row);
-
+  width: 100%;
+  display: flex;
+  flex-direction: row;
   padding-top: 60px;
   gap: 35px;
   justify-content: space-between;
-}
+} /*# sourceMappingURL=ReasonsSection.module.css.map */
