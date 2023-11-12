@@ -7,6 +7,8 @@ import { IconColor, IconSize, IconTypes } from "./types";
 import RightArrow from "../../../assets/images/icons/ArrowRight.svg?react";
 import LeftArrow from "../../../assets/images/icons/ArrowLeft.svg?react";
 import Person from "../../../assets/images/icons/Person.svg?react";
+import Boy from "../../../assets/images/icons/Boy.svg?react";
+import Girl from "../../../assets/images/icons/Girl.svg?react";
 import Ball from "../../../assets/images/icons/SoccerBall.svg?react";
 import Location from "../../../assets/images/icons/MapPin.svg?react";
 import Coins from "../../../assets/images/icons/Coins.svg?react";
@@ -42,6 +44,8 @@ const Icon: FC<IconProps> = (props) => {
     [IconTypes.RIGHT_ICON]: <RightArrow className={iconClass} />,
     [IconTypes.LEFT_ICON]: <LeftArrow className={iconClass} />,
     [IconTypes.PERSON]: <Person className={iconClass} />,
+    [IconTypes.BOY]: <Boy className={iconClass} />,
+    [IconTypes.GIRL]: <Girl className={iconClass} />,
     [IconTypes.BALL]: <Ball className={iconClass} />,
     [IconTypes.LOCATION]: <Location className={iconClass} />,
     [IconTypes.COINS]: <Coins className={iconClass} />,
