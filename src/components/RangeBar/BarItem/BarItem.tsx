@@ -1,7 +1,15 @@
 import React, { FC } from "react";
 import classnames from "classnames";
-import { IBarItemProps } from "./BarItemTypes.ts";
 import styles from "./BarItem.module.scss";
+
+interface IBarItemProps {
+  barChunk: {
+    range: number;
+    prices: number[];
+  };
+  currentPrice: number;
+  maxHeight: number;
+}
 
 const BarItem: FC<IBarItemProps> = (props) => {
   const { maxHeight, barChunk, currentPrice } = props;

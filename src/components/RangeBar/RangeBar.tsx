@@ -1,7 +1,12 @@
 import React, { FC, useState, useEffect } from "react";
-import { IRangeBarProps } from "./rangeBarTypes";
 import styles from "./RangeBar.module.scss";
 import BarItem from "./BarItem/BarItem";
+
+interface IRangeBarProps {
+  currentPrice: number;
+  prices: number[];
+  setCurrentPrice: (price: number) => void;
+}
 
 const RangeBar: FC<IRangeBarProps> = (props) => {
   const { prices, currentPrice, setCurrentPrice } = props;

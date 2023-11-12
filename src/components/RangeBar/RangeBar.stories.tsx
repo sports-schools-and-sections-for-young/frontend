@@ -1,25 +1,23 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import React, { useState } from "react";
 import RangeBar from "./RangeBar";
 
-const meta: Meta<typeof RangeBar> = {
+const meta: Meta<typeof RangeBar & React.ChangeEvent<HTMLInputElement>> = {
   title: "widgets/RangeBar",
   component: RangeBar,
+  parameters: {
+    layout: "centered",
+  },
   argTypes: {
-    currentPrice: {
-      defaultValue: 0,
-      control: {
-        type: "range",
-        min: "0",
-        max: "1000",
-      },
-    },
     prices: {
       control: {
         type: "object",
       },
     },
     setCurrentPrice: {
-      defaultValue: () => {},
+      table: {
+        disable: true,
+      },
     },
   },
 };
@@ -27,6 +25,22 @@ export default meta;
 type Story = StoryObj<typeof RangeBar>;
 
 export const RangeBarWiget: Story = {
+  render: function Render(args) {
+    const [value, setItem] = useState<number>(0);
+
+    const handleValueChange = (current: number) => {
+      setItem(current);
+      console.log(value);
+    };
+
+    return (
+      <RangeBar
+        {...args}
+        currentPrice={value}
+        setCurrentPrice={handleValueChange}
+      />
+    );
+  },
   args: {
     prices: [
       609, 80, 277, 732, 206, 857, 204, 205, 938, 779, 342, 767, 754, 16, 333,
@@ -97,6 +111,5 @@ export const RangeBarWiget: Story = {
       40, 168, 129, 372, 640, 205, 603, 801, 581, 692, 464, 207, 781, 256, 28,
       577, 478, 561, 822, 228, 103, 612,
     ],
-    setCurrentPrice: () => {},
   },
 };
