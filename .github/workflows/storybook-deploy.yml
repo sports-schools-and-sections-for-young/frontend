@@ -10,21 +10,21 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout 🛎️
-      uses: actions/checkout@v2.3.1
-      with:
-        # fetch-depth: 0
-        persist-credentials: false
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2.3.1
+        with:
+          # fetch-depth: 0
+          persist-credentials: false
 
-    - name: Install dependencies
-      run: npm install
+      - name: Install dependencies
+        run: npm install
 
-    - name: Build Storybook
-      run: npm run build-storybook  
+      - name: Build Storybook
+        run: npm run build-storybook
 
-    - name: Deploy to GitHub Pages
-      uses: JamesIves/github-pages-deploy-action@4.1.4
-      with:
-        branch: gh-pages
-        folder: storybook-static
-        token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@4.1.4
+        with:
+          branch: gh-pages
+          folder: storybook-static
+          token: ${{ secrets.GITHUB_TOKEN }}

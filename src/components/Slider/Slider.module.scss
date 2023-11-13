@@ -30,7 +30,7 @@
 .containerButton {
   display: flex;
   justify-content: space-between;
-  width: 1200px;
+  width: 1100px;
 }
 
 .titleSlider {
@@ -77,14 +77,10 @@
   background-position: center;
   background-size: contain;
   background-color: transparent;
-}
-
-.buttonRight {
   margin-right: 28px;
 }
 
 .buttonLeft {
-  margin-right: 64px;
   transform: scaleX(-1);
 }
 
