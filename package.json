@@ -69,6 +69,7 @@
   },
   "lint-staged": {
     "*.{ts,tsx}": "eslint . --ext ts,tsx --report-unused-disable-directives --quiet --fix",
-    "*.{ts,tsx,scss,md,html,json}": "npm run prettier"
+    "*.{scss}": "npm run stylelint:fix",
+    "*.{ts,tsx,md,html,json}": "npm run prettier"
   }
 }
