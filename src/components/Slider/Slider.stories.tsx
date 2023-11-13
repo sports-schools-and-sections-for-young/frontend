@@ -5,7 +5,6 @@ const meta = {
   title: "widgets/Slider",
   component: Slider,
   parameters: {
-    // layout: "centered",
   },
 } satisfies Meta<typeof Slider>;
 

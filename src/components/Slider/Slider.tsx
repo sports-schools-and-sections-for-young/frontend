@@ -1,4 +1,3 @@
-// import { useSwipeable } from 'react-swipeable';
 import React, { useState } from "react";
 import styles from "./Slider.module.scss";
 import Button from "../ui/Button/Button";
