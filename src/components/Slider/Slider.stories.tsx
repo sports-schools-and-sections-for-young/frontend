@@ -4,8 +4,7 @@ import Slider from "./Slider.tsx";
 const meta = {
   title: "widgets/Slider",
   component: Slider,
-  parameters: {
-  },
+  parameters: {},
 } satisfies Meta<typeof Slider>;
 
 export default meta;
