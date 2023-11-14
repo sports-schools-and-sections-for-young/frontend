@@ -2,17 +2,7 @@ import { useState, FC } from "react";
 import classnames from "classnames";
 import CheckboxBtn from "../CheckboxBtn/CheckboxBtn";
 import styles from "./CheckboxPanel.module.scss";
-
-interface Btn {
-  id: number;
-  title: string;
-}
-
-interface CheckboxPanelProps {
-  className?: string;
-  setOption: (btnId: number) => void;
-  btns: Btn[];
-}
+import { Btn, CheckboxPanelProps } from "./types";
 
 const CheckboxPanel: FC<CheckboxPanelProps> = (props) => {
   const { className = "", setOption, btns } = props;
@@ -30,6 +20,7 @@ const CheckboxPanel: FC<CheckboxPanelProps> = (props) => {
         <CheckboxBtn
           key={btn.id}
           isActive={active === btn.id}
+          size={btn.size}
           onClick={() => {
             setActive(btn.id);
             setOption(btn.id);
