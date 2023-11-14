@@ -8,7 +8,6 @@
   height: 32px;
   border: none;
   border-radius: var(--extra-narrow-radius);
-  background-color: var(--lightblue-background-color);
   color: var(--ui-primary-bg-color);
   cursor: pointer;
   font-size: var(--font-size-m);
@@ -18,4 +17,16 @@
 
 .active {
   border: 1px solid var(--ui-primary-bg-color);
+}
+
+.primary {
+  background-color: var(--lightblue-background-color);
+}
+
+.secondary {
+  background-color: transparent;
+}
+
+.active.secondary {
+  border: none;
 }
