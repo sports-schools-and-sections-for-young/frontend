@@ -1,19 +1,16 @@
-import { ButtonHTMLAttributes, FC } from "react";
+import { FC } from "react";
 import classnames from "classnames";
 import styles from "./Badge.module.scss";
-
-interface BadgeProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  className?: string;
-  isActive: boolean;
-}
+import { BadgeProps } from "./types";
 
 const Badge: FC<BadgeProps> = (props) => {
-  const { className = "", children, isActive, ...rest } = props;
+  const { className = "", children, isActive, color, ...rest } = props;
 
   const BadgeClass = classnames({
     [className]: true,
     [styles.button]: true,
     [styles.active]: isActive,
+    [styles[color]]: true,
   });
 
   return (
