@@ -1,8 +1,6 @@
 .button {
-  padding: 4px;
+  justify-content: center;
   align-items: center;
-  height: 40px;
-  width: 135px;
   border: none;
   border-radius: var(--extra-narrow-radius);
   background-color: var(--lightblue-background-color);
@@ -17,4 +15,14 @@
   border-radius: var(--extra-narrow-radius);
   background-color: var(--ui-primary-bg-color);
   color: var(--ui-primary-color);
+}
+
+.primary {
+  height: 40px;
+  width: 132px;
+}
+
+.secondary {
+  height: 40px;
+  width: 109px;
 }
