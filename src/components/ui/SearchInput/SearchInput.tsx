@@ -68,31 +68,28 @@ const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(
     return (
       <div className={styles.input}>
         {labelName && <InputLabel labelId={labelId}>{labelName}</InputLabel>}
-        <div className={styles.inputWrapper} ref={root}>
-          <InputField
-            labelId={labelId}
-            hasError={hasError}
-            errorMessage={errorMessage}
-            ref={ref}
-            value={value}
-            onFocus={() => setOpen(true)}
-            {...rest}
-          />
-          <span className={styles.icon} />
-          {open && (
-            <ul className={styles.autocompleteField}>
-              {filteredList.map((item) => (
-                <li
-                  key={item.id}
-                  className={styles.autocompleteItem}
-                  onClick={() => handleItemClick(itemClickHandler, item)}
-                >
-                  {item.name}
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
+        <InputField
+          labelId={labelId}
+          hasError={hasError}
+          errorMessage={errorMessage}
+          ref={ref}
+          value={value}
+          onFocus={() => setOpen(true)}
+          {...rest}
+        />
+        {open && (
+          <ul className={styles.autocompleteField}>
+            {filteredList.map((item) => (
+              <li
+                key={item.id}
+                className={styles.autocompleteItem}
+                onClick={() => handleItemClick(itemClickHandler, item)}
+              >
+                {item.name}
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
     );
   },
