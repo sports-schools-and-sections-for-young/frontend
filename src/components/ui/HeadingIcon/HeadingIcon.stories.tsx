@@ -17,7 +17,7 @@ type Story = StoryObj<typeof meta>;
 
 export const White: Story = {
   args: {
-    headingLevel: headingLevel.H1,
+    headingLevel: headingLevel.H2,
     title: "Родителям и  спортсменам",
     view: view.WHITE,
   },
@@ -25,7 +25,7 @@ export const White: Story = {
 
 export const Blue: Story = {
   args: {
-    headingLevel: headingLevel.H1,
+    headingLevel: headingLevel.H2,
     title: "Родителям и  спортсменам",
     view: view.BLUE,
   },

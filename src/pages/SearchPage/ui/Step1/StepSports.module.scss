@@ -1,0 +1,69 @@
+@import "../../../../app/styles/mixins";
+
+.step {
+  @include step;
+}
+
+.title {
+  font-size: var(--font-size-heading-h2);
+  font-weight: var(--font-weight-700);
+  line-height: var(--font-line-heading-h2);
+  max-width: 850px;
+  text-align: center;
+  margin: 32px 0 20px;
+}
+
+.span {
+  color: var(--span-color);
+}
+
+.subtitle {
+  font-size: var(--font-size-l);
+  font-weight: var(--font-weight-500);
+  line-height: var(--font-line-l);
+  color: #211d3b6b;
+  margin-bottom: 56px;
+}
+
+@mixin sportList {
+  list-style-type: none;
+  max-width: 540px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px 12px;
+}
+
+.selected {
+  @include sportList;
+
+  margin-bottom: 32px;
+}
+
+.notSelected {
+  @include sportList;
+
+  margin-top: 56px;
+}
+
+.input {
+  width: 442px;
+}
+
+.fullViewButton {
+  margin: 24px 0 64px;
+  font-size: var(--font-size-m);
+  line-height: var(--font-line-m);
+  font-weight: var(--font-weight-500);
+  color: #003fbc;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.icon {
+  margin-bottom: 2px;
+}

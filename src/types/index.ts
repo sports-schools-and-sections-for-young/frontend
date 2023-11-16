@@ -1,6 +1,6 @@
 export interface Sport {
   id: number;
-  name: string;
+  title: string;
 }
 
 export interface School {

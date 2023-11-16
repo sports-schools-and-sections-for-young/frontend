@@ -1,18 +1,36 @@
 import { createContext, Dispatch, SetStateAction } from "react";
-import { School, Sport } from "../types";
+import { Sport } from "../types";
+
+export interface ISectionsRequest {
+  gender: "male" | "female" | null;
+  sports: Sport[] | null;
+  age: number | null;
+  location: [number, number] | null;
+  distance: number | null;
+  maxPrice: number | null;
+}
 
 interface IAppContext {
   sports: Sport[];
-  schools: School[];
   setSports: Dispatch<SetStateAction<Sport[]>>;
-  setSchools: Dispatch<SetStateAction<School[]>>;
+  sectionRequest: ISectionsRequest;
+  setSectionRequest: Dispatch<SetStateAction<ISectionsRequest>>;
 }
+
+export const sectionsRequestDefault: ISectionsRequest = {
+  gender: null,
+  sports: null,
+  age: null,
+  location: null,
+  distance: null,
+  maxPrice: null,
+};
 
 const defaultValue: IAppContext = {
   sports: [],
-  schools: [],
   setSports: () => {},
-  setSchools: () => {},
+  sectionRequest: sectionsRequestDefault,
+  setSectionRequest: () => {},
 };
 
 const AppContext = createContext<IAppContext>(defaultValue);

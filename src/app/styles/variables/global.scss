@@ -1,7 +1,6 @@
 :root {
   // Fonts
   --font-family_main: manrope, sans-serif;
-  --font-family_secondary: inter, sans-serif;
   --font-weight-700: 700;
   --font-weight-600: 600;
   --font-weight-500: 500;
@@ -9,37 +8,33 @@
   --font-line-xl: 20px;
   --font-size-l: 18px;
   --font-line-l: 28px;
-  --font-l: var(--font-size-l) / var(--font-line-l) / var(--font-weight-500)
-    var(--font-family_main);
+  --font-l: var(--font-size-l) / var(--font-line-l) / var(--font-weight-500);
   --font-size-m: 16px;
   --font-line-m: 24px;
-  --font-m: var(--font-size-m) / var(--font-line-m) / var(--font-weight-500)
-    var(--font-family_main);
+  --font-m: var(--font-size-m) / var(--font-line-m) / var(--font-weight-500);
   --font-size-s: 14px;
   --font-line-s: 20px;
-  --font-s: var(--font-size-s) / var(--font-line-s) / var(--font-weight-500)
-    var(--font-family_main);
+  --font-s: var(--font-size-s) / var(--font-line-s) / var(--font-weight-500);
   --font-size-xs: 12px;
   --font-line-xs: 18px;
-  --font-xs: var(--font-size-xs) / var(--font-line-xs) / var(--font-weight-500)
-    var(--font-family_main);
+  --font-xs: var(--font-size-xs) / var(--font-line-xs) / var(--font-weight-500);
   --font-size-heading-h1: 52px;
   --font-line-heading-h1: 125%;
   --font-heading-h1: var(--font-size-heading-h1) / var(--font-line-heading-h1) /
-    var(--font-weight-700) var(--font-family_main);
-  --font-size-heading-h2: 40px;
+    var(--font-weight-700);
+  --font-size-heading-h2: 44px;
   --font-line-heading-h2: 125%;
-  --font-heading-l: var(--font-size-heading-h2) / var(--font-line-heading-h2) /
-    var(--font-weight-700) var(--font-family_main);
+  --font-heading-h2: var(--font-size-heading-h2);
   --font-size-heading-h3: 32px;
   --font-line-heading-h3: 125%;
   --font-heading-h3: var(--font-size-heading-h3) / var(--font-line-heading-h3) /
-    var(--font-weight-600) var(--font-family_main);
+    var(--font-weight-600);
 
   // Colors
   --bg-color: #fffefd;
   --primary-color: #0232c2;
   --secondary-color: #0452ff;
+  --span-color: #ff7a60;
   --ui-primary-color: #fff;
   --ui-secondary-color: #2b5fc7;
   --ui-disabled-color: #828091;
