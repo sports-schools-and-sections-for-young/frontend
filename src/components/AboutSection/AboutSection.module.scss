@@ -1,58 +1,58 @@
 @import "../../app/styles/mixins";
 
 .about {
-  width: 100%;
+    width: 100%;
 
-  @include section(row);
+    @include section(row);
 
-  justify-content: center;
-  padding: 85px 161px;
+    justify-content: center;
+    padding: 85px 161px;
 }
 
 .sectionContainer {
-  @include section(row);
+    @include section(row);
 
-  justify-content: space-between;
-  width: 100%;
-  max-width: 1118px;
-  gap: 32px;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1118px;
+    gap: 32px;
 }
 
 .leftPart {
-  @include section(column);
+    @include section(column);
 }
 
 .title {
-  @include manrope-header(52px, 700);
+    @include manrope-header(52px, 700);
 
-  color: var(--light-black-color);
-  max-width: 615px;
-  padding-bottom: 22px;
+    color: var(--light-black-color);
+    max-width: 615px;
+    padding-bottom: 22px;
 }
 
 .description {
-  @include manrope-header(18px, 500, 155%);
+    @include manrope-header(18px, 500, 155%);
 
-  color: var(--light-text-color);
-  padding-bottom: 87px;
-  max-width: 500px;
+    color: var(--light-text-color);
+    padding-bottom: 87px;
+    max-width: 500px;
 }
 
 .actionContainer {
-  @include section(row);
+    @include section(row);
 
-  align-items: center;
-  gap: 31px;
+    align-items: center;
+    gap: 31px;
 }
 
 .button {
-  min-width: 257px;
+    min-width: 257px;
 }
 
 .registrationLink {
-  cursor: pointer;
+    cursor: pointer;
 
-  @include manrope-header(18px, 800, 177%);
+    @include manrope-header(18px, 800, 177%);
 
-  letter-spacing: 0.2px;
+    letter-spacing: 0.2px;
 }
