@@ -81,7 +81,6 @@ const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(
             onChange={(e) => setValue(e.target.value)}
             {...rest}
           />
-          <span className={styles.icon} />
           {open && (
             <ul className={styles.autocompleteField}>
               {filteredList.map((item) => (

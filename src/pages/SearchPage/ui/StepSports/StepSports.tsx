@@ -16,6 +16,11 @@ import {
   ButtonColor,
   ButtonTestId,
 } from "../../../../components/ui/Button/types";
+import { BadgeColor } from "../../../../components/ui/Badge/types";
+import {
+  InputIcon,
+  InputIconPosition,
+} from "../../../../components/ui/InputField/types";
 
 const StepSports: FC<StepProps> = ({ step, setStep }) => {
   const { sports, sectionRequest, setSectionRequest } = useContext(AppContext);
@@ -55,7 +60,12 @@ const StepSports: FC<StepProps> = ({ step, setStep }) => {
       </p>
       <ul className={styles.selected}>
         {sectionRequest.sports?.map((sport) => (
-          <Badge key={sport.id} isActive onClick={() => deleteSport(sport.id)}>
+          <Badge
+            key={sport.id}
+            color={BadgeColor.PRIMARY}
+            isActive
+            onClick={() => deleteSport(sport.id)}
+          >
             {sport.title}
             <Icon
               type={IconTypes.CROSS}
@@ -68,12 +78,15 @@ const StepSports: FC<StepProps> = ({ step, setStep }) => {
       <SearchInput
         searchingList={notSelectedSports}
         itemClickHandler={addSport}
+        iconType={InputIcon.DOWN_ARROW}
+        iconPosition={InputIconPosition.RIGHT}
       />
       <ul className={styles.selected}>
         {fullView
           ? notSelectedSports.map((sport) => (
               <Badge
                 key={sport.id}
+                color={BadgeColor.PRIMARY}
                 isActive={false}
                 onClick={() => addSport(sport)}
               >
@@ -83,6 +96,7 @@ const StepSports: FC<StepProps> = ({ step, setStep }) => {
           : notSelectedSports.slice(0, 8).map((sport) => (
               <Badge
                 key={sport.id}
+                color={BadgeColor.PRIMARY}
                 isActive={false}
                 onClick={() => addSport(sport)}
               >

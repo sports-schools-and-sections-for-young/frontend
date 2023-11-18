@@ -20,6 +20,14 @@
   }
 }
 
+.input-icon_left {
+  padding-left: 36px;
+}
+
+.input-icon_right {
+  padding-right: 36px;
+}
+
 .inputError {
   outline: 1px solid #f21515;
   border-color: transparent;
@@ -45,9 +53,23 @@
   pointer-events: none;
 }
 
+.inputWrapper {
+  position: relative;
+}
+
 .icon {
+  width: 24px;
+  height: 24px;
   position: absolute;
-  top: 5px;
-  right: 5px;
   cursor: pointer;
+}
+
+.icon_left {
+  left: 12px;
+  top: 12px;
+}
+
+.icon_right {
+  right: 12px;
+  top: 12px;
 }
