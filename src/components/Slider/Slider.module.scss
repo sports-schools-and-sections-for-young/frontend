@@ -1,114 +1,114 @@
 .slider {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .containerSlider {
-    max-width: 1440px;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+  max-width: 1440px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 .containerSwipe {
-    display: flex;
-    align-items: center;
-    overflow: hidden;
-    margin-bottom: 104px;
-    position: relative;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  margin-bottom: 104px;
+  position: relative;
 }
 
 .containerText {
-    display: flex;
-    flex-direction: column;
-    width: 544px;
-    min-height: 427px;
-    flex-grow: 1;
-    margin-right: 30px;
+  display: flex;
+  flex-direction: column;
+  width: 544px;
+  min-height: 427px;
+  flex-grow: 1;
+  margin-right: 30px;
 }
 
 .containerButton {
-    display: flex;
-    justify-content: space-between;
-    width: 1100px;
+  display: flex;
+  justify-content: space-between;
+  width: 1100px;
 }
 
 .titleSlider {
-    font-family: var(--font-family_main);
-    min-height: 167.38px;
-    font-size: 64px;
-    line-height: 87.42px;
-    font-weight: bold;
-    color: var(--text-black-color);
-    letter-spacing: 0.2px;
-    text-align: start;
+  font-family: var(--font-family_main);
+  min-height: 167.38px;
+  font-size: 64px;
+  line-height: 87.42px;
+  font-weight: bold;
+  color: var(--text-black-color);
+  letter-spacing: 0.2px;
+  text-align: start;
 }
 
 .kindOfSport {
-    margin-top: 24px;
-    font-weight: bold;
-    font-size: 64px;
-    line-height: 87.42px;
-    font-family: var(--font-family_main);
-    color: var(--text-black-color);
-    text-align: start;
-    letter-spacing: 0.2px;
+  margin-top: 24px;
+  font-weight: bold;
+  font-size: 64px;
+  line-height: 87.42px;
+  font-family: var(--font-family_main);
+  color: var(--text-black-color);
+  text-align: start;
+  letter-spacing: 0.2px;
 }
 
 .textSlider {
-    margin-top: 32px;
-    max-width: 541px;
-    color: #6f89a4;
-    font-family: var(--font-family_main);
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 27.9px;
+  margin-top: 32px;
+  max-width: 541px;
+  color: #6f89a4;
+  font-family: var(--font-family_main);
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 27.9px;
 }
 
 .buttonRight,
 .buttonLeft {
-    background-image: url("../../assets/images/icons/accordion-arrow.svg");
-    border: none;
-    cursor: pointer;
-    width: 100px;
-    height: 100px;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
-    background-color: transparent;
-    margin-right: 28px;
+  background-image: url("../../assets/images/icons/accordion-arrow.svg");
+  border: none;
+  cursor: pointer;
+  width: 100px;
+  height: 100px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  background-color: transparent;
+  margin-right: 28px;
 }
 
 .buttonLeft {
-    transform: scaleX(-1);
+  transform: scaleX(-1);
 }
 
 .hidden {
-    visibility: hidden;
+  visibility: hidden;
 }
 
 .img {
-    width: 174px;
-    height: 165px;
-    object-fit: cover;
-    border-radius: var(--common-radius);
+  width: 174px;
+  height: 165px;
+  object-fit: cover;
+  border-radius: var(--common-radius);
 }
 
 .numberSlider {
-    font-family: var(--font-family_main);
-    font-size: 24px;
-    color: var(--text-black-color);
-    position: absolute;
-    right: 145px;
+  font-family: var(--font-family_main);
+  font-size: 24px;
+  color: var(--text-black-color);
+  position: absolute;
+  right: 145px;
 }
 
 .leadingNumbers {
-    font-family: var(--font-family_main);
-    font-size: 32px;
-    color: var(--text-black-color);
+  font-family: var(--font-family_main);
+  font-size: 32px;
+  color: var(--text-black-color);
 }
 
 .containerText > .containerButton {
-    margin-top: auto;
+  margin-top: auto;
 }

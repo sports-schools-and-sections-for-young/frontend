@@ -1,23 +1,23 @@
 .button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    gap: 7px;
-    width: 108px;
-    height: 108px;
-    border: none;
-    border-radius: var(--wide-radius);
-    background-color: var(--lightblue-background-color);
-    color: var(--ui-primary-bg-color);
-    cursor: pointer;
-    font-size: var(--font-size-l);
-    line-height: var(--font-line-l);
-    font-weight: var(--font-weight-500);
-    margin-right: 4px;
-    outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 7px;
+  width: 108px;
+  height: 108px;
+  border: none;
+  border-radius: var(--wide-radius);
+  background-color: var(--lightblue-background-color);
+  color: var(--ui-primary-bg-color);
+  cursor: pointer;
+  font-size: var(--font-size-l);
+  line-height: var(--font-line-l);
+  font-weight: var(--font-weight-500);
+  margin-right: 4px;
+  outline: none;
 }
 
 .active {
-    border: 2px solid var(--ui-primary-bg-color);
+  border: 2px solid var(--ui-primary-bg-color);
 }

@@ -1,48 +1,48 @@
 .progressBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 356px;
+
+  .line {
+    flex-grow: 1;
+    height: 1px;
+    background-color: #828091;
+    margin: 0 8px;
+    border-radius: 1px;
+
+    &.line-complete {
+      background-color: #2b5fc7;
+    }
+  }
+
+  .icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    width: 356px;
+    justify-content: center;
+    border: 1px solid #828091;
+    cursor: pointer;
+    padding: 2px;
 
-    .line {
-        flex-grow: 1;
-        height: 1px;
-        background-color: #828091;
-        margin: 0 8px;
-        border-radius: 1px;
-
-        &.line-complete {
-            background-color: #2b5fc7;
-        }
+    &.complete {
+      border-color: #2b5fc7;
+      background-color: white;
+      color: white;
     }
 
-    .icon {
-        width: 32px;
-        height: 32px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border: 1px solid #828091;
-        cursor: pointer;
-        padding: 2px;
-
-        &.complete {
-            border-color: #2b5fc7;
-            background-color: white;
-            color: white;
-        }
-
-        &.current,
-        &.active {
-            border-color: #2b5fc7;
-            background-color: #2b5fc7;
-            color: #2b5fc7;
-        }
-
-        &.incomplete {
-            color: #828091;
-            background-color: transparent;
-        }
+    &.current,
+    &.active {
+      border-color: #2b5fc7;
+      background-color: #2b5fc7;
+      color: #2b5fc7;
     }
+
+    &.incomplete {
+      color: #828091;
+      background-color: transparent;
+    }
+  }
 }

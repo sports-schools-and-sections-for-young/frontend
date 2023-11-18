@@ -1,20 +1,20 @@
 @mixin manrope-header($size, $weight, $lineHeight: 125%) {
-    font-family: var(--font-family_main);
-    font-size: $size;
-    font-style: normal;
-    font-weight: $weight;
-    line-height: $lineHeight;
+  font-family: var(--font-family_main);
+  font-size: $size;
+  font-style: normal;
+  font-weight: $weight;
+  line-height: $lineHeight;
 }
 
 @mixin section($flexDir) {
-    width: 100%;
-    display: flex;
-    flex-direction: $flexDir;
+  width: 100%;
+  display: flex;
+  flex-direction: $flexDir;
 }
 
 @mixin step {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 }
