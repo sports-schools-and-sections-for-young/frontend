@@ -5,8 +5,8 @@ import InputLabel from "../InputLabel/InputLabel.tsx";
 import InputField, { InputFieldProps } from "../InputField/InputField.tsx";
 
 export interface SearchingItem {
-  id: string;
-  name: string;
+  id: number;
+  title: string;
 }
 
 export interface SearchInputProps extends InputFieldProps {
@@ -25,7 +25,6 @@ const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(
       searchingList,
       itemClickHandler,
       hasFilter = true,
-      value = "",
       ...rest
     } = props;
 
@@ -33,12 +32,14 @@ const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(
 
     const [open, setOpen] = useState(false);
 
+    const [value, setValue] = useState("");
+
     const filteredList = hasFilter
       ? searchingList
           .filter((item) =>
-            item.name.toLowerCase().includes(String(value).toLowerCase()),
+            item.title.toLowerCase().includes(String(value).toLowerCase()),
           )
-          .sort((a, b) => (a.name > b.name ? 1 : -1))
+          .sort((a, b) => (a.title > b.title ? 1 : -1))
       : searchingList;
 
     async function handleItemClick(
@@ -46,6 +47,7 @@ const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(
       value: SearchingItem,
     ) {
       await cb(value);
+      setValue("");
       setOpen(false);
     }
 
@@ -68,28 +70,31 @@ const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(
     return (
       <div className={styles.input}>
         {labelName && <InputLabel labelId={labelId}>{labelName}</InputLabel>}
-        <InputField
-          labelId={labelId}
-          hasError={hasError}
-          errorMessage={errorMessage}
-          ref={ref}
-          value={value}
-          onFocus={() => setOpen(true)}
-          {...rest}
-        />
-        {open && (
-          <ul className={styles.autocompleteField}>
-            {filteredList.map((item) => (
-              <li
-                key={item.id}
-                className={styles.autocompleteItem}
-                onClick={() => handleItemClick(itemClickHandler, item)}
-              >
-                {item.name}
-              </li>
-            ))}
-          </ul>
-        )}
+        <div className={styles.inputWrapper} ref={root}>
+          <InputField
+            labelId={labelId}
+            hasError={hasError}
+            errorMessage={errorMessage}
+            ref={ref}
+            value={value}
+            onFocus={() => setOpen(true)}
+            onChange={(e) => setValue(e.target.value)}
+            {...rest}
+          />
+          {open && (
+            <ul className={styles.autocompleteField}>
+              {filteredList.map((item) => (
+                <li
+                  key={item.id}
+                  className={styles.autocompleteItem}
+                  onClick={() => handleItemClick(itemClickHandler, item)}
+                >
+                  {item.title}
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
       </div>
     );
   },

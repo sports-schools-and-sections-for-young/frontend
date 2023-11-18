@@ -1,0 +1,14 @@
+.searchPage {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background: var(
+    --background-linear-blue,
+    linear-gradient(180deg, #e5fffe 0%, #fff 27.95%)
+  );
+}
+
+.close {
+  margin-left: 100px;
+}

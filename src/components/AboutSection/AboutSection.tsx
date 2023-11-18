@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./AboutSection.module.scss";
 import ImageCard from "../ui/ImageCard/ImageCard";
 import { ImageCardSize } from "../ui/ImageCard/types";
@@ -10,6 +10,8 @@ import Icon from "../ui/Icon/Icon";
 import { IconTypes } from "../ui/Icon/types";
 
 const AboutSection: FC = () => {
+  const navigate = useNavigate();
+
   return (
     <section className={styles.about}>
       <div className={styles.sectionContainer}>
@@ -26,6 +28,7 @@ const AboutSection: FC = () => {
               className={styles.button}
               color={ButtonColor.PRIMARY}
               testId={ButtonTestId.OTHER}
+              onClick={() => navigate("/search")}
             >
               <>
                 Найти занятия
