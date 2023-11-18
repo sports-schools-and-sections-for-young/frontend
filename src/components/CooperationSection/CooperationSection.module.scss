@@ -1,47 +1,47 @@
 @import "../../app/styles/mixins";
 
 .cooperation {
-  @include section(column);
+    @include section(column);
 
-  box-sizing: border-box;
-  min-height: 875px;
-  align-items: center;
+    box-sizing: border-box;
+    min-height: 875px;
+    align-items: center;
 }
 
 .sectionContainer {
-  box-sizing: border-box;
-  padding: 68px 160px 0;
-  max-width: 1440px;
-  width: 100%;
+    box-sizing: border-box;
+    padding: 68px 160px 0;
+    max-width: 1440px;
+    width: 100%;
 }
 
 .twoColumns {
-  @include section(row);
+    @include section(row);
 
-  justify-content: space-between;
-  gap: 30px;
+    justify-content: space-between;
+    gap: 30px;
 }
 
 .headerQuestion {
-  padding-top: 28px;
-  color: var(--text-black-color);
+    padding-top: 28px;
+    color: var(--text-black-color);
 
-  @include manrope-header(44px, 700);
+    @include manrope-header(44px, 700);
 }
 
 .description {
-  padding-top: 20px;
-  padding-bottom: 60px;
-  max-width: 465px;
-  color: #6f89a4;
-  font-family: var(--font-family_main);
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 155%;
+    padding-top: 20px;
+    padding-bottom: 60px;
+    max-width: 465px;
+    color: #6f89a4;
+    font-family: var(--font-family_main);
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 155%;
 }
 
 .image {
-  position: relative;
-  top: 108px;
+    position: relative;
+    top: 108px;
 }
