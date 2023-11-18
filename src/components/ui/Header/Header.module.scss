@@ -1,35 +1,35 @@
 @import "../../../app/styles/mixins";
 
 .header {
-  width: 100%;
-  background-color: var(--blue-background-color);
+    width: 100%;
+    background-color: var(--blue-background-color);
 
-  @include section(row);
+    @include section(row);
 
-  justify-content: center;
-  padding: 26px 0;
+    justify-content: center;
+    padding: 26px 0;
 }
 
 .container {
-  @include section(row);
+    @include section(row);
 
-  justify-content: space-between;
-  width: calc(100% - 320px);
-  max-width: 1120px;
-  align-items: center;
+    justify-content: space-between;
+    width: calc(100% - 320px);
+    max-width: 1120px;
+    align-items: center;
 }
 
 .logo {
-  color: var(--ui-primary-bg-color);
-  font-family: var(--font-family_main);
-  text-decoration: none;
-  font-size: 28px;
-  font-weight: 700;
-  line-height: 120%;
-  cursor: pointer;
+    color: var(--ui-primary-bg-color);
+    font-family: var(--font-family_main);
+    text-decoration: none;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 120%;
+    cursor: pointer;
 }
 
 .button {
-  background: #ff7a60 !important;
-  width: 159px;
+    background: #ff7a60 !important;
+    width: 159px;
 }

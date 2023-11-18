@@ -1,36 +1,36 @@
 @import "../../app/styles/mixins";
 
 .reasons {
-  @include section(column);
+    @include section(column);
 
-  background-color: var(--blue-background-color);
-  padding: 68px 165px 116px;
-  align-items: center;
+    background-color: var(--blue-background-color);
+    padding: 68px 165px 116px;
+    align-items: center;
 }
 
 .sectionContainer {
-  max-width: 1120px;
-  width: 100%;
+    max-width: 1120px;
+    width: 100%;
 
-  @include section(column);
+    @include section(column);
 
-  align-items: center;
+    align-items: center;
 }
 
 .title {
-  @include manrope-header(44px, 700, 100%);
+    @include manrope-header(44px, 700, 100%);
 
-  color: var(--text-black-color);
-  letter-spacing: 0.2px;
-  padding-top: 24px;
+    color: var(--text-black-color);
+    letter-spacing: 0.2px;
+    padding-top: 24px;
 }
 
 .container {
-  width: 100%;
+    width: 100%;
 
-  @include section(row);
+    @include section(row);
 
-  padding-top: 60px;
-  gap: 35px;
-  justify-content: space-between;
+    padding-top: 60px;
+    gap: 35px;
+    justify-content: space-between;
 }
