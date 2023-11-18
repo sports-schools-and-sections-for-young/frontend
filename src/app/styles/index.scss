@@ -1,0 +1,15 @@
+@import "reset";
+@import "variables/global";
+@import "mixins";
+
+.app {
+  color: var(--primary-color);
+  font: var(--font-m);
+  font-family: var(--font-family_main);
+  background: var(--bg-color);
+  height: 100vh;
+  min-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

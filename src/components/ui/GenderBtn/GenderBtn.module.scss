@@ -12,9 +12,10 @@
   color: var(--ui-primary-bg-color);
   cursor: pointer;
   font-size: var(--font-size-l);
+  line-height: var(--font-line-l);
+  font-weight: var(--font-weight-500);
   margin-right: 4px;
   outline: none;
-  font-family: var(--font-family_main);
 }
 
 .active {
