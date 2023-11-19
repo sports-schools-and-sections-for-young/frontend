@@ -1,5 +1,5 @@
 import { createContext, Dispatch, SetStateAction } from "react";
-import { Sport } from "../types";
+import { Section, Sport } from "../types";
 
 export interface ISectionsRequest {
   gender: "male" | "female" | null;
@@ -15,6 +15,10 @@ interface IAppContext {
   setSports: Dispatch<SetStateAction<Sport[]>>;
   sectionRequest: ISectionsRequest;
   setSectionRequest: Dispatch<SetStateAction<ISectionsRequest>>;
+  fetchedSections: Section[];
+  setFetchedSections: Dispatch<SetStateAction<Section[]>>;
+  filteredSections: Section[];
+  setFilteredSections: Dispatch<SetStateAction<Section[]>>;
 }
 
 export const sectionsRequestDefault: ISectionsRequest = {
@@ -31,6 +35,10 @@ const defaultValue: IAppContext = {
   setSports: () => {},
   sectionRequest: sectionsRequestDefault,
   setSectionRequest: () => {},
+  fetchedSections: [],
+  setFetchedSections: () => {},
+  filteredSections: [],
+  setFilteredSections: () => {},
 };
 
 const AppContext = createContext<IAppContext>(defaultValue);

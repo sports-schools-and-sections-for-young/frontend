@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import AppRouter from "./providers/Router/AppRouter.tsx";
 import "./styles/index.scss";
-import { Sport } from "../types";
+import { Section, Sport } from "../types";
 import AppContext, {
   ISectionsRequest,
   sectionsRequestDefault,
@@ -13,10 +13,21 @@ function App() {
   const [sectionRequest, setSectionRequest] = useState<ISectionsRequest>(
     sectionsRequestDefault,
   );
+  const [fetchedSections, setFetchedSections] = useState<Section[]>([]);
+  const [filteredSections, setFilteredSections] = useState<Section[]>([]);
 
   const appContextValues = useMemo(() => {
-    return { sports, setSports, sectionRequest, setSectionRequest };
-  }, [sports, sectionRequest]);
+    return {
+      sports,
+      setSports,
+      sectionRequest,
+      setSectionRequest,
+      fetchedSections,
+      setFetchedSections,
+      filteredSections,
+      setFilteredSections,
+    };
+  }, [sports, sectionRequest, fetchedSections, filteredSections]);
 
   useEffect(() => {
     const getSportsFromApi = async () => {

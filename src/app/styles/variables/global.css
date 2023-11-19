@@ -55,10 +55,16 @@
 @font-face {
   font-family: Manrope;
   font-style: normal;
-  src: url("/src/assets/fonts/Manrope-VariableFont_wght.ttf") format("truetype-variations"), url("src/assets/fonts/Manrope-VariableFont_wght.ttf") format("truetype");
+  src:
+    url("/src/assets/fonts/Manrope-VariableFont_wght.ttf")
+      format("truetype-variations"),
+    url("src/assets/fonts/Manrope-VariableFont_wght.ttf") format("truetype");
 }
 @font-face {
   font-family: Inter;
   font-style: normal;
-  src: url("/src/assets/fonts/Inter-VariableFont_slnt,wght.ttf") format("truetype-variations"), url("/src/assets/fonts/Inter-VariableFont_slnt,wght.ttf") format("truetype");
-}/*# sourceMappingURL=global.css.map */
+  src:
+    url("/src/assets/fonts/Inter-VariableFont_slnt,wght.ttf")
+      format("truetype-variations"),
+    url("/src/assets/fonts/Inter-VariableFont_slnt,wght.ttf") format("truetype");
+} /*# sourceMappingURL=global.css.map */
