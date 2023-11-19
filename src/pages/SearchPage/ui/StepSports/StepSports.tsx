@@ -1,7 +1,7 @@
 import { FC, useContext, useState } from "react";
 import { StepProps } from "../../types";
 import styles from "./StepSports.module.scss";
-import AppContext from "../../../../context";
+import AppContext from "../../../../context/AppContext.ts";
 import Badge from "../../../../components/ui/Badge/Badge.tsx";
 import { Sport } from "../../../../types";
 import SearchInput from "../../../../components/ui/SearchInput/SearchInput.tsx";

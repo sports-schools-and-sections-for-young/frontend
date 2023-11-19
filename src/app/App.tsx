@@ -5,7 +5,7 @@ import { Sport } from "../types";
 import AppContext, {
   ISectionsRequest,
   sectionsRequestDefault,
-} from "../context";
+} from "../context/AppContext.ts";
 import { getSports } from "../utils/api";
 
 function App() {

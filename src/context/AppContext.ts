@@ -5,7 +5,7 @@ export interface ISectionsRequest {
   gender: "male" | "female" | null;
   sports: Sport[] | null;
   age: number | null;
-  location: [number, number] | null;
+  location: [number, number];
   distance: number | null;
   maxPrice: number | null;
 }
@@ -21,7 +21,7 @@ export const sectionsRequestDefault: ISectionsRequest = {
   gender: null,
   sports: null,
   age: null,
-  location: null,
+  location: [59.936846, 30.312185],
   distance: null,
   maxPrice: null,
 };
