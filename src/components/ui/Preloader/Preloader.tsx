@@ -1,8 +1,19 @@
+import { FC } from "react";
+import classnames from "classnames";
 import styles from "./Preloader.module.scss";
 
-const Preloader = () => {
+interface PreloaderProps {
+  className?: string;
+}
+
+const Preloader: FC<PreloaderProps> = ({ className = "" }) => {
+  const preloaderClass = classnames({
+    [styles.preloader]: true,
+    [className]: true,
+  });
+
   return (
-    <div className={styles.preloader}>
+    <div className={preloaderClass}>
       <div className={styles.preloader__container}>
         <span className={styles.preloader__round} />
       </div>

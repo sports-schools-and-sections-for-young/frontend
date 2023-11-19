@@ -73,7 +73,7 @@ const StepPrice = () => {
         Укажите стоимость одного посещения в рублях
       </p>
       {loader ? (
-        <Preloader />
+        <Preloader className={styles.preloader} />
       ) : (
         <RangeBar
           currentPrice={currentPrice}
