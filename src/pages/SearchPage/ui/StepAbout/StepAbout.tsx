@@ -1,7 +1,7 @@
 import { FC, useContext } from "react";
 import { useForm } from "react-hook-form";
 import { StepProps } from "../../types";
-import AppContext from "../../../../context";
+import AppContext from "../../../../context/AppContext.ts";
 import styles from "./StepAbout.module.scss";
 import GenderBtn from "../../../../components/ui/GenderBtn/GenderBtn.tsx";
 import Icon from "../../../../components/ui/Icon/Icon.tsx";

@@ -1,0 +1,163 @@
+@import "../../app/styles/mixins";
+
+.section {
+  box-sizing: border-box;
+
+  @include section(row);
+
+  justify-content: space-between;
+  max-width: 734px;
+  padding: 24px 32px;
+  border-radius: 30px;
+  background: var(--ui-primary-color);
+  box-shadow: 0 10px 25px 0 rgb(19 28 78 / 13%);
+}
+
+.leftPart {
+  box-sizing: border-box;
+
+  @include section(column);
+
+  align-items: flex-start;
+}
+
+.sportType {
+  @include section(row);
+
+  justify-content: center;
+  width: fit-content;
+  border-radius: 8px;
+  padding: 8px 12px;
+  border: 1px solid var(--light-text-color);
+  background: var(--lightblue-background-color);
+  color: var(--light-text-color);
+
+  @include manrope-header(16px, 600, 100%);
+
+  margin-bottom: 16px;
+}
+
+.title {
+  @include manrope-header(24px, 600, 135%);
+
+  color: var(--text-black-color);
+  padding-bottom: 6px;
+}
+
+.feedback {
+  position: relative;
+
+  @include section(row);
+
+  align-items: center;
+  height: 32px;
+  gap: 8px;
+  padding-left: 40px;
+  margin-bottom: 16px;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 32px;
+    height: 32px;
+    background-image: url("../../assets/images/result-star.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+}
+
+.raiting {
+  @include manrope-header(18px, 500, 155%);
+
+  color: var(--text-black-color);
+}
+
+.reviews {
+  @include manrope-header(18px, 500, 155%);
+
+  text-decoration: underline;
+  cursor: pointer;
+  color: var(--text-black-color);
+}
+
+.place {
+  @include section(row);
+
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.distance {
+  position: relative;
+
+  @include section(row);
+
+  width: fit-content;
+  align-items: center;
+  gap: 8px;
+  height: 40px;
+  padding: 8px 16px 8px 40px;
+  border-radius: 8px;
+
+  @include manrope-header(16px, 600, 16px);
+
+  background: var(--lightblue-background-color);
+  color: var(--light-text-color);
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 8px;
+    left: 16px;
+    width: 24px;
+    height: 24px;
+    background-image: url("../../assets/images/icons/result-map-pin.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+}
+
+.location {
+  @include manrope-header(18px, 500, 155%);
+
+  color: var(--light-text-color);
+}
+
+.timesheet {
+  @include manrope-header(18px, 500, 155%);
+
+  color: var(--ui-secondary-color);
+}
+
+.rightPart {
+  @include section(column);
+
+  align-items: flex-end;
+}
+
+.likeButton {
+  width: 32px;
+  height: 32px;
+  background-color: transparent;
+  cursor: pointer;
+  background-image: url("../../assets/images/icons/result-heart.svg");
+  background-size: contain;
+  border: none;
+  margin-bottom: 48px;
+}
+
+.price {
+  @include manrope-header(24px, 600, 135%);
+
+  color: var(--text-black-color);
+  margin-bottom: 24px;
+}
+
+.transitionButton {
+  background-color: #ff7a60 !important;
+
+  @include manrope-header(16px, 600, 16px);
+}
