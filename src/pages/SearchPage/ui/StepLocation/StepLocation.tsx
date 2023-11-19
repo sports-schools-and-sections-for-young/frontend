@@ -57,8 +57,6 @@ const StepLocation: FC<StepProps> = ({ step, setStep }) => {
 
   const [addressList, setAddressList] = useState<SearchingItem[]>([]);
 
-  console.log(sectionRequest.location);
-
   const getGeoLocation = () => {
     if (map) {
       // @ts-ignore

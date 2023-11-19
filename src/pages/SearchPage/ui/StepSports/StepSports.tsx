@@ -1,3 +1,4 @@
+/// <reference types="vite-plugin-svgr/client" />
 import { FC, useContext, useState } from "react";
 import { StepProps } from "../../types";
 import styles from "./StepSports.module.scss";
