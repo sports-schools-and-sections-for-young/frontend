@@ -10,13 +10,15 @@ interface IRangeBarProps {
 
 const RangeBar: FC<IRangeBarProps> = (props) => {
   const { prices, currentPrice, setCurrentPrice } = props;
-  const rangeCapacity = 30;
+  const rangeCapacity = 31;
   const maxPrice = Math.max(...prices);
+  const minPrice = Math.min(...prices);
 
   type groupPrice = {
     range: number;
     prices: number[];
   }[];
+
   const [maxHeight, setMaxHeight] = useState<number>(0);
   const [progress, setProgress] = useState<number>(0);
   const [groupPrices, setGroupPrices] = useState<groupPrice>([
@@ -27,7 +29,7 @@ const RangeBar: FC<IRangeBarProps> = (props) => {
     const bars: groupPrice = Array.from({ length: rangeCapacity }, () => {
       return { prices: [], range: 0 };
     });
-    const rangeChunk = maxPrice / rangeCapacity;
+    const rangeChunk = (maxPrice - minPrice) / rangeCapacity;
 
     let range = +rangeChunk.toFixed(2);
     let index = 0;
@@ -48,6 +50,7 @@ const RangeBar: FC<IRangeBarProps> = (props) => {
         bars[index].prices.push(price);
       }
     });
+
     return bars;
   };
 
@@ -79,10 +82,10 @@ const RangeBar: FC<IRangeBarProps> = (props) => {
   useEffect(() => {
     setProgress((currentPrice / maxPrice) * 100);
   }, [currentPrice, maxPrice]);
-
   return (
     <label htmlFor="rangeBar" className={styles.rangebar}>
       <ul className={styles.barlist}>
+        <li className={styles.input__cover_left}>{}</li>
         {groupPrices.map((bar, id) => {
           return (
             <BarItem
@@ -94,13 +97,14 @@ const RangeBar: FC<IRangeBarProps> = (props) => {
             />
           );
         })}
+        <li className={styles.input__cover_right}>{}</li>
       </ul>
       <input
         className={`${styles.input}`}
         style={{ backgroundSize: `${progress}% 100%` }}
         id="rangeBar"
         type="range"
-        min="0"
+        min={minPrice}
         max={maxPrice}
         value={currentPrice}
         onChange={handleChangePrice}
