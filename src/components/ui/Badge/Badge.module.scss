@@ -11,8 +11,9 @@
   color: var(--ui-primary-bg-color);
   cursor: pointer;
   font-size: var(--font-size-m);
+  line-height: var(--font-line-m);
+  font-weight: var(--font-weight-600);
   outline: none;
-  font-family: var(--font-family_main);
 }
 
 .active {

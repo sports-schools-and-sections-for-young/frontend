@@ -21,11 +21,10 @@ const Slider: React.FC = () => {
     return num < 10 ? `0${num}` : `${num}`;
   };
 
-
   return (
     <div className={styles.slider}>
       <div className={styles.containerSlider}>
-        <div className={styles.containerSwipe} >
+        <div className={styles.containerSwipe}>
           <button
             className={`${styles.buttonLeft} ${
               currentSlide === 0 ? styles.hidden : ""

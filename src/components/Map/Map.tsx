@@ -1,92 +1,35 @@
-import { YMaps, Map, Placemark } from "@pbe/react-yandex-maps";
-import { FC, useRef } from "react";
+import { YMaps, Map } from "@pbe/react-yandex-maps";
+import { FC, HTMLAttributes, useContext } from "react";
 import styles from "./Map.module.scss";
+import MapContext from "../../context/MapContext.ts";
 
-import MapPin from "../../assets/images/icons/MapPin.svg";
-
-interface Point {
-  coordinates: number[];
-  content: string;
-}
-
-interface YandexMapProps {
+interface YandexMapProps extends HTMLAttributes<HTMLElement> {
   center: number[];
-  points: Point[];
 }
 
-const YandexMap: FC<YandexMapProps> = ({ center, points }) => {
-  const map = useRef(null);
-  const ymaps = useRef(null);
+const YandexMap: FC<YandexMapProps> = (props) => {
+  const { center, children } = props;
 
-  console.log(ymaps.current);
-
-  const getGeoLocation = (ymaps) => {
-    return ymaps.geolocation
-      .get({ provider: "yandex", mapStateAutoApply: true })
-      .then((result) => {
-        console.log(result.geoObjects.position);
-        ymaps.geocode(result.geoObjects.position).then((res) => {
-          res.geoObjects.get(0).geometry.getCoordinates();
-        });
-      });
-  };
+  const { setMap } = useContext(MapContext);
 
   return (
-    <>
-      <button type="button" onClick={() => getGeoLocation(ymaps.current)}>
-        ЖМИ
-      </button>
-      <YMaps query={{ apikey: "c3c2fbae-a37e-49a6-90b6-7628cb38ddee" }}>
-        <div className={styles.mapWrapper}>
-          <Map
-            className={styles.map}
-            instanceRef={map}
-            onLoad={(ymapsInstance) => {
-              ymaps.current = ymapsInstance;
-            }}
-            modules={["util.bounds", "geolocation"]}
-            defaultState={{
-              center,
-              zoom: 12,
-            }}
-          >
-            {/* <ObjectManager */}
-            {/*    instanceRef={objectManager} */}
-            {/*    options={{ */}
-            {/*      clusterize: true, */}
-            {/*      gridSize: 32, */}
-            {/*    }} */}
-            {/*    objects={{ */}
-            {/*      openBalloonOnClick: true, */}
-            {/*      preset: "islands#greenDotIcon", */}
-            {/*    }} */}
-            {/*    clusters={{ */}
-            {/*      preset: "islands#redClusterIcons", */}
-            {/*    }} */}
-            {/*    defaultFeatures={features} */}
-            {/* /> */}
-
-            {points.map((point) => (
-              <Placemark
-                geometry={point.coordinates}
-                properties={{
-                  balloonContent: `<div class="balloon">${point.content}!!!</div>`,
-                }}
-                options={{
-                  iconLayout: "default#image",
-                  icon: MapPin,
-                  iconImageSize: [40, 40],
-                  iconImageOffset: [-20, -40],
-                  hasBalloon: true,
-                  draggable: true,
-                }}
-                modules={["geoObject.addon.balloon", "geoObject.addon.hint"]}
-              />
-            ))}
-          </Map>
-        </div>
-      </YMaps>
-    </>
+    <YMaps query={{ apikey: "c3c2fbae-a37e-49a6-90b6-7628cb38ddee" }}>
+      <div className={styles.mapWrapper}>
+        <Map
+          className={styles.map}
+          onLoad={(ymapsInstance) => {
+            setMap(ymapsInstance);
+          }}
+          modules={["util.bounds", "geolocation"]}
+          state={{
+            center,
+            zoom: 12,
+          }}
+        >
+          {children}
+        </Map>
+      </div>
+    </YMaps>
   );
 };
 

@@ -7,7 +7,7 @@ import { Btn, CheckboxPanelProps } from "./types";
 const CheckboxPanel: FC<CheckboxPanelProps> = (props) => {
   const { className = "", setOption, btns } = props;
 
-  const [active, setActive] = useState(1);
+  const [active, setActive] = useState(0);
 
   const checkboxPanelClass = classnames({
     [className]: true,

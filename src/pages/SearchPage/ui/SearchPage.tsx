@@ -12,6 +12,7 @@ import StepSports from "./StepSports/StepSports.tsx";
 import StepAbout from "./StepAbout/StepAbout.tsx";
 import StepLocation from "./StepLocation/StepLocation.tsx";
 import ProgressBar from "../../../components/ProgressBar/ProgressBar.tsx";
+import StepPrice from "./StepPrice/StepPrice.tsx";
 
 interface SearchPageProps extends HTMLAttributes<HTMLElement> {
   initialStep: number;
@@ -28,7 +29,8 @@ const SearchPage: FC<SearchPageProps> = (props) => {
     <StepInitial setStep={setStep} step={step} />,
     <StepSports setStep={setStep} step={step} />,
     <StepAbout setStep={setStep} step={step} />,
-    <StepLocation />,
+    <StepLocation setStep={setStep} step={step} />,
+    <StepPrice />,
   ];
 
   return (
