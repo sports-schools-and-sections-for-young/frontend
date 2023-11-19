@@ -3,6 +3,18 @@ import { StoryFn } from "@storybook/react";
 import AppContext from "../../src/context/AppContext";
 import { sports, sections } from "../../server/db.json";
 
+const sect = sections.map((section) => {
+  // Типы в db.json не удовлетворяют интерфейсу  Section
+  return {
+    ...section,
+    gender: "male",
+    schedule: {
+      days: [""],
+      time: "",
+    },
+  };
+});
+
 export const ContextDecorator = (Story: StoryFn) => {
   return (
     <AppContext.Provider
@@ -10,7 +22,7 @@ export const ContextDecorator = (Story: StoryFn) => {
         sports,
         setSectionRequest: () => {},
         setSports: () => {},
-        fetchedSections: [],
+        fetchedSections: sect,
         setFetchedSections: () => {},
         filteredSections: [],
         setFilteredSections: () => {},
