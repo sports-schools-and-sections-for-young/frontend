@@ -1,0 +1,28 @@
+.button {
+  justify-content: center;
+  align-items: center;
+  border: none;
+  border-radius: var(--extra-narrow-radius);
+  background-color: var(--lightblue-background-color);
+  color: var(--ui-primary-bg-color);
+  cursor: pointer;
+  font-size: var(--font-size-m);
+  outline: none;
+  font-family: var(--font-family_main);
+}
+
+.active {
+  border-radius: var(--extra-narrow-radius);
+  background-color: var(--ui-primary-bg-color);
+  color: var(--ui-primary-color);
+}
+
+.primary {
+  height: 40px;
+  width: 132px;
+}
+
+.secondary {
+  height: 40px;
+  width: 109px;
+}

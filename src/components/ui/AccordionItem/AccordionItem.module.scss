@@ -3,8 +3,9 @@
   display: block;
   list-style: none;
   width: 100%;
-  min-width: 635px;
+  min-width: 621px;
   font-family: var(--font-family_main);
+  color: var(--text-black-color);
   font-weight: 600;
   letter-spacing: 0.2px;
   cursor: pointer;
@@ -40,8 +41,8 @@
 }
 
 .title {
-  font-size: var(--font-size-l);
-  line-height: 20px;
+  font-size: var(--font-size-xl);
+  line-height: var(--font-line-xl);
   max-width: 85%;
   margin-bottom: 24px;
 }

@@ -1,39 +1,48 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import AppRouter from "./providers/Router/AppRouter.tsx";
 import "./styles/index.scss";
-import { School, Sport } from "../types";
-import AppContext from "../context";
+import { Section, Sport } from "../types";
+import AppContext, {
+  ISectionsRequest,
+  sectionsRequestDefault,
+} from "../context/AppContext.ts";
+import { getSports } from "../utils/api";
 
 function App() {
   const [sports, setSports] = useState<Sport[]>([]);
-  const [schools, setSchools] = useState<School[]>([]);
+  const [sectionRequest, setSectionRequest] = useState<ISectionsRequest>(
+    sectionsRequestDefault,
+  );
+  const [fetchedSections, setFetchedSections] = useState<Section[]>([]);
+  const [filteredSections, setFilteredSections] = useState<Section[]>([]);
 
   const appContextValues = useMemo(() => {
-    return { sports, schools, setSports, setSchools };
-  }, [sports, schools]);
+    return {
+      sports,
+      setSports,
+      sectionRequest,
+      setSectionRequest,
+      fetchedSections,
+      setFetchedSections,
+      filteredSections,
+      setFilteredSections,
+    };
+  }, [sports, sectionRequest, fetchedSections, filteredSections]);
+
+  useEffect(() => {
+    const getSportsFromApi = async () => {
+      const sportsFromApi = await getSports();
+      setSports(sportsFromApi);
+    };
+    if (!sports.length) {
+      getSportsFromApi();
+    }
+  }, [sports.length]);
 
   return (
     <AppContext.Provider value={appContextValues}>
       <div className="app">
-        <header
-          style={{
-            borderBottom: "1px solid red",
-            display: "flex",
-            justifyContent: "center",
-          }}
-        >
-          HEADER
-        </header>
         <AppRouter />
-        <footer
-          style={{
-            borderTop: "1px solid red",
-            display: "flex",
-            justifyContent: "center",
-          }}
-        >
-          FOOTER
-        </footer>
       </div>
     </AppContext.Provider>
   );

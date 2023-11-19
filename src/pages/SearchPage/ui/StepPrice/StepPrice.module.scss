@@ -1,0 +1,26 @@
+@import "../../../../app/styles/mixins";
+
+.step {
+  @include step;
+}
+
+.title {
+  font-size: var(--font-size-heading-h2);
+  font-weight: var(--font-weight-700);
+  line-height: var(--font-line-heading-h2);
+  max-width: 850px;
+  text-align: center;
+  margin: 32px 0 20px;
+}
+
+.span {
+  color: var(--span-color);
+}
+
+.subtitle {
+  font-size: var(--font-size-l);
+  font-weight: var(--font-weight-500);
+  line-height: var(--font-line-l);
+  color: #211d3b6b;
+  margin-bottom: 54px;
+}

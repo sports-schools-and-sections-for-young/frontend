@@ -1,0 +1,74 @@
+.rangebar {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 75px;
+  width: 454px;
+}
+
+.input {
+  position: relative;
+  appearance: none;
+  width: 454px;
+  background: rgb(33 29 59 / 18%);
+  background-image: linear-gradient(#003fbc, #003fbc);
+  background-size: 0% 100%;
+  background-repeat: no-repeat;
+}
+
+/* track */
+
+.input::-webkit-slider-runnable-track {
+  height: 2px;
+}
+
+.input::-moz-range-track {
+  height: 2px;
+}
+
+/* thumb */
+.input::-webkit-slider-thumb {
+  cursor: grab;
+  appearance: none;
+  margin-top: -12px;
+  background-color: #fff;
+  height: 24px;
+  width: 24px;
+  background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2272%22%20height%3D%2272%22%20viewBox%3D%220%200%2072%2072%22%20fill%3D%22none%22%3E%0A%3Cg%3E%0A%3Ccircle%20cx%3D%2236%22%20cy%3D%2236%22%20r%3D%2236%22%20fill%3D%22white%22%2F%3E%0A%3Ccircle%20cx%3D%2236%22%20cy%3D%2236%22%20r%3D%2235.5%22%20stroke%3D%22%232B5FC7%22%20stroke-width%3D%220.15%22%2F%3E%0A%3C%2Fg%3E%0A%3C%2Fsvg%3E");
+  background-size: cover;
+  border-radius: 12px;
+  box-shadow: 0 0 10px 4px rgb(188 179 236 / 60%);
+}
+
+.input::-webkit-slider-thumb:active {
+  cursor: grabbing;
+}
+
+.input::-moz-range-thumb {
+  border: none;
+  cursor: grab;
+  border-radius: 12px;
+  background-color: #fff;
+  height: 24px;
+  width: 24px;
+  background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2272%22%20height%3D%2272%22%20viewBox%3D%220%200%2072%2072%22%20fill%3D%22none%22%3E%0A%3Cg%3E%0A%3Ccircle%20cx%3D%2236%22%20cy%3D%2236%22%20r%3D%2236%22%20fill%3D%22white%22%2F%3E%0A%3Ccircle%20cx%3D%2236%22%20cy%3D%2236%22%20r%3D%2235.5%22%20stroke%3D%22%232B5FC7%22%20stroke-width%3D%220.15%22%2F%3E%0A%3C%2Fg%3E%0A%3C%2Fsvg%3E");
+  background-size: cover;
+  box-shadow: 0 0 10px 4px rgb(188 179 236 / 60%);
+}
+
+.input::-moz-range-thumb:active {
+  cursor: grabbing;
+}
+
+.barlist {
+  max-width: 454px;
+  width: 100%;
+  max-height: 75px;
+  display: flex;
+  column-gap: 2px;
+  justify-content: center;
+  align-items: flex-end;
+  height: 75px;
+}

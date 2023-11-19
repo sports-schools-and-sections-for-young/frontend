@@ -9,13 +9,18 @@
 }
 
 .sectionContainer {
-  max-width: 1108px;
+  max-width: 1120px;
   width: 100%;
+
+  @include section(column);
+
+  align-items: center;
 }
 
 .title {
   @include manrope-header(44px, 700, 100%);
 
+  color: var(--text-black-color);
   letter-spacing: 0.2px;
   padding-top: 24px;
 }
@@ -26,6 +31,6 @@
   @include section(row);
 
   padding-top: 60px;
-  gap: 29px;
+  gap: 35px;
   justify-content: space-between;
 }

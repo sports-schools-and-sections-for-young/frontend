@@ -4,30 +4,38 @@
 }
 
 .containerSlider {
-  width: 1440px;
-  height: 538px;
+  max-width: 1440px;
   display: flex;
   align-items: center;
   flex-direction: column;
-  gap: 62px;
 }
 
 .containerSwipe {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
+  overflow: hidden;
+  margin-bottom: 104px;
+  position: relative;
 }
 
 .containerText {
   display: flex;
-  justify-content: first baseline;
-  width: 660px;
   flex-direction: column;
-  gap: 32px;
-  margin-right: 101px;
+  width: 544px;
+  min-height: 427px;
+  flex-grow: 1;
+  margin-right: 30px;
+}
+
+.containerButton {
+  display: flex;
+  justify-content: space-between;
+  width: 1200px;
 }
 
 .titleSlider {
   font-family: var(--font-family_main);
+  min-height: 167.38px;
   font-size: 64px;
   line-height: 87.42px;
   font-weight: bold;
@@ -37,6 +45,7 @@
 }
 
 .kindOfSport {
+  margin-top: 24px;
   font-weight: bold;
   font-size: 64px;
   line-height: 87.42px;
@@ -47,7 +56,8 @@
 }
 
 .textSlider {
-  width: 541px;
+  margin-top: 32px;
+  max-width: 541px;
   color: #6f89a4;
   font-family: var(--font-family_main);
   font-size: 18px;
@@ -56,18 +66,9 @@
   line-height: 27.9px;
 }
 
-.buttonRight {
-  background-image: url("../../assets/images/icons/button_right.svg");
-  margin-right: 28px;
-}
-
-.buttonLeft {
-  background-image: url("../../assets/images/icons/button_left.svg");
-  margin-right: 64px;
-}
-
 .buttonRight,
 .buttonLeft {
+  background-image: url("../../assets/images/icons/accordion-arrow.svg");
   border: none;
   cursor: pointer;
   width: 100px;
@@ -76,6 +77,15 @@
   background-position: center;
   background-size: contain;
   background-color: transparent;
+}
+
+.buttonRight {
+  margin-right: 28px;
+}
+
+.buttonLeft {
+  margin-right: 64px;
+  transform: scaleX(-1);
 }
 
 .hidden {
@@ -89,18 +99,20 @@
   border-radius: var(--common-radius);
 }
 
-.containerButton {
-  width: 1070px;
-  display: flex;
-  justify-content: space-between;
-}
-
 .numberSlider {
-  font-size: 24px;
   font-family: var(--font-family_main);
+  font-size: 24px;
+  color: var(--text-black-color);
+  position: absolute;
+  right: 145px;
 }
 
 .leadingNumbers {
-  font-size: 32px;
   font-family: var(--font-family_main);
+  font-size: 32px;
+  color: var(--text-black-color);
 }
+
+.containerText > .containerButton {
+  margin-top: auto;
+} /*# sourceMappingURL=Slider.module.css.map */

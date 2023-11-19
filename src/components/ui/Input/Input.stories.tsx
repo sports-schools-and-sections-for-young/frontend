@@ -4,8 +4,8 @@ import Input from "./Input.tsx";
 import { maxAge, minAge } from "../../../utils/variables.ts";
 import { getDeclension } from "../../../utils/functions";
 
-interface AddressField {
-  street: number;
+interface AgeField {
+  age: number;
 }
 
 const meta = {
@@ -38,11 +38,11 @@ export const ChildAge: Story = {
     const {
       register,
       formState: { errors },
-    } = useForm<AddressField>({ mode: "onChange" });
+    } = useForm<AgeField>({ mode: "onChange" });
     return (
       <Input
         {...args}
-        {...register("street", {
+        {...register("age", {
           min: {
             value: minAge,
             message: `Минимальный возраст: ${minAge} ${getDeclension(minAge, [
@@ -60,8 +60,8 @@ export const ChildAge: Story = {
             ])}`,
           },
         })}
-        hasError={Boolean(errors.street)}
-        errorMessage={errors.street?.message}
+        hasError={Boolean(errors.age)}
+        errorMessage={errors.age?.message}
       />
     );
   },

@@ -1,6 +1,8 @@
 .label {
   display: inline-block;
   color: #211d3b;
-  font: var(--font-m);
+  font-size: var(--font-size-m);
+  line-height: var(--font-line-m);
+  font-weight: var(--font-weight-500);
   margin-bottom: 8px;
 }
