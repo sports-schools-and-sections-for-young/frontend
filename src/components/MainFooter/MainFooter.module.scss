@@ -1,80 +1,80 @@
 @import "../../app/styles/mixins";
 
 .footer {
-    @include section(column);
+  @include section(column);
 }
 
 .lightPart {
-    width: 100%;
-    min-height: 176px;
-    background-color: var(--blue-background-color);
-    padding: 66px 160px;
+  width: 100%;
+  min-height: 176px;
+  background-color: var(--blue-background-color);
+  padding: 66px 160px;
 
-    @include section(row);
+  @include section(row);
 
-    align-items: center;
-    justify-content: center;
+  align-items: center;
+  justify-content: center;
 }
 
 .container {
-    box-sizing: border-box;
-    width: 100%;
-    max-width: 1120px;
-    display: grid;
-    grid-template-rows: 1fr;
-    grid-template-columns: 260px auto 190px;
-    align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 1120px;
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 260px auto 190px;
+  align-items: center;
 }
 
 .contacts {
-    @include manrope-header(32px, 700, 100%);
+  @include manrope-header(32px, 700, 100%);
 
-    color: var(--text-black-color);
+  color: var(--text-black-color);
 }
 
 .questions {
-    justify-self: center;
-    margin-right: 110px;
+  justify-self: center;
+  margin-right: 110px;
 
-    @include manrope-header(16px, 600, 100%);
+  @include manrope-header(16px, 600, 100%);
 
-    color: var(--light-text-color);
-    letter-spacing: 0.2px;
-    max-width: 300px;
+  color: var(--light-text-color);
+  letter-spacing: 0.2px;
+  max-width: 300px;
 }
 
 .email {
-    position: relative;
+  position: relative;
 
-    @include manrope-header(16px, 600, 100%);
+  @include manrope-header(16px, 600, 100%);
 
-    min-height: 40px;
-    padding-left: 45px;
+  min-height: 40px;
+  padding-left: 45px;
 
-    @include section(row);
+  @include section(row);
 
-    align-items: center;
-    text-decoration: none;
-    color: var(--light-text-color);
-    letter-spacing: 0.2px;
-    cursor: pointer;
+  align-items: center;
+  text-decoration: none;
+  color: var(--light-text-color);
+  letter-spacing: 0.2px;
+  cursor: pointer;
 
-    &::before {
-        position: absolute;
-        left: 0;
-        top: 0;
-        content: "";
-        width: 40px;
-        height: 40px;
-        background-image: url("../../assets/images/icons/footer-mail-icon.svg");
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: 40px 40px;
-    }
+  &::before {
+    position: absolute;
+    left: 0;
+    top: 0;
+    content: "";
+    width: 40px;
+    height: 40px;
+    background-image: url("../../assets/images/icons/footer-mail-icon.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 40px 40px;
+  }
 }
 
 .darkPart {
-    background-color: var(--text-black-color);
-    width: 100%;
-    min-height: 170px;
+  background-color: var(--text-black-color);
+  width: 100%;
+  min-height: 170px;
 }
