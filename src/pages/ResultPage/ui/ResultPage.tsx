@@ -119,7 +119,7 @@ const ResultPage: FC<IResultPageProps> = (props) => {
 
         <CloseButton className={styles.close} onClick={() => navigate("/")} />
       </ResultHeader>
-      <section className={styles.result}>
+      <main className={styles.result}>
         <h2 className={styles.title}>
           Результаты поиска
           {mapView === 2 && (
@@ -296,7 +296,7 @@ const ResultPage: FC<IResultPageProps> = (props) => {
                 })}
           </ul>
         </form>
-      </section>
+      </main>
       <footer className={styles.footer}>{}</footer>
     </>
   );
