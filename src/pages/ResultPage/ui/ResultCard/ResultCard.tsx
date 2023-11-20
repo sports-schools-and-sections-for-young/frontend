@@ -1,10 +1,13 @@
 import React, { FC } from "react";
 import { Link } from "react-router-dom";
 import styles from "./ResultCard.module.scss";
-import Button from "../ui/Button/Button";
-import { ButtonColor, ButtonTestId } from "../ui/Button/types";
-import Icon from "../ui/Icon/Icon";
-import { IconTypes } from "../ui/Icon/types";
+import Button from "../../../../components/ui/Button/Button";
+import {
+  ButtonColor,
+  ButtonTestId,
+} from "../../../../components/ui/Button/types";
+import Icon from "../../../../components/ui/Icon/Icon";
+import { IconTypes } from "../../../../components/ui/Icon/types";
 import { SectionProps } from "./types";
 
 const ResultCard: FC<SectionProps> = (props) => {

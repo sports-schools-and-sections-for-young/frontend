@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./Slider.module.scss";
 import Button from "../ui/Button/Button";
@@ -41,8 +41,8 @@ const Slider: React.FC = () => {
             </p>
             <p className={styles.textSlider}>{sportsData[currentSlide].text}</p>
             <div className={styles.containerButton}>
-              <Button 
-                color={ButtonColor.PRIMARY} 
+              <Button
+                color={ButtonColor.PRIMARY}
                 testId={ButtonTestId.FORWARD}
                 onClick={() => navigate("/search")}
               >

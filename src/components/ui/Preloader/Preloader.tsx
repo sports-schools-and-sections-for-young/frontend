@@ -1,12 +1,14 @@
 // Preloader.tsx
-import React from 'react';
-import styles from './Preloader.module.scss';
-import { PreloaderProps, PreloaderSize } from './types';
+import React from "react";
+import styles from "./Preloader.module.scss";
+import { PreloaderProps, PreloaderSize } from "./types";
 
-const Preloader: React.FC<PreloaderProps> = ({ size = PreloaderSize.Medium }) => {
+const Preloader: React.FC<PreloaderProps> = ({
+  size = PreloaderSize.Medium,
+}) => {
   const sizeStyle = {
     width: size,
-    height: size
+    height: size,
   };
 
   return (
