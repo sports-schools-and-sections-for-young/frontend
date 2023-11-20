@@ -22,8 +22,5 @@ export const Result: Story = {
     isFree: {
       control: "boolean",
     },
-    mapView: {
-      control: "boolean",
-    },
   },
 };

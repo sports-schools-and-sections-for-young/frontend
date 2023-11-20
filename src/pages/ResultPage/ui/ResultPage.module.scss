@@ -1,6 +1,6 @@
 .result {
   margin: 0 auto;
-  max-width: 1111px;
+  width: 1111px;
   font-family: var(--font-family_main);
   color: var(--text-black-color);
   display: flex;
@@ -77,7 +77,7 @@
   list-style: none;
   display: flex;
   flex-direction: column;
-  row-gap: 10px;
+  row-gap: 32px;
 }
 
 .buttonContainer {
@@ -86,4 +86,11 @@
   flex-direction: column;
   row-gap: 20px;
   align-items: center;
+}
+
+.footer {
+  background-color: var(--text-black-color);
+  width: 100%;
+  min-height: 170px;
+  margin-top: 70px;
 }
