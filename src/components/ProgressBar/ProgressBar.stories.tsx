@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import type { Meta, Story } from "@storybook/react";
 import ProgressBar from "./ProgressBar";
 import { ProgressBarProps } from "./types";
