@@ -20,15 +20,18 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@pbe/react-yandex-maps": "^1.2.5",
     "classnames": "^2.3.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.17.0"
+    "react-hook-form": "^7.48.2",
+    "react-router-dom": "^6.17.0",
+    "uuid": "^9.0.1",
+    "vite-plugin-svgr": "^4.1.0"
   },
   "devDependencies": {
     "@storybook/addon-essentials": "^7.5.1",
     "@storybook/addon-interactions": "^7.5.1",
-    "@storybook/addon-links": "^7.5.1",
     "@storybook/addon-onboarding": "^1.0.8",
     "@storybook/blocks": "^7.5.1",
     "@storybook/react": "^7.5.1",
@@ -36,6 +39,7 @@
     "@storybook/testing-library": "^0.2.2",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
+    "@types/uuid": "^9.0.6",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
     "@vitejs/plugin-react": "^4.0.3",
@@ -66,6 +70,7 @@
   },
   "lint-staged": {
     "*.{ts,tsx}": "eslint . --ext ts,tsx --report-unused-disable-directives --quiet --fix",
-    "*.{ts,tsx,scss,md,html,json}": "npm run prettier"
+    "*.{scss}": "npm run stylelint:fix",
+    "*.{ts,tsx,md,html,json}": "npm run prettier"
   }
 }

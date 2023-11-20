@@ -2,35 +2,52 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid #c4c4c4;
   max-width: 100%;
   max-height: 100%;
   overflow: hidden;
   border-radius: var(--narrow-radius);
 }
 
-.small {
-  max-width: 210px;
-  aspect-ratio: 16/11;
-  max-height: 170px;
+.slider-header-image {
+  max-width: 533px;
+  aspect-ratio: 34/9;
+  max-height: 145px;
 }
 
-.medium {
-  max-width: 349px;
-  aspect-ratio: 16/11;
-  max-height: 196px;
+.search-page-image {
+  max-width: 460px;
+  aspect-ratio: 2;
+  max-height: 232px;
 }
 
-.large {
-  max-width: 349px;
+.slider-image {
+  max-width: 540px;
   aspect-ratio: 16/11;
-  max-height: 305px;
+  max-height: 434px;
 }
 
-.extra-large {
-  max-width: 444px;
+.reason-image {
+  max-width: 445px;
+  aspect-ratio: 16/17;
+  height: 463px;
+}
+
+.main-image {
+  max-width: 445px;
+  aspect-ratio: 16/19;
+  height: 527px;
+}
+
+.why-we-image {
+  max-width: 350px;
   aspect-ratio: 16/11;
-  max-height: 389px;
+  height: 240px;
+}
+
+.no-result-image {
+  max-width: 335px;
+  aspect-ratio: 1;
+  height: 335px;
 }
 
 .imageSize {

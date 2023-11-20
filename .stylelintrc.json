@@ -1,8 +1,9 @@
 {
   "extends": "stylelint-config-standard-scss",
   "rules": {
-    "indentation": [4],
+    "indentation": [2],
     "custom-property-pattern": null,
-    "selector-class-pattern": null
+    "selector-class-pattern": null,
+    "scss/operator-no-newline-after": null
   }
 }

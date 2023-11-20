@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import ImageCard, { ImageCardSize } from "./ImageCard";
+import ImageCard from "./ImageCard";
+import { ImageCardSize } from "./types";
 
 const meta = {
   title: "ui/ImageCard",
@@ -14,34 +15,58 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Small: Story = {
+export const SliderHeaderImage: Story = {
   args: {
-    src: "https://images.thevoicemag.ru/upload/img_cache/96b/96bef105d63cde9af3ba25609a340a9d_ce_738x490x0x0_cropped_666x444.jpg",
-    alt: "Small Image",
-    size: ImageCardSize.SMALL,
+    src: "/src/assets/images/slider-image-header.png",
+    alt: "Slider header image",
+    size: ImageCardSize.SLIDER_HEADER_IMG,
   },
 };
 
-export const Medium: Story = {
+export const SliderImage: Story = {
   args: {
-    src: "https://images.thevoicemag.ru/upload/img_cache/96b/96bef105d63cde9af3ba25609a340a9d_ce_738x490x0x0_cropped_666x444.jpg",
-    alt: "Medium Image",
-    size: ImageCardSize.MEDIUM,
+    src: "/src/assets/images/slider-image-football.png",
+    alt: "Slider image",
+    size: ImageCardSize.SLIDER_IMG,
   },
 };
 
-export const Large: Story = {
+export const SearchPageImage: Story = {
   args: {
-    src: "https://images.thevoicemag.ru/upload/img_cache/96b/96bef105d63cde9af3ba25609a340a9d_ce_738x490x0x0_cropped_666x444.jpg",
-    alt: "Large Image",
-    size: ImageCardSize.LARGE,
+    src: "/src/assets/images/info-image.png",
+    alt: "Search page image",
+    size: ImageCardSize.SEARCH_IMG,
   },
 };
 
-export const ExtraLarge: Story = {
+export const ReasonImage: Story = {
   args: {
-    src: "https://images.thevoicemag.ru/upload/img_cache/96b/96bef105d63cde9af3ba25609a340a9d_ce_738x490x0x0_cropped_666x444.jpg",
-    alt: "Extra Large Image",
-    size: ImageCardSize.EXTRA_LARGE,
+    src: "/src/assets/images/main-image-cooperation.png",
+    alt: "Reason image",
+    size: ImageCardSize.REASON_IMG,
+  },
+};
+
+export const MainImage: Story = {
+  args: {
+    src: "/src/assets/images/main-image.png",
+    alt: "Main image",
+    size: ImageCardSize.MAIN_IMG,
+  },
+};
+
+export const WhyWeImage: Story = {
+  args: {
+    src: "/src/assets/images/reason-image-1.png",
+    alt: "Why we image",
+    size: ImageCardSize.WHY_WE_IMG,
+  },
+};
+
+export const NoResultImage: Story = {
+  args: {
+    src: "/src/assets/images/search-result.png",
+    alt: "No result image",
+    size: ImageCardSize.NO_RESULT_IMG,
   },
 };
