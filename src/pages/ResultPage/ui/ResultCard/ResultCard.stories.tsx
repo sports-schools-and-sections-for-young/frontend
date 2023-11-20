@@ -21,7 +21,7 @@ export const SectionCard: Story = {
     sport_type: "Шахматы",
     title: "Я у мамы молодец",
     address: {
-      index: 195276,
+      index: "195276",
       city: "Санкт-Петербург",
       metro: "Ладожская",
       district: "Красногвардейский р-н",
