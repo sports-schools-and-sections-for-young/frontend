@@ -1,21 +1,18 @@
-import { FC } from "react";
-import classnames from "classnames";
-import styles from "./Preloader.module.scss";
+// Preloader.tsx
+import React from 'react';
+import styles from './Preloader.module.scss';
+import { PreloaderProps, PreloaderSize } from './types';
 
-interface PreloaderProps {
-  className?: string;
-}
-
-const Preloader: FC<PreloaderProps> = ({ className = "" }) => {
-  const preloaderClass = classnames({
-    [styles.preloader]: true,
-    [className]: true,
-  });
+const Preloader: React.FC<PreloaderProps> = ({ size = PreloaderSize.Medium }) => {
+  const sizeStyle = {
+    width: size,
+    height: size
+  };
 
   return (
-    <div className={preloaderClass}>
-      <div className={styles.preloader__container}>
-        <span className={styles.preloader__round} />
+    <div className={styles.preloader}>
+      <div className={styles.preloader__container} style={sizeStyle}>
+        <span className={styles.preloader__round} style={sizeStyle} />
       </div>
     </div>
   );
