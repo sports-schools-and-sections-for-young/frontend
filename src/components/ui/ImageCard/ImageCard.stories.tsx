@@ -70,3 +70,11 @@ export const NoResultImage: Story = {
     size: ImageCardSize.NO_RESULT_IMG,
   },
 };
+
+export const LogoImage: Story = {
+  args: {
+    src: "/src/assets/images/Logo.png",
+    alt: "Logo image",
+    size: ImageCardSize.LOGO_IMG,
+  },
+};
