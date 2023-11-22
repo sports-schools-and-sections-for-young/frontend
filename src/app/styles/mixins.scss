@@ -11,3 +11,10 @@
   display: flex;
   flex-direction: $flexDir;
 }
+
+@mixin step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}

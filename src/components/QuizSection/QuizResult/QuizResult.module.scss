@@ -1,0 +1,39 @@
+@import "../../../app/styles/mixins";
+
+.quizResult {
+  width: 100%;
+
+  @include section(row);
+
+  justify-content: center;
+  margin-top: 231px;
+  margin-bottom: 113px;
+}
+
+.infoWrapper {
+  display: flex;
+  flex-direction: column;
+  max-width: 573px;
+}
+
+.title {
+  font-size: var(--font-line-m);
+  color: var(--text-black-color);
+  padding-bottom: 32px;
+}
+
+.highlight {
+  color: var(--span-color);
+}
+
+.description {
+  padding-bottom: 20px;
+  padding-right: 36px;
+  font-size: var(--font-line-xs);
+  color: var(--light-text-color);
+}
+
+.button {
+  margin-top: 20px;
+  width: 50%;
+}

@@ -1,0 +1,51 @@
+@import "../../../../app/styles/mixins";
+
+.step {
+  @include step;
+}
+
+.title {
+  font-size: var(--font-size-heading-h2);
+  font-weight: var(--font-weight-700);
+  line-height: var(--font-line-heading-h2);
+  max-width: 850px;
+  text-align: center;
+  margin: 32px 0 20px;
+}
+
+.span {
+  color: var(--span-color);
+}
+
+.subtitle {
+  font-size: var(--font-size-l);
+  font-weight: var(--font-weight-500);
+  line-height: var(--font-line-l);
+  color: #211d3b6b;
+  margin-bottom: 54px;
+}
+
+.optionWrapper {
+  max-width: 454px;
+  width: 100%;
+  margin: 40px 0 133px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.input {
+  max-width: 156px;
+}
+
+.badge {
+  width: 256px;
+  gap: 8px;
+  padding: 12px 16px;
+  font-size: var(--font-size-s);
+  line-height: var(--font--line-s);
+  height: 48px;
+}
+
+.preloader {
+  margin-bottom: 25px;
+}

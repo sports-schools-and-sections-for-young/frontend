@@ -2,39 +2,40 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
 import SearchInput, { SearchingItem } from "./SearchInput.tsx";
 import { GEOSUGGEST_KEY } from "../../../utils/variables.ts";
+import { YandexAnswer } from "../../../pages/SearchPage/ui/StepLocation/StepLocation.tsx";
 
 const sports = [
   {
-    id: "1",
-    name: "Футбол",
+    id: 1,
+    title: "Футбол",
   },
   {
-    id: "2",
-    name: "Хоккей",
+    id: 2,
+    title: "Хоккей",
   },
   {
-    id: "3",
-    name: "Баскетбол",
+    id: 3,
+    title: "Баскетбол",
   },
   {
-    id: "4",
-    name: "Теннис",
+    id: 4,
+    title: "Теннис",
   },
   {
-    id: "5",
-    name: "Айкидо",
+    id: 5,
+    title: "Айкидо",
   },
   {
-    id: "6",
-    name: "Гандбол",
+    id: 6,
+    title: "Гандбол",
   },
   {
-    id: "7",
-    name: "Бокс",
+    id: 7,
+    title: "Бокс",
   },
   {
-    id: "8",
-    name: "Дзюдо",
+    id: 8,
+    title: "Дзюдо",
   },
 ];
 
@@ -88,28 +89,6 @@ export const SportSearching: Story = {
   },
 };
 
-interface YandexAnswer {
-  suggest_reqid: string;
-  results: {
-    address: {
-      component: {
-        name: string;
-        kind: string[];
-      }[];
-      formatted_address: string;
-    };
-    distance: {
-      value: number;
-      text: string;
-    };
-    tags: string[];
-    title: {
-      hl: { begin: number; end: number }[];
-      text: string;
-    };
-  }[];
-}
-
 export const AddressSearching: Story = {
   args: {
     labelName: "Адрес",
@@ -131,8 +110,8 @@ export const AddressSearching: Story = {
       const addresses: YandexAnswer = await res.json();
       if (addresses.results) {
         const formattedAddresses = addresses.results.map((address) => ({
-          id: address.address.formatted_address,
-          name: address.address.formatted_address,
+          id: address.distance.value,
+          title: address.address.formatted_address,
         }));
         setAddressList(formattedAddresses);
       }
@@ -144,7 +123,7 @@ export const AddressSearching: Story = {
         searchingList={addressList}
         value={searchingAddress}
         onChange={(e) => handleChange(e.target.value)}
-        itemClickHandler={(e: SearchingItem) => setSearchingAddress(e.name)}
+        itemClickHandler={(e: SearchingItem) => setSearchingAddress(e.title)}
       />
     );
   },

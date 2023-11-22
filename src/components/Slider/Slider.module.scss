@@ -15,6 +15,7 @@
   align-items: center;
   overflow: hidden;
   margin-bottom: 104px;
+  position: relative;
 }
 
 .containerText {
@@ -29,7 +30,7 @@
 .containerButton {
   display: flex;
   justify-content: space-between;
-  width: 1200px;
+  width: 1100px;
 }
 
 .titleSlider {
@@ -76,14 +77,10 @@
   background-position: center;
   background-size: contain;
   background-color: transparent;
-}
-
-.buttonRight {
   margin-right: 28px;
 }
 
 .buttonLeft {
-  margin-right: 64px;
   transform: scaleX(-1);
 }
 
@@ -99,13 +96,17 @@
 }
 
 .numberSlider {
-  font-size: 24px;
   font-family: var(--font-family_main);
+  font-size: 24px;
+  color: var(--text-black-color);
+  position: absolute;
+  right: 145px;
 }
 
 .leadingNumbers {
-  font-size: 32px;
   font-family: var(--font-family_main);
+  font-size: 32px;
+  color: var(--text-black-color);
 }
 
 .containerText > .containerButton {

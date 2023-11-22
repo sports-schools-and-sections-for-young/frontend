@@ -9,6 +9,16 @@
   height: 24px;
 }
 
+.extraSmall {
+  width: 16px;
+  height: 16px;
+}
+
+.big {
+  width: 48px;
+  height: 48px;
+}
+
 // COLORS
 
 .primary * {
@@ -24,4 +34,17 @@
 .pale * {
   fill: #828091;
   color: #828091;
+}
+
+/* кастомные стили для стрелок */
+.primary .arrow-icon {
+  color: #fff;
+}
+
+.secondary .arrow-icon {
+  color: #2b5fc7;
+}
+
+.pale .arrow-icon {
+  fill: #828091;
 }

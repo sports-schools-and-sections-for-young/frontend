@@ -62,3 +62,19 @@ export const WhyWeImage: Story = {
     size: ImageCardSize.WHY_WE_IMG,
   },
 };
+
+export const NoResultImage: Story = {
+  args: {
+    src: "/src/assets/images/search-result.png",
+    alt: "No result image",
+    size: ImageCardSize.NO_RESULT_IMG,
+  },
+};
+
+export const LogoImage: Story = {
+  args: {
+    src: "/src/assets/images/Logo.png",
+    alt: "Logo image",
+    size: ImageCardSize.LOGO_IMG,
+  },
+};

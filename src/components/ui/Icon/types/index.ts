@@ -9,11 +9,14 @@ export enum IconTypes {
   COINS = "coins",
   COOKIE = "cookie",
   CROSS = "cross",
+  PLUS = "plus",
 }
 
 export enum IconSize {
+  EXTRA_SMALL = "extraSmall",
   SMALL = "small",
   NORMAL = "normal",
+  BIG = "big",
 }
 
 export enum IconColor {

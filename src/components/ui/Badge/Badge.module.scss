@@ -1,0 +1,33 @@
+.button {
+  padding: 18px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  height: 32px;
+  border: none;
+  border-radius: var(--extra-narrow-radius);
+  color: var(--ui-primary-bg-color);
+  cursor: pointer;
+  font-size: var(--font-size-m);
+  line-height: var(--font-line-m);
+  font-weight: var(--font-weight-600);
+  outline: none;
+}
+
+.active {
+  border: 1px solid var(--ui-primary-bg-color);
+}
+
+.primary {
+  background-color: var(--lightblue-background-color);
+}
+
+.secondary {
+  background-color: transparent;
+}
+
+.active.secondary {
+  border: none;
+}

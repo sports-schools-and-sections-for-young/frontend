@@ -2,6 +2,12 @@
   width: 100%;
 }
 
+.icon {
+  position: absolute;
+  height: 24px;
+  width: 24px;
+}
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   appearance: none;

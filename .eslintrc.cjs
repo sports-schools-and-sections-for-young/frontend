@@ -22,6 +22,9 @@ module.exports = {
   },
   plugins: ["react-refresh"],
   rules: {
+    "no-irregular-whitespace": "off",
+    camelcase: "off",
+    "@typescript-eslint/no-explicit-any": "off",
     "react-refresh/only-export-components": [
       "warn",
       { allowConstantExport: true },
@@ -43,6 +46,9 @@ module.exports = {
     "react/require-default-props": "off",
     "jsx-a11y/no-noninteractive-element-interactions": "off",
     "jsx-a11y/click-events-have-key-events": "off",
+    "no-underscore-dangle": "off",
+    "@typescript-eslint/no-explicit-any": ["warn"],
+    "@typescript-eslint/ban-ts-comment": ["warn"],
   },
   settings: {
     "import/resolver": {

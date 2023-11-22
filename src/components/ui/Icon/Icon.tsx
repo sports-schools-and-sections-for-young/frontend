@@ -14,6 +14,7 @@ import Location from "../../../assets/images/icons/MapPin.svg?react";
 import Coins from "../../../assets/images/icons/Coins.svg?react";
 import Cookie from "../../../assets/images/icons/Cookie.svg?react";
 import Cross from "../../../assets/images/icons/X.svg?react";
+import Plus from "../../../assets/images/icons/Plus.svg?react";
 
 interface IconProps extends HTMLAttributes<HTMLSpanElement> {
   className?: string;
@@ -41,8 +42,14 @@ const Icon: FC<IconProps> = (props) => {
   });
 
   const iconImages = {
-    [IconTypes.RIGHT_ICON]: <RightArrow className={iconClass} />,
-    [IconTypes.LEFT_ICON]: <LeftArrow className={iconClass} />,
+    [IconTypes.RIGHT_ICON]: (
+      <RightArrow
+        className={type === IconTypes.RIGHT_ICON ? "arrow-icon" : ""}
+      />
+    ),
+    [IconTypes.LEFT_ICON]: (
+      <LeftArrow className={type === IconTypes.LEFT_ICON ? "arrow-icon" : ""} />
+    ),
     [IconTypes.PERSON]: <Person className={iconClass} />,
     [IconTypes.BOY]: <Boy className={iconClass} />,
     [IconTypes.GIRL]: <Girl className={iconClass} />,
@@ -51,6 +58,7 @@ const Icon: FC<IconProps> = (props) => {
     [IconTypes.COINS]: <Coins className={iconClass} />,
     [IconTypes.COOKIE]: <Cookie className={iconClass} />,
     [IconTypes.CROSS]: <Cross className={iconClass} />,
+    [IconTypes.PLUS]: <Plus className={iconClass} />,
   };
 
   return <span className={spanClass}>{iconImages[type]}</span>;

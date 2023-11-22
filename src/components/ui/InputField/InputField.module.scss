@@ -1,6 +1,6 @@
 .input {
   padding: 12px;
-  margin: 0 0 24px;
+  margin: 0 0 26px;
   width: 100%;
   height: 48px;
   border-radius: var(--extra-narrow-radius);
@@ -18,6 +18,14 @@
     outline: 1px solid #003fbc;
     border-color: transparent;
   }
+}
+
+.input-icon_left {
+  padding-left: 36px;
+}
+
+.input-icon_right {
+  padding-right: 36px;
 }
 
 .inputError {
@@ -45,9 +53,23 @@
   pointer-events: none;
 }
 
+.inputWrapper {
+  position: relative;
+}
+
 .icon {
+  width: 24px;
+  height: 24px;
   position: absolute;
-  top: 5px;
-  right: 5px;
   cursor: pointer;
+}
+
+.icon_left {
+  left: 12px;
+  top: 12px;
+}
+
+.icon_right {
+  right: 12px;
+  top: 12px;
 }

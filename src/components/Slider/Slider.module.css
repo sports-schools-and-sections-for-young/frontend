@@ -15,6 +15,7 @@
   align-items: center;
   overflow: hidden;
   margin-bottom: 104px;
+  position: relative;
 }
 
 .containerText {
@@ -65,17 +66,9 @@
   line-height: 27.9px;
 }
 
-.buttonLeft {
-  margin-right: 64px;
-  transform: scaleX(-1);
-}
-
 .buttonRight,
 .buttonLeft {
   background-image: url("../../assets/images/icons/accordion-arrow.svg");
-  margin-right: 28px;
-  fill: #2b5fc7;
-  color: #2b5fc7;
   border: none;
   cursor: pointer;
   width: 100px;
@@ -84,6 +77,15 @@
   background-position: center;
   background-size: contain;
   background-color: transparent;
+}
+
+.buttonRight {
+  margin-right: 28px;
+}
+
+.buttonLeft {
+  margin-right: 64px;
+  transform: scaleX(-1);
 }
 
 .hidden {
@@ -98,13 +100,17 @@
 }
 
 .numberSlider {
-  font-size: 24px;
   font-family: var(--font-family_main);
+  font-size: 24px;
+  color: var(--text-black-color);
+  position: absolute;
+  right: 145px;
 }
 
 .leadingNumbers {
-  font-size: 32px;
   font-family: var(--font-family_main);
+  font-size: 32px;
+  color: var(--text-black-color);
 }
 
 .containerText > .containerButton {

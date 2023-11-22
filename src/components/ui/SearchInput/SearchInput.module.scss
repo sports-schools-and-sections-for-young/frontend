@@ -1,15 +1,10 @@
-.inputWrapper {
-  position: relative;
+.input {
+  width: 100%;
+  max-width: 442px;
 }
 
-.icon {
-  width: 24px;
-  height: 24px;
-  background-image: url("../../../assets/images/icons/MagnifyingGlass.png");
-  position: absolute;
-  right: 12px;
-  top: 12px;
-  cursor: pointer;
+.inputWrapper {
+  position: relative;
 }
 
 .autocompleteField {
