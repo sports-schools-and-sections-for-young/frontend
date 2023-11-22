@@ -2,26 +2,490 @@
   "sports": [
     {
       "id": 1,
-      "name": "Футбол"
+      "title": "Футбол"
     },
     {
       "id": 2,
-      "name": "Хоккей"
+      "title": "Хоккей"
     },
     {
       "id": 3,
-      "name": "Баскетбол"
+      "title": "Баскетбол"
+    },
+    {
+      "id": 4,
+      "title": "Бокс"
+    },
+    {
+      "id": 5,
+      "title": "Теннис"
+    },
+    {
+      "id": 6,
+      "title": "Плавание"
+    },
+    {
+      "id": 7,
+      "title": "Гимнастика"
+    },
+    {
+      "id": 8,
+      "title": "Скалолазание"
+    },
+    {
+      "id": 9,
+      "title": "Легкая атлетика"
+    },
+    {
+      "id": 10,
+      "title": "Дзюдо"
+    },
+    {
+      "id": 11,
+      "title": "Карате"
+    },
+    {
+      "id": 12,
+      "title": "Шашки"
+    },
+    {
+      "id": 13,
+      "title": "Йога"
+    },
+    {
+      "id": 14,
+      "title": "Бадминтон"
+    },
+    {
+      "id": 15,
+      "title": "Настольный теннис"
+    },
+    {
+      "id": 16,
+      "title": "Воллейбол"
+    },
+    {
+      "id": 17,
+      "title": "Альпинизм"
+    },
+    {
+      "id": 18,
+      "title": "Хореография"
+    },
+    {
+      "id": 19,
+      "title": "Фитнес"
+    },
+    {
+      "id": 20,
+      "title": "Тхэквандо"
+    },
+    {
+      "id": 21,
+      "title": "Американский футбол"
     }
   ],
-  "schools": [
+  "sections": [
     {
-      "id": 1,
-      "name": "Школа футбола им. Зинедина Зидана",
-      "sportId": 1,
-      "ageFrom": 5,
-      "ageTo": 14,
-      "address": "Санкт-Петербург, Непокорённых, 16",
-      "coordinates": [59.996803, 30.382514]
+      "id": 31,
+      "sport_organization": "ГБУ ДО ЦДЮТТ",
+      "sport_type": "Футбол",
+      "year_from": 3,
+      "year_until": 12,
+      "address": {
+        "index": "198095",
+        "city": "Санкт-Петербург",
+        "metro": "",
+        "district": "Кировский район",
+        "street": "Маршала Говорова",
+        "house": "30"
+      },
+      "rating": 2.33,
+      "review_amount": 3,
+      "schedule": {
+        "days": [],
+        "time": ""
+      },
+      "title": "ААААА",
+      "gender": ["male", "female"],
+      "aviable": 10,
+      "price": 1000
+    },
+    {
+      "id": 32,
+      "sport_organization": "ГБУ ДО ЦДЮТТ",
+      "sport_type": "Шахматы",
+      "year_from": 4,
+      "year_until": 10,
+      "address": {
+        "index": "198095",
+        "city": "Санкт-Петербург",
+        "metro": "",
+        "district": "Кировский район",
+        "street": "Маршала Говорова",
+        "house": "34 лит З"
+      },
+      "rating": 2.33,
+      "review_amount": 3,
+      "schedule": {
+        "days": "Вторник, Четверг, Пятница",
+        "time": "09:30 - 18:00"
+      },
+      "title": "Ботаны",
+      "gender": ["male", "female"],
+      "aviable": 99,
+      "price": 1200
+    },
+    {
+      "id": 33,
+      "sport_organization": "ГБУ ДО ЦДЮТТ",
+      "sport_type": "Хоккей",
+      "year_from": 4,
+      "year_until": 10,
+      "address": {
+        "index": "198095",
+        "city": "Санкт-Петербург",
+        "metro": "",
+        "district": "Кировский район",
+        "street": "Маршала Говорова",
+        "house": "34 лит З"
+      },
+      "rating": 2.33,
+      "review_amount": 3,
+      "schedule": {
+        "days": "Понедельник, Вторник, Среда, Четверг, Пятница",
+        "time": "08:00 - 12:00"
+      },
+      "title": "Ледник",
+      "gender": ["male", "female"],
+      "aviable": 999,
+      "price": 1500
+    },
+    {
+      "id": 34,
+      "sport_organization": "ГБУ ДО ЦДЮТТ",
+      "sport_type": "Бокс",
+      "year_from": 7,
+      "year_until": 15,
+      "address": {
+        "index": "198261",
+        "city": "Санкт- Петербург",
+        "metro": "",
+        "district": "Кировский район",
+        "street": "Бурцева",
+        "house": "12 лит А"
+      },
+      "rating": 2.33,
+      "review_amount": 3,
+      "schedule": {
+        "days": [],
+        "time": ""
+      },
+      "title": "Пираты",
+      "gender": ["male", "female"],
+      "aviable": 10,
+      "price": 2000
+    },
+    {
+      "id": 35,
+      "sport_organization": "ГБУ ДО ЦДЮТТ",
+      "sport_type": "Баскетбол",
+      "year_from": 6,
+      "year_until": 14,
+      "address": {
+        "index": "198261",
+        "city": "Москва",
+        "metro": "",
+        "district": "Московский",
+        "street": "70-ти лет Октября",
+        "house": "55"
+      },
+      "rating": 2.33,
+      "review_amount": 3,
+      "schedule": {
+        "days": [],
+        "time": ""
+      },
+      "title": "Пушка",
+      "gender": ["male", "female"],
+      "aviable": 99,
+      "price": 1900
+    },
+    {
+      "id": 36,
+      "sport_organization": "ГБОУ СОШ № 240",
+      "sport_type": "Легкая атлетика",
+      "year_from": 4,
+      "year_until": 10,
+      "address": {
+        "index": "198261",
+        "city": "Санкт- Петербург",
+        "metro": "",
+        "district": "Кировский район",
+        "street": "Бурцева",
+        "house": "12 лит А"
+      },
+      "rating": 4.0,
+      "review_amount": 2,
+      "schedule": {
+        "days": "Суббота, Воскресенье",
+        "time": "13:00 - 16:45"
+      },
+      "title": "Балетки",
+      "gender": "female",
+      "aviable": 10,
+      "price": 2300
+    },
+    {
+      "id": 37,
+      "sport_organization": "ГБОУ СОШ № 240",
+      "sport_type": "Бокс",
+      "year_from": 7,
+      "year_until": 18,
+      "address": {
+        "index": "198261",
+        "city": "Санкт- Петербург",
+        "metro": "",
+        "district": "Кировский район",
+        "street": "Бурцева",
+        "house": "12 лит А"
+      },
+      "rating": 4.0,
+      "review_amount": 2,
+      "schedule": {
+        "days": "Пятница",
+        "time": "19:00 - 20:00"
+      },
+      "title": "Мордобой",
+      "gender": "male",
+      "aviable": 26,
+      "price": 1600
+    },
+    {
+      "id": 38,
+      "sport_organization": "ГБДОУ детский сад № 46",
+      "sport_type": "Легкая атлетика",
+      "year_from": 3,
+      "year_until": 7,
+      "address": {
+        "index": "196006",
+        "city": "Санкт-Петербург",
+        "metro": "Московские ворота",
+        "district": "Московский район",
+        "street": "Заставская",
+        "house": "44 к2 стр 1"
+      },
+      "rating": 3.0,
+      "review_amount": 1,
+      "schedule": {
+        "days": [],
+        "time": ""
+      },
+      "title": "Театр",
+      "gender": ["male", "female"],
+      "aviable": 50,
+      "price": 1500
+    },
+    {
+      "id": 39,
+      "sport_organization": "Здоровье",
+      "sport_type": "Гимнастика",
+      "year_from": 3,
+      "year_until": 18,
+      "address": {
+        "index": "194292",
+        "city": "Санкт-Петербург",
+        "metro": "",
+        "district": "Выборгский район",
+        "street": "5-й Верхний переулок",
+        "house": "17"
+      },
+      "rating": 4.33,
+      "review_amount": 4,
+      "schedule": {
+        "days": [],
+        "time": ""
+      },
+      "title": "нн",
+      "gender": ["male", "female"],
+      "aviable": 10,
+      "price": 600
+    },
+
+    {
+      "id": 40,
+      "sport_organization": "Дельфин",
+      "sport_type": "Плавание",
+      "year_from": 3,
+      "year_until": 18,
+      "address": {
+        "index": "191167",
+        "city": "Санкт-Петербург",
+        "metro": "",
+        "district": "Центральный район",
+        "street": "Александра Невского",
+        "house": "4"
+      },
+      "rating": 4.33,
+      "review_amount": 4,
+      "schedule": {
+        "days": [],
+        "time": ""
+      },
+      "title": "тт",
+      "gender": ["male", "female"],
+      "aviable": 10,
+      "price": 400
+    },
+    {
+      "id": 41,
+      "sport_organization": "СПб ГБУ центр физической культуры",
+      "sport_type": "Хоккей",
+      "year_from": 4,
+      "year_until": 18,
+      "address": {
+        "index": "199406",
+        "city": "Санкт-Петербург",
+        "metro": "",
+        "district": "Василеостровский район",
+        "street": "Васильевский остров",
+        "house": "87, корп. 2"
+      },
+      "rating": 3.33,
+      "review_amount": 5,
+      "schedule": {
+        "days": [],
+        "time": ""
+      },
+      "title": "тт",
+      "gender": ["male", "female"],
+      "aviable": 10,
+      "price": 700
+    },
+    {
+      "id": 42,
+      "sport_organization": "ДТЮ на Ленской",
+      "sport_type": "Фитнес",
+      "year_from": 6,
+      "year_until": 12,
+      "address": {
+        "index": "198095",
+        "city": "Санкт-Петербург",
+        "metro": "Ладожская",
+        "district": "Красногвардейский район",
+        "street": "Ленская",
+        "house": "2"
+      },
+      "rating": 4.98,
+      "review_amount": 54,
+      "schedule": {
+        "days": ["Понедельник", "Среда"],
+        "time": "17.30-19.30"
+      },
+      "title": "Лицедеи",
+      "gender": ["male", "female"],
+      "aviable": 10,
+      "price": 500
+    },
+    {
+      "id": 43,
+      "sport_organization": "ДЮСШ №4",
+      "sport_type": "Йога",
+      "year_from": 15,
+      "year_until": 18,
+      "address": {
+        "index": "198095",
+        "city": "Санкт-Петербург",
+        "metro": "Ладожская",
+        "district": "Красногвардейский район",
+        "street": "Ленская",
+        "house": "2"
+      },
+      "rating": 3.89,
+      "review_amount": 4,
+      "schedule": {
+        "days": ["Вторник", "Четверг"],
+        "time": "19.00-20.00"
+      },
+      "title": "Life Style",
+      "gender": ["male", "female"],
+      "aviable": 10,
+      "price": 700
+    },
+    {
+      "id": 44,
+      "sport_organization": "Капитан",
+      "sport_type": "Скалолазание",
+      "year_from": 6,
+      "year_until": 18,
+      "address": {
+        "index": "194090",
+        "city": "Санкт-Петербург",
+        "metro": "Ладожская",
+        "district": "Калининский район",
+        "street": "Гражданская",
+        "house": "34"
+      },
+      "rating": 4.1,
+      "review_amount": 1,
+      "schedule": {
+        "days": ["Понедельник", "Пятница"],
+        "time": "15.30-16.30"
+      },
+      "title": "Пик",
+      "gender": ["male", "female"],
+      "aviable": 10,
+      "price": 900
+    },
+    {
+      "id": 45,
+      "sport_organization": "ДЮСШ №123",
+      "sport_type": "Хореография",
+      "year_from": 3,
+      "year_until": 16,
+      "address": {
+        "index": "198095",
+        "city": "Санкт-Петербург",
+        "metro": "Ладожская",
+        "district": "Красногвардейский район",
+        "street": "Ленская",
+        "house": "2"
+      },
+      "rating": 3.89,
+      "review_amount": 4,
+      "schedule": {
+        "days": ["Вторник", "Четверг"],
+        "time": "19.00-20.00"
+      },
+      "title": "Life Style",
+      "gender": ["male", "female"],
+      "aviable": 10,
+      "price": 700
+    },
+    {
+      "id": 46,
+      "sport_organization": "Все на спорт",
+      "sport_type": "Настольный теннис",
+      "year_from": 6,
+      "year_until": 18,
+      "address": {
+        "index": "194090",
+        "city": "Санкт-Петербург",
+        "metro": "Ладожская",
+        "district": "Калининский район",
+        "street": "Гражданская",
+        "house": "34"
+      },
+      "rating": 4.1,
+      "review_amount": 1,
+      "schedule": {
+        "days": ["Понедельник", "Пятница"],
+        "time": "15.30-16.30"
+      },
+      "title": "Настольный теннис",
+      "gender": ["male", "female"],
+      "aviable": 10,
+      "price": 900
     }
   ]
 }

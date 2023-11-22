@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./Slider.module.scss";
 import Button from "../ui/Button/Button";
 import { ButtonColor, ButtonTestId } from "../ui/Button/types";
@@ -8,6 +9,7 @@ import { sportsData } from "../../utils/constants/sportsData.ts";
 
 const Slider: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState<number>(0);
+  const navigate = useNavigate();
 
   const prevSlide = () => {
     setCurrentSlide((prev) => (prev === 0 ? sportsData.length - 1 : prev - 1));
@@ -39,7 +41,11 @@ const Slider: React.FC = () => {
             </p>
             <p className={styles.textSlider}>{sportsData[currentSlide].text}</p>
             <div className={styles.containerButton}>
-              <Button color={ButtonColor.PRIMARY} testId={ButtonTestId.FORWARD}>
+              <Button
+                color={ButtonColor.PRIMARY}
+                testId={ButtonTestId.FORWARD}
+                onClick={() => navigate("/search")}
+              >
                 Записаться
                 <Icon type={IconTypes.RIGHT_ICON} />
               </Button>

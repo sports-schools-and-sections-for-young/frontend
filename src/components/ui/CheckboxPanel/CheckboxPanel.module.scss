@@ -1,8 +1,8 @@
 .panel {
   height: 48px;
-  width: 412px;
+  max-width: 412px;
   display: flex;
-  padding: 4px;
+  padding: 2px 3px;
   background-color: var(--lightblue-background-color);
   justify-content: space-between;
   align-items: center;

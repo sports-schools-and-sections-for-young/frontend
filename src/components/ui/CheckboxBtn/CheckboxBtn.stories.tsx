@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import CheckboxBtn from "./CheckboxBtn";
+import { CheckboxBtnSize } from "./types";
 
 const meta = {
   title: "ui/CheckboxBtn",
@@ -19,10 +20,20 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const CheckboxButton: Story = {
+export const CheckboxPrimaryButton: Story = {
   args: {
     type: "button",
     isActive: false,
+    size: CheckboxBtnSize.PRIMARY,
     children: <> не важно</>,
+  },
+};
+
+export const CheckboxSecondaryButton: Story = {
+  args: {
+    type: "button",
+    isActive: false,
+    size: CheckboxBtnSize.SECONDARY,
+    children: <> 1 км от дома</>,
   },
 };
