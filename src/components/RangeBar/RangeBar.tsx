@@ -80,7 +80,7 @@ const RangeBar: FC<IRangeBarProps> = (props) => {
   }, []);
 
   useEffect(() => {
-    setProgress((currentPrice / maxPrice) * 100);
+    setProgress((currentPrice / (maxPrice - minPrice)) * 100);
   }, [currentPrice, maxPrice]);
   return (
     <label htmlFor="rangeBar" className={styles.rangebar}>
