@@ -22,6 +22,7 @@ module.exports = {
   },
   plugins: ["react-refresh"],
   rules: {
+    "no-irregular-whitespace": "off",
     camelcase: "off",
     "@typescript-eslint/no-explicit-any": "off",
     "react-refresh/only-export-components": [
