@@ -8,19 +8,19 @@ import {
 } from "../../../../components/ui/Button/types";
 import Icon from "../../../../components/ui/Icon/Icon";
 import { IconTypes } from "../../../../components/ui/Icon/types";
-import { SectionProps } from "./types";
+import { ResultCardProps } from "../../types";
 
-const ResultCard: FC<SectionProps> = (props) => {
+const ResultCard: FC<ResultCardProps> = ({ section }) => {
   const {
     id,
     sport_type,
     title,
     address,
     price,
-    raiting,
+    rating,
     review_amount,
-    shedule,
-  } = props;
+    schedule,
+  } = section;
 
   const reviewAmount = (): React.ReactNode => {
     let result;
@@ -35,19 +35,20 @@ const ResultCard: FC<SectionProps> = (props) => {
   };
 
   const sheduleDays = (): React.ReactNode => {
-    return shedule.days
-      .split(", ")
-      .map((item) => {
-        if (item === "Понедельник") return "Пн";
-        if (item === "Вторник") return "Вт";
-        if (item === "Среда") return "Ср";
-        if (item === "Четверг") return "Чт";
-        if (item === "Пятница") return "Пт";
-        if (item === "Суббота") return "Сб";
-        if (item === "Воскресенье") return "Вс";
-        return item;
-      })
-      .join(", ");
+    return schedule.days.length > 0
+      ? schedule.days
+          .map((item) => {
+            if (item === "Понедельник") return "Пн";
+            if (item === "Вторник") return "Вт";
+            if (item === "Среда") return "Ср";
+            if (item === "Четверг") return "Чт";
+            if (item === "Пятница") return "Пт";
+            if (item === "Суббота") return "Сб";
+            if (item === "Воскресенье") return "Вс";
+            return item;
+          })
+          .join(", ")
+      : "Пн,Вт,Ср,Чт,Пт,Сб,Вс";
   };
   return (
     <article className={styles.section} key={id}>
@@ -55,7 +56,7 @@ const ResultCard: FC<SectionProps> = (props) => {
         <p className={styles.sportType}>{sport_type}</p>
         <h3 className={styles.title}>{title}</h3>
         <div className={styles.feedback}>
-          <p className={styles.raiting}>{raiting}</p>
+          <p className={styles.raiting}>{rating}</p>
           <Link to="/" className={styles.reviews}>
             {reviewAmount()}
           </Link>
@@ -67,7 +68,7 @@ const ResultCard: FC<SectionProps> = (props) => {
           </p>
         </div>
         <div className={styles.timesheet}>
-          Расписание - {sheduleDays()} {shedule.time}
+          Расписание - {sheduleDays()} {schedule.time}
         </div>
       </div>
       <div className={styles.rightPart}>

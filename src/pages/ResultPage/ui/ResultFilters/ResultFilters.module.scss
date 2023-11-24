@@ -1,0 +1,40 @@
+.buttonContainer {
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+  align-items: center;
+}
+
+.filters {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  row-gap: 44px;
+  box-shadow: 1px 0 0 var(--lightblue-background-color);
+  padding-right: 29px;
+}
+
+.filter_item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.subtitle {
+  font-size: var(--font-size-xl);
+}
+
+.description {
+  font-size: var(--font-size-l);
+  line-height: var(--font-line-l);
+  font-weight: var(--font-weight-500);
+}
+
+.description_distant {
+  padding-bottom: 24px;
+}
+
+.priceInput {
+  max-width: 156px;
+}
