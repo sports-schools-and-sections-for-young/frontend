@@ -1,13 +1,11 @@
-import { useState, FC } from "react";
+import { FC } from "react";
 import classnames from "classnames";
 import CheckboxBtn from "../CheckboxBtn/CheckboxBtn";
 import styles from "./CheckboxPanel.module.scss";
 import { Btn, CheckboxPanelProps } from "./types";
 
 const CheckboxPanel: FC<CheckboxPanelProps> = (props) => {
-  const { className = "", setOption, btns } = props;
-
-  const [active, setActive] = useState(0);
+  const { className = "", setOption, btns, activeOption } = props;
 
   const checkboxPanelClass = classnames({
     [className]: true,
@@ -19,10 +17,9 @@ const CheckboxPanel: FC<CheckboxPanelProps> = (props) => {
       {btns.map((btn: Btn) => (
         <CheckboxBtn
           key={btn.id}
-          isActive={active === btn.id}
+          isActive={activeOption === btn.id}
           size={btn.size}
           onClick={() => {
-            setActive(btn.id);
             setOption(btn.id);
           }}
         >
