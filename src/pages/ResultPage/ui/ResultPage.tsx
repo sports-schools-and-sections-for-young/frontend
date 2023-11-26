@@ -22,6 +22,7 @@ import {
   InputIconPosition,
 } from "../../../components/ui/InputField/types";
 import Header from "../../../components/ui/Header/Header";
+import MapView from "./MapView/MapView.tsx";
 
 interface IResultPageProps {
   isFree?: boolean;
@@ -265,15 +266,16 @@ const ResultPage: FC<IResultPageProps> = (props) => {
               </Badge>
             </li>
           </ul>
-          <ul className={styles.cardList}>
-            <li>
-              <p className={`${styles.heading} ${styles.heading_count}`}>
-                Найдено {foundList.length}
-              </p>
-            </li>
-            {mapView === 2
-              ? "Карта"
-              : foundList &&
+          {mapView === 2 ? (
+            <MapView />
+          ) : (
+            <ul className={styles.cardList}>
+              <li>
+                <p className={`${styles.heading} ${styles.heading_count}`}>
+                  Найдено {foundList.length}
+                </p>
+              </li>
+              {foundList &&
                 filteredSections.map((section) => {
                   return (
                     <ResultCard
@@ -294,7 +296,8 @@ const ResultPage: FC<IResultPageProps> = (props) => {
                     />
                   );
                 })}
-          </ul>
+            </ul>
+          )}
         </form>
       </main>
       <footer className={styles.footer}>{}</footer>
