@@ -30,7 +30,6 @@ export const RangeBarWiget: Story = {
 
     const handleValueChange = (current: number) => {
       setItem(current);
-      console.log(value);
     };
 
     return (
