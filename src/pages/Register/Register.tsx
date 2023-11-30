@@ -1,134 +1,253 @@
-import React, { FC } from "react";
-import Form from "../../components/Form/Form";
-import { useFormValidation } from "../../utils/useFormValidation";
-import { REGEX_EMAIL } from "../../utils/variables";
+import { Link, useNavigate } from "react-router-dom";
+import { SubmitHandler, useForm } from "react-hook-form";
+import styles from "../Login/Login.module.scss";
+import ImageCard from "../../components/ui/ImageCard/ImageCard";
+import { ImageCardSize } from "../../components/ui/ImageCard/types";
+import Button from "../../components/ui/Button/Button";
+import { ButtonColor, ButtonTestId } from "../../components/ui/Button/types";
+import Icon from "../../components/ui/Icon/Icon";
+import { IconColor, IconTypes } from "../../components/ui/Icon/types";
+import SearchHeader from "../SearchPage/ui/SearchHeader/SearchHeader";
 import Input from "../../components/ui/Input/Input";
-import cooperation from "../../assets/images/main-image-cooperation.png";
+import cooperation from "../../assets/images/auth-img.svg";
 
-interface RegisterProps {
-  onRegister: (data: { name: string; email: string; password: string }) => void;
+export interface IAddress {
+  index: string;
+  city: string;
+  metro: string;
+  district: string;
+  street: string;
+  house: string;
 }
 
-const Register: FC<RegisterProps> = ({ onRegister }) => {
-  const { values, errors, isValid, handleChange } = useFormValidation();
+export interface IRegister {
+  email: string;
+  name: string;
+  address: IAddress;
+  site: string;
+  password: string;
+}
 
-  const handleRegister = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    onRegister({
-      name: values.name,
-      email: values.email,
-      password: values.password,
-    });
+function Register() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm<IRegister>({
+    mode: "onChange",
+  });
+
+  const navigate = useNavigate();
+
+  const onSubmit: SubmitHandler<IRegister> = (data) => {
+    console.log(`
+      email => ${data.email}
+      name => ${data.name}
+      address => ${data.address}
+      site => ${data.site}
+      password => ${data.password}
+      `);
+    console.log("data =>", data);
+    reset();
   };
 
   return (
-    <Form
-      title="Регистрация"
-      buttonText="Зарегистрироваться"
-      question="Школа уже зарегистрирована?"
-      linkText=" Войти"
-      link="/signin"
-      handleSubmit={handleRegister}
-      banner={cooperation}
-      isValid={isValid}
-    >
-      <Input
-        name="email"
-        className="form__input"
-        placeholder="E-mail *"
-        id="email-input"
-        type="email"
-        onChange={handleChange}
-        required
-        hasError={!!errors.email} // Проверка наличия ошибки
-        errorMessage={errors.email || ""} // Отображение текста ошибки
-        value={values.email || ""}
-        pattern={REGEX_EMAIL}
-      />
-      {/* <span className="form__input-error">{errors.email}</span> */}
+    <main className={styles.form}>
+      <SearchHeader>
+        <Button
+          onClick={() => navigate("/")}
+          color={ButtonColor.SECONDARY}
+          testId={ButtonTestId.BACK}
+        >
+          <Icon color={IconColor.SECONDARY} type={IconTypes.LEFT_ICON} />
+          Назад
+        </Button>
+      </SearchHeader>
+      <div className={styles.formContainer}>
+        <form
+          className={styles.formContent}
+          onSubmit={handleSubmit(onSubmit)}
+          noValidate
+        >
+          <ImageCard
+            size={ImageCardSize.AUTH_IMG}
+            src={cooperation}
+            alt="Баннер"
+          />
+          <div className={styles.formColumn}>
+            <h3 className={styles.title}>Регистрация</h3>
+            <div className={styles.formInputs}>
+              <div className={styles.inputWrapper}>
+                <Input
+                  {...register("email", {
+                    required: "Введите E-mail",
+                    pattern: {
+                      value: /[a-zA-Z0-9_.]+@[a-zA-Z0-9_]+\.[a-z]{2,}/,
+                      message: "Введите корректное значение e-mail",
+                    },
+                  })}
+                  name="email"
+                  placeholder="E-mail *"
+                  id="email-input"
+                  type="email"
+                />
+                {errors?.email && (
+                  <span className={styles.inputError}>
+                    {errors.email.message}
+                  </span>
+                )}
+              </div>
 
-      <Input
-        name="name"
-        className="form__input"
-        placeholder="Название школы *"
-        id="name-input"
-        type="text"
-        onChange={handleChange}
-        required
-        minLength={2}
-        maxLength={40}
-        hasError={!!errors.name} // Проверка наличия ошибки
-        errorMessage={errors.name || ""} // Отображение текста ошибки
-        value={values.name || ""}
-      />
-      {/* <span className="form__input-error">{errors.name}</span> */}
+              <div className={styles.inputWrapper}>
+                <Input
+                  {...register("name", {
+                    required: "Введите наименование спортивной организации",
+                    minLength: {
+                      value: 5,
+                      message: "Поле должно содержать от 5 до 200 символов",
+                    },
+                    maxLength: {
+                      value: 200,
+                      message: "Поле должно содержать от 5 до 200 символов",
+                    },
+                  })}
+                  name="name"
+                  placeholder="Название школы *"
+                  id="name-input"
+                  type="text"
+                />
+                {errors?.name && (
+                  <span className={styles.inputError}>
+                    {errors.name.message}
+                  </span>
+                )}
+              </div>
 
-      <Input
-        name="address"
-        className="form__input"
-        placeholder="Адрес школы *"
-        id="address-input"
-        type="text"
-        onChange={handleChange}
-        required
-        minLength={2}
-        maxLength={300}
-        hasError={!!errors.address} // Проверка наличия ошибки
-        errorMessage={errors.address || ""} // Отображение текста ошибки
-        value={values.address || ""}
-      />
-      {/* <span className="form__input-error">{errors.address}</span> */}
+              <div className={styles.inputWrapper}>
+                <Input
+                  {...register("address", {
+                    required: "Введите: индекс, город, район, улица, дом",
+                    minLength: {
+                      value: 10,
+                      message: "Введите: индекс, город, район, улица, дом",
+                    },
+                    maxLength: {
+                      value: 200,
+                      message: "Введите: индекс, город, район, улица, дом",
+                    },
+                  })}
+                  name="address"
+                  placeholder="Адрес школы *"
+                  id="address-input"
+                  type="text"
+                />
+                {errors?.address && (
+                  <span className={styles.inputError}>
+                    {errors.address.message}
+                  </span>
+                )}
+              </div>
 
-      <Input
-        name="website"
-        className="website__input"
-        placeholder="Сайт школы *"
-        id="website-input"
-        type="text"
-        onChange={handleChange}
-        required
-        minLength={2}
-        maxLength={50}
-        hasError={!!errors.website} // Проверка наличия ошибки
-        errorMessage={errors.website || ""} // Отображение текста ошибки
-        value={values.website || ""}
-      />
-      {/* <span className="form__input-error">{errors.website}</span> */}
+              <div className={styles.inputWrapper}>
+                <Input
+                  {...register("site", {
+                    required: "Введите сайт спортивной организации",
+                    pattern: {
+                      value:
+                        /^https?:\/\/(www\.)?[a-zA-Z0-9-]+\.[a-z]{2,}(\.[a-z]{2,})?$/,
+                      message: "Введите сайт в формате https://www.example.com",
+                    },
+                  })}
+                  name="site"
+                  placeholder="Сайт школы *"
+                  id="site-input"
+                  type="text"
+                />
+                {errors?.site && (
+                  <span className={styles.inputError}>
+                    {errors.site.message}
+                  </span>
+                )}
+              </div>
 
-      <Input
-        name="password"
-        className="form__input"
-        placeholder="Пароль *"
-        id="password-input"
-        type="password"
-        onChange={handleChange}
-        required
-        minLength={2}
-        maxLength={40}
-        hasError={!!errors.password} // Проверка наличия ошибки
-        errorMessage={errors.password || ""} // Отображение текста ошибки
-        value={values.password || ""}
-      />
-      {/* <span className="form__input-error">{errors.password}</span> */}
+              <div className={styles.inputWrapper}>
+                <Input
+                  {...register("password", {
+                    required: "Введите пароль",
+                    minLength: {
+                      value: 5,
+                      message:
+                        "Длина пароля должна составлять от 5 до 15 символов",
+                    },
+                    maxLength: {
+                      value: 15,
+                      message:
+                        "Длина пароля должна составлять от 5 до 15 символов",
+                    },
+                  })}
+                  name="password"
+                  placeholder="Пароль *"
+                  id="password-input"
+                  type="password"
+                />
+                {errors?.password && (
+                  <span className={styles.inputError}>
+                    {errors.password.message}
+                  </span>
+                )}
+              </div>
 
-      <Input
-        name="repeat-password"
-        className="form__input"
-        placeholder="Подтвердите пароль *"
-        id="repeat-password-input"
-        type="password"
-        onChange={handleChange}
-        required
-        minLength={2}
-        maxLength={40}
-        hasError={!!errors.password} // Проверка наличия ошибки
-        errorMessage={errors.password || ""} // Отображение текста ошибки
-        value={values.password || ""}
-      />
-
-      {/* <span className="form__input-error">{errors.repeat-password}</span> */}
-    </Form>
+              <div className={styles.inputWrapper}>
+                <Input
+                  {...register("password", {
+                    required: "Введите пароль повторно",
+                    minLength: {
+                      value: 5,
+                      message:
+                        "Длина пароля должна составлять от 5 до 15 символов",
+                    },
+                    maxLength: {
+                      value: 15,
+                      message:
+                        "Длина пароля должна составлять от 5 до 15 символов",
+                    },
+                  })}
+                  name="password"
+                  placeholder="Подтверждение пароля *"
+                  id="password-input"
+                  type="password"
+                />
+                {errors?.password && (
+                  <span className={styles.inputError}>
+                    {errors.password.message}
+                  </span>
+                )}
+              </div>
+            </div>
+            <Button
+              className={styles.formButton}
+              type="submit"
+              color={ButtonColor.PRIMARY}
+              testId={ButtonTestId.FORWARD}
+            >
+              <>
+                Зарегистрироваться
+                <Icon type={IconTypes.RIGHT_ICON} />
+              </>
+            </Button>
+            <span className={styles.formText}>
+              Школа уже зарегистрирована?
+              <Link to="/signin" className={styles.formLink}>
+                Войти
+              </Link>
+            </span>
+          </div>
+        </form>
+      </div>
+      <div className={styles.darkPart} />
+    </main>
   );
-};
+}
 
 export default Register;

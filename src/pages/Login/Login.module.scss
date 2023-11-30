@@ -28,7 +28,7 @@
 }
 
 .imageAuth {
-  width: 589px;
+  width: calc(60% - 44px);
   height: 100%;
   display: flex;
   justify-content: center;
@@ -39,7 +39,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 100%;
+  width: calc(40% - 44px);
 }
 
 .title {
@@ -57,7 +57,7 @@
 
 .formText {
   margin: 0;
-  padding: 16px 0 0;
+  padding: 10px 0 0;
   text-align: center;
   font-weight: 400;
   font-size: var(--font-size-s);
@@ -68,6 +68,7 @@
   text-decoration: none;
   color: var(--secondary-color);
   font-size: var(--font-size-s);
+  padding-left: 15px;
 }
 
 .formLink:hover {
@@ -75,12 +76,55 @@
 }
 
 .formButton {
-  width: 70%;
+  width: 100%;
+  align-self: center;
+
+  // margin-top: 10px;
+}
+
+.loginButton {
+  width: 40%;
   align-self: center;
 }
 
+.inputWrapper {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 8px;
+  position: relative;
+}
+
 .inputError {
-  color: #ee3465;
-  font-size: 12px;
-  padding-bottom: 10px;
+  color: var(--span-color);
+  font-size: var(--font-size-s);
+  padding-top: 5px;
+  position: absolute;
+  top: 50px;
+}
+
+.buttonWrapper {
+  display: flex;
+  flex-direction: column;
+  padding-top: 20px;
+}
+
+.buttonRow {
+  display: flex;
+  flex-direction: row;
+}
+
+.forgotPassword {
+  margin-left: auto;
+  align-self: center;
+  text-decoration: none;
+}
+
+.forgotPassword:hover {
+  color: var(--span-color);
+}
+
+.horizontalLine {
+  border: none;
+  border-top: 0.5px solid black;
+  margin: 56px 0;
 }
