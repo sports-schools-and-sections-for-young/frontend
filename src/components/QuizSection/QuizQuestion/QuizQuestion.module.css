@@ -1,5 +1,5 @@
 .container {
-  background-image: url(../../../assets/images/main-quiz-background.png);
+  background-image: url("../../../assets/images/main-quiz-background.png");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: top 20px center;
@@ -16,7 +16,11 @@
   font-style: normal;
   font-weight: 600;
   line-height: 125%;
+  width: 55%;
+  text-align: center;
+  max-width: 735px;
   padding-bottom: 60px;
+  box-sizing: border-box;
 }
 
 .options {
@@ -76,4 +80,13 @@
   font-style: normal;
   font-weight: 500;
   line-height: 155%;
+  max-width: 220px;
+}
+
+.optionsContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  align-items: flex-start;
 }

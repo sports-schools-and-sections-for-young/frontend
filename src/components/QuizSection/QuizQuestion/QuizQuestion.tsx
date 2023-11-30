@@ -23,34 +23,36 @@ const QuizQuestion: FC<QuizQuestionProps> = (props) => {
   return (
     <div className={styles.container}>
       <h3 className={styles.question}>{question}</h3>
-      <div className={styles.options}>
-        {options.map((option) => {
-          return (
-            <div className={styles.option} key={option.category}>
-              <label htmlFor="answer" className={styles.optionLabel}>
-                <input
-                  type="radio"
-                  name="answer"
-                  className={styles.optionInput}
-                  value={option.category}
-                  onChange={() => setCurrentValue(option.category)}
-                  checked={currentValue === option.category}
-                />
-                <span className={styles.optionSelected} />
-              </label>
-              <p className={styles.optionName}>{option.answer}</p>
-            </div>
-          );
-        })}
+      <div className={styles.optionsContainer}>
+        <ul className={styles.options}>
+          {options.map((option) => {
+            return (
+              <li className={styles.option} key={option.category}>
+                <label htmlFor="answer" className={styles.optionLabel}>
+                  <input
+                    type="radio"
+                    name="answer"
+                    className={styles.optionInput}
+                    value={option.category}
+                    onChange={() => setCurrentValue(option.category)}
+                    checked={currentValue === option.category}
+                  />
+                  <span className={styles.optionSelected} />
+                </label>
+                <p className={styles.optionName}>{option.answer}</p>
+              </li>
+            );
+          })}
+        </ul>
+        <Button
+          color={ButtonColor.PRIMARY}
+          testId={ButtonTestId.FORWARD}
+          onClick={() => setResults()}
+        >
+          Дальше
+          <Icon type={IconTypes.RIGHT_ICON} />
+        </Button>
       </div>
-      <Button
-        color={ButtonColor.PRIMARY}
-        testId={ButtonTestId.FORWARD}
-        onClick={() => setResults()}
-      >
-        Дальше
-        <Icon type={IconTypes.RIGHT_ICON} />
-      </Button>
     </div>
   );
 };

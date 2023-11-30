@@ -20,6 +20,16 @@
   background-position: bottom 35px center;
 }
 
+.stageContainer {
+  @include section(column);
+
+  align-items: center;
+  width: 100%;
+  height: calc(100vh - 112px);
+  padding-top: 124px;
+  box-sizing: border-box;
+}
+
 .fixed {
   z-index: 2;
   position: fixed;

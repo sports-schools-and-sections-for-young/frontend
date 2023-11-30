@@ -6,6 +6,7 @@ import QuizQuestion from "./QuizQuestion/QuizQuestion";
 import { quizData, quizResultData } from "../../utils/constants/quizData";
 import { QuizResultProps } from "./types/index";
 import QuizRezult from "./QuizResult/QuizResult";
+import QuizNavBar from "./QuizNavBar/QuizNavBar";
 
 const QuizSection: FC = () => {
   const [currentStage, setCurrentStage] = React.useState(-2);
@@ -40,20 +41,8 @@ const QuizSection: FC = () => {
     setQuizCategory(res + 1);
   }
 
-  function handleClose(): void {
-    setCurrentStage(-2);
-    setQuizResult({});
-    setQuizCategory(-1);
-    setQuizCategoryObj({
-      result: {
-        category: 0,
-        title: "",
-        sports: "",
-        textUp: "",
-        textDown: "",
-        src: "",
-      },
-    });
+  function setPreviousStage() {
+    setCurrentStage(currentStage - 1);
   }
 
   React.useEffect(() => {
@@ -70,11 +59,9 @@ const QuizSection: FC = () => {
   }, [currentStage]);
   React.useEffect(() => {
     if (quizCategory >= 0) {
-      console.log("qquizCategory", quizCategory);
       const data = quizResultData.find(
         (item) => item.result.category === quizCategory,
       );
-      console.log("data", data);
       if (data) setQuizCategoryObj(data);
     }
   }, [quizCategory]);
@@ -101,23 +88,17 @@ const QuizSection: FC = () => {
       )}
       {currentStage >= 0 && currentStage < 7 && (
         <div className={styles.fixed}>
-          <button
-            type="button"
-            aria-label="Закрыть квиз"
-            className={styles.closeButton}
-            onClick={handleClose}
+          <QuizNavBar
+            stage={currentStage}
+            setPreviousStage={setPreviousStage}
           />
-          <QuizQuestion func={setResult} choice={quizData[currentStage]} />
+          <div className={styles.stageContainer}>
+            <QuizQuestion func={setResult} choice={quizData[currentStage]} />
+          </div>
         </div>
       )}
       {quizCategory >= 0 && (
         <div className={styles.fixed}>
-          <button
-            type="button"
-            aria-label="Закрыть квиз"
-            className={styles.closeButton}
-            onClick={handleClose}
-          />
           <QuizRezult result={quizCategoryObj.result} />
         </div>
       )}

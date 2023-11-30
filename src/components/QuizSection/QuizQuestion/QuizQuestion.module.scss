@@ -15,7 +15,11 @@
 .question {
   @include manrope-header(32px, 600);
 
+  width: 55%;
+  text-align: center;
+  max-width: 735px;
   padding-bottom: 60px;
+  box-sizing: border-box;
 }
 
 .options {
@@ -70,4 +74,13 @@
 
 .optionName {
   @include manrope-header(18px, 500, 155%);
+
+  max-width: 220px;
+}
+
+.optionsContainer {
+  @include section(column);
+
+  width: fit-content;
+  align-items: flex-start;
 }

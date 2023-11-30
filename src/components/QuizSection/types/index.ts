@@ -9,6 +9,11 @@ export interface QuestionProps {
   options: Array<OptionsProps>;
 }
 
+export interface NavProps {
+  stage: number;
+  setPreviousStage(): void;
+}
+
 export interface QuizQuestionProps {
   func(stageNumber: number, value: number): void;
   choice: QuestionProps;
