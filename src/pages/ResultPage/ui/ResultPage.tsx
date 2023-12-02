@@ -29,7 +29,7 @@ interface IResultPageProps {
 
 interface IChieldInfo {
   age: number | null;
-  gender: "male" | "female" | null;
+  gender: "Man" | "Woman" | null;
 }
 
 const ResultPage: FC<IResultPageProps> = (props) => {
@@ -136,14 +136,14 @@ const ResultPage: FC<IResultPageProps> = (props) => {
                 color={BadgeColor.PRIMARY}
                 onClick={() => setChieldInfo({ age: null, gender: null })}
               >
-                {chieldInfo.gender === "male" && (
+                {chieldInfo.gender === "Man" && (
                   <Icon type={IconTypes.BOY} color={IconColor.SECONDARY} />
                 )}
-                {chieldInfo.gender === "female" && (
+                {chieldInfo.gender === "Woman" && (
                   <Icon type={IconTypes.GIRL} color={IconColor.SECONDARY} />
                 )}
-                {chieldInfo.gender === "male" && "мальчик"}
-                {chieldInfo.gender === "female" && "девочка"}{" "}
+                {chieldInfo.gender === "Man" && "мальчик"}
+                {chieldInfo.gender === "Woman" && "девочка"}{" "}
                 {chieldInfo.age && chieldInfo.age > 0 ? chieldInfo.age : ""}
                 <Icon type={IconTypes.CROSS} color={IconColor.SECONDARY} />
               </Badge>

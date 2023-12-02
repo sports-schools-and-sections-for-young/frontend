@@ -11,7 +11,7 @@ import { CheckboxBtnSize } from "../../../../components/ui/CheckboxBtn/types";
 import SearchInput, {
   SearchingItem,
 } from "../../../../components/ui/SearchInput/SearchInput.tsx";
-import { GEOSUGGEST_KEY } from "../../../../utils/variables.ts";
+import { GEOCODER_KEY, GEOSUGGEST_KEY } from "../../../../utils/variables.ts";
 import Badge from "../../../../components/ui/Badge/Badge.tsx";
 import { BadgeColor } from "../../../../components/ui/Badge/types";
 import Icon from "../../../../components/ui/Icon/Icon.tsx";
@@ -98,8 +98,9 @@ const StepLocation: FC<StepProps> = ({ step, setStep }) => {
   // };
 
   const getCoordinates = async (address: string) => {
+    console.log("Запрос к яндексу с GEOCODER_KEY", GEOCODER_KEY);
     const res = await fetch(
-      `https://geocode-maps.yandex.ru/1.x/?apikey=c3c2fbae-a37e-49a6-90b6-7628cb38ddee&geocode=${address}&format=json`,
+      `https://geocode-maps.yandex.ru/1.x/?apikey=${GEOCODER_KEY}&geocode=${address}&format=json`,
     );
     const data = await res.json();
     const newCoords =
@@ -111,8 +112,9 @@ const StepLocation: FC<StepProps> = ({ step, setStep }) => {
   };
 
   const getAddress = async (coords: [number, number]) => {
+    console.log("Запрос к яндексу с GEOCODER_KEY", GEOCODER_KEY);
     const res = await fetch(
-      `https://geocode-maps.yandex.ru/1.x/?apikey=c3c2fbae-a37e-49a6-90b6-7628cb38ddee&geocode=${[
+      `https://geocode-maps.yandex.ru/1.x/?apikey=${GEOCODER_KEY}&geocode=${[
         ...coords,
       ]
         .reverse()
@@ -129,6 +131,7 @@ const StepLocation: FC<StepProps> = ({ step, setStep }) => {
 
   const handleChange = async (value: string) => {
     setSearchingAddress(value);
+    console.log("Запрос к яндексу с GEOSUGGEST_KEY", GEOCODER_KEY);
     const res = await fetch(
       `https://suggest-maps.yandex.ru/v1/suggest?apikey=${GEOSUGGEST_KEY}&text=${value}&types=locality,street,house&print_address=1`,
     );
