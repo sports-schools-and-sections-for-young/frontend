@@ -1,0 +1,130 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+  background: var(--blue-background-color);
+}
+
+.formContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding-top: 70px;
+  padding-bottom: 101px;
+  height: 100vh;
+}
+
+.formContent {
+  width: 1120px;
+  height: 700px;
+  flex-direction: row;
+  gap: 93px;
+  background-color: var(--ui-primary-color);
+  border-radius: var(--wide-radius);
+  padding: 44px;
+  display: flex;
+}
+
+.imageAuth {
+  width: calc(60% - 44px);
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.formColumn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: calc(40% - 44px);
+}
+
+.title {
+  margin: 20px 0;
+  font-weight: 500;
+  font-size: var(--font-size-heading-h2);
+  color: var(--text-black-color);
+}
+
+.darkPart {
+  background-color: var(--text-black-color);
+  width: 100%;
+  min-height: 170px;
+}
+
+.formText {
+  margin: 0;
+  padding: 10px 0 0;
+  text-align: center;
+  font-weight: 400;
+  font-size: var(--font-size-s);
+  color: var(--text-gray-color);
+}
+
+.formLink {
+  text-decoration: none;
+  color: var(--secondary-color);
+  font-size: var(--font-size-s);
+  padding-left: 15px;
+}
+
+.formLink:hover {
+  color: var(--span-color);
+}
+
+.formButton {
+  width: 100%;
+  align-self: center;
+
+  // margin-top: 10px;
+}
+
+.loginButton {
+  width: 40%;
+  align-self: center;
+}
+
+.inputWrapper {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 8px;
+  position: relative;
+}
+
+.inputError {
+  color: var(--span-color);
+  font-size: var(--font-size-s);
+  padding-top: 5px;
+  position: absolute;
+  top: 50px;
+}
+
+.buttonWrapper {
+  display: flex;
+  flex-direction: column;
+  padding-top: 20px;
+}
+
+.buttonRow {
+  display: flex;
+  flex-direction: row;
+}
+
+.forgotPassword {
+  margin-left: auto;
+  align-self: center;
+  text-decoration: none;
+}
+
+.forgotPassword:hover {
+  color: var(--span-color);
+}
+
+.horizontalLine {
+  border: none;
+  border-top: 0.5px solid black;
+  margin: 56px 0;
+}
