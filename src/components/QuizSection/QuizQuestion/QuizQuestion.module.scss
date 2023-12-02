@@ -1,0 +1,86 @@
+@import "../../../app/styles/mixins";
+
+.container {
+  background-image: url("../../../assets/images/main-quiz-background.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: top 20px center;
+
+  @include section(column);
+
+  align-items: center;
+  max-width: 1120px;
+}
+
+.question {
+  @include manrope-header(32px, 600);
+
+  width: 55%;
+  text-align: center;
+  max-width: 735px;
+  padding-bottom: 60px;
+  box-sizing: border-box;
+}
+
+.options {
+  padding-bottom: 40px;
+
+  @include section(column);
+
+  width: fit-content;
+  gap: 24px;
+}
+
+.option {
+  @include section(row);
+
+  gap: 12px;
+}
+
+.optionLabel {
+  box-sizing: border-box;
+  position: relative;
+  display: block;
+  cursor: pointer;
+  border-radius: 50%;
+  border: 3px solid #003fbc;
+  width: 24px;
+  height: 24px;
+}
+
+.optionInput {
+  position: absolute;
+  bottom: 0;
+  opacity: 0;
+  z-index: 2;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.optionSelected {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  background: transparent;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+}
+
+.optionInput:checked ~ .optionSelected {
+  background-color: #ff7a60;
+}
+
+.optionName {
+  @include manrope-header(18px, 500, 155%);
+
+  max-width: 220px;
+}
+
+.optionsContainer {
+  @include section(column);
+
+  width: fit-content;
+  align-items: flex-start;
+}
