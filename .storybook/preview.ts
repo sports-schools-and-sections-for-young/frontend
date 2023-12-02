@@ -1,6 +1,7 @@
 import type { Preview } from "@storybook/react";
 import "../src/app/styles/index.scss";
 import { RouterDecorator } from "./decorators/RouterDecorator";
+import { ContextDecorator } from "./decorators/ContextDecorator";
 
 const preview: Preview = {
   parameters: {
@@ -12,7 +13,7 @@ const preview: Preview = {
       },
     },
   },
-  decorators: [RouterDecorator],
+  decorators: [RouterDecorator, ContextDecorator],
 };
 
 export default preview;

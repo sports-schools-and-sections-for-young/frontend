@@ -42,8 +42,14 @@ const Icon: FC<IconProps> = (props) => {
   });
 
   const iconImages = {
-    [IconTypes.RIGHT_ICON]: <RightArrow className={iconClass} />,
-    [IconTypes.LEFT_ICON]: <LeftArrow className={iconClass} />,
+    [IconTypes.RIGHT_ICON]: (
+      <RightArrow
+        className={type === IconTypes.RIGHT_ICON ? "arrow-icon" : ""}
+      />
+    ),
+    [IconTypes.LEFT_ICON]: (
+      <LeftArrow className={type === IconTypes.LEFT_ICON ? "arrow-icon" : ""} />
+    ),
     [IconTypes.PERSON]: <Person className={iconClass} />,
     [IconTypes.BOY]: <Boy className={iconClass} />,
     [IconTypes.GIRL]: <Girl className={iconClass} />,
