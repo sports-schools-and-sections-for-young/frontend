@@ -30,7 +30,7 @@ const FavouriteList: FC = () => {
 
   return (
     <ul className={styles.cardList}>
-      <li>
+      <li className={styles.options}>
         <p className={styles.description}>Сохранено {favourite.length}</p>
         {favourite.length > 0 && (
           <Badge

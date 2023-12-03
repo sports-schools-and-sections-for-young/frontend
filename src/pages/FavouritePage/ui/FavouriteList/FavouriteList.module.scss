@@ -24,3 +24,8 @@
   line-height: var(--font-line-l);
   font-weight: var(--font-weight-500);
 }
+
+.options {
+  display: flex;
+  column-gap: 20px;
+}
