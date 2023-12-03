@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./Header.module.scss";
 import Button from "../Button/Button";
 import { ButtonColor, ButtonTestId } from "../Button/types";
@@ -10,6 +10,8 @@ import { ImageCardSize } from "../ImageCard/types";
 import logo from "../../../assets/images/Logo.png";
 
 const Header: FC = () => {
+  const navigate = useNavigate();
+
   return (
     <header className={styles.header} data-testid="header">
       <div className={styles.container}>
@@ -25,6 +27,7 @@ const Header: FC = () => {
           className={styles.button}
           color={ButtonColor.PRIMARY}
           testId={ButtonTestId.OTHER}
+          onClick={() => navigate("/signin")}
         >
           <>
             Войти

@@ -7,30 +7,31 @@ import Icon from "../../ui/Icon/Icon.tsx";
 import { IconTypes } from "../../ui/Icon/types";
 import ImageCard from "../../ui/ImageCard/ImageCard";
 import { ImageCardSize } from "../../ui/ImageCard/types";
-import sportImg from "../../../assets/images/slider-image-football.png";
+import { QuizResultProps } from "../types/index.ts";
+import image1 from "../../../assets/images/slider-image-swimming.png";
+import image2 from "../../../assets/images/slider-image-gymnastics.png";
+import image3 from "../../../assets/images/slider-image-football.png";
 
-const QuizRezult: React.FC = () => {
+const QuizRezult: React.FC<QuizResultProps> = (props) => {
+  const { result } = props;
   const navigate = useNavigate();
+  const [resultImage, setResultImage] = React.useState("");
+  React.useEffect(() => {
+    if (result.category === 1) setResultImage(image1);
+    if (result.category === 2) setResultImage(image2);
+    if (result.category === 3) setResultImage(image3);
+  }, [result.category]);
 
   return (
     <div className={styles.quizResult}>
       <div className={styles.infoWrapper}>
         <h3 className={styles.title}>
           Обратите внимание на{" "}
-          <span className={styles.highlight}>командный спорт:</span> <br />
-          футбол, баскетбол, волейбол
+          <span className={styles.highlight}>{result.title}</span> <br />
+          {result.sports}
         </h3>
-        <p className={styles.description}>
-          Это отличный способ социализироваться в группе, взаимодействовать с
-          другими детьми и работать в группе. Возможно, ребенок еще не до конца
-          раскрылся, а командный дух ему в этом поможет.
-        </p>
-        <p className={styles.description}>
-          Здесь он получит удовольствие от собственного участия, а с каждой
-          победой научится доверять и рассчитывать на других для достижения
-          целей. Командные виды спорта помогут ребенку стать увереннее в себе,
-          развить выносливость и научиться оценивать свои силы.
-        </p>
+        <p className={styles.description}>{result.textUp}</p>
+        <p className={styles.description}>{result.textDown}</p>
         <Button
           className={styles.button}
           color={ButtonColor.PRIMARY}
@@ -43,7 +44,11 @@ const QuizRezult: React.FC = () => {
           </>
         </Button>
       </div>
-      <ImageCard size={ImageCardSize.SLIDER_IMG} src={sportImg} alt="футбол" />
+      <ImageCard
+        size={ImageCardSize.SLIDER_IMG}
+        src={resultImage}
+        alt={result.sports}
+      />
     </div>
   );
 };

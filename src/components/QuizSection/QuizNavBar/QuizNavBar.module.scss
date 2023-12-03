@@ -1,0 +1,80 @@
+@import "../../../app/styles/mixins";
+
+@mixin item() {
+  color: var(--bg-color);
+
+  @include section(row);
+
+  justify-content: center;
+  align-items: center;
+  min-width: 26px;
+  width: 26px;
+  height: 26px;
+  background-color: transparent;
+  border: 1px solid var(--primary-color);
+  border-radius: 50%;
+  box-sizing: border-box;
+}
+
+.quizNav {
+  @include section(row);
+
+  justify-content: space-between;
+  align-items: center;
+  padding: 32px;
+}
+
+.navBar {
+  max-width: 632px;
+  height: 32px;
+
+  @include section(row);
+
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navItem {
+  @include item;
+}
+
+.navItemUnlock {
+  @include item;
+
+  background-color: var(--ui-primary-bg-color);
+}
+
+.resultItem {
+  @include item;
+}
+
+.resultItemUnlock {
+  @include item;
+
+  background-color: var(--primary-color);
+  background-image: url("../../../assets/images/icons/trophy.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 18px;
+}
+
+.navLine {
+  width: 11%;
+  height: 1px;
+  border: none;
+  border-bottom: 1px solid var(--ui-primary-bg-color);
+  box-sizing: border-box;
+  color: var(--ui-primary-bg-color);
+}
+
+.closeButton {
+  margin: 4px;
+  border: none;
+  background-color: transparent;
+  background-image: url("../../../assets/images/icons/SearchClose.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+}

@@ -101,6 +101,7 @@
         "house": "30"
       },
       "location": [59.888925, 30.276729],
+      "location": [59.888925, 30.276729],
       "rating": 2.33,
       "review_amount": 3,
       "schedule": "",
@@ -123,6 +124,7 @@
         "street": "Маршала Говорова",
         "house": "34 лит З"
       },
+      "location": [59.890956, 30.277555],
       "location": [59.890956, 30.277555],
       "rating": 2.33,
       "review_amount": 3,
@@ -170,6 +172,7 @@
         "house": "12 лит А"
       },
       "location": [59.835306, 30.206705],
+      "location": [59.835306, 30.206705],
       "rating": 2.33,
       "review_amount": 3,
       "schedule": "",
@@ -192,6 +195,7 @@
         "street": "Бурцева",
         "house": "12 лит А"
       },
+      "location": [59.835306, 30.206705],
       "location": [59.835306, 30.206705],
       "rating": 4.0,
       "review_amount": 2,
@@ -216,6 +220,7 @@
         "house": "12 лит А"
       },
       "location": [59.835306, 30.206705],
+      "location": [59.835306, 30.206705],
       "rating": 4.0,
       "review_amount": 2,
       "schedule": "Пятница",
@@ -238,6 +243,7 @@
         "street": "Заставская",
         "house": "44 к2 стр 1"
       },
+      "location": [59.887805, 30.316596],
       "location": [59.887805, 30.316596],
       "rating": 3.0,
       "review_amount": 1,
@@ -262,6 +268,7 @@
         "house": "17"
       },
       "location": [60.073512, 30.360793],
+      "location": [60.073512, 30.360793],
       "rating": 4.33,
       "review_amount": 4,
       "schedule": "",
@@ -284,6 +291,7 @@
         "street": "Александра Невского",
         "house": "4"
       },
+      "location": [59.925295, 30.383125],
       "location": [59.925295, 30.383125],
       "rating": 4.33,
       "review_amount": 4,
@@ -308,6 +316,7 @@
         "house": "2"
       },
       "location": [59.941466, 30.480413],
+      "location": [59.941466, 30.480413],
       "rating": 4.98,
       "review_amount": 54,
       "schedule": "Понедельник,Среда",
@@ -331,6 +340,7 @@
         "house": "2"
       },
       "location": [59.941466, 30.480413],
+      "location": [59.941466, 30.480413],
       "rating": 3.89,
       "review_amount": 4,
       "schedule": "Вторник,Четверг",
@@ -353,6 +363,7 @@
         "street": "Ленская",
         "house": "2"
       },
+      "location": [59.941466, 30.480413],
       "location": [59.941466, 30.480413],
       "rating": 3.89,
       "review_amount": 4,
