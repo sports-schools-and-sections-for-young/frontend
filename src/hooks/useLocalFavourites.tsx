@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Section } from "../../../types";
+import { Section } from "../types";
 
 type favourite = [Section[], React.Dispatch<React.SetStateAction<Section[]>>];
 

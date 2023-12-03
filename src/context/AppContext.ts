@@ -7,8 +7,8 @@ export interface ISectionsRequest {
   age: number | null;
   location: [number, number];
   distance: number | null;
-  maxPrice: number | null;
-  freeTrieal: boolean;
+  maxPrice: number;
+  freeTrial: boolean;
 }
 
 interface IAppContext {
@@ -28,8 +28,8 @@ export const sectionsRequestDefault: ISectionsRequest = {
   age: null,
   location: [59.936846, 30.312185],
   distance: null,
-  maxPrice: null,
-  freeTrieal: false,
+  maxPrice: Infinity,
+  freeTrial: false,
 };
 
 const defaultValue: IAppContext = {

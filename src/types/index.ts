@@ -17,7 +17,8 @@ export interface Section {
     street: string;
     house: string;
   };
-  location: [number, number];
+  latitude: string;
+  longitude: string;
   rating: number;
   review_amount: number;
   schedule: string;
@@ -25,4 +26,27 @@ export interface Section {
   gender: string;
   aviable: number;
   price: number;
+  free_class: boolean;
+}
+
+export interface YandexAnswer {
+  suggest_reqid: string;
+  results: {
+    address: {
+      component: {
+        name: string;
+        kind: string[];
+      }[];
+      formatted_address: string;
+    };
+    distance: {
+      value: number;
+      text: string;
+    };
+    tags: string[];
+    title: {
+      hl: { begin: number; end: number }[];
+      text: string;
+    };
+  }[];
 }

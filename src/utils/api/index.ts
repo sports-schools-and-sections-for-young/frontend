@@ -5,7 +5,6 @@ const checkResponse = (res: Response) =>
   res.ok ? res.json() : Promise.reject(res);
 
 export const getSports = async () => {
-  console.info("Запрос видов спорта на", API_URL);
   const res = await fetch(`${API_URL}/sport_types`);
   return checkResponse(res);
 };
@@ -29,6 +28,10 @@ export const searchSections = async (sectionRequest: ISectionsRequest) => {
 
   if (sectionRequest.location) {
     queryArray.push(`coords=${sectionRequest.location.join(":")}`);
+  }
+
+  if (sectionRequest.distance) {
+    queryArray.push(`distance=${sectionRequest.distance}`);
   }
 
   const res = await fetch(`${API_URL}/search_sections?${queryArray.join("&")}`);

@@ -9,11 +9,9 @@ import { mapViewProps } from "../../types/index.ts";
 const MapView: FC<mapViewProps> = ({ setActiveSection }) => {
   const { sectionRequest, filteredSections } = useContext(AppContext);
   const { location } = sectionRequest;
-  // const [active, setActive] = useState<Section | null>(null);
 
   const handlePlacemarkHover = (section: Section) => {
     setActiveSection(section);
-    console.log(section);
   };
 
   return (
