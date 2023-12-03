@@ -3,5 +3,7 @@ export enum AppRoutes {
   SEARCH_PAGE = "search_page",
   RESULT_PAGE = "result_page",
   TEST_PAGE = "test_page",
+  SIGN_IN = "sign_in",
+  REGISTRATION = "registration",
   NOT_FOUND = "not_found",
 }
