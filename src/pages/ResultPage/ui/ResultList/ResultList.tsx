@@ -10,7 +10,7 @@ import {
 import { ResultListProps } from "../../types";
 import MapView from "../MapView/MapView";
 import { Section } from "../../../../types";
-import { useFavourite } from "../../../../utils/api/hooks/useLocalFavourites";
+import { useFavourite } from "../../../../utils/hooks/useLocalFavourites";
 
 const ResultList: FC<ResultListProps> = (props) => {
   const { sectionRequest, filteredSections } = useContext(AppContext);
