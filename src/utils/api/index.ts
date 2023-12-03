@@ -5,21 +5,32 @@ const checkResponse = (res: Response) =>
   res.ok ? res.json() : Promise.reject(res);
 
 export const getSports = async () => {
-  const res = await fetch(`${API_URL}/sports`);
+  console.info("Запрос видов спорта на", API_URL);
+  const res = await fetch(`${API_URL}/sport_types`);
   return checkResponse(res);
 };
 
 export const searchSections = async (sectionRequest: ISectionsRequest) => {
   const queryArray: string[] = [];
-  if (sectionRequest.age) {
-    queryArray.push(
-      `year_from_lte=${sectionRequest.age}&year_until_gte=${sectionRequest.age}`,
+
+  if (sectionRequest.sports) {
+    sectionRequest.sports.forEach((sport) =>
+      queryArray.push(`sport_type=${sport.title}`),
     );
   }
-  if (sectionRequest.gender) {
-    queryArray.push(`gender_like=${sectionRequest.gender}`);
+
+  if (sectionRequest.age) {
+    queryArray.push(`age_group=${sectionRequest.age}`);
   }
 
-  const res = await fetch(`${API_URL}/sections?${queryArray.join("&")}`);
+  if (sectionRequest.gender) {
+    queryArray.push(`gender=${sectionRequest.gender}`);
+  }
+
+  if (sectionRequest.location) {
+    queryArray.push(`coords=${sectionRequest.location.join(":")}`);
+  }
+
+  const res = await fetch(`${API_URL}/search_sections?${queryArray.join("&")}`);
   return checkResponse(res);
 };

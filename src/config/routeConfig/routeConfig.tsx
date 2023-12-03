@@ -5,12 +5,16 @@ import { MainPage } from "../../pages/MainPage";
 import { SearchPage } from "../../pages/SearchPage";
 import { ResultPage } from "../../pages/ResultPage";
 import { AppRoutes } from "../types";
+import Login from "../../pages/Login/Login";
+import Register from "../../pages/Register/Register";
 
 export const RoutePath: Record<AppRoutes, string> = {
   [AppRoutes.MAIN_PAGE]: "/",
   [AppRoutes.SEARCH_PAGE]: "/search",
   [AppRoutes.RESULT_PAGE]: "/results",
   [AppRoutes.TEST_PAGE]: "/test",
+  [AppRoutes.SIGN_IN]: "/signin",
+  [AppRoutes.REGISTRATION]: "/registration",
   [AppRoutes.NOT_FOUND]: "*",
 };
 
@@ -30,6 +34,14 @@ export const routeConfig: Record<AppRoutes, RouteProps> = {
   [AppRoutes.TEST_PAGE]: {
     path: RoutePath.test_page,
     element: <TestPage />,
+  },
+  [AppRoutes.SIGN_IN]: {
+    path: RoutePath.sign_in,
+    element: <Login onLogin={() => {}} />,
+  },
+  [AppRoutes.REGISTRATION]: {
+    path: RoutePath.registration,
+    element: <Register onRegister={() => {}} />,
   },
   [AppRoutes.NOT_FOUND]: {
     path: RoutePath.not_found,

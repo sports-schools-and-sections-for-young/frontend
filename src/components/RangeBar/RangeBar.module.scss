@@ -18,6 +18,28 @@
   background-repeat: no-repeat;
 }
 
+.input__cover_left {
+  list-style: none;
+  height: 2px;
+  width: 11px;
+  margin-bottom: -2px;
+  background-color: #fff;
+  z-index: 1;
+  position: absolute;
+  left: 0;
+}
+
+.input__cover_right {
+  list-style: none;
+  height: 2px;
+  width: 11px;
+  margin-bottom: -2px;
+  background-color: #fff;
+  z-index: 1;
+  position: absolute;
+  right: 0;
+}
+
 /* track */
 
 .input::-webkit-slider-runnable-track {

@@ -49,6 +49,7 @@ module.exports = {
     "no-underscore-dangle": "off",
     "@typescript-eslint/no-explicit-any": ["warn"],
     "@typescript-eslint/ban-ts-comment": ["warn"],
+    "react/jsx-no-bind": "off",
   },
   settings: {
     "import/resolver": {

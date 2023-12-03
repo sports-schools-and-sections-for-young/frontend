@@ -2,7 +2,7 @@ import { createContext, Dispatch, SetStateAction } from "react";
 import { Section, Sport } from "../types";
 
 export interface ISectionsRequest {
-  gender: "male" | "female" | null;
+  gender: "Man" | "Woman" | null;
   sports: Sport[] | null;
   age: number | null;
   location: [number, number];

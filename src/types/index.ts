@@ -17,6 +17,7 @@ export interface Section {
     street: string;
     house: string;
   };
+  location: [number, number];
   rating: number;
   review_amount: number;
   schedule: {

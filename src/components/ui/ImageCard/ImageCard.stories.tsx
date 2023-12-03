@@ -78,3 +78,11 @@ export const LogoImage: Story = {
     size: ImageCardSize.LOGO_IMG,
   },
 };
+
+export const AuthImage: Story = {
+  args: {
+    src: "/src/assets/images/auth-img.svg",
+    alt: "Auth image",
+    size: ImageCardSize.AUTH_IMG,
+  },
+};
