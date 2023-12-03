@@ -1,10 +1,8 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AppContext from "../../../../context/AppContext.ts";
-import { searchSections } from "../../../../utils/api";
 import styles from "./StepPrice.module.scss";
 import RangeBar from "../../../../components/RangeBar/RangeBar.tsx";
-import { Section } from "../../../../types";
 import Input from "../../../../components/ui/Input/Input.tsx";
 import {
   InputIcon,
@@ -20,47 +18,61 @@ import {
   ButtonTestId,
 } from "../../../../components/ui/Button/types";
 import Preloader from "../../../../components/ui/Preloader/Preloader.tsx";
+import { useSectionsFetch } from "../../../../hooks/useSectionsFetch.tsx";
 
 const StepPrice = () => {
   const {
     sectionRequest,
     fetchedSections,
-    setFetchedSections,
     filteredSections,
     setFilteredSections,
+    setSectionRequest,
   } = useContext(AppContext);
 
-  const [currentPrice, setCurrentPrice] = useState(0);
-  const [free, setFree] = useState(false);
   const [loader, setLoader] = useState(false);
 
   const navigate = useNavigate();
 
+  const fetchSections = useSectionsFetch(setLoader);
+
   useEffect(() => {
-    const fetchSections = async () => {
-      setLoader(true);
-      const sections: Section[] = await searchSections(sectionRequest);
-      setFetchedSections(sections);
-
-      if (!filteredSections.length) {
-        setFilteredSections(sections);
-      }
-
-      setCurrentPrice(Math.max(...sections.map((section) => section.price)));
-
-      setLoader(false);
-    };
     fetchSections();
-  }, [sectionRequest, setFetchedSections, setFilteredSections]);
+  }, []);
 
   const prices = fetchedSections?.map((section) => section.price);
 
+  const handleFreeTrial = () => {
+    if (!sectionRequest.freeTrial) {
+      const sectionsWithTrial = filteredSections.filter(
+        (section) =>
+          section.free_class && section.price <= sectionRequest.maxPrice,
+      );
+      setFilteredSections(sectionsWithTrial);
+    } else {
+      setFilteredSections(
+        fetchedSections.filter(
+          (section) => section.price <= sectionRequest.maxPrice,
+        ),
+      );
+    }
+    setSectionRequest({
+      ...sectionRequest,
+      freeTrial: !sectionRequest.freeTrial,
+    });
+  };
+
   const handlePriceChange = (price: number) => {
-    setCurrentPrice(price);
-    const sectionsUnderPrice = fetchedSections.filter(
-      (section) => section.price <= price,
-    );
-    setFilteredSections(sectionsUnderPrice);
+    if (sectionRequest.freeTrial) {
+      const sectionsUnderPrice = fetchedSections.filter(
+        (section) => section.price <= price && section.free_class,
+      );
+      setFilteredSections(sectionsUnderPrice);
+    } else {
+      setFilteredSections(
+        fetchedSections.filter((section) => section.price <= price),
+      );
+    }
+    setSectionRequest({ ...sectionRequest, maxPrice: price });
   };
 
   return (
@@ -76,7 +88,7 @@ const StepPrice = () => {
         <Preloader />
       ) : (
         <RangeBar
-          currentPrice={currentPrice}
+          currentPrice={sectionRequest.maxPrice}
           prices={prices}
           setCurrentPrice={handlePriceChange}
         />
@@ -87,18 +99,20 @@ const StepPrice = () => {
           iconType={InputIcon.RUB}
           iconPosition={InputIconPosition.LEFT}
           className={styles.input}
-          value={currentPrice}
+          value={sectionRequest.maxPrice}
           onChange={(e) => handlePriceChange(+e.target.value)}
         />
         <Badge
-          isActive={free}
-          onClick={() => setFree(!free)}
+          isActive={sectionRequest.freeTrial}
+          onClick={handleFreeTrial}
           color={BadgeColor.PRIMARY}
           className={styles.badge}
         >
           <Icon type={IconTypes.COOKIE} color={IconColor.SECONDARY} />
           Бесплатное пробное
-          {free && <Icon type={IconTypes.CROSS} color={IconColor.SECONDARY} />}
+          {sectionRequest.freeTrial && (
+            <Icon type={IconTypes.CROSS} color={IconColor.SECONDARY} />
+          )}
         </Badge>
       </div>
       <Button

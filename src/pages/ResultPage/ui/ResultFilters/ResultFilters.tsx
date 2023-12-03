@@ -9,7 +9,6 @@ import Icon from "../../../../components/ui/Icon/Icon";
 import Checkbox from "../../../../components/ui/Checkbox/Checkbox";
 import CheckboxPanel from "../../../../components/ui/CheckboxPanel/CheckboxPanel";
 import AppContext from "../../../../context/AppContext";
-import { CheckboxBtnSize } from "../../../../components/ui/CheckboxBtn/types";
 import {
   ButtonColor,
   ButtonTestId,
@@ -21,10 +20,14 @@ import {
   InputIconPosition,
 } from "../../../../components/ui/InputField/types";
 import { IResultFiltersProps } from "../../types";
+import { distanceButtons } from "../../../../utils/constants/distanceButtons.ts";
+import { useSectionsFetch } from "../../../../hooks/useSectionsFetch.tsx";
 
 const ResultFilters: FC<IResultFiltersProps> = (props) => {
-  const { searchHandle, clearFilters } = props;
+  const { clearFilters, setLoader } = props;
   const { sports, sectionRequest, setSectionRequest } = useContext(AppContext);
+
+  const fetchSections = useSectionsFetch(setLoader);
 
   const changePriceHandler = (evt: React.ChangeEvent<HTMLInputElement>) => {
     setSectionRequest((request) => ({
@@ -43,7 +46,7 @@ const ResultFilters: FC<IResultFiltersProps> = (props) => {
   };
 
   return (
-    <form className={styles.filters_container} onSubmit={searchHandle}>
+    <form className={styles.filters_container}>
       <ul className={styles.filters}>
         <li className={styles.filter_item}>
           <h3 className={styles.subtitle}>Фильтры</h3>
@@ -70,23 +73,8 @@ const ResultFilters: FC<IResultFiltersProps> = (props) => {
             Удаленность
           </p>
           <CheckboxPanel
-            btns={[
-              {
-                id: 0,
-                title: "не важно",
-                size: CheckboxBtnSize.SECONDARY,
-              },
-              {
-                id: 1,
-                title: "1 км от дома",
-                size: CheckboxBtnSize.SECONDARY,
-              },
-              {
-                id: 3,
-                title: "3 км от дома",
-                size: CheckboxBtnSize.SECONDARY,
-              },
-            ]}
+            activeOption={sectionRequest.distance || 0}
+            btns={distanceButtons}
             setOption={(option) =>
               setSectionRequest((requestData) => ({
                 ...requestData,
@@ -104,16 +92,21 @@ const ResultFilters: FC<IResultFiltersProps> = (props) => {
             className={styles.priceInput}
             iconType={InputIcon.RUB}
             iconPosition={InputIconPosition.LEFT}
-            value={sectionRequest.maxPrice || ""}
+            value={
+              sectionRequest.maxPrice < Infinity &&
+              sectionRequest.maxPrice > -Infinity
+                ? sectionRequest.maxPrice
+                : ""
+            }
             onChange={changePriceHandler}
           />
           <Checkbox
             title="Бесплатное пробное"
-            checked={sectionRequest.freeTrieal}
+            checked={sectionRequest.freeTrial}
             onChange={() =>
               setSectionRequest((requestData) => ({
                 ...requestData,
-                freeTrieal: !requestData.freeTrieal,
+                freeTrial: !requestData.freeTrial,
               }))
             }
           />
@@ -123,7 +116,8 @@ const ResultFilters: FC<IResultFiltersProps> = (props) => {
             testId={ButtonTestId.FORWARD}
             color={ButtonColor.PRIMARY}
             withMinWidth
-            type="submit"
+            type="button"
+            onClick={fetchSections}
           >
             Применить
             <Icon type={IconTypes.RIGHT_ICON} />

@@ -1,4 +1,4 @@
-import React, { HTMLAttributes } from "react";
+import { Dispatch, HTMLAttributes, SetStateAction } from "react";
 import { Section } from "../../../types";
 
 export type ResultOptionsProps = {
@@ -7,7 +7,8 @@ export type ResultOptionsProps = {
 
 export interface IResultNavigateProps
   extends HTMLAttributes<HTMLHeadingElement> {
-  setMapView: React.Dispatch<React.SetStateAction<number>>;
+  setMapView: Dispatch<SetStateAction<number>>;
+  activeView: number;
 }
 
 export type ResultListProps = {
@@ -16,16 +17,16 @@ export type ResultListProps = {
 
 export interface IResultFiltersProps
   extends HTMLAttributes<HTMLHeadingElement> {
-  searchHandle: (event: React.FormEvent<HTMLFormElement>) => void;
   clearFilters: () => void;
+  setLoader: Dispatch<SetStateAction<boolean>>;
 }
 
 export type ResultCardProps = {
   section: Section | null;
   favourite: Section[];
-  setFavourite: React.Dispatch<React.SetStateAction<Section[]>>;
+  setFavourite: Dispatch<SetStateAction<Section[]>>;
 };
 
 export type mapViewProps = {
-  setActiveSection: React.Dispatch<React.SetStateAction<Section | null>>;
+  setActiveSection: Dispatch<SetStateAction<Section | null>>;
 };

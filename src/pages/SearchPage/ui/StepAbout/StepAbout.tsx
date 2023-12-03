@@ -26,8 +26,6 @@ interface AgeField {
 const StepAbout: FC<StepProps> = ({ step, setStep }) => {
   const { sectionRequest, setSectionRequest } = useContext(AppContext);
 
-  console.log(sectionRequest);
-
   const {
     register,
     formState: { errors },
