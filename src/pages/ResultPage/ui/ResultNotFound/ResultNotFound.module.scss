@@ -1,0 +1,22 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 44px;
+  margin: 0 auto;
+}
+
+.title {
+  color: var(--text-black-color);
+  font-size: var(--font-size-heading-h3);
+  line-height: var(--font-line-heading-h3);
+  font-weight: var(--font-weight-600);
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  max-width: 335px;
+  max-height: 335px;
+  object-fit: contain;
+}

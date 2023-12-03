@@ -17,12 +17,10 @@ export interface Section {
     street: string;
     house: string;
   };
+  location: [number, number];
   rating: number;
   review_amount: number;
-  schedule: {
-    days: string[];
-    time: string;
-  };
+  schedule: string;
   title: string;
   gender: string;
   aviable: number;

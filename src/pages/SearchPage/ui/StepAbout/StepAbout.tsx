@@ -43,11 +43,11 @@ const StepAbout: FC<StepProps> = ({ step, setStep }) => {
       </p>
       <div className={styles.buttonContainer}>
         <GenderBtn
-          isActive={sectionRequest.gender === "female"}
+          isActive={sectionRequest.gender === "Woman"}
           onClick={() =>
             setSectionRequest({
               ...sectionRequest,
-              gender: sectionRequest.gender === "female" ? null : "female",
+              gender: sectionRequest.gender === "Woman" ? null : "Woman",
             })
           }
         >
@@ -59,11 +59,11 @@ const StepAbout: FC<StepProps> = ({ step, setStep }) => {
           девочка
         </GenderBtn>
         <GenderBtn
-          isActive={sectionRequest.gender === "male"}
+          isActive={sectionRequest.gender === "Man"}
           onClick={() =>
             setSectionRequest({
               ...sectionRequest,
-              gender: sectionRequest.gender === "male" ? null : "male",
+              gender: sectionRequest.gender === "Man" ? null : "Man",
             })
           }
         >

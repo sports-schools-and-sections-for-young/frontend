@@ -100,14 +100,12 @@
         "street": "Маршала Говорова",
         "house": "30"
       },
+      "location": [59.888925, 30.276729],
       "rating": 2.33,
       "review_amount": 3,
-      "schedule": {
-        "days": [],
-        "time": ""
-      },
+      "schedule": "",
       "title": "ААААА",
-      "gender": ["male", "female"],
+      "gender": ["Man", "Woman"],
       "aviable": 10,
       "price": 1000
     },
@@ -125,14 +123,12 @@
         "street": "Маршала Говорова",
         "house": "34 лит З"
       },
+      "location": [59.890956, 30.277555],
       "rating": 2.33,
       "review_amount": 3,
-      "schedule": {
-        "days": "Вторник, Четверг, Пятница",
-        "time": "09:30 - 18:00"
-      },
+      "schedule": "Вторник,Четверг,Пятница",
       "title": "Ботаны",
-      "gender": ["male", "female"],
+      "gender": ["Man", "Woman"],
       "aviable": 99,
       "price": 1200
     },
@@ -152,12 +148,10 @@
       },
       "rating": 2.33,
       "review_amount": 3,
-      "schedule": {
-        "days": "Понедельник, Вторник, Среда, Четверг, Пятница",
-        "time": "08:00 - 12:00"
-      },
+      "schedule": "Понедельник,Вторник,Среда,Четверг,Пятница",
+      "location": [59.890956, 30.277555],
       "title": "Ледник",
-      "gender": ["male", "female"],
+      "gender": ["Man", "Woman"],
       "aviable": 999,
       "price": 1500
     },
@@ -175,41 +169,14 @@
         "street": "Бурцева",
         "house": "12 лит А"
       },
+      "location": [59.835306, 30.206705],
       "rating": 2.33,
       "review_amount": 3,
-      "schedule": {
-        "days": [],
-        "time": ""
-      },
+      "schedule": "",
       "title": "Пираты",
-      "gender": ["male", "female"],
+      "gender": ["Man", "Woman"],
       "aviable": 10,
       "price": 2000
-    },
-    {
-      "id": 35,
-      "sport_organization": "ГБУ ДО ЦДЮТТ",
-      "sport_type": "Баскетбол",
-      "year_from": 6,
-      "year_until": 14,
-      "address": {
-        "index": "198261",
-        "city": "Москва",
-        "metro": "",
-        "district": "Московский",
-        "street": "70-ти лет Октября",
-        "house": "55"
-      },
-      "rating": 2.33,
-      "review_amount": 3,
-      "schedule": {
-        "days": [],
-        "time": ""
-      },
-      "title": "Пушка",
-      "gender": ["male", "female"],
-      "aviable": 99,
-      "price": 1900
     },
     {
       "id": 36,
@@ -225,14 +192,12 @@
         "street": "Бурцева",
         "house": "12 лит А"
       },
+      "location": [59.835306, 30.206705],
       "rating": 4.0,
       "review_amount": 2,
-      "schedule": {
-        "days": "Суббота, Воскресенье",
-        "time": "13:00 - 16:45"
-      },
+      "schedule": "Суббота,Воскресенье",
       "title": "Балетки",
-      "gender": "female",
+      "gender": "Woman",
       "aviable": 10,
       "price": 2300
     },
@@ -250,14 +215,12 @@
         "street": "Бурцева",
         "house": "12 лит А"
       },
+      "location": [59.835306, 30.206705],
       "rating": 4.0,
       "review_amount": 2,
-      "schedule": {
-        "days": "Пятница",
-        "time": "19:00 - 20:00"
-      },
+      "schedule": "Пятница",
       "title": "Мордобой",
-      "gender": "male",
+      "gender": "Man",
       "aviable": 26,
       "price": 1600
     },
@@ -275,14 +238,12 @@
         "street": "Заставская",
         "house": "44 к2 стр 1"
       },
+      "location": [59.887805, 30.316596],
       "rating": 3.0,
       "review_amount": 1,
-      "schedule": {
-        "days": [],
-        "time": ""
-      },
+      "schedule": "",
       "title": "Театр",
-      "gender": ["male", "female"],
+      "gender": ["Man", "Woman"],
       "aviable": 50,
       "price": 1500
     },
@@ -300,18 +261,15 @@
         "street": "5-й Верхний переулок",
         "house": "17"
       },
+      "location": [60.073512, 30.360793],
       "rating": 4.33,
       "review_amount": 4,
-      "schedule": {
-        "days": [],
-        "time": ""
-      },
+      "schedule": "",
       "title": "нн",
-      "gender": ["male", "female"],
+      "gender": ["Man", "Woman"],
       "aviable": 10,
       "price": 600
     },
-
     {
       "id": 40,
       "sport_organization": "Дельфин",
@@ -326,41 +284,14 @@
         "street": "Александра Невского",
         "house": "4"
       },
+      "location": [59.925295, 30.383125],
       "rating": 4.33,
       "review_amount": 4,
-      "schedule": {
-        "days": [],
-        "time": ""
-      },
+      "schedule": "",
       "title": "тт",
-      "gender": ["male", "female"],
+      "gender": ["Man", "Woman"],
       "aviable": 10,
       "price": 400
-    },
-    {
-      "id": 41,
-      "sport_organization": "СПб ГБУ центр физической культуры",
-      "sport_type": "Хоккей",
-      "year_from": 4,
-      "year_until": 18,
-      "address": {
-        "index": "199406",
-        "city": "Санкт-Петербург",
-        "metro": "",
-        "district": "Василеостровский район",
-        "street": "Васильевский остров",
-        "house": "87, корп. 2"
-      },
-      "rating": 3.33,
-      "review_amount": 5,
-      "schedule": {
-        "days": [],
-        "time": ""
-      },
-      "title": "тт",
-      "gender": ["male", "female"],
-      "aviable": 10,
-      "price": 700
     },
     {
       "id": 42,
@@ -376,14 +307,12 @@
         "street": "Ленская",
         "house": "2"
       },
+      "location": [59.941466, 30.480413],
       "rating": 4.98,
       "review_amount": 54,
-      "schedule": {
-        "days": ["Понедельник", "Среда"],
-        "time": "17.30-19.30"
-      },
+      "schedule": "Понедельник,Среда",
       "title": "Лицедеи",
-      "gender": ["male", "female"],
+      "gender": ["Man", "Woman"],
       "aviable": 10,
       "price": 500
     },
@@ -401,41 +330,14 @@
         "street": "Ленская",
         "house": "2"
       },
+      "location": [59.941466, 30.480413],
       "rating": 3.89,
       "review_amount": 4,
-      "schedule": {
-        "days": ["Вторник", "Четверг"],
-        "time": "19.00-20.00"
-      },
+      "schedule": "Вторник,Четверг",
       "title": "Life Style",
-      "gender": ["male", "female"],
+      "gender": ["Man", "Woman"],
       "aviable": 10,
       "price": 700
-    },
-    {
-      "id": 44,
-      "sport_organization": "Капитан",
-      "sport_type": "Скалолазание",
-      "year_from": 6,
-      "year_until": 18,
-      "address": {
-        "index": "194090",
-        "city": "Санкт-Петербург",
-        "metro": "Ладожская",
-        "district": "Калининский район",
-        "street": "Гражданская",
-        "house": "34"
-      },
-      "rating": 4.1,
-      "review_amount": 1,
-      "schedule": {
-        "days": ["Понедельник", "Пятница"],
-        "time": "15.30-16.30"
-      },
-      "title": "Пик",
-      "gender": ["male", "female"],
-      "aviable": 10,
-      "price": 900
     },
     {
       "id": 45,
@@ -451,41 +353,14 @@
         "street": "Ленская",
         "house": "2"
       },
+      "location": [59.941466, 30.480413],
       "rating": 3.89,
       "review_amount": 4,
-      "schedule": {
-        "days": ["Вторник", "Четверг"],
-        "time": "19.00-20.00"
-      },
+      "schedule": "Вторник,Четверг",
       "title": "Life Style",
-      "gender": ["male", "female"],
+      "gender": ["Man", "Woman"],
       "aviable": 10,
       "price": 700
-    },
-    {
-      "id": 46,
-      "sport_organization": "Все на спорт",
-      "sport_type": "Настольный теннис",
-      "year_from": 6,
-      "year_until": 18,
-      "address": {
-        "index": "194090",
-        "city": "Санкт-Петербург",
-        "metro": "Ладожская",
-        "district": "Калининский район",
-        "street": "Гражданская",
-        "house": "34"
-      },
-      "rating": 4.1,
-      "review_amount": 1,
-      "schedule": {
-        "days": ["Понедельник", "Пятница"],
-        "time": "15.30-16.30"
-      },
-      "title": "Настольный теннис",
-      "gender": ["male", "female"],
-      "aviable": 10,
-      "price": 900
     }
   ]
 }

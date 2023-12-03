@@ -1,12 +1,10 @@
 import React, { FC } from "react";
 import classnames from "classnames";
 import styles from "./BarItem.module.scss";
+import { groupPrice } from "../RangeBar";
 
 interface IBarItemProps {
-  barChunk: {
-    range: number;
-    prices: number[];
-  };
+  barChunk: groupPrice;
   currentPrice: number;
   maxHeight: number;
 }
