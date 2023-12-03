@@ -101,14 +101,12 @@
         "house": "30"
       },
       "location": [59.888925, 30.276729],
+      "location": [59.888925, 30.276729],
       "rating": 2.33,
       "review_amount": 3,
-      "schedule": {
-        "days": [],
-        "time": ""
-      },
+      "schedule": "",
       "title": "ААААА",
-      "gender": ["male", "female"],
+      "gender": ["Man", "Woman"],
       "aviable": 10,
       "price": 1000
     },
@@ -127,14 +125,12 @@
         "house": "34 лит З"
       },
       "location": [59.890956, 30.277555],
+      "location": [59.890956, 30.277555],
       "rating": 2.33,
       "review_amount": 3,
-      "schedule": {
-        "days": "Вторник, Четверг, Пятница",
-        "time": "09:30 - 18:00"
-      },
+      "schedule": "Вторник,Четверг,Пятница",
       "title": "Ботаны",
-      "gender": ["male", "female"],
+      "gender": ["Man", "Woman"],
       "aviable": 99,
       "price": 1200
     },
@@ -154,13 +150,10 @@
       },
       "rating": 2.33,
       "review_amount": 3,
-      "schedule": {
-        "days": "Понедельник, Вторник, Среда, Четверг, Пятница",
-        "time": "08:00 - 12:00"
-      },
+      "schedule": "Понедельник,Вторник,Среда,Четверг,Пятница",
       "location": [59.890956, 30.277555],
       "title": "Ледник",
-      "gender": ["male", "female"],
+      "gender": ["Man", "Woman"],
       "aviable": 999,
       "price": 1500
     },
@@ -179,14 +172,12 @@
         "house": "12 лит А"
       },
       "location": [59.835306, 30.206705],
+      "location": [59.835306, 30.206705],
       "rating": 2.33,
       "review_amount": 3,
-      "schedule": {
-        "days": [],
-        "time": ""
-      },
+      "schedule": "",
       "title": "Пираты",
-      "gender": ["male", "female"],
+      "gender": ["Man", "Woman"],
       "aviable": 10,
       "price": 2000
     },
@@ -205,14 +196,12 @@
         "house": "12 лит А"
       },
       "location": [59.835306, 30.206705],
+      "location": [59.835306, 30.206705],
       "rating": 4.0,
       "review_amount": 2,
-      "schedule": {
-        "days": "Суббота, Воскресенье",
-        "time": "13:00 - 16:45"
-      },
+      "schedule": "Суббота,Воскресенье",
       "title": "Балетки",
-      "gender": "female",
+      "gender": "Woman",
       "aviable": 10,
       "price": 2300
     },
@@ -231,14 +220,12 @@
         "house": "12 лит А"
       },
       "location": [59.835306, 30.206705],
+      "location": [59.835306, 30.206705],
       "rating": 4.0,
       "review_amount": 2,
-      "schedule": {
-        "days": "Пятница",
-        "time": "19:00 - 20:00"
-      },
+      "schedule": "Пятница",
       "title": "Мордобой",
-      "gender": "male",
+      "gender": "Man",
       "aviable": 26,
       "price": 1600
     },
@@ -257,14 +244,12 @@
         "house": "44 к2 стр 1"
       },
       "location": [59.887805, 30.316596],
+      "location": [59.887805, 30.316596],
       "rating": 3.0,
       "review_amount": 1,
-      "schedule": {
-        "days": [],
-        "time": ""
-      },
+      "schedule": "",
       "title": "Театр",
-      "gender": ["male", "female"],
+      "gender": ["Man", "Woman"],
       "aviable": 50,
       "price": 1500
     },
@@ -283,18 +268,15 @@
         "house": "17"
       },
       "location": [60.073512, 30.360793],
+      "location": [60.073512, 30.360793],
       "rating": 4.33,
       "review_amount": 4,
-      "schedule": {
-        "days": [],
-        "time": ""
-      },
+      "schedule": "",
       "title": "нн",
-      "gender": ["male", "female"],
+      "gender": ["Man", "Woman"],
       "aviable": 10,
       "price": 600
     },
-
     {
       "id": 40,
       "sport_organization": "Дельфин",
@@ -310,14 +292,12 @@
         "house": "4"
       },
       "location": [59.925295, 30.383125],
+      "location": [59.925295, 30.383125],
       "rating": 4.33,
       "review_amount": 4,
-      "schedule": {
-        "days": [],
-        "time": ""
-      },
+      "schedule": "",
       "title": "тт",
-      "gender": ["male", "female"],
+      "gender": ["Man", "Woman"],
       "aviable": 10,
       "price": 400
     },
@@ -336,14 +316,12 @@
         "house": "2"
       },
       "location": [59.941466, 30.480413],
+      "location": [59.941466, 30.480413],
       "rating": 4.98,
       "review_amount": 54,
-      "schedule": {
-        "days": ["Понедельник", "Среда"],
-        "time": "17.30-19.30"
-      },
+      "schedule": "Понедельник,Среда",
       "title": "Лицедеи",
-      "gender": ["male", "female"],
+      "gender": ["Man", "Woman"],
       "aviable": 10,
       "price": 500
     },
@@ -362,14 +340,12 @@
         "house": "2"
       },
       "location": [59.941466, 30.480413],
+      "location": [59.941466, 30.480413],
       "rating": 3.89,
       "review_amount": 4,
-      "schedule": {
-        "days": ["Вторник", "Четверг"],
-        "time": "19.00-20.00"
-      },
+      "schedule": "Вторник,Четверг",
       "title": "Life Style",
-      "gender": ["male", "female"],
+      "gender": ["Man", "Woman"],
       "aviable": 10,
       "price": 700
     },
@@ -388,14 +364,12 @@
         "house": "2"
       },
       "location": [59.941466, 30.480413],
+      "location": [59.941466, 30.480413],
       "rating": 3.89,
       "review_amount": 4,
-      "schedule": {
-        "days": ["Вторник", "Четверг"],
-        "time": "19.00-20.00"
-      },
+      "schedule": "Вторник,Четверг",
       "title": "Life Style",
-      "gender": ["male", "female"],
+      "gender": ["Man", "Woman"],
       "aviable": 10,
       "price": 700
     }

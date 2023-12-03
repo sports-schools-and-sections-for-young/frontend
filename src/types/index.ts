@@ -20,10 +20,7 @@ export interface Section {
   location: [number, number];
   rating: number;
   review_amount: number;
-  schedule: {
-    days: string[];
-    time: string;
-  };
+  schedule: string;
   title: string;
   gender: string;
   aviable: number;
