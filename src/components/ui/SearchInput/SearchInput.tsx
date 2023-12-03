@@ -78,6 +78,7 @@ const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(
             ref={ref}
             value={value}
             onFocus={() => setOpen(true)}
+            onClick={() => setOpen(true)}
             onChange={(e) => setValue(e.target.value)}
             {...rest}
           />

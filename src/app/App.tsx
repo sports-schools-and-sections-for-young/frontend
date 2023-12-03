@@ -32,7 +32,6 @@ function App() {
   useEffect(() => {
     const getSportsFromApi = async () => {
       const sportsFromApi = await getSports();
-      console.log("Получен массив:", sportsFromApi);
       setSports(sportsFromApi);
     };
     if (!sports.length) {

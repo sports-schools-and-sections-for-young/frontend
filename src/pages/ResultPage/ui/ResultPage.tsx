@@ -1,4 +1,4 @@
-import React, { FC, useState, useContext } from "react";
+import { FC, useState, useContext } from "react";
 import styles from "./ResultPage.module.scss";
 import AppContext, {
   sectionsRequestDefault,
@@ -10,45 +10,22 @@ import ResultList from "./ResultList/ResultList";
 import ResultOptions from "./ResultOptions/ResultOptions";
 import ResultNotFound from "./ResultNotFound/ResultNotFound";
 import Preloader from "../../../components/ui/Preloader/Preloader";
-import { searchSections } from "../../../utils/api";
-import { Section } from "../../../types";
+import { PreloaderSize } from "../../../components/ui/Preloader/types";
 
 const ResultPage: FC = () => {
-  const {
-    setSectionRequest,
-    filteredSections,
-    setFetchedSections,
-    setFilteredSections,
-    sectionRequest,
-  } = useContext(AppContext);
+  const { setSectionRequest, filteredSections } = useContext(AppContext);
 
-  const [mapView, setMapView] = useState<number>(1);
+  const [mapView, setMapView] = useState<number>(0);
   const [loader, setLoader] = useState<boolean>(false);
 
   const clearFilterList = () => {
     setSectionRequest(sectionsRequestDefault);
   };
 
-  const searchHandle = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const fetchSections = async () => {
-      setLoader(true);
-      const sections: Section[] = await searchSections(sectionRequest);
-      setFetchedSections(sections);
-
-      if (!filteredSections.length) {
-        setFilteredSections(sections);
-      }
-
-      setLoader(false);
-    };
-    fetchSections();
-  };
-
   return (
     <>
       <Header />
-      <ResultNavigate setMapView={setMapView} />
+      <ResultNavigate setMapView={setMapView} activeView={mapView} />
       <main className={styles.result}>
         <h2 className={styles.title}>
           Результаты поиска
@@ -60,11 +37,8 @@ const ResultPage: FC = () => {
         </h2>
         <ResultOptions clearFilters={clearFilterList} />
         <div className={styles.resultContainer}>
-          <ResultFilters
-            searchHandle={searchHandle}
-            clearFilters={clearFilterList}
-          />
-          {loader && <Preloader />}
+          <ResultFilters setLoader={setLoader} clearFilters={clearFilterList} />
+          {loader && <Preloader size={PreloaderSize.Large} />}
           {!loader && filteredSections.length < 1 && <ResultNotFound />}
           {!loader && filteredSections.length >= 1 && (
             <ResultList mapView={mapView} />

@@ -6,7 +6,7 @@ import {
   ButtonColor,
   ButtonTestId,
 } from "../../../../components/ui/Button/types";
-import { useFavourite } from "../../../../utils/hooks/useLocalFavourites";
+import { useFavourite } from "../../../../hooks/useLocalFavourites";
 import Badge from "../../../../components/ui/Badge/Badge";
 import { BadgeColor } from "../../../../components/ui/Badge/types";
 import Icon from "../../../../components/ui/Icon/Icon";

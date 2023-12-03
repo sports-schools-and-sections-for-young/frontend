@@ -17,7 +17,7 @@ import { CheckboxBtnSize } from "../../../../components/ui/CheckboxBtn/types/ind
 import { IResultNavigateProps } from "../../types/index.ts";
 
 const ResultNavigate: FC<IResultNavigateProps> = (props) => {
-  const { setMapView, ...rest } = props;
+  const { setMapView, activeView, ...rest } = props;
   const navigate = useNavigate();
 
   return (
@@ -25,7 +25,7 @@ const ResultNavigate: FC<IResultNavigateProps> = (props) => {
       <ul className={styles.nav_list}>
         <li>
           <Button
-            onClick={() => navigate(-1)}
+            onClick={() => navigate("/search", { state: { step: 4 } })}
             color={ButtonColor.SECONDARY}
             testId={ButtonTestId.BACK}
           >
@@ -35,6 +35,7 @@ const ResultNavigate: FC<IResultNavigateProps> = (props) => {
         </li>
         <li>
           <CheckboxPanel
+            activeOption={activeView}
             btns={[
               { id: 0, title: "Список", size: CheckboxBtnSize.PRIMARY },
               { id: 2, title: "Карта", size: CheckboxBtnSize.PRIMARY },

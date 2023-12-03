@@ -13,7 +13,7 @@ const SectionPlacemark: FC<SectionPlacemarkProps> = (props) => {
 
   return (
     <Placemark
-      geometry={section.location}
+      geometry={[section.latitude, section.longitude]}
       options={{
         iconLayout: "default#image",
         iconImageHref: Icon,
