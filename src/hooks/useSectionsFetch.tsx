@@ -13,6 +13,7 @@ export const useSectionsFetch = (
     setLoader(true);
     const sections: Section[] = await searchSections(sectionRequest);
     setFetchedSections(sections);
+
     if (sectionRequest.freeTrial) {
       setFilteredSections(
         sections.filter(
@@ -25,6 +26,7 @@ export const useSectionsFetch = (
         sections.filter((section) => section.price <= sectionRequest.maxPrice),
       );
     }
+
     setLoader(false);
   };
 

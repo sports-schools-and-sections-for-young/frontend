@@ -29,6 +29,7 @@ const ResultFilters: FC<IResultFiltersProps> = (props) => {
   const { sports, sectionRequest, setSectionRequest } = useContext(AppContext);
 
   const fetchSections = useSectionsFetch(setLoader);
+
   const { maxPrice, setMaxPrice, setFreeTrial } = usePriceHandler();
 
   const addSport = (sport: Sport) => {

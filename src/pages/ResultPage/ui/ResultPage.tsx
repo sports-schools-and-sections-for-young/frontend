@@ -1,4 +1,5 @@
 import { FC, useState, useContext, useEffect } from "react";
+
 import styles from "./ResultPage.module.scss";
 import AppContext, {
   sectionsRequestDefault,

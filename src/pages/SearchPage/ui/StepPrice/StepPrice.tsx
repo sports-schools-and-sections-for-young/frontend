@@ -19,6 +19,7 @@ import {
 } from "../../../../components/ui/Button/types";
 import Preloader from "../../../../components/ui/Preloader/Preloader.tsx";
 import { useSectionsFetch } from "../../../../hooks/useSectionsFetch.tsx";
+
 import { usePriceHandler } from "../../../../hooks/usePriceHandler.tsx";
 
 const StepPrice = () => {
