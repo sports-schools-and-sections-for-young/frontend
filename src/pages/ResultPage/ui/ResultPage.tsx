@@ -1,4 +1,4 @@
-import { FC, useState, useContext } from "react";
+import { FC, useState, useContext, useEffect } from "react";
 import styles from "./ResultPage.module.scss";
 import AppContext, {
   sectionsRequestDefault,
@@ -11,12 +11,19 @@ import ResultOptions from "./ResultOptions/ResultOptions";
 import ResultNotFound from "./ResultNotFound/ResultNotFound";
 import Preloader from "../../../components/ui/Preloader/Preloader";
 import { PreloaderSize } from "../../../components/ui/Preloader/types";
+import { usePriceHandler } from "../../../hooks/usePriceHandler.tsx";
 
 const ResultPage: FC = () => {
   const { setSectionRequest, filteredSections } = useContext(AppContext);
 
   const [mapView, setMapView] = useState<number>(0);
   const [loader, setLoader] = useState<boolean>(false);
+
+  const { handlePriceOptions } = usePriceHandler();
+
+  useEffect(() => {
+    handlePriceOptions();
+  }, []);
 
   const clearFilterList = () => {
     setSectionRequest(sectionsRequestDefault);

@@ -1,5 +1,6 @@
 import { FC, useContext, useMemo, useState } from "react";
 import { useDebouncedCallback } from "use-debounce";
+import { useNavigate } from "react-router-dom";
 import Map from "../../../../components/Map/Map.tsx";
 import { StepProps } from "../../types";
 import styles from "./StepLocation.module.scss";
@@ -34,6 +35,8 @@ const StepLocation: FC<StepProps> = ({ step, setStep }) => {
   const { sectionRequest, setSectionRequest } = useContext(AppContext);
 
   const [map, setMap] = useState();
+
+  const navigate = useNavigate();
 
   const [searchingAddress, setSearchingAddress] = useState("");
   const debounced = useDebouncedCallback(async (value) => {
@@ -143,7 +146,10 @@ const StepLocation: FC<StepProps> = ({ step, setStep }) => {
           <LocationPlacemark setAddress={getAddress} />
         </Map>
         <Button
-          onClick={() => setStep(step + 1)}
+          onClick={() => {
+            navigate("/search", { state: { step: step + 1 } });
+            setStep(step + 1);
+          }}
           className={styles.button}
           color={ButtonColor.PRIMARY}
           testId={ButtonTestId.FORWARD}

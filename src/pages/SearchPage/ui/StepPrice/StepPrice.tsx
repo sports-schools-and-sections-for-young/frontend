@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AppContext from "../../../../context/AppContext.ts";
 import styles from "./StepPrice.module.scss";
@@ -19,61 +19,23 @@ import {
 } from "../../../../components/ui/Button/types";
 import Preloader from "../../../../components/ui/Preloader/Preloader.tsx";
 import { useSectionsFetch } from "../../../../hooks/useSectionsFetch.tsx";
+import { usePriceHandler } from "../../../../hooks/usePriceHandler.tsx";
 
 const StepPrice = () => {
-  const {
-    sectionRequest,
-    fetchedSections,
-    filteredSections,
-    setFilteredSections,
-    setSectionRequest,
-  } = useContext(AppContext);
+  const { sectionRequest, fetchedSections } = useContext(AppContext);
 
   const [loader, setLoader] = useState(false);
 
   const navigate = useNavigate();
 
   const fetchSections = useSectionsFetch(setLoader);
+  const { maxPrice, setMaxPrice, setFreeTrial } = usePriceHandler();
 
   useEffect(() => {
     fetchSections();
   }, []);
 
   const prices = fetchedSections?.map((section) => section.price);
-
-  const handleFreeTrial = () => {
-    if (!sectionRequest.freeTrial) {
-      const sectionsWithTrial = filteredSections.filter(
-        (section) =>
-          section.free_class && section.price <= sectionRequest.maxPrice,
-      );
-      setFilteredSections(sectionsWithTrial);
-    } else {
-      setFilteredSections(
-        fetchedSections.filter(
-          (section) => section.price <= sectionRequest.maxPrice,
-        ),
-      );
-    }
-    setSectionRequest({
-      ...sectionRequest,
-      freeTrial: !sectionRequest.freeTrial,
-    });
-  };
-
-  const handlePriceChange = (price: number) => {
-    if (sectionRequest.freeTrial) {
-      const sectionsUnderPrice = fetchedSections.filter(
-        (section) => section.price <= price && section.free_class,
-      );
-      setFilteredSections(sectionsUnderPrice);
-    } else {
-      setFilteredSections(
-        fetchedSections.filter((section) => section.price <= price),
-      );
-    }
-    setSectionRequest({ ...sectionRequest, maxPrice: price });
-  };
 
   return (
     <div className={styles.step}>
@@ -88,9 +50,9 @@ const StepPrice = () => {
         <Preloader />
       ) : (
         <RangeBar
-          currentPrice={sectionRequest.maxPrice}
+          currentPrice={maxPrice}
           prices={prices}
-          setCurrentPrice={handlePriceChange}
+          setCurrentPrice={(price: number) => setMaxPrice(price)}
         />
       )}
       <div className={styles.optionWrapper}>
@@ -99,12 +61,14 @@ const StepPrice = () => {
           iconType={InputIcon.RUB}
           iconPosition={InputIconPosition.LEFT}
           className={styles.input}
-          value={sectionRequest.maxPrice}
-          onChange={(e) => handlePriceChange(+e.target.value)}
+          value={maxPrice}
+          onChange={(evt: React.ChangeEvent<HTMLInputElement>) =>
+            setMaxPrice(+evt.target.value)
+          }
         />
         <Badge
           isActive={sectionRequest.freeTrial}
-          onClick={handleFreeTrial}
+          onClick={setFreeTrial}
           color={BadgeColor.PRIMARY}
           className={styles.badge}
         >

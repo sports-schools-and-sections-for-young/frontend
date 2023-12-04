@@ -1,4 +1,4 @@
-import React, { FC, useContext } from "react";
+import { FC, useContext } from "react";
 import { Sport } from "../../../../types";
 import styles from "./ResultFilters.module.scss";
 import Button from "../../../../components/ui/Button/Button";
@@ -22,19 +22,14 @@ import {
 import { IResultFiltersProps } from "../../types";
 import { distanceButtons } from "../../../../utils/constants/distanceButtons.ts";
 import { useSectionsFetch } from "../../../../hooks/useSectionsFetch.tsx";
+import { usePriceHandler } from "../../../../hooks/usePriceHandler.tsx";
 
 const ResultFilters: FC<IResultFiltersProps> = (props) => {
   const { clearFilters, setLoader } = props;
   const { sports, sectionRequest, setSectionRequest } = useContext(AppContext);
 
   const fetchSections = useSectionsFetch(setLoader);
-
-  const changePriceHandler = (evt: React.ChangeEvent<HTMLInputElement>) => {
-    setSectionRequest((request) => ({
-      ...request,
-      maxPrice: +evt.target.value,
-    }));
-  };
+  const { maxPrice, setMaxPrice, setFreeTrial } = usePriceHandler();
 
   const addSport = (sport: Sport) => {
     setSectionRequest((request) => {
@@ -89,26 +84,17 @@ const ResultFilters: FC<IResultFiltersProps> = (props) => {
           </p>
           <Input
             labelName="Максимум"
+            type="number"
             className={styles.priceInput}
             iconType={InputIcon.RUB}
             iconPosition={InputIconPosition.LEFT}
-            value={
-              sectionRequest.maxPrice < Infinity &&
-              sectionRequest.maxPrice > -Infinity
-                ? sectionRequest.maxPrice
-                : ""
-            }
-            onChange={changePriceHandler}
+            value={maxPrice}
+            onChange={(evt) => setMaxPrice(+evt.target.value)}
           />
           <Checkbox
             title="Бесплатное пробное"
             checked={sectionRequest.freeTrial}
-            onChange={() =>
-              setSectionRequest((requestData) => ({
-                ...requestData,
-                freeTrial: !requestData.freeTrial,
-              }))
-            }
+            onChange={setFreeTrial}
           />
         </li>
         <li className={styles.buttonContainer}>
