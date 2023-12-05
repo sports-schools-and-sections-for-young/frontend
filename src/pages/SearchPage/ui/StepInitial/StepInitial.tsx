@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./StepInitial.module.scss";
 import ImageCard from "../../../../components/ui/ImageCard/ImageCard.tsx";
 import { ImageCardSize } from "../../../../components/ui/ImageCard/types";
@@ -13,6 +14,8 @@ import { IconTypes } from "../../../../components/ui/Icon/types";
 import { StepProps } from "../../types";
 
 const StepInitial: FC<StepProps> = ({ step, setStep }) => {
+  const navigate = useNavigate();
+
   return (
     <div className={styles.step}>
       <ImageCard
@@ -26,7 +29,10 @@ const StepInitial: FC<StepProps> = ({ step, setStep }) => {
         вашего ребенка
       </h1>
       <Button
-        onClick={() => setStep(step + 1)}
+        onClick={() => {
+          navigate("/search", { state: { step: step + 1 } });
+          setStep(step + 1);
+        }}
         className={styles.button}
         color={ButtonColor.PRIMARY}
         testId={ButtonTestId.FORWARD}

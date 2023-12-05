@@ -1,5 +1,6 @@
 import { FC, useContext } from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import { StepProps } from "../../types";
 import AppContext from "../../../../context/AppContext.ts";
 import styles from "./StepAbout.module.scss";
@@ -25,6 +26,8 @@ interface AgeField {
 
 const StepAbout: FC<StepProps> = ({ step, setStep }) => {
   const { sectionRequest, setSectionRequest } = useContext(AppContext);
+
+  const navigate = useNavigate();
 
   const {
     register,
@@ -104,7 +107,10 @@ const StepAbout: FC<StepProps> = ({ step, setStep }) => {
         errorMessage={errors.age?.message}
       />
       <Button
-        onClick={() => setStep(step + 1)}
+        onClick={() => {
+          navigate("/search", { state: { step: step + 1 } });
+          setStep(step + 1);
+        }}
         className={styles.button}
         color={ButtonColor.PRIMARY}
         testId={ButtonTestId.FORWARD}

@@ -46,7 +46,10 @@ const SearchPage: FC<SearchPageProps> = (props) => {
         {step !== 0 && (
           <>
             <Button
-              onClick={() => setStep(step - 1)}
+              onClick={() => {
+                navigate("/search", { state: { step: step - 1 } });
+                setStep(step - 1);
+              }}
               color={ButtonColor.SECONDARY}
               testId={ButtonTestId.BACK}
             >

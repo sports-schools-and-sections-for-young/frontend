@@ -50,6 +50,7 @@ module.exports = {
     "@typescript-eslint/no-explicit-any": ["warn"],
     "@typescript-eslint/ban-ts-comment": ["warn"],
     "react/jsx-no-bind": "off",
+    "no-nested-ternary": "off",
   },
   settings: {
     "import/resolver": {
