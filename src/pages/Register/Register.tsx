@@ -11,21 +11,13 @@ import SearchHeader from "../SearchPage/ui/SearchHeader/SearchHeader";
 import Input from "../../components/ui/Input/Input";
 import cooperation from "../../assets/images/auth-img.svg";
 
-export interface IAddress {
-  index: string;
-  city: string;
-  metro: string;
-  district: string;
-  street: string;
-  house: string;
-}
-
 export interface IRegister {
   email: string;
   name: string;
-  address: IAddress;
+  address: string;
   site: string;
   password: string;
+  passwordConfirmation: string;
 }
 
 function Register() {
@@ -34,6 +26,7 @@ function Register() {
     handleSubmit,
     formState: { errors },
     reset,
+    getValues,
   } = useForm<IRegister>({
     mode: "onChange",
   });
@@ -41,13 +34,6 @@ function Register() {
   const navigate = useNavigate();
 
   const onSubmit: SubmitHandler<IRegister> = (data) => {
-    console.log(`
-      email => ${data.email}
-      name => ${data.name}
-      address => ${data.address}
-      site => ${data.site}
-      password => ${data.password}
-      `);
     console.log("data =>", data);
     reset();
   };
@@ -177,13 +163,11 @@ function Register() {
                     required: "Введите пароль",
                     minLength: {
                       value: 5,
-                      message:
-                        "Длина пароля должна составлять от 5 до 15 символов",
+                      message: "Введите пароль длиной от 5 до 15 символов",
                     },
                     maxLength: {
                       value: 15,
-                      message:
-                        "Длина пароля должна составлять от 5 до 15 символов",
+                      message: "Введите пароль длиной от 5 до 15 символов",
                     },
                   })}
                   name="password"
@@ -200,27 +184,20 @@ function Register() {
 
               <div className={styles.inputWrapper}>
                 <Input
-                  {...register("password", {
+                  {...register("passwordConfirmation", {
                     required: "Введите пароль повторно",
-                    minLength: {
-                      value: 5,
-                      message:
-                        "Длина пароля должна составлять от 5 до 15 символов",
-                    },
-                    maxLength: {
-                      value: 15,
-                      message:
-                        "Длина пароля должна составлять от 5 до 15 символов",
-                    },
+                    validate: (value) =>
+                      value === getValues("password") ||
+                      "Пароли должны совпадать",
                   })}
-                  name="password"
+                  name="passwordConfirmation"
                   placeholder="Подтверждение пароля *"
-                  id="password-input"
+                  id="password-confirmation-input"
                   type="password"
                 />
-                {errors?.password && (
+                {errors?.passwordConfirmation && (
                   <span className={styles.inputError}>
-                    {errors.password.message}
+                    {errors.passwordConfirmation.message}
                   </span>
                 )}
               </div>
