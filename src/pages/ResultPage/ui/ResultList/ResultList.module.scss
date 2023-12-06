@@ -1,22 +1,17 @@
-.cardList {
-  min-width: 500px;
-  list-style: none;
+.listContainer {
   display: flex;
   flex-direction: column;
   row-gap: 32px;
   width: 100%;
 }
 
-.more {
+.cardList {
+  min-width: 500px;
+  max-width: 734px;
+  list-style: none;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.moreCount {
-  color: var(--ui-primary-bg-color);
-  font-size: var(--font-size-l);
-  font-weight: var(--font-weight-600);
+  flex-direction: column;
+  row-gap: 32px;
 }
 
 .description {

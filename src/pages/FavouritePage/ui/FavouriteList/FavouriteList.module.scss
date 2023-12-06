@@ -1,3 +1,10 @@
+.listContainer {
+  display: flex;
+  flex-direction: column;
+  row-gap: 32px;
+  width: 100%;
+}
+
 .cardList {
   min-width: 500px;
   list-style: none;
@@ -5,18 +12,7 @@
   flex-direction: column;
   row-gap: 32px;
   width: 100%;
-}
-
-.more {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.moreCount {
-  color: var(--ui-primary-bg-color);
-  font-size: var(--font-size-l);
-  font-weight: var(--font-weight-600);
+  padding-bottom: 116px;
 }
 
 .description {

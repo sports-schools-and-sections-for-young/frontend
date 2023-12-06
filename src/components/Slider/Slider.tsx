@@ -1,78 +1,99 @@
-import React, { useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper/modules";
+import "swiper/scss";
+import "swiper/scss/navigation";
 import styles from "./Slider.module.scss";
+import { sportsData } from "../../utils/constants/sportsData";
 import Button from "../ui/Button/Button";
 import { ButtonColor, ButtonTestId } from "../ui/Button/types";
-import Icon from "../ui/Icon/Icon.tsx";
+import Icon from "../ui/Icon/Icon";
 import { IconTypes } from "../ui/Icon/types";
-import { sportsData } from "../../utils/constants/sportsData.ts";
+import useSwiperStyles from "./useSwiperStyles/useSwiperStyles";
 
 const Slider: React.FC = () => {
-  const [currentSlide, setCurrentSlide] = useState<number>(0);
+  const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 601);
+  useSwiperStyles();
   const navigate = useNavigate();
+  const swiperRef = useRef(null);
 
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev === 0 ? sportsData.length - 1 : prev - 1));
-  };
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsSmallScreen(window.innerWidth < 601);
+    };
 
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev === sportsData.length - 1 ? 0 : prev + 1));
-  };
+    window.addEventListener("resize", checkScreenSize);
 
-  const formatNumber = (num: number): string => {
-    return num < 10 ? `0${num}` : `${num}`;
-  };
+    return () => {
+      window.removeEventListener("resize", checkScreenSize);
+    };
+  }, []);
 
   return (
-    <div className={styles.slider}>
-      <div className={styles.containerSlider}>
-        <div className={styles.containerSwipe}>
-          <button
-            className={`${styles.buttonLeft} ${
-              currentSlide === 0 ? styles.hidden : ""
-            }`}
-            type="button"
-            onClick={prevSlide}
-            aria-label="Предыдущий слайд"
-          />
-          <div className={styles.containerText}>
-            <p className={styles.kindOfSport}>
-              {sportsData[currentSlide].name}
-            </p>
-            <p className={styles.textSlider}>{sportsData[currentSlide].text}</p>
-            <div className={styles.containerButton}>
-              <Button
-                color={ButtonColor.PRIMARY}
-                testId={ButtonTestId.FORWARD}
-                onClick={() => navigate("/search")}
-              >
-                Записаться
-                <Icon type={IconTypes.RIGHT_ICON} />
-              </Button>
-              <span className={styles.numberSlider}>
-                <span className={styles.leadingNumbers}>
-                  {formatNumber(currentSlide + 1)}
+    <Swiper
+      ref={swiperRef}
+      className={styles.mySwiper}
+      modules={[Navigation]}
+      navigation
+    >
+      {sportsData.map((item) => (
+        <SwiperSlide className={styles.swiperSlide} key={item.id}>
+          <div className={styles.slider}>
+            <div className={styles.containerSlider}>
+              <div className={styles.containerSwipe}>
+                <div className={styles.containerText}>
+                  <p className={styles.kindOfSport}>{item.name}</p>
+                  <p className={styles.textSlider}>
+                    {isSmallScreen ? item.textPart1 : item.text}
+                  </p>
+                  {isSmallScreen && (
+                    <div className={styles.imgSlider}>
+                      <img
+                        className={styles.img}
+                        src={item.imageSrc}
+                        alt={item.name}
+                      />
+                    </div>
+                  )}
+                  {isSmallScreen && (
+                    <p className={styles.textSlider}>{item.textPart2}</p>
+                  )}
+                  <div className={styles.containerButton}>
+                    <Button
+                      color={ButtonColor.PRIMARY}
+                      testId={ButtonTestId.FORWARD}
+                      onClick={() =>
+                        navigate("/search", {
+                          state: { step: 1, sport: [item.name] },
+                        })
+                      }
+                      className={styles.button}
+                    >
+                      Записаться
+                      <Icon type={IconTypes.RIGHT_ICON} />
+                    </Button>
+                  </div>
+                </div>
+                {!isSmallScreen && (
+                  <div className={styles.imgSlider}>
+                    <img
+                      className={styles.img}
+                      src={item.imageSrc}
+                      alt={item.name}
+                    />
+                  </div>
+                )}
+                <span className={styles.numberSlider}>
+                  <span className={styles.leadingNumbers}>{item.id + 1}</span>/
+                  {sportsData.length}
                 </span>
-                /{formatNumber(sportsData.length)}
-              </span>
+              </div>
             </div>
           </div>
-          <img
-            className={styles.imgSlider}
-            src={sportsData[currentSlide].imageSrc}
-            alt={sportsData[currentSlide].name}
-          />
-          <button
-            className={`${styles.buttonRight} ${
-              currentSlide === sportsData.length - 1 ? styles.hidden : ""
-            }`}
-            type="button"
-            onClick={nextSlide}
-            aria-label="Следующий слайд"
-          />
-        </div>
-      </div>
-    </div>
+        </SwiperSlide>
+      ))}
+    </Swiper>
   );
 };
 
