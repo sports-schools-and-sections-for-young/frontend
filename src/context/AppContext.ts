@@ -2,12 +2,13 @@ import { createContext, Dispatch, SetStateAction } from "react";
 import { Section, Sport } from "../types";
 
 export interface ISectionsRequest {
-  gender: "male" | "female" | null;
+  gender: "Man" | "Woman" | null;
   sports: Sport[] | null;
   age: number | null;
   location: [number, number];
   distance: number | null;
-  maxPrice: number | null;
+  maxPrice: number;
+  freeTrial: boolean;
 }
 
 interface IAppContext {
@@ -27,7 +28,8 @@ export const sectionsRequestDefault: ISectionsRequest = {
   age: null,
   location: [59.936846, 30.312185],
   distance: null,
-  maxPrice: null,
+  maxPrice: Infinity,
+  freeTrial: false,
 };
 
 const defaultValue: IAppContext = {

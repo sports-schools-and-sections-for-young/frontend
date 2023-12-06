@@ -1,5 +1,6 @@
 import { FC, useContext } from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import { StepProps } from "../../types";
 import AppContext from "../../../../context/AppContext.ts";
 import styles from "./StepAbout.module.scss";
@@ -26,6 +27,8 @@ interface AgeField {
 const StepAbout: FC<StepProps> = ({ step, setStep }) => {
   const { sectionRequest, setSectionRequest } = useContext(AppContext);
 
+  const navigate = useNavigate();
+
   const {
     register,
     formState: { errors },
@@ -43,11 +46,11 @@ const StepAbout: FC<StepProps> = ({ step, setStep }) => {
       </p>
       <div className={styles.buttonContainer}>
         <GenderBtn
-          isActive={sectionRequest.gender === "female"}
+          isActive={sectionRequest.gender === "Woman"}
           onClick={() =>
             setSectionRequest({
               ...sectionRequest,
-              gender: sectionRequest.gender === "female" ? null : "female",
+              gender: sectionRequest.gender === "Woman" ? null : "Woman",
             })
           }
         >
@@ -59,11 +62,11 @@ const StepAbout: FC<StepProps> = ({ step, setStep }) => {
           девочка
         </GenderBtn>
         <GenderBtn
-          isActive={sectionRequest.gender === "male"}
+          isActive={sectionRequest.gender === "Man"}
           onClick={() =>
             setSectionRequest({
               ...sectionRequest,
-              gender: sectionRequest.gender === "male" ? null : "male",
+              gender: sectionRequest.gender === "Man" ? null : "Man",
             })
           }
         >
@@ -104,7 +107,10 @@ const StepAbout: FC<StepProps> = ({ step, setStep }) => {
         errorMessage={errors.age?.message}
       />
       <Button
-        onClick={() => setStep(step + 1)}
+        onClick={() => {
+          navigate("/search", { state: { step: step + 1 } });
+          setStep(step + 1);
+        }}
         className={styles.button}
         color={ButtonColor.PRIMARY}
         testId={ButtonTestId.FORWARD}

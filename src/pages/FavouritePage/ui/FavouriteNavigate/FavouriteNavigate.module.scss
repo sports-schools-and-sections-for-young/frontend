@@ -1,0 +1,15 @@
+.navigate {
+  width: 100%;
+  max-width: 1376px;
+  padding-left: 32px;
+  padding-right: 32px;
+}
+
+.nav_list {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 32px;
+  padding-bottom: 32px;
+  align-items: center;
+}

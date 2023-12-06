@@ -8,46 +8,53 @@ import {
 } from "../../../../components/ui/Button/types";
 import Icon from "../../../../components/ui/Icon/Icon";
 import { IconTypes } from "../../../../components/ui/Icon/types";
-import { SectionProps } from "./types";
+import { ResultCardProps } from "../../types";
+import { getDeclension } from "../../../../utils/functions";
+import { Section } from "../../../../types";
 
-const ResultCard: FC<SectionProps> = (props) => {
+const ResultCard: FC<ResultCardProps> = ({
+  section,
+  favourite,
+  setFavourite,
+}) => {
+  if (!section) return null;
   const {
     id,
     sport_type,
     title,
     address,
     price,
-    raiting,
+    rating,
     review_amount,
-    shedule,
-  } = props;
+    schedule,
+  } = section;
 
-  const reviewAmount = (): React.ReactNode => {
-    let result;
-    if (review_amount === 1) {
-      result = `${review_amount} отзыв`;
+  const isLiked = favourite.some((f) => f.id === id);
+
+  const toggleLike = (section: Section) => {
+    if (isLiked) {
+      setFavourite((prev) => prev.filter((s) => s.id !== section.id));
+    } else {
+      setFavourite((prev) => [...prev, section]);
     }
-    if (review_amount === 2 || review_amount === 3 || review_amount === 4)
-      result = `${review_amount} отзывa`;
-    if (review_amount >= 5 || review_amount === 0)
-      result = `${review_amount} отзывов`;
-    return result;
   };
 
   const sheduleDays = (): React.ReactNode => {
-    return shedule.days
-      .split(", ")
-      .map((item) => {
-        if (item === "Понедельник") return "Пн";
-        if (item === "Вторник") return "Вт";
-        if (item === "Среда") return "Ср";
-        if (item === "Четверг") return "Чт";
-        if (item === "Пятница") return "Пт";
-        if (item === "Суббота") return "Сб";
-        if (item === "Воскресенье") return "Вс";
-        return item;
-      })
-      .join(", ");
+    return schedule.length > 0
+      ? schedule
+          .split(",")
+          .map((item) => {
+            if (item === "Понедельник") return "Пн";
+            if (item === "Вторник") return "Вт";
+            if (item === "Среда") return "Ср";
+            if (item === "Четверг") return "Чт";
+            if (item === "Пятница") return "Пт";
+            if (item === "Суббота") return "Сб";
+            if (item === "Воскресенье") return "Вс";
+            return item;
+          })
+          .join(", ")
+      : "Пн,Вт,Ср,Чт,Пт,Сб,Вс";
   };
   return (
     <article className={styles.section} key={id}>
@@ -55,9 +62,13 @@ const ResultCard: FC<SectionProps> = (props) => {
         <p className={styles.sportType}>{sport_type}</p>
         <h3 className={styles.title}>{title}</h3>
         <div className={styles.feedback}>
-          <p className={styles.raiting}>{raiting}</p>
+          <p className={styles.raiting}>{rating}</p>
           <Link to="/" className={styles.reviews}>
-            {reviewAmount()}
+            {`${review_amount} ${getDeclension(review_amount, [
+              "отзыв",
+              "отзыва",
+              "отзывов",
+            ])}`}
           </Link>
         </div>
         <div className={styles.place}>
@@ -66,15 +77,16 @@ const ResultCard: FC<SectionProps> = (props) => {
             Ул. {address.street}, {address.house}
           </p>
         </div>
-        <div className={styles.timesheet}>
-          Расписание - {sheduleDays()} {shedule.time}
-        </div>
+        <div className={styles.timesheet}>Расписание - {sheduleDays()}</div>
       </div>
       <div className={styles.rightPart}>
         <button
           type="button"
           aria-label="Поставить или снять лайк"
-          className={styles.likeButton}
+          onClick={() => toggleLike(section)}
+          className={`${styles.likeButton} ${
+            isLiked ? styles.likedButton : ""
+          }`}
         />
         <p className={styles.price}>{price} ₽ за занятие</p>
         <Button
