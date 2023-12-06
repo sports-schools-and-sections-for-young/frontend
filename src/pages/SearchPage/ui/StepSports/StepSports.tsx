@@ -1,5 +1,6 @@
 /// <reference types="vite-plugin-svgr/client" />
 import { FC, useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { StepProps } from "../../types";
 import styles from "./StepSports.module.scss";
 import AppContext from "../../../../context/AppContext.ts";
@@ -26,6 +27,8 @@ import {
 const StepSports: FC<StepProps> = ({ step, setStep }) => {
   const { sports, sectionRequest, setSectionRequest } = useContext(AppContext);
   const [fullView, setFullView] = useState(false);
+
+  const navigate = useNavigate();
 
   const addSport = (sport: Sport) => {
     const updatedSports = sectionRequest.sports
@@ -133,7 +136,10 @@ const StepSports: FC<StepProps> = ({ step, setStep }) => {
         )}
       </button>
       <Button
-        onClick={() => setStep(step + 1)}
+        onClick={() => {
+          navigate("/search", { state: { step: step + 1 } });
+          setStep(step + 1);
+        }}
         className={styles.button}
         color={ButtonColor.PRIMARY}
         testId={ButtonTestId.FORWARD}

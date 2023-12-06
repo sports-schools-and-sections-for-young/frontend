@@ -1,17 +1,16 @@
 import { FC, useContext, useMemo, useState } from "react";
+import { useDebouncedCallback } from "use-debounce";
+import { useNavigate } from "react-router-dom";
 import Map from "../../../../components/Map/Map.tsx";
 import { StepProps } from "../../types";
 import styles from "./StepLocation.module.scss";
 import LocationPlacemark from "../../../../components/Map/LocationPlacemark/LocationPlacemark.tsx";
 import AppContext from "../../../../context/AppContext.ts";
 import MapContext from "../../../../context/MapContext.ts";
-import CheckboxPanel from "../../../../components/ui/CheckboxPanel/CheckboxPanel.tsx";
-import { Btn } from "../../../../components/ui/CheckboxPanel/types";
-import { CheckboxBtnSize } from "../../../../components/ui/CheckboxBtn/types";
 import SearchInput, {
   SearchingItem,
 } from "../../../../components/ui/SearchInput/SearchInput.tsx";
-import { GEOCODER_KEY, GEOSUGGEST_KEY } from "../../../../utils/variables.ts";
+import { GEOCODER_KEY } from "../../../../utils/variables.ts";
 import Badge from "../../../../components/ui/Badge/Badge.tsx";
 import { BadgeColor } from "../../../../components/ui/Badge/types";
 import Icon from "../../../../components/ui/Icon/Icon.tsx";
@@ -25,36 +24,25 @@ import {
   ButtonColor,
   ButtonTestId,
 } from "../../../../components/ui/Button/types";
-
-export interface YandexAnswer {
-  suggest_reqid: string;
-  results: {
-    address: {
-      component: {
-        name: string;
-        kind: string[];
-      }[];
-      formatted_address: string;
-    };
-    distance: {
-      value: number;
-      text: string;
-    };
-    tags: string[];
-    title: {
-      hl: { begin: number; end: number }[];
-      text: string;
-    };
-  }[];
-}
+import { distanceButtons } from "../../../../utils/constants/distanceButtons.ts";
+import CheckboxPanel from "../../../../components/ui/CheckboxPanel/CheckboxPanel.tsx";
+import {
+  getCoordinates,
+  getGeosuggestAddresses,
+} from "../../../../utils/functions";
 
 const StepLocation: FC<StepProps> = ({ step, setStep }) => {
   const { sectionRequest, setSectionRequest } = useContext(AppContext);
 
   const [map, setMap] = useState();
 
-  const [searchingAddress, setSearchingAddress] = useState("");
+  const navigate = useNavigate();
 
+  const [searchingAddress, setSearchingAddress] = useState("");
+  const debounced = useDebouncedCallback(async (value) => {
+    const newCoords = await getCoordinates(value);
+    setSectionRequest({ ...sectionRequest, location: newCoords });
+  }, 3000);
   const [addressList, setAddressList] = useState<SearchingItem[]>([]);
 
   const getGeoLocation = () => {
@@ -72,47 +60,7 @@ const StepLocation: FC<StepProps> = ({ step, setStep }) => {
     return [];
   };
 
-  const buttons: Btn[] = [
-    {
-      id: 0,
-      title: "не важно",
-      size: CheckboxBtnSize.PRIMARY,
-    },
-    {
-      id: 1,
-      title: "1 км от дома",
-      size: CheckboxBtnSize.PRIMARY,
-    },
-    {
-      id: 3,
-      title: "3 км от дома",
-      size: CheckboxBtnSize.PRIMARY,
-    },
-  ];
-
-  // const setDistance = (distance: number) => {
-  //   setSectionRequest({
-  //     ...sectionRequest,
-  //     distance: distance ? distance : null,
-  //   });
-  // };
-
-  const getCoordinates = async (address: string) => {
-    console.log("Запрос к яндексу с GEOCODER_KEY", GEOCODER_KEY);
-    const res = await fetch(
-      `https://geocode-maps.yandex.ru/1.x/?apikey=${GEOCODER_KEY}&geocode=${address}&format=json`,
-    );
-    const data = await res.json();
-    const newCoords =
-      data.response.GeoObjectCollection.featureMember[0].GeoObject.Point.pos
-        .split(" ")
-        .map((pos: string) => +pos)
-        .reverse();
-    setSectionRequest({ ...sectionRequest, location: newCoords });
-  };
-
   const getAddress = async (coords: [number, number]) => {
-    console.log("Запрос к яндексу с GEOCODER_KEY", GEOCODER_KEY);
     const res = await fetch(
       `https://geocode-maps.yandex.ru/1.x/?apikey=${GEOCODER_KEY}&geocode=${[
         ...coords,
@@ -131,28 +79,25 @@ const StepLocation: FC<StepProps> = ({ step, setStep }) => {
 
   const handleChange = async (value: string) => {
     setSearchingAddress(value);
-    console.log("Запрос к яндексу с GEOSUGGEST_KEY", GEOCODER_KEY);
-    const res = await fetch(
-      `https://suggest-maps.yandex.ru/v1/suggest?apikey=${GEOSUGGEST_KEY}&text=${value}&types=locality,street,house&print_address=1`,
-    );
-    const addresses: YandexAnswer = await res.json();
-    if (addresses.results) {
-      const formattedAddresses = addresses.results.map((address) => ({
-        id: address.distance.value,
-        title: address.address.formatted_address,
-      }));
-      setAddressList(formattedAddresses);
+    if (value) {
+      debounced(value);
+    } else {
+      debounced.cancel();
     }
+    const geosuggestAddresses = await getGeosuggestAddresses(value);
+    setAddressList(geosuggestAddresses);
+  };
+
+  const handleItemClick = async (address: string) => {
+    const newCoords = await getCoordinates(address);
+    setSectionRequest({ ...sectionRequest, location: newCoords });
+    debounced.cancel();
+    setSearchingAddress(address);
   };
 
   const mapValues = useMemo(() => {
     return { map, setMap };
   }, []);
-
-  const handleClick = async (address: string) => {
-    await getCoordinates(address);
-    setSearchingAddress(address);
-  };
 
   return (
     <MapContext.Provider value={mapValues}>
@@ -164,9 +109,15 @@ const StepLocation: FC<StepProps> = ({ step, setStep }) => {
           Хочу найти спортивные занятия не дальше чем:
         </p>
         <CheckboxPanel
+          activeOption={sectionRequest.distance || 0}
           className={styles.distancePanel}
-          setOption={() => {}}
-          btns={buttons}
+          setOption={(option) =>
+            setSectionRequest((requestData) => ({
+              ...requestData,
+              distance: option,
+            }))
+          }
+          btns={distanceButtons}
         />
         <div className={styles.controlWrapper}>
           <SearchInput
@@ -179,7 +130,7 @@ const StepLocation: FC<StepProps> = ({ step, setStep }) => {
             iconType={InputIcon.MAGNIGY}
             iconPosition={InputIconPosition.RIGHT}
             onChange={(e) => handleChange(e.target.value)}
-            itemClickHandler={(e: SearchingItem) => handleClick(e.title)}
+            itemClickHandler={(e: SearchingItem) => handleItemClick(e.title)}
           />
           <Badge
             className={styles.badge}
@@ -195,7 +146,10 @@ const StepLocation: FC<StepProps> = ({ step, setStep }) => {
           <LocationPlacemark setAddress={getAddress} />
         </Map>
         <Button
-          onClick={() => setStep(step + 1)}
+          onClick={() => {
+            navigate("/search", { state: { step: step + 1 } });
+            setStep(step + 1);
+          }}
           className={styles.button}
           color={ButtonColor.PRIMARY}
           testId={ButtonTestId.FORWARD}

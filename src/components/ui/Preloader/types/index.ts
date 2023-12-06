@@ -7,4 +7,5 @@ export enum PreloaderSize {
 
 export interface PreloaderProps {
   size?: PreloaderSize;
+  className?: string;
 }

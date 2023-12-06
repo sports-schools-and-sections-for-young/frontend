@@ -1,5 +1,5 @@
 import { FC, HTMLAttributes, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import CloseButton from "../../../components/ui/CloseButton/CloseButton.tsx";
 import styles from "./SearchPage.module.scss";
 import SearchHeader from "./SearchHeader/SearchHeader.tsx";
@@ -23,7 +23,14 @@ const SearchPage: FC<SearchPageProps> = (props) => {
 
   const navigate = useNavigate();
 
-  const [step, setStep] = useState<number>(initialStep);
+  let externalStep: number | null = null;
+
+  const { state } = useLocation();
+  if (state && state.step) {
+    externalStep = state.step;
+  }
+
+  const [step, setStep] = useState<number>(externalStep || initialStep);
 
   const steps = [
     <StepInitial setStep={setStep} step={step} />,
@@ -39,7 +46,10 @@ const SearchPage: FC<SearchPageProps> = (props) => {
         {step !== 0 && (
           <>
             <Button
-              onClick={() => setStep(step - 1)}
+              onClick={() => {
+                navigate("/search", { state: { step: step - 1 } });
+                setStep(step - 1);
+              }}
               color={ButtonColor.SECONDARY}
               testId={ButtonTestId.BACK}
             >

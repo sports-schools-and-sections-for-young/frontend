@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { useState } from "react";
 import CheckboxPanel from "./CheckboxPanel";
 import { CheckboxBtnSize } from "../CheckboxBtn/types";
+import { distanceButtons } from "../../../utils/constants/distanceButtons.ts";
 
 const meta = {
   title: "ui/CheckboxPanel",
@@ -20,18 +22,19 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const CheckboxButtonPanelPrimary: Story = {
-  args: {
-    className: "custom-class",
-    btns: [
-      { id: 1, title: "не важно", size: CheckboxBtnSize.PRIMARY },
-      { id: 2, title: "1 км от дома", size: CheckboxBtnSize.PRIMARY },
-      { id: 3, title: "3 км от дома", size: CheckboxBtnSize.PRIMARY },
-    ],
-  },
-};
+function Render() {
+  const [distance, setDistance] = useState(0);
 
-export const CheckboxButtonPanelSecondary: Story = {
+  return (
+    <CheckboxPanel
+      activeOption={distance}
+      setOption={(option) => setDistance(option)}
+      btns={distanceButtons}
+    />
+  );
+}
+
+export const CheckboxButtonPanelPrimary: Story = {
   args: {
     className: "custom-class",
     btns: [
@@ -39,5 +42,7 @@ export const CheckboxButtonPanelSecondary: Story = {
       { id: 2, title: "1 км от дома", size: CheckboxBtnSize.SECONDARY },
       { id: 3, title: "3 км от дома", size: CheckboxBtnSize.SECONDARY },
     ],
+    activeOption: 0,
   },
+  render: Render,
 };
