@@ -49,6 +49,7 @@ const Header: FC = () => {
             {favourite > 0 && (
               <span className={styles.favouritesCount}>{favourite}</span>
             )}
+            <span className={styles.btnName}>Избранное</span>
           </button>
           <Button
             className={styles.button}
