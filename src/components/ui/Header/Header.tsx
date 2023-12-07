@@ -14,12 +14,19 @@ const Header: FC = () => {
   const [favourite, setFavourite] = useState<number>(0);
 
   useEffect(() => {
-    document.addEventListener("changedFavourites", ((e: CustomEvent) => {
-      setFavourite(e.detail.storage);
-    }) as EventListener);
-    return document.addEventListener("changedFavourites", ((e: CustomEvent) => {
-      setFavourite(e.detail.storage);
-    }) as EventListener);
+    function changeCount(e: CustomEvent) {
+      setFavourite(e.detail.length);
+    }
+    document.addEventListener(
+      "changedFavourites",
+      changeCount as EventListener,
+    );
+    return () => {
+      document.removeEventListener(
+        "changedFavourites",
+        changeCount as EventListener,
+      );
+    };
   }, []);
 
   return (

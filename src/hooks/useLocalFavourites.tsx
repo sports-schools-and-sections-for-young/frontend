@@ -5,15 +5,11 @@ type favourite = [Section[], React.Dispatch<React.SetStateAction<Section[]>>];
 
 const key: string = "favouriteSectionsId";
 
-const changeFavourites = (length: number) => {
-  document.dispatchEvent(
-    new CustomEvent("changedFavourites", {
-      detail: {
-        storage: length,
-      },
-    }),
-  );
-};
+const changeFavouritesEvent = new CustomEvent("changedFavourites", {
+  detail: {
+    length: 0,
+  },
+});
 
 export const useFavourite = (): favourite => {
   const [favourite, setFavourite] = useState<Section[]>(() => {
@@ -29,7 +25,8 @@ export const useFavourite = (): favourite => {
     if (favourite) {
       try {
         localStorage.setItem(key, JSON.stringify(favourite));
-        changeFavourites(favourite.length);
+        changeFavouritesEvent.detail.length = favourite.length;
+        document.dispatchEvent(changeFavouritesEvent);
       } catch (error) {
         // eslint-disable-next-line no-console
         console.log("Ошибка добавления в избранное", error);
