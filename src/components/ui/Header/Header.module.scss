@@ -27,3 +27,32 @@
   background: #ff7a60 !important;
   width: 159px;
 }
+
+.favouritesBtn {
+  position: relative;
+  background-image: url("../../../assets/images/icons/result-heart.svg");
+  background-color: transparent;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border: none;
+  width: 36px;
+  height: 34px;
+}
+
+.favouritesCount {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  right: -10px;
+  top: -10px;
+  border-radius: 12px;
+  background-color: #f00;
+  color: #fff;
+  font-size: var(--font-size-l);
+}
+
+.buttonContainer {
+  display: flex;
+  column-gap: 48px;
+  align-items: center;
+}
