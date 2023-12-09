@@ -8,6 +8,7 @@ import { IconColor, IconTypes } from "../../components/ui/Icon/types";
 import SearchHeader from "../SearchPage/ui/SearchHeader/SearchHeader";
 import Input from "../../components/ui/Input/Input";
 import AuthBannerForm from "../../components/ui/AuthBannerForm/AuthBannerForm";
+import Footer from "../../components/ui/Footer/Footer";
 
 interface ILogin {
   email: string;
@@ -142,7 +143,7 @@ function Login() {
           </div>
         </form>
       </div>
-      <div className={styles.darkPart} />
+      <Footer />
     </main>
   );
 }

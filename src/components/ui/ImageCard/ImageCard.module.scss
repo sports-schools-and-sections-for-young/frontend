@@ -58,7 +58,8 @@
 
 .auth-logo-image {
   max-width: 263px;
-  height: 90px;
+  max-height: 90px;
+  aspect-ratio: 3;
 }
 
 .auth-image {

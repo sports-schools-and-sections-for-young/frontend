@@ -1,0 +1,28 @@
+.darkPart {
+  background-color: var(--text-black-color);
+  width: 100%;
+  min-height: 170px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.footerContainer {
+  display: flex;
+  gap: 168px;
+  width: 1120px;
+}
+
+.textWrapper {
+  display: flex;
+  flex-direction: column;
+  color: var(--ui-primary-color);
+  font-size: var(--font-size-m);
+  max-width: 690px;
+}
+
+.spanText {
+  padding-top: 24px;
+  font-size: var(--font-size-s);
+}
