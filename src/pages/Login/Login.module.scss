@@ -20,19 +20,11 @@
   width: 1120px;
   height: 700px;
   flex-direction: row;
-  gap: 93px;
+  gap: 60px;
   background-color: var(--ui-primary-color);
   border-radius: var(--wide-radius);
   padding: 44px;
   display: flex;
-}
-
-.imageAuth {
-  width: calc(60% - 44px);
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .formColumn {
@@ -78,8 +70,6 @@
 .formButton {
   width: 100%;
   align-self: center;
-
-  // margin-top: 10px;
 }
 
 .loginButton {

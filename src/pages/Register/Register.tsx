@@ -1,15 +1,13 @@
 import { Link, useNavigate } from "react-router-dom";
 import { SubmitHandler, useForm } from "react-hook-form";
 import styles from "../Login/Login.module.scss";
-import ImageCard from "../../components/ui/ImageCard/ImageCard";
-import { ImageCardSize } from "../../components/ui/ImageCard/types";
 import Button from "../../components/ui/Button/Button";
 import { ButtonColor, ButtonTestId } from "../../components/ui/Button/types";
 import Icon from "../../components/ui/Icon/Icon";
 import { IconColor, IconTypes } from "../../components/ui/Icon/types";
 import SearchHeader from "../SearchPage/ui/SearchHeader/SearchHeader";
 import Input from "../../components/ui/Input/Input";
-import cooperation from "../../assets/images/auth-img.svg";
+import AuthBannerForm from "../../components/ui/AuthBannerForm/AuthBannerForm";
 
 export interface IRegister {
   email: string;
@@ -56,10 +54,9 @@ function Register() {
           onSubmit={handleSubmit(onSubmit)}
           noValidate
         >
-          <ImageCard
-            size={ImageCardSize.AUTH_IMG}
-            src={cooperation}
-            alt="Баннер"
+          <AuthBannerForm
+            title="Регистрация для"
+            text="Зарегистрируйте спортнивную школу и Вы сможете добавлять секции"
           />
           <div className={styles.formColumn}>
             <h3 className={styles.title}>Регистрация</h3>
@@ -85,7 +82,7 @@ function Register() {
                 )}
               </div>
 
-              <div className={styles.inputWrapper}>
+              {/* <div className={styles.inputWrapper}>
                 <Input
                   {...register("name", {
                     required: "Введите наименование спортивной организации",
@@ -155,7 +152,7 @@ function Register() {
                     {errors.site.message}
                   </span>
                 )}
-              </div>
+              </div> */}
 
               <div className={styles.inputWrapper}>
                 <Input
@@ -191,7 +188,7 @@ function Register() {
                       "Пароли должны совпадать",
                   })}
                   name="passwordConfirmation"
-                  placeholder="Подтверждение пароля *"
+                  placeholder="Подтвердить пароля *"
                   id="password-confirmation-input"
                   type="password"
                 />
