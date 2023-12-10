@@ -8,9 +8,7 @@ import { IconTypes } from "../../ui/Icon/types/index.ts";
 
 const QuizQuestion: FC<QuizQuestionProps> = (props) => {
   const { func, choice } = props;
-
   const { stage, question, options } = choice;
-
   const [currentValue, setCurrentValue] = React.useState(0);
 
   function setResults(): void {
@@ -19,7 +17,6 @@ const QuizQuestion: FC<QuizQuestionProps> = (props) => {
   React.useEffect(() => {
     setCurrentValue(0);
   }, [stage]);
-
   return (
     <div className={styles.container}>
       <h3 className={styles.question}>{question}</h3>
@@ -45,6 +42,7 @@ const QuizQuestion: FC<QuizQuestionProps> = (props) => {
           })}
         </ul>
         <Button
+          className={styles.button}
           color={ButtonColor.PRIMARY}
           testId={ButtonTestId.FORWARD}
           onClick={() => setResults()}
