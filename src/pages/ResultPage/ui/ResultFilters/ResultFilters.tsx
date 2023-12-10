@@ -89,7 +89,7 @@ const ResultFilters: FC<IResultFiltersProps> = (props) => {
             className={styles.priceInput}
             iconType={InputIcon.RUB}
             iconPosition={InputIconPosition.LEFT}
-            value={maxPrice}
+            value={maxPrice > 0 ? maxPrice : ""}
             onChange={(evt) => setMaxPrice(+evt.target.value)}
           />
           <Checkbox

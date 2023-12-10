@@ -67,7 +67,7 @@ const StepPrice: FC<StepProps> = ({ setStep }) => {
               iconType={InputIcon.RUB}
               iconPosition={InputIconPosition.LEFT}
               className={styles.input}
-              value={maxPrice}
+              value={maxPrice > 0 ? maxPrice : ""}
               onChange={(evt: React.ChangeEvent<HTMLInputElement>) =>
                 setMaxPrice(+evt.target.value)
               }
