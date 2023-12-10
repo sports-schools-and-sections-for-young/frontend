@@ -38,7 +38,11 @@ const QuizRezult: React.FC<QuizResultProps> = (props) => {
           className={styles.button}
           color={ButtonColor.PRIMARY}
           testId={ButtonTestId.OTHER}
-          onClick={() => navigate("/search")}
+          onClick={() =>
+            navigate("/search", {
+              state: { step: 1, sport: result.sports.split(", ") },
+            })
+          }
         >
           <>
             Подобрaть занятие

@@ -42,7 +42,6 @@ const Quiz: FC = () => {
   }
 
   function setPreviousStage() {
-    console.log("currentStage", currentStage);
     if (currentStage === 0) {
       navigate("/", { replace: true });
     }
