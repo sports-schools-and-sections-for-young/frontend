@@ -4,6 +4,8 @@
     "indentation": [2],
     "custom-property-pattern": null,
     "selector-class-pattern": null,
-    "scss/operator-no-newline-after": null
+    "scss/operator-no-newline-after": null,
+    "selector-pseudo-class-no-unknown": null,
+    "property-no-unknown": null
   }
 }

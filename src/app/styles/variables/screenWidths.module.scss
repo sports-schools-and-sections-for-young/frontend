@@ -1,0 +1,7 @@
+$tablet-width: 1000px;
+$mobile-width: 750px;
+
+:export {
+  tabletWidth: $tablet-width;
+  mobileWidth: $mobile-width;
+}

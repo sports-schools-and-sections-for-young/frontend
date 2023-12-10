@@ -1,3 +1,5 @@
+@import "variables/screenWidths.module";
+
 @mixin manrope-header($size, $weight, $lineHeight: 125%) {
   font-family: var(--font-family_main);
   font-size: $size;
@@ -17,4 +19,16 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
+}
+
+@mixin tablet-1000 {
+  @media (max-width: $tablet-width) {
+    @content;
+  }
+}
+
+@mixin mobile-750 {
+  @media (max-width: $mobile-width) {
+    @content;
+  }
 }
