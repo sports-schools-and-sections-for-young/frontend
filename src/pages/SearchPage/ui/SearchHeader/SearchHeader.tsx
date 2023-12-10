@@ -13,6 +13,7 @@ import ProgressBar from "../../../../components/ProgressBar/ProgressBar.tsx";
 import CloseButton from "../../../../components/ui/CloseButton/CloseButton.tsx";
 import logo from "../../../../assets/images/Logo.png";
 import { useResize } from "../../../../hooks/useResize.tsx";
+import ButtonBackMobile from "../../../../components/ui/ButtonBackMobile/ButtonBackMobile.tsx";
 
 interface SearchHeaderProps extends HTMLAttributes<HTMLHeadingElement> {
   minimal?: boolean;
@@ -38,17 +39,26 @@ const SearchHeader: FC<SearchHeaderProps> = (props) => {
       <div className={firstLineClass}>
         {!minimal && (
           <>
-            <Button
-              onClick={() => {
-                navigate("/search", { state: { step: step - 1 } });
-                setStep(step - 1);
-              }}
-              color={ButtonColor.SECONDARY}
-              testId={ButtonTestId.BACK}
-            >
-              <Icon color={IconColor.SECONDARY} type={IconTypes.LEFT_ICON} />
-              Назад
-            </Button>
+            {isMobileScreen ? (
+              <ButtonBackMobile
+                onClick={() => {
+                  navigate("/search", { state: { step: step - 1 } });
+                  setStep(step - 1);
+                }}
+              />
+            ) : (
+              <Button
+                onClick={() => {
+                  navigate("/search", { state: { step: step - 1 } });
+                  setStep(step - 1);
+                }}
+                color={ButtonColor.SECONDARY}
+                testId={ButtonTestId.BACK}
+              >
+                <Icon color={IconColor.SECONDARY} type={IconTypes.LEFT_ICON} />
+                Назад
+              </Button>
+            )}
             {isMobileScreen ? (
               <img className={styles.logo} src={logo} alt="Логотип Спортхаб." />
             ) : (
