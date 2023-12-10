@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./Header.module.scss";
 import Button from "../Button/Button";
@@ -8,11 +8,26 @@ import { IconTypes } from "../Icon/types";
 import ImageCard from "../ImageCard/ImageCard";
 import { ImageCardSize } from "../ImageCard/types";
 import logo from "../../../assets/images/Logo.png";
-import { useFavourite } from "../../../hooks/useLocalFavourites";
 
 const Header: FC = () => {
   const navigate = useNavigate();
-  const [favourite] = useFavourite();
+  const [favourite, setFavourite] = useState<number>(0);
+
+  useEffect(() => {
+    function changeCount(e: CustomEvent) {
+      setFavourite(e.detail.length);
+    }
+    document.addEventListener(
+      "changedFavourites",
+      changeCount as EventListener,
+    );
+    return () => {
+      document.removeEventListener(
+        "changedFavourites",
+        changeCount as EventListener,
+      );
+    };
+  }, []);
 
   return (
     <header className={styles.header} data-testid="header">
@@ -31,7 +46,10 @@ const Header: FC = () => {
             className={styles.favouritesBtn}
             onClick={() => navigate("/favourites")}
           >
-            <span className={styles.favouritesCount}>{favourite.length}</span>
+            {favourite > 0 && (
+              <span className={styles.favouritesCount}>{favourite}</span>
+            )}
+            <span className={styles.btnName}>Избранное</span>
           </button>
           <Button
             className={styles.button}

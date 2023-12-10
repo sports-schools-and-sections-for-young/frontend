@@ -1,6 +1,6 @@
 import { FC, useState } from "react";
 import styles from "./FavouriteList.module.scss";
-import ResultCard from "../../../ResultPage/ui/ResultCard/ResultCard";
+import ResultCard from "../../../../components/ResultCard/ResultCard";
 import { useFavourite } from "../../../../hooks/useLocalFavourites";
 import Badge from "../../../../components/ui/Badge/Badge";
 import { BadgeColor } from "../../../../components/ui/Badge/types";

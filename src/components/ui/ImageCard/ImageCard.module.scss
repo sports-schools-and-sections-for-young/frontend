@@ -70,10 +70,17 @@
   height: 40px;
 }
 
+.auth-logo-image {
+  max-width: 263px;
+  max-height: 90px;
+  aspect-ratio: 3;
+}
+
 .auth-image {
-  max-width: 589px;
-  aspect-ratio: 9/10;
-  height: 599px;
+  max-width: 254px;
+  max-height: 264px;
+  width: auto;
+  height: auto;
 }
 
 .imageSize {

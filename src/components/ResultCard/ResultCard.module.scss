@@ -1,4 +1,4 @@
-@import "../../../../app/styles/mixins";
+@import "../../app/styles/mixins";
 
 .section {
   box-sizing: border-box;
@@ -61,7 +61,7 @@
     left: 0;
     width: 32px;
     height: 32px;
-    background-image: url("../../../../assets/images/result-star.svg");
+    background-image: url("../../assets/images/result-star.svg");
     background-repeat: no-repeat;
     background-size: contain;
   }
@@ -113,7 +113,7 @@
     left: 16px;
     width: 24px;
     height: 24px;
-    background-image: url("../../../../assets/images/icons/result-map-pin.svg");
+    background-image: url("../../assets/images/icons/result-map-pin.svg");
     background-repeat: no-repeat;
     background-size: contain;
   }
@@ -142,14 +142,14 @@
   height: 32px;
   background-color: transparent;
   cursor: pointer;
-  background-image: url("../../../../assets/images/icons/result-heart.svg");
+  background-image: url("../../assets/images/icons/result-heart.svg");
   background-size: contain;
   border: none;
   margin-bottom: 48px;
 }
 
 .likedButton {
-  background-image: url("../../../../assets/images/icons/result-heart-active.svg");
+  background-image: url("../../assets/images/icons/result-heart-active.svg");
 }
 
 .price {

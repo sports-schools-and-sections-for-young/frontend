@@ -37,6 +37,7 @@
   border: none;
   width: 36px;
   height: 34px;
+  cursor: pointer;
 }
 
 .favouritesCount {
@@ -49,6 +50,33 @@
   background-color: #f00;
   color: #fff;
   font-size: var(--font-size-l);
+}
+
+.btnName {
+  display: none;
+}
+
+.favouritesBtn:hover .btnName {
+  display: block;
+  font-size: var(--font-size-l);
+  font-weight: var(--font-weight-600);
+  padding-top: 15px;
+  color: var(--ui-secondary-bg-color);
+  position: absolute;
+  bottom: -43px;
+  left: -47px;
+  width: 130px;
+  height: 44px;
+  background-color: var(--text-black-color);
+  clip-path: polygon(
+    50% 5%,
+    55% 28%,
+    100% 28%,
+    100% 100%,
+    0 100%,
+    0 28%,
+    46% 28%
+  );
 }
 
 .buttonContainer {

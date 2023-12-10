@@ -1,15 +1,16 @@
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 import styles from "./Pagination.module.scss";
 import Button from "../Button/Button";
 import { ButtonColor, ButtonTestId } from "../Button/types";
+import { Section } from "../../../types";
 
-interface PaginationPops {
+interface PaginationPops<T> {
   value: number;
-  list: any[];
+  list: T;
   setValue: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const Pagination: FC<PaginationPops> = (props) => {
+const Pagination: FC<PaginationPops<Section[]>> = (props) => {
   const { list, setValue, value } = props;
   const moreStep = 6;
 
@@ -17,7 +18,9 @@ const Pagination: FC<PaginationPops> = (props) => {
     return list.length >= moreStep ? moreStep : list.length;
   };
 
-  setValue(calculateListLength);
+  useEffect(() => {
+    setValue(calculateListLength);
+  }, []);
 
   const showMore = () => {
     setValue((q) => (list.length >= q + moreStep ? q + moreStep : list.length));

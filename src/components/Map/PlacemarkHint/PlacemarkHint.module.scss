@@ -1,0 +1,44 @@
+@import "../../../app/styles/mixins";
+
+.hint {
+  width: 260px;
+  visibility: visible;
+  position: absolute;
+  top: -170px;
+  border-radius: 8px;
+  border: 1px solid var(--ui-primary-bg-color);
+  background: #fff;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sportType {
+  @include section(row);
+
+  justify-content: center;
+  width: fit-content;
+  border-radius: 8px;
+  padding: 8px 12px;
+  border: 1px solid var(--light-text-color);
+  background: var(--lightblue-background-color);
+  color: var(--light-text-color);
+
+  @include manrope-header(16px, 600, 100%);
+}
+
+.title {
+  font-size: var(--font-size-m);
+  line-height: var(--font-line-m);
+  font-weight: var(--font-weight-500);
+}
+
+.link {
+  font-size: var(--font-size-m);
+  line-height: var(--font-line-m);
+  font-weight: var(--font-weight-500);
+  padding: 0;
+  margin: 0;
+  color: var(--text-black-color);
+}
