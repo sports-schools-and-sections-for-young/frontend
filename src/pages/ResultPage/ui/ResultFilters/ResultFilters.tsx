@@ -1,4 +1,5 @@
 import { FC, useContext } from "react";
+import classnames from "classnames";
 import { Sport } from "../../../../types";
 import styles from "./ResultFilters.module.scss";
 import Button from "../../../../components/ui/Button/Button";
@@ -23,10 +24,16 @@ import { IResultFiltersProps } from "../../types";
 import { distanceButtons } from "../../../../utils/constants/distanceButtons.ts";
 import { useSectionsFetch } from "../../../../hooks/useSectionsFetch.tsx";
 import { usePriceHandler } from "../../../../hooks/usePriceHandler.tsx";
+import TitleWithMobileNavigate from "../TitleWithMobileNavigate/TitleWithMobileNavigate.tsx";
 
 const ResultFilters: FC<IResultFiltersProps> = (props) => {
-  const { clearFilters, setLoader } = props;
+  const { clearFilters, setLoader, isOpen, toggleFilterPanel } = props;
   const { sports, sectionRequest, setSectionRequest } = useContext(AppContext);
+
+  const filtersClass = classnames({
+    [styles.filters]: true,
+    [styles.filtersOpen]: isOpen,
+  });
 
   const fetchSections = useSectionsFetch(setLoader);
 
@@ -43,9 +50,15 @@ const ResultFilters: FC<IResultFiltersProps> = (props) => {
 
   return (
     <form className={styles.filters_container}>
-      <ul className={styles.filters}>
+      <ul className={filtersClass}>
         <li className={styles.filter_item}>
-          <h3 className={styles.subtitle}>Фильтры</h3>
+          <TitleWithMobileNavigate
+            isFilter
+            clearFilters={clearFilters}
+            toggleFilterPanel={toggleFilterPanel}
+          >
+            <h3 className={styles.subtitle}>Фильтры</h3>
+          </TitleWithMobileNavigate>
         </li>
         <li className={styles.filter_item}>
           <p className={`${styles.description} ${styles.description_distant}`}>
@@ -109,7 +122,12 @@ const ResultFilters: FC<IResultFiltersProps> = (props) => {
             Применить
             <Icon type={IconTypes.RIGHT_ICON} />
           </Button>
-          <Badge isActive color={BadgeColor.SECONDARY} onClick={clearFilters}>
+          <Badge
+            className={styles.clearFiltersBtn}
+            isActive
+            color={BadgeColor.SECONDARY}
+            onClick={clearFilters}
+          >
             Сбросить все фильтры
             <Icon type={IconTypes.CROSS} color={IconColor.SECONDARY} />
           </Badge>

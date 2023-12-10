@@ -1,4 +1,7 @@
 .options {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1181px;
   list-style: none;
   display: flex;
   gap: 10px;
@@ -8,4 +11,10 @@
 
 .hide {
   display: none;
+}
+
+@media screen and (width <=780px) {
+  .options {
+    order: 2;
+  }
 }

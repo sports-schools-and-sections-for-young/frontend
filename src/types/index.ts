@@ -28,6 +28,7 @@ export interface Section {
   price: number;
   free_class: boolean;
   site: string;
+  phone: string;
 }
 
 export interface YandexAnswer {

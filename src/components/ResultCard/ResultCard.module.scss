@@ -2,10 +2,12 @@
 
 .section {
   box-sizing: border-box;
-
-  @include section(row);
-
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
+  gap: 12px 110px;
+  position: relative;
+  width: 100%;
+  align-items: center;
   padding: 24px 32px;
   border-radius: 30px;
   background: var(--ui-primary-color);
@@ -14,6 +16,7 @@
 
 .leftPart {
   box-sizing: border-box;
+  min-width: 255px;
 
   @include section(column);
 
@@ -61,13 +64,13 @@
     left: 0;
     width: 32px;
     height: 32px;
-    background-image: url("../../assets/images/result-star.svg");
+    background-image: url("../../assets/images/icons/Phone.svg");
     background-repeat: no-repeat;
     background-size: contain;
   }
 }
 
-.raiting {
+.phone {
   @include manrope-header(18px, 500, 155%);
 
   color: var(--text-black-color);
@@ -133,11 +136,12 @@
 
 .rightPart {
   @include section(column);
-
-  align-items: flex-end;
 }
 
 .likeButton {
+  position: absolute;
+  top: 30px;
+  right: 30px;
   width: 32px;
   height: 32px;
   background-color: transparent;

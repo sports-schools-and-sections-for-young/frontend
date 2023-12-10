@@ -18,9 +18,18 @@ export type ResultListProps = {
 export interface IResultFiltersProps
   extends HTMLAttributes<HTMLHeadingElement> {
   clearFilters: () => void;
+  toggleFilterPanel?: Dispatch<SetStateAction<boolean>>;
   setLoader: Dispatch<SetStateAction<boolean>>;
+  isOpen: boolean;
 }
 
 export type mapViewProps = {
   setActiveSection: Dispatch<SetStateAction<Section | null>>;
 };
+
+export interface ITitleWithMobileNavigateProp
+  extends HTMLAttributes<HTMLDivElement> {
+  isFilter?: boolean;
+  toggleFilterPanel?: Dispatch<SetStateAction<boolean>>;
+  clearFilters?: () => void;
+}

@@ -1,0 +1,37 @@
+.navigate {
+  width: 100%;
+  max-width: 1376px;
+}
+
+.nav_list {
+  list-style: none;
+  display: flex;
+  padding-top: 32px;
+  padding-bottom: 32px;
+  align-items: center;
+}
+
+.button {
+  display: none;
+}
+
+@media screen and (width <=780px) {
+  .navigate {
+    order: 1;
+  }
+
+  .nav_list {
+    justify-content: space-between;
+  }
+
+  .button {
+    font-size: var(--font-size-s);
+    font-weight: var(--font-weight-500);
+    line-height: 140%;
+    color: #211d3b6b;
+    display: block;
+    border: none;
+    cursor: pointer;
+    background: transparent;
+  }
+}

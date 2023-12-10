@@ -1,11 +1,10 @@
 import React, { Dispatch, FC, SetStateAction } from "react";
-import { Link } from "react-router-dom";
 import styles from "./ResultCard.module.scss";
 import Button from "../ui/Button/Button.tsx";
+import Heart from "../../assets/images/icons/result-heart-active.svg?react";
 import { ButtonColor, ButtonTestId } from "../ui/Button/types";
 import Icon from "../ui/Icon/Icon.tsx";
 import { IconTypes } from "../ui/Icon/types";
-import { getDeclension } from "../../utils/functions";
 import { Section } from "../../types";
 
 interface ResultCardProps {
@@ -20,16 +19,7 @@ const ResultCard: FC<ResultCardProps> = ({
   setFavourite,
 }) => {
   if (!section) return null;
-  const {
-    id,
-    sport_type,
-    title,
-    address,
-    price,
-    rating,
-    review_amount,
-    schedule,
-  } = section;
+  const { id, sport_type, title, address, price, phone, schedule } = section;
 
   const isLiked = favourite.some((f) => f.id === id);
 
@@ -64,14 +54,7 @@ const ResultCard: FC<ResultCardProps> = ({
         <p className={styles.sportType}>{sport_type}</p>
         <h3 className={styles.title}>{title}</h3>
         <div className={styles.feedback}>
-          <p className={styles.raiting}>{rating}</p>
-          <Link to="/" className={styles.reviews}>
-            {`${review_amount} ${getDeclension(review_amount, [
-              "отзыв",
-              "отзыва",
-              "отзывов",
-            ])}`}
-          </Link>
+          <p className={styles.phone}>{phone}</p>
         </div>
         <div className={styles.place}>
           <p className={styles.distance}>14 км</p>
@@ -89,7 +72,9 @@ const ResultCard: FC<ResultCardProps> = ({
           className={`${styles.likeButton} ${
             isLiked ? styles.likedButton : ""
           }`}
-        />
+        >
+          <Heart />
+        </button>
         <p className={styles.price}>{price} ₽ за занятие</p>
         <Button
           className={styles.transitionButton}

@@ -1,6 +1,10 @@
 .navigate {
+  max-width: 1120px;
+  padding-top: 100px;
+  position: absolute;
+  top: 10px;
+  left: 0;
   width: 100%;
-  max-width: 1376px;
   padding-left: 32px;
   padding-right: 32px;
 }
@@ -12,4 +16,34 @@
   padding-top: 32px;
   padding-bottom: 32px;
   align-items: center;
+}
+
+.findCount {
+  display: none;
+}
+
+.visible {
+  display: block;
+}
+
+@media screen and (width <=780px) {
+  .navigate {
+    position: relative;
+    padding-top: 0;
+    padding-left: 0;
+    padding-right: 0;
+    order: 3;
+  }
+
+  .nav_list {
+    justify-content: center;
+  }
+
+  .visible {
+    display: none;
+  }
+
+  .findCount {
+    display: block;
+  }
 }

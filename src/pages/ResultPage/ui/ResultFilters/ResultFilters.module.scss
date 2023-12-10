@@ -39,3 +39,44 @@
 .priceInput {
   max-width: 156px;
 }
+
+.clearFiltersBtn {
+  display: none;
+}
+
+@media screen and (width <= 780px) {
+  .filters {
+    padding: 40px 20px;
+    background-color: var(--ui-secondary-bg-color);
+    position: fixed;
+    left: 0;
+    top: 0;
+    transform: translate3d(-100vw, 0, 0);
+    width: 100vw;
+    height: 100vh;
+    max-width: 375px;
+  }
+
+  .filtersOpen {
+    z-index: 2;
+    transform: translate3d(0, 0, 0);
+    transition: transform 0.3s cubic-bezier(0, 0.52, 0, 1);
+  }
+
+  .subtitle {
+    display: block;
+    font-size: var(--font-size-xl);
+  }
+
+  .subtitle::after {
+    content: ":";
+  }
+
+  .buttonContainer {
+    align-items: normal;
+  }
+
+  .buttonContainer > button:last-child {
+    display: none;
+  }
+}
