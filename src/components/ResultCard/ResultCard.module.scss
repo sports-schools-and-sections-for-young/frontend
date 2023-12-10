@@ -152,10 +152,6 @@
   margin-bottom: 48px;
 }
 
-.likedButton {
-  background-image: url("../../assets/images/icons/result-heart-active.svg");
-}
-
 .price {
   @include manrope-header(24px, 600, 135%);
 
@@ -167,4 +163,39 @@
   background-color: #ff7a60 !important;
 
   @include manrope-header(16px, 600, 16px);
+}
+
+.disabledBtn {
+  background-color: #211d3b2e !important;
+}
+
+.btnLink {
+  text-decoration: none;
+}
+
+.heartBtn path {
+  stroke: #000;
+  fill: transparent;
+}
+
+.heartBtnActive path {
+  fill: #f00;
+  stroke: #f00;
+}
+
+@media screen and (width <= 780px) {
+  .heartBtn path {
+    stroke: #000;
+    fill: transparent;
+  }
+
+  .heartBtnActive path {
+    fill: var(--ui-primary-bg-color);
+  }
+
+  .phone {
+    @include manrope-header(20px, 600, 140%);
+
+    color: var(--text-black-color);
+  }
 }

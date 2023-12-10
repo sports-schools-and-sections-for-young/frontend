@@ -44,6 +44,11 @@
   display: none;
 }
 
+.genderContainer {
+  display: flex;
+  column-gap: 24px;
+}
+
 @media screen and (width <= 780px) {
   .filters {
     padding: 40px 20px;
@@ -55,6 +60,7 @@
     width: 100vw;
     height: 100vh;
     max-width: 375px;
+    overflow-y: scroll;
   }
 
   .filtersOpen {

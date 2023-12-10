@@ -1,9 +1,9 @@
 import { FC } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./TitleWithMobileNavigate.module.scss";
-import Arrow from "../../../../assets/images/icons/arrow-left-grey.svg?react";
 import FilterBtn from "../../../../assets/images/icons/filters-btn.svg?react";
 import { ITitleWithMobileNavigateProp } from "../../types";
+import ButtonBackMobile from "../../../../components/ui/ButtonBackMobile/ButtonBackMobile";
 
 const TitleWithMobileNavigate: FC<ITitleWithMobileNavigateProp> = (props) => {
   const {
@@ -18,17 +18,15 @@ const TitleWithMobileNavigate: FC<ITitleWithMobileNavigateProp> = (props) => {
     <nav className={styles.navigate}>
       <ul className={styles.nav_list}>
         <li>
-          <button
-            type="button"
+          <ButtonBackMobile
             className={styles.button}
+            type="button"
             onClick={() =>
               isFilter
                 ? toggleFilterPanel(false)
                 : navigate("/search", { state: { step: 4 } })
             }
-          >
-            <Arrow />
-          </button>
+          />
         </li>
         <li>{children}</li>
         <li>

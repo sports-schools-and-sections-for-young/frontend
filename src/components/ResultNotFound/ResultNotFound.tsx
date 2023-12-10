@@ -35,7 +35,7 @@ const ResultNotFound: FC<ResultNotFoundProps> = ({ setStep, step = 1 }) => {
           }
         }}
       >
-        Изменить
+        Изменить параметры
         <Icon type={IconTypes.RIGHT_ICON} />
       </Button>
     </div>

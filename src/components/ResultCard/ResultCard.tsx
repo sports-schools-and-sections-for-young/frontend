@@ -1,4 +1,5 @@
 import React, { Dispatch, FC, SetStateAction } from "react";
+import classnames from "classnames";
 import styles from "./ResultCard.module.scss";
 import Button from "../ui/Button/Button.tsx";
 import Heart from "../../assets/images/icons/result-heart-active.svg?react";
@@ -19,9 +20,20 @@ const ResultCard: FC<ResultCardProps> = ({
   setFavourite,
 }) => {
   if (!section) return null;
-  const { id, sport_type, title, address, price, phone, schedule } = section;
+  const { id, sport_type, title, address, price, phone, schedule, site } =
+    section;
+
+  const buttonClass = classnames({
+    [styles.transitionButton]: true,
+    [styles.disabledBtn]: site.length < 1,
+  });
 
   const isLiked = favourite.some((f) => f.id === id);
+
+  const heartBtnClass = classnames({
+    [styles.heartBtn]: true,
+    [styles.heartBtnActive]: isLiked,
+  });
 
   const toggleLike = (section: Section) => {
     if (isLiked) {
@@ -69,23 +81,29 @@ const ResultCard: FC<ResultCardProps> = ({
           type="button"
           aria-label="Поставить или снять лайк"
           onClick={() => toggleLike(section)}
-          className={`${styles.likeButton} ${
-            isLiked ? styles.likedButton : ""
-          }`}
+          className={styles.likeButton}
         >
-          <Heart />
+          <Heart className={heartBtnClass} />
         </button>
         <p className={styles.price}>{price} ₽ за занятие</p>
-        <Button
-          className={styles.transitionButton}
-          color={ButtonColor.PRIMARY}
-          testId={ButtonTestId.OTHER}
+        <a
+          href={site}
+          target="_blank"
+          rel="noreferrer"
+          className={styles.btnLink}
         >
-          <>
-            Перейти на сайт
-            <Icon type={IconTypes.RIGHT_ICON} />
-          </>
-        </Button>
+          <Button
+            disabled={site.length < 1}
+            className={buttonClass}
+            color={ButtonColor.PRIMARY}
+            testId={ButtonTestId.OTHER}
+          >
+            <>
+              Перейти на сайт
+              <Icon type={IconTypes.RIGHT_ICON} />
+            </>
+          </Button>
+        </a>
       </div>
     </article>
   );

@@ -1,4 +1,5 @@
 import { FC, useContext } from "react";
+import { useForm } from "react-hook-form";
 import classnames from "classnames";
 import { Sport } from "../../../../types";
 import styles from "./ResultFilters.module.scss";
@@ -14,7 +15,11 @@ import {
   ButtonColor,
   ButtonTestId,
 } from "../../../../components/ui/Button/types";
-import { IconColor, IconTypes } from "../../../../components/ui/Icon/types";
+import {
+  IconColor,
+  IconSize,
+  IconTypes,
+} from "../../../../components/ui/Icon/types";
 import { BadgeColor } from "../../../../components/ui/Badge/types";
 import {
   InputIcon,
@@ -25,10 +30,21 @@ import { distanceButtons } from "../../../../utils/constants/distanceButtons.ts"
 import { useSectionsFetch } from "../../../../hooks/useSectionsFetch.tsx";
 import { usePriceHandler } from "../../../../hooks/usePriceHandler.tsx";
 import TitleWithMobileNavigate from "../TitleWithMobileNavigate/TitleWithMobileNavigate.tsx";
+import GenderBtn from "../../../../components/ui/GenderBtn/GenderBtn.tsx";
+import { maxAge, minAge } from "../../../../utils/variables.ts";
+import { getDeclension } from "../../../../utils/functions/index.ts";
+
+interface AgeField {
+  age: number;
+}
 
 const ResultFilters: FC<IResultFiltersProps> = (props) => {
   const { clearFilters, setLoader, isOpen, toggleFilterPanel } = props;
   const { sports, sectionRequest, setSectionRequest } = useContext(AppContext);
+  const {
+    register,
+    formState: { errors },
+  } = useForm<AgeField>({ mode: "onChange" });
 
   const filtersClass = classnames({
     [styles.filters]: true,
@@ -75,6 +91,71 @@ const ResultFilters: FC<IResultFiltersProps> = (props) => {
             placeholder="Добавить вид спорта"
             type="text"
             itemClickHandler={addSport}
+          />
+        </li>
+        <li>
+          {" "}
+          <div className={styles.genderContainer}>
+            <GenderBtn
+              isActive={sectionRequest.gender === "Woman"}
+              onClick={() =>
+                setSectionRequest({
+                  ...sectionRequest,
+                  gender: sectionRequest.gender === "Woman" ? null : "Woman",
+                })
+              }
+            >
+              <Icon
+                type={IconTypes.GIRL}
+                size={IconSize.BIG}
+                color={IconColor.SECONDARY}
+              />{" "}
+              девочка
+            </GenderBtn>
+            <GenderBtn
+              isActive={sectionRequest.gender === "Man"}
+              onClick={() =>
+                setSectionRequest({
+                  ...sectionRequest,
+                  gender: sectionRequest.gender === "Man" ? null : "Man",
+                })
+              }
+            >
+              <Icon
+                type={IconTypes.BOY}
+                size={IconSize.BIG}
+                color={IconColor.SECONDARY}
+              />{" "}
+              мальчик
+            </GenderBtn>
+          </div>
+        </li>
+        <li>
+          <Input
+            labelName="Возраст ребёнка"
+            type="number"
+            className={styles.input}
+            {...register("age", {
+              min: {
+                value: minAge,
+                message: `Минимальный возраст: ${minAge} ${getDeclension(
+                  minAge,
+                  ["год", "года", "лет"],
+                )}`,
+              },
+              max: {
+                value: maxAge,
+                message: `Максимальный возраст: ${maxAge} ${getDeclension(
+                  maxAge,
+                  ["год", "года", "лет"],
+                )}`,
+              },
+              onChange: (e) =>
+                setSectionRequest({ ...sectionRequest, age: +e.target.value }),
+            })}
+            value={sectionRequest.age || ""}
+            hasError={Boolean(errors.age)}
+            errorMessage={errors.age?.message}
           />
         </li>
         <li className={styles.filter_item}>
