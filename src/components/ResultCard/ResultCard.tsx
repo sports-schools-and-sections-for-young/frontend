@@ -1,16 +1,18 @@
-import React, { FC } from "react";
+import React, { Dispatch, FC, SetStateAction } from "react";
 import { Link } from "react-router-dom";
 import styles from "./ResultCard.module.scss";
-import Button from "../../../../components/ui/Button/Button";
-import {
-  ButtonColor,
-  ButtonTestId,
-} from "../../../../components/ui/Button/types";
-import Icon from "../../../../components/ui/Icon/Icon";
-import { IconTypes } from "../../../../components/ui/Icon/types";
-import { ResultCardProps } from "../../types";
-import { getDeclension } from "../../../../utils/functions";
-import { Section } from "../../../../types";
+import Button from "../ui/Button/Button.tsx";
+import { ButtonColor, ButtonTestId } from "../ui/Button/types";
+import Icon from "../ui/Icon/Icon.tsx";
+import { IconTypes } from "../ui/Icon/types";
+import { getDeclension } from "../../utils/functions";
+import { Section } from "../../types";
+
+interface ResultCardProps {
+  section: Section | null;
+  favourite: Section[];
+  setFavourite: Dispatch<SetStateAction<Section[]>>;
+}
 
 const ResultCard: FC<ResultCardProps> = ({
   section,

@@ -21,12 +21,6 @@ export interface IResultFiltersProps
   setLoader: Dispatch<SetStateAction<boolean>>;
 }
 
-export type ResultCardProps = {
-  section: Section | null;
-  favourite: Section[];
-  setFavourite: Dispatch<SetStateAction<Section[]>>;
-};
-
 export type mapViewProps = {
   setActiveSection: Dispatch<SetStateAction<Section | null>>;
 };
