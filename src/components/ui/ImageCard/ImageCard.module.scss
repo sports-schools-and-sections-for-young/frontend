@@ -32,6 +32,22 @@
   height: 463px;
 }
 
+@media screen and (width <= 1200px) {
+  .reason-image {
+    max-width: 400px;
+    aspect-ratio: 16/17;
+    height: 416px;
+  }
+}
+
+@media screen and (width <= 885px) {
+  .reason-image {
+    max-width: 350px;
+    aspect-ratio: 16/17;
+    height: 376px;
+  }
+}
+
 .main-image {
   max-width: 445px;
   aspect-ratio: 16/19;

@@ -3,7 +3,6 @@
 .cooperation {
   @include section(column);
 
-  box-sizing: border-box;
   min-height: 875px;
   align-items: center;
 }
@@ -18,8 +17,12 @@
 .twoColumns {
   @include section(row);
 
-  justify-content: space-between;
+  align-items: center;
   gap: 30px;
+}
+
+.rightColumn {
+  display: contents;
 }
 
 .headerQuestion {
@@ -42,6 +45,46 @@
 }
 
 .image {
-  position: relative;
-  top: 108px;
+  margin-top: 108px;
+}
+
+@media screen and (width <= 1100px) {
+  .sectionContainer {
+    padding: 40px 50px;
+  }
+
+  .headerQuestion {
+    @include manrope-header(32px, 700);
+  }
+}
+
+@media screen and (width <= 750px) {
+  .twoColumns {
+    @include section(column);
+
+    gap: 0;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .leftColumn {
+    align-items: center;
+    justify-content: center;
+  }
+
+  .rightColumn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .image {
+    margin-top: 50px;
+  }
+}
+
+@media screen and (width <= 500px) {
+  .sectionContainer {
+    padding: 70px 30px;
+  }
 }

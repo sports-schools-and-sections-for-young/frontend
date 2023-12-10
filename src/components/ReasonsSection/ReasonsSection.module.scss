@@ -27,7 +27,7 @@
 }
 
 .container {
-  width: 100%;
+  max-width: 100%;
 
   @include section(row);
 
@@ -36,7 +36,14 @@
   justify-content: space-between;
 }
 
-@media screen and (width <= 1125px) {
+@media screen and (width <= 1340px) {
+  .container {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+}
+
+@media screen and (width <= 1100px) {
   .reasons {
     padding: 40px 50px;
   }
@@ -53,15 +60,13 @@
 
   .container {
     padding-top: 40px;
+    padding-left: 0;
+    padding-right: 0;
     gap: 25px;
   }
 }
 
-@media screen and (width <= 740px) {
-  .reasons {
-    padding: 40px 20px;
-  }
-
+@media screen and (width <= 750px) {
   .container {
     display: flex;
     flex-flow: column nowrap;

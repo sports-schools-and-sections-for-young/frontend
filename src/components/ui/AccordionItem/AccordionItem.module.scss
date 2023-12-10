@@ -3,7 +3,7 @@
   display: block;
   list-style: none;
   width: 100%;
-  min-width: 621px;
+  max-width: 621px;
   font-family: var(--font-family_main);
   color: var(--text-black-color);
   font-weight: 600;
@@ -76,5 +76,21 @@
 
 .underline {
   width: 70%;
-  border-bottom: 1px solid #807c7c;
+  border-bottom: 2px solid #00000024;
+}
+
+@media screen and (width <= 1340px) {
+  .item {
+    max-width: 472px;
+  }
+
+  .title {
+    margin-bottom: 18px;
+    font-size: var(--font-line-s);
+    width: 95%;
+  }
+
+  .underline {
+    width: 90%;
+  }
 }
