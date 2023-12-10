@@ -31,7 +31,6 @@ const ResultNotFound: FC<ResultNotFoundProps> = ({ setStep, step = 1 }) => {
         onClick={() => {
           navigate("/search", { state: { step: 1 } });
           if (setStep) {
-            console.log(step);
             setStep(step);
           }
         }}
