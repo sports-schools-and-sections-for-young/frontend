@@ -1,6 +1,7 @@
 import { FC, useContext, useMemo, useState } from "react";
 import { useDebouncedCallback } from "use-debounce";
 import { useNavigate } from "react-router-dom";
+import { geolocation } from "yandex-maps";
 import Map from "../../../../components/Map/Map.tsx";
 import { StepProps } from "../../types";
 import styles from "./StepLocation.module.scss";
@@ -30,11 +31,20 @@ import {
   getCoordinates,
   getGeosuggestAddresses,
 } from "../../../../utils/functions";
+import DistanceCircle from "../../../../components/Map/DistanceCircle/DistanceCircle.tsx";
+
+interface IMapInstance {
+  geolocation: {
+    get: (
+      options?: geolocation.IGeolocationOptions,
+    ) => Promise<{ geoObjects: { position: [number, number] } }>;
+  };
+}
 
 const StepLocation: FC<StepProps> = ({ step, setStep }) => {
   const { sectionRequest, setSectionRequest } = useContext(AppContext);
 
-  const [map, setMap] = useState();
+  const [map, setMap] = useState<IMapInstance>();
 
   const navigate = useNavigate();
 
@@ -47,10 +57,9 @@ const StepLocation: FC<StepProps> = ({ step, setStep }) => {
 
   const getGeoLocation = () => {
     if (map) {
-      // @ts-ignore
       return map.geolocation
-        .get({ provider: "yandex", mapStateAutoApply: true })
-        .then((result: { geoObjects: { position: [number, number] } }) => {
+        .get({ provider: "auto", mapStateAutoApply: true })
+        .then((result) => {
           setSectionRequest({
             ...sectionRequest,
             location: result.geoObjects.position,
@@ -144,6 +153,9 @@ const StepLocation: FC<StepProps> = ({ step, setStep }) => {
         </div>
         <Map center={sectionRequest.location}>
           <LocationPlacemark setAddress={getAddress} />
+          {sectionRequest.distance && (
+            <DistanceCircle distance={sectionRequest.distance * 1000} />
+          )}
         </Map>
         <Button
           onClick={() => {

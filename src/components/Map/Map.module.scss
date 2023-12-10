@@ -12,8 +12,8 @@
   overflow: hidden;
 }
 
-[class*="-balloon"] {
-  border-radius: 6px;
+[class*="-hint"] {
+  visibility: hidden;
 }
 
 .objects {

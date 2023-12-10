@@ -10,7 +10,7 @@ interface LocationPlacemarkProps {
 const LocationPlacemark: FC<LocationPlacemarkProps> = ({ setAddress }) => {
   const { sectionRequest, setSectionRequest } = useContext(AppContext);
 
-  const pointRef = useRef(undefined);
+  const pointRef = useRef<any>(undefined);
 
   return (
     <Placemark
@@ -21,12 +21,10 @@ const LocationPlacemark: FC<LocationPlacemarkProps> = ({ setAddress }) => {
         iconImageHref: Icon,
         iconImageSize: [40, 40],
         iconImageOffset: [-20, -40],
-        hasBalloon: true,
         draggable: true,
       }}
       modules={["geoObject.addon.balloon", "geoObject.addon.hint"]}
       onDragEnd={() => {
-        // @ts-ignore
         const newCoords = pointRef.current?.geometry._coordinates;
         setSectionRequest({ ...sectionRequest, location: newCoords });
         setAddress(newCoords);

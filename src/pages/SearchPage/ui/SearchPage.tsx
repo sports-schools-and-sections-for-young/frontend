@@ -37,7 +37,7 @@ const SearchPage: FC<SearchPageProps> = (props) => {
     <StepSports setStep={setStep} step={step} />,
     <StepAbout setStep={setStep} step={step} />,
     <StepLocation setStep={setStep} step={step} />,
-    <StepPrice />,
+    <StepPrice setStep={setStep} step={step} />,
   ];
 
   return (

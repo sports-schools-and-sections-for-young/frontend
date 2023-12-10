@@ -1,13 +1,13 @@
 import { FC, useContext, useState } from "react";
 import styles from "./ResultList.module.scss";
 import AppContext from "../../../../context/AppContext";
-import ResultCard from "../ResultCard/ResultCard";
+import ResultCard from "../../../../components/ResultCard/ResultCard";
 import { ResultListProps } from "../../types";
 import MapView from "../MapView/MapView";
 import { Section } from "../../../../types";
 import { useFavourite } from "../../../../hooks/useLocalFavourites";
 import Pagination from "../../../../components/ui/Pagination/Pagination";
-import ResultNotFound from "../ResultNotFound/ResultNotFound";
+import ResultNotFound from "../../../../components/ResultNotFound/ResultNotFound";
 
 const ResultList: FC<ResultListProps> = (props) => {
   const { sectionRequest, filteredSections } = useContext(AppContext);
