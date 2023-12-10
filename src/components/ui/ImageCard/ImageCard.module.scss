@@ -35,7 +35,21 @@
 .main-image {
   max-width: 445px;
   aspect-ratio: 16/19;
-  height: 527px;
+  max-height: 527px;
+}
+
+@media screen and (width <= 1340px) {
+  .main-image {
+    max-width: 400px;
+    max-height: 430px;
+  }
+}
+
+@media screen and (width <= 997px) {
+  .main-image {
+    max-width: 300px;
+    max-height: 330px;
+  }
 }
 
 .why-we-image {

@@ -4,7 +4,8 @@
   @include section(column);
 
   background-color: var(--blue-background-color);
-  padding: 68px 165px 116px;
+  padding-top: 68px;
+  padding-bottom: 116px;
   align-items: center;
 }
 
@@ -33,4 +34,53 @@
   padding-top: 60px;
   gap: 35px;
   justify-content: space-between;
+}
+
+@media screen and (width <= 1125px) {
+  .reasons {
+    padding: 40px 50px;
+  }
+
+  .sectionContainer {
+    align-items: start;
+  }
+
+  .title {
+    @include manrope-header(32px, 700, 100%);
+
+    text-align: start;
+  }
+
+  .container {
+    padding-top: 40px;
+    gap: 25px;
+  }
+}
+
+@media screen and (width <= 740px) {
+  .reasons {
+    padding: 40px 20px;
+  }
+
+  .container {
+    display: flex;
+    flex-flow: column nowrap;
+    transition: transform 0.5s ease;
+    align-items: center;
+  }
+
+  // .dots {
+  //   text-align: center;
+  //   margin-top: 24px;
+  // }
+
+  // .dot {
+  //   display: inline-block;
+  //   width: 12px;
+  //   height: 12px;
+  //   border-radius: 50%;
+  //   background-color: var(--ui-disabled-color);
+  //   margin: 0 12px;
+  //   cursor: pointer;
+  // }
 }

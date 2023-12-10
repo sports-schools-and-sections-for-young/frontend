@@ -6,7 +6,8 @@
   @include section(row);
 
   justify-content: center;
-  padding: 85px 161px;
+  padding-top: 85px;
+  padding-bottom: 85px;
 }
 
 .sectionContainer {
@@ -55,4 +56,92 @@
   @include manrope-header(18px, 800, 177%);
 
   letter-spacing: 0.2px;
+}
+
+@media screen and (width <= 1340px) {
+  .sectionContainer {
+    align-items: center;
+    max-width: fit-content;
+  }
+
+  .actionContainer {
+    flex-direction: column;
+    align-items: start;
+    margin-top: auto;
+  }
+
+  .button {
+    width: 80%;
+  }
+}
+
+@media screen and (width <= 1125px) {
+  .title {
+    @include manrope-header(42px, 700);
+
+    padding-bottom: 32px;
+  }
+
+  .about {
+    padding: 40px 50px;
+  }
+
+  .description {
+    padding-bottom: 20px;
+  }
+}
+
+@media screen and (width <= 750px) {
+  .sectionContainer {
+    flex-direction: column-reverse;
+    gap: 22px;
+  }
+
+  .leftPart {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .title {
+    @include manrope-header(32px, 700);
+
+    text-align: center;
+    max-width: 100%;
+  }
+
+  .description {
+    @include manrope-header(18px, 500, 155%);
+
+    text-align: center;
+    max-width: 100%;
+  }
+
+  .actionContainer {
+    align-items: center;
+  }
+  
+}
+
+@media screen and (width <= 500px) {
+  .about {
+    padding: 40px 20px;
+  }
+  
+  .leftPart {
+    padding: 0;
+  }
+
+  .title {
+    padding-top: 31px;
+    text-align: start;
+  }
+
+  .description {
+    text-align: start;
+    padding-bottom: 30px;
+  }
+
+  .button {
+    width: 100%;
+  }
 }

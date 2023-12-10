@@ -14,7 +14,7 @@
   @include section(row);
 
   justify-content: space-between;
-  width: calc(100% - 320px);
+  width: 100%;
   max-width: 1120px;
   align-items: center;
 }
@@ -55,4 +55,50 @@
   display: flex;
   column-gap: 48px;
   align-items: center;
+}
+
+.profileButton {
+  display: none;
+}
+
+.hiddenText {
+  display: none;
+}
+
+@media screen and (width <= 1290px) {
+  .header {
+    padding: 14px 16px;
+  }
+}
+
+@media screen and (width <= 632px) {
+  .container {
+    @include section(row);
+
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+  }
+
+  .button {
+    display: none;
+  }
+
+  .profileButton {
+    display: block;
+    position: relative;
+    background-image: url("../../../assets/images/profile-menu-icon.png");
+    background-color: transparent;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border: none;
+    width: 36px;
+    height: 36px;
+  }
+}
+
+@media screen and (width <= 500px) {
+  .buttonContainer {
+    column-gap: 25px;
+  }
 }

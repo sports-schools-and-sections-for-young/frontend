@@ -44,6 +44,13 @@ const Header: FC = () => {
               <Icon type={IconTypes.RIGHT_ICON} />
             </>
           </Button>
+          <button
+            type="button"
+            className={styles.profileButton}
+            onClick={() => navigate("/signin")}
+          >
+            <span className={styles.hiddenText}>Войти</span>
+          </button>
         </div>
       </div>
     </header>
