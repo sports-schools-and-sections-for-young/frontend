@@ -1,15 +1,14 @@
 import { Link, useNavigate } from "react-router-dom";
 import { SubmitHandler, useForm } from "react-hook-form";
 import styles from "./Login.module.scss";
-import ImageCard from "../../components/ui/ImageCard/ImageCard";
-import { ImageCardSize } from "../../components/ui/ImageCard/types";
 import Button from "../../components/ui/Button/Button";
 import { ButtonColor, ButtonTestId } from "../../components/ui/Button/types";
 import Icon from "../../components/ui/Icon/Icon";
 import { IconColor, IconTypes } from "../../components/ui/Icon/types";
 import SearchHeader from "../SearchPage/ui/SearchHeader/SearchHeader";
 import Input from "../../components/ui/Input/Input";
-import cooperation from "../../assets/images/auth-img.svg";
+import AuthBannerForm from "../../components/ui/AuthBannerForm/AuthBannerForm";
+import Footer from "../../components/ui/Footer/Footer";
 
 interface ILogin {
   email: string;
@@ -52,10 +51,9 @@ function Login() {
           onSubmit={handleSubmit(onSubmit)}
           noValidate
         >
-          <ImageCard
-            size={ImageCardSize.AUTH_IMG}
-            src={cooperation}
-            alt="Баннер"
+          <AuthBannerForm
+            title="Вход для"
+            text="Войдите для просмотра и редактирования своих секций"
           />
           <div className={styles.formColumn}>
             <h3 className={styles.title}>Вход</h3>
@@ -123,8 +121,13 @@ function Login() {
                   </>
                 </Button>
                 <Link
-                  to="/" // страница восстановления пароля
+                  to="/signin"
                   className={styles.forgotPassword}
+                  onClick={() => {
+                    alert(
+                      "Скоро здесь будет функционал восстановления забытого пароля",
+                    );
+                  }}
                 >
                   Забыли пароль?
                 </Link>
@@ -140,7 +143,7 @@ function Login() {
           </div>
         </form>
       </div>
-      <div className={styles.darkPart} />
+      <Footer />
     </main>
   );
 }

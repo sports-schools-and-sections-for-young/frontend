@@ -1,15 +1,14 @@
 import { Link, useNavigate } from "react-router-dom";
 import { SubmitHandler, useForm } from "react-hook-form";
 import styles from "../Login/Login.module.scss";
-import ImageCard from "../../components/ui/ImageCard/ImageCard";
-import { ImageCardSize } from "../../components/ui/ImageCard/types";
 import Button from "../../components/ui/Button/Button";
 import { ButtonColor, ButtonTestId } from "../../components/ui/Button/types";
 import Icon from "../../components/ui/Icon/Icon";
 import { IconColor, IconTypes } from "../../components/ui/Icon/types";
 import SearchHeader from "../SearchPage/ui/SearchHeader/SearchHeader";
 import Input from "../../components/ui/Input/Input";
-import cooperation from "../../assets/images/auth-img.svg";
+import AuthBannerForm from "../../components/ui/AuthBannerForm/AuthBannerForm";
+import Footer from "../../components/ui/Footer/Footer";
 
 export interface IRegister {
   email: string;
@@ -56,10 +55,9 @@ function Register() {
           onSubmit={handleSubmit(onSubmit)}
           noValidate
         >
-          <ImageCard
-            size={ImageCardSize.AUTH_IMG}
-            src={cooperation}
-            alt="Баннер"
+          <AuthBannerForm
+            title="Регистрация для"
+            text="Зарегистрируйте спортнивную школу и Вы сможете добавлять секции"
           />
           <div className={styles.formColumn}>
             <h3 className={styles.title}>Регистрация</h3>
@@ -84,79 +82,6 @@ function Register() {
                   </span>
                 )}
               </div>
-
-              <div className={styles.inputWrapper}>
-                <Input
-                  {...register("name", {
-                    required: "Введите наименование спортивной организации",
-                    minLength: {
-                      value: 5,
-                      message: "Поле должно содержать от 5 до 200 символов",
-                    },
-                    maxLength: {
-                      value: 200,
-                      message: "Поле должно содержать от 5 до 200 символов",
-                    },
-                  })}
-                  name="name"
-                  placeholder="Название школы *"
-                  id="name-input"
-                  type="text"
-                />
-                {errors?.name && (
-                  <span className={styles.inputError}>
-                    {errors.name.message}
-                  </span>
-                )}
-              </div>
-
-              <div className={styles.inputWrapper}>
-                <Input
-                  {...register("address", {
-                    required: "Введите: индекс, город, район, улица, дом",
-                    minLength: {
-                      value: 10,
-                      message: "Введите: индекс, город, район, улица, дом",
-                    },
-                    maxLength: {
-                      value: 200,
-                      message: "Введите: индекс, город, район, улица, дом",
-                    },
-                  })}
-                  name="address"
-                  placeholder="Адрес школы *"
-                  id="address-input"
-                  type="text"
-                />
-                {errors?.address && (
-                  <span className={styles.inputError}>
-                    {errors.address.message}
-                  </span>
-                )}
-              </div>
-
-              <div className={styles.inputWrapper}>
-                <Input
-                  {...register("site", {
-                    required: "Введите сайт спортивной организации",
-                    pattern: {
-                      value:
-                        /^https?:\/\/(www\.)?[a-zA-Z0-9-]+\.[a-z]{2,}(\.[a-z]{2,})?$/,
-                      message: "Введите сайт в формате https://www.example.com",
-                    },
-                  })}
-                  name="site"
-                  placeholder="Сайт школы *"
-                  id="site-input"
-                  type="text"
-                />
-                {errors?.site && (
-                  <span className={styles.inputError}>
-                    {errors.site.message}
-                  </span>
-                )}
-              </div>
-
               <div className={styles.inputWrapper}>
                 <Input
                   {...register("password", {
@@ -191,7 +116,7 @@ function Register() {
                       "Пароли должны совпадать",
                   })}
                   name="passwordConfirmation"
-                  placeholder="Подтверждение пароля *"
+                  placeholder="Подтвердить пароля *"
                   id="password-confirmation-input"
                   type="password"
                 />
@@ -222,7 +147,7 @@ function Register() {
           </div>
         </form>
       </div>
-      <div className={styles.darkPart} />
+      <Footer />
     </main>
   );
 }
