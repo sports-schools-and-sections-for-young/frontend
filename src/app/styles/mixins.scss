@@ -21,6 +21,12 @@
   width: 100%;
 }
 
+@mixin tablet-1100 {
+  @media (max-width: $max-tablet-width) {
+    @content;
+  }
+}
+
 @mixin tablet-1000 {
   @media (max-width: $tablet-width) {
     @content;
@@ -29,6 +35,12 @@
 
 @mixin mobile-750 {
   @media (max-width: $mobile-width) {
+    @content;
+  }
+}
+
+@mixin mobile-500 {
+  @media (max-width: $mini-mobile-width) {
     @content;
   }
 }

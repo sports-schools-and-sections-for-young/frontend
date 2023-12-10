@@ -6,4 +6,5 @@ export enum AppRoutes {
   SIGN_IN = "sign_in",
   REGISTRATION = "registration",
   NOT_FOUND = "not_found",
+  QUIZ = "quiz_page",
 }
