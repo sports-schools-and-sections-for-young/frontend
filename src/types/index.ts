@@ -27,6 +27,7 @@ export interface Section {
   aviable: number;
   price: number;
   free_class: boolean;
+  site: string;
 }
 
 export interface YandexAnswer {

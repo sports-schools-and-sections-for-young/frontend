@@ -1,17 +1,19 @@
-import { FC, useContext } from "react";
+import { FC, useContext, useState } from "react";
 import Map from "../../../../components/Map/Map.tsx";
 import AppContext from "../../../../context/AppContext.ts";
 import SectionPlacemark from "../../../../components/Map/SectionPlacemark/SectionPlacemark.tsx";
 import { Section } from "../../../../types";
 import styles from "./MapView.module.scss";
-import { mapViewProps } from "../../types/index.ts";
+import { mapViewProps } from "../../types";
 
 const MapView: FC<mapViewProps> = ({ setActiveSection }) => {
   const { sectionRequest, filteredSections } = useContext(AppContext);
   const { location } = sectionRequest;
+  const [selected, setSelected] = useState<Section | null>(null);
 
-  const handlePlacemarkHover = (section: Section) => {
+  const handlePlacemarkClick = (section: Section) => {
     setActiveSection(section);
+    setSelected(section);
   };
 
   return (
@@ -21,7 +23,8 @@ const MapView: FC<mapViewProps> = ({ setActiveSection }) => {
           <SectionPlacemark
             key={section.id}
             section={section}
-            onHover={() => handlePlacemarkHover(section)}
+            onClick={() => handlePlacemarkClick(section)}
+            selected={section.id === selected?.id}
           />
         ))}
       </Map>

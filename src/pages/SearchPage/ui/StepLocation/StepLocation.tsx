@@ -31,6 +31,7 @@ import {
   getCoordinates,
   getGeosuggestAddresses,
 } from "../../../../utils/functions";
+import DistanceCircle from "../../../../components/Map/DistanceCircle/DistanceCircle.tsx";
 
 interface IMapInstance {
   geolocation: {
@@ -57,7 +58,7 @@ const StepLocation: FC<StepProps> = ({ step, setStep }) => {
   const getGeoLocation = () => {
     if (map) {
       return map.geolocation
-        .get({ provider: "yandex", mapStateAutoApply: true })
+        .get({ provider: "auto", mapStateAutoApply: true })
         .then((result) => {
           setSectionRequest({
             ...sectionRequest,
@@ -152,6 +153,9 @@ const StepLocation: FC<StepProps> = ({ step, setStep }) => {
         </div>
         <Map center={sectionRequest.location}>
           <LocationPlacemark setAddress={getAddress} />
+          {sectionRequest.distance && (
+            <DistanceCircle distance={sectionRequest.distance * 1000} />
+          )}
         </Map>
         <Button
           onClick={() => {

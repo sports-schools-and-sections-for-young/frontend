@@ -21,7 +21,6 @@ const LocationPlacemark: FC<LocationPlacemarkProps> = ({ setAddress }) => {
         iconImageHref: Icon,
         iconImageSize: [40, 40],
         iconImageOffset: [-20, -40],
-        hasBalloon: true,
         draggable: true,
       }}
       modules={["geoObject.addon.balloon", "geoObject.addon.hint"]}
