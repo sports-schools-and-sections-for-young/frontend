@@ -5,12 +5,7 @@
 }
 
 .title {
-  font-size: var(--font-size-heading-h2);
-  font-weight: var(--font-weight-700);
-  line-height: var(--font-line-heading-h2);
-  max-width: 850px;
-  text-align: center;
-  margin: 32px 0 20px;
+  @include step-title;
 }
 
 .span {
@@ -18,20 +13,37 @@
 }
 
 .subtitle {
-  font-size: var(--font-size-l);
-  font-weight: var(--font-weight-500);
-  line-height: var(--font-line-l);
-  color: #211d3b6b;
+  @include step-subtitle;
+
   margin-bottom: 48px;
+
+  @include mobile-750 {
+    margin-bottom: 16px;
+  }
 }
 
 .buttonContainer {
   display: flex;
   gap: 24px;
   margin-bottom: 28px;
+
+  @include mobile-750 {
+    margin-bottom: 16px;
+  }
 }
 
 .input {
   max-width: 240px;
-  margin-bottom: 70px;
+  margin-bottom: 44px;
+
+  @include mobile-750 {
+    max-width: 100%;
+    margin-bottom: 10px;
+  }
+}
+
+.button {
+  @include mobile-750 {
+    width: 100%;
+  }
 }

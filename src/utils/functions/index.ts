@@ -1,5 +1,5 @@
 import { GEOCODER_KEY, GEOSUGGEST_KEY } from "../variables.ts";
-import { YandexAnswer } from "../../types";
+import { IMapInstance, YandexAnswer } from "../../types";
 
 export function getDeclension(number: number, words: string[]) {
   return words[
@@ -34,4 +34,16 @@ export const getGeosuggestAddresses = async (value: string) => {
   }
 
   return [];
+};
+
+export const getGeoLocation = (
+  map: IMapInstance,
+  defaultLocation: [number, number],
+) => {
+  if (map) {
+    return map.geolocation
+      .get({ provider: "auto", mapStateAutoApply: true })
+      .then((result) => result.geoObjects.position);
+  }
+  return defaultLocation;
 };

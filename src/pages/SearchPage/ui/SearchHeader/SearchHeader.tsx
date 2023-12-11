@@ -66,7 +66,12 @@ const SearchHeader: FC<SearchHeaderProps> = (props) => {
             )}
           </>
         )}
-        <CloseButton className={styles.close} onClick={() => navigate("/")} />
+        {!minimal && (
+          <CloseButton className={styles.close} onClick={() => navigate("/")} />
+        )}
+        {minimal && !isMobileScreen && (
+          <CloseButton className={styles.close} onClick={() => navigate("/")} />
+        )}
       </div>
       {!minimal && (
         <div className={styles.secondLine}>
