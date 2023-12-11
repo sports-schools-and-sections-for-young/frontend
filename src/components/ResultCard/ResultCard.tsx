@@ -1,9 +1,7 @@
 import React, { Dispatch, FC, SetStateAction } from "react";
 import classnames from "classnames";
 import styles from "./ResultCard.module.scss";
-import Button from "../ui/Button/Button.tsx";
-import Heart from "../../assets/images/icons/result-heart-active.svg?react";
-import { ButtonColor, ButtonTestId } from "../ui/Button/types";
+import Heart from "../../assets/images/icons/heart.svg?react";
 import Icon from "../ui/Icon/Icon.tsx";
 import { IconTypes } from "../ui/Icon/types";
 import { Section } from "../../types";
@@ -86,23 +84,9 @@ const ResultCard: FC<ResultCardProps> = ({
           <Heart className={heartBtnClass} />
         </button>
         <p className={styles.price}>{price} ₽ за занятие</p>
-        <a
-          href={site}
-          target="_blank"
-          rel="noreferrer"
-          className={styles.btnLink}
-        >
-          <Button
-            disabled={site.length < 1}
-            className={buttonClass}
-            color={ButtonColor.PRIMARY}
-            testId={ButtonTestId.OTHER}
-          >
-            <>
-              Перейти на сайт
-              <Icon type={IconTypes.RIGHT_ICON} />
-            </>
-          </Button>
+        <a href={site} target="_blank" rel="noreferrer" className={buttonClass}>
+          Перейти на сайт
+          <Icon type={IconTypes.RIGHT_ICON} />
         </a>
       </div>
     </article>

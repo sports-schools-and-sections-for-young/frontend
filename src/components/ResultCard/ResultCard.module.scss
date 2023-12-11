@@ -146,8 +146,6 @@
   height: 32px;
   background-color: transparent;
   cursor: pointer;
-  background-image: url("../../assets/images/icons/result-heart.svg");
-  background-size: contain;
   border: none;
   margin-bottom: 48px;
 }
@@ -160,13 +158,26 @@
 }
 
 .transitionButton {
-  background-color: #ff7a60 !important;
-
   @include manrope-header(16px, 600, 16px);
+
+  cursor: pointer;
+  border-radius: var(--common-radius);
+  padding: 12px 24px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: none;
+  position: relative;
+  color: #fff;
+  background-color: #ff7a60;
+  text-decoration: none;
 }
 
 .disabledBtn {
-  background-color: #211d3b2e !important;
+  background-color: #211d3b2e;
+  pointer-events: none;
 }
 
 .btnLink {
@@ -174,28 +185,35 @@
 }
 
 .heartBtn path {
-  stroke: #000;
   fill: transparent;
 }
 
 .heartBtnActive path {
-  fill: #f00;
-  stroke: #f00;
+  fill: var(--ui-primary-bg-color);
 }
 
-@media screen and (width <= 780px) {
-  .heartBtn path {
-    stroke: #000;
-    fill: transparent;
-  }
+.heartBtn:hover path {
+  animation: beat 0.6s 0.3s infinite;
+}
 
-  .heartBtnActive path {
-    fill: var(--ui-primary-bg-color);
-  }
-
+@media screen and (width <=780px) {
   .phone {
     @include manrope-header(20px, 600, 140%);
 
     color: var(--text-black-color);
+  }
+}
+
+@keyframes beat {
+  0% {
+    transform: scale(1);
+  }
+
+  30% {
+    transform: scale(1.03);
+  }
+
+  60% {
+    transform: scale(1);
   }
 }
