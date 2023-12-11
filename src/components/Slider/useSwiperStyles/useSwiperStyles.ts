@@ -16,16 +16,32 @@ const useSwiperStyles = () => {
         background-size: contain;
         background-color: transparent;
       }
+      .swiper-button-next {
+        margin-right: -40px; 
+      }
+      
+      .swiper-button-prev {
+        margin-left: -40px;
+      }
 
-      @media screen and (max-width: 600px) {
+      @media screen and (max-width: 750px) {
         .swiper-button-next,
         .swiper-button-prev {
-          width: 36px;
-          height: 36px;
+          width: 50px;
+          height: 50px;
+          top: 18%;
+        }
+
+        .swiper-button-next {
+          margin-right: -25px;
+        }
+        
+        .swiper-button-prev {
+          margin-left: -25px;
         }
       }
 
-      .swiper-button-next.swiper-button-disabled, 
+          .swiper-button-next.swiper-button-disabled, 
       .swiper-button-prev.swiper-button-disabled {
         opacity: 0;
       }
