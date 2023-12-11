@@ -29,7 +29,7 @@ const useSwiperStyles = () => {
         .swiper-button-prev {
           width: 50px;
           height: 50px;
-          top: 18%;
+          top: 40%;
         }
 
         .swiper-button-next {
