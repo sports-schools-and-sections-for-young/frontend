@@ -38,3 +38,72 @@
   max-width: 736px;
   text-align: center;
 }
+
+@media screen and (width <= 1100px) {
+  .quiz {
+    padding: 109px 160px 208px;
+  }
+
+  .quizContainer {
+    max-width: 924px;
+    background-size: 824px 217px;
+    background-position: bottom 55px center;
+  }
+
+  .title {
+    max-width: 445px;
+
+    @include manrope-header(32px, 700, 140%);
+  }
+
+  .description {
+    @include manrope-header(18px, 400, 140%);
+
+    padding-bottom: 62px;
+    max-width: 360px;
+  }
+
+  .button {
+    width: 40%;
+  }
+}
+
+// @media screen and (width <= 1000px) {
+//   .quizContainer {
+//     background-image: none;
+//   }
+// }
+
+@media screen and (width <= 750px) {
+  .quiz {
+    padding: 40px 50px 180px;
+  }
+
+  .button {
+    width: 80%;
+  }
+}
+
+@media screen and (width <= 500px) {
+  .quiz {
+    padding: 0 20px 80px;
+  }
+
+  .quizContainer {
+    max-width: 440px;
+    background-size: 350px 83px;
+    background-position: top 165px center;
+  }
+
+  .title {
+    text-align: start;
+  }
+
+  .description {
+    text-align: start;
+  }
+
+  .button {
+    width: 100%;
+  }
+}
