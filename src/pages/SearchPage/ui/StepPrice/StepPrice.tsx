@@ -24,6 +24,8 @@ import { usePriceHandler } from "../../../../hooks/usePriceHandler.tsx";
 import ResultNotFound from "../../../../components/ResultNotFound/ResultNotFound.tsx";
 import { PreloaderSize } from "../../../../components/ui/Preloader/types";
 import { StepProps } from "../../types";
+import { useResize } from "../../../../hooks/useResize.tsx";
+import Checkbox from "../../../../components/ui/Checkbox/Checkbox.tsx";
 
 const StepPrice: FC<StepProps> = ({ setStep }) => {
   const { sectionRequest, fetchedSections } = useContext(AppContext);
@@ -31,6 +33,8 @@ const StepPrice: FC<StepProps> = ({ setStep }) => {
   const [loader, setLoader] = useState(false);
 
   const navigate = useNavigate();
+
+  const { isMobileScreen } = useResize();
 
   const fetchSections = useSectionsFetch(setLoader);
   const { maxPrice, setMaxPrice, setFreeTrial } = usePriceHandler();
@@ -64,6 +68,7 @@ const StepPrice: FC<StepProps> = ({ setStep }) => {
           <div className={styles.optionWrapper}>
             <Input
               type="number"
+              labelName="Максимум"
               iconType={InputIcon.RUB}
               iconPosition={InputIconPosition.LEFT}
               className={styles.input}
@@ -72,23 +77,32 @@ const StepPrice: FC<StepProps> = ({ setStep }) => {
                 setMaxPrice(+evt.target.value)
               }
             />
-            <Badge
-              isActive={sectionRequest.freeTrial}
-              onClick={setFreeTrial}
-              color={BadgeColor.PRIMARY}
-              className={styles.badge}
-            >
-              <Icon type={IconTypes.COOKIE} color={IconColor.SECONDARY} />
-              Бесплатное пробное
-              {sectionRequest.freeTrial && (
-                <Icon type={IconTypes.CROSS} color={IconColor.SECONDARY} />
-              )}
-            </Badge>
+            {!isMobileScreen ? (
+              <Badge
+                isActive={sectionRequest.freeTrial}
+                onClick={setFreeTrial}
+                color={BadgeColor.PRIMARY}
+                className={styles.badge}
+              >
+                <Icon type={IconTypes.COOKIE} color={IconColor.SECONDARY} />
+                Бесплатное пробное
+                {sectionRequest.freeTrial && (
+                  <Icon type={IconTypes.CROSS} color={IconColor.SECONDARY} />
+                )}
+              </Badge>
+            ) : (
+              <Checkbox
+                title="Бесплатное пробное"
+                checked={sectionRequest.freeTrial}
+                onChange={setFreeTrial}
+              />
+            )}
           </div>
           <Button
             onClick={() => navigate("/results")}
             color={ButtonColor.PRIMARY}
             testId={ButtonTestId.FORWARD}
+            className={styles.button}
           >
             Показать варианты
             <Icon type={IconTypes.RIGHT_ICON} />

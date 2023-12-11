@@ -84,8 +84,9 @@ const StepSports: FC<StepProps> = ({ step, setStep }) => {
         itemClickHandler={addSport}
         iconType={InputIcon.DOWN_ARROW}
         iconPosition={InputIconPosition.RIGHT}
+        placeholder="Выберите вид спорта"
       />
-      <ul className={styles.selected}>
+      <ul className={styles.notSelected}>
         {fullView
           ? notSelectedSports.map((sport) => (
               <Badge

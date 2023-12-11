@@ -4,6 +4,7 @@
   --font-weight-700: 700;
   --font-weight-600: 600;
   --font-weight-500: 500;
+  --font-weight-400: 400;
   --font-size-xl: 24px;
   --font-line-xl: 20px;
   --font-size-l: 18px;
@@ -28,6 +29,10 @@
   --font-size-heading-h3: 32px;
   --font-line-heading-h3: 125%;
   --font-heading-h3: var(--font-size-heading-h3) / var(--font-line-heading-h3) /
+    var(--font-weight-600);
+  --font-size-heading-h4: 24px;
+  --font-line-heading-h4: 135%;
+  --font-heading-h4: var(--font-size-heading-h4) / var(--font-line-heading-h4) /
     var(--font-weight-600);
 
   // Colors
@@ -64,7 +69,7 @@
   font-style: normal;
   src:
     url("/src/assets/fonts/Manrope-VariableFont_wght.ttf")
-      format("truetype-variations"),
+    format("truetype-variations"),
     url("src/assets/fonts/Manrope-VariableFont_wght.ttf") format("truetype");
 }
 
@@ -73,6 +78,6 @@
   font-style: normal;
   src:
     url("/src/assets/fonts/Inter-VariableFont_slnt,wght.ttf")
-      format("truetype-variations"),
+    format("truetype-variations"),
     url("/src/assets/fonts/Inter-VariableFont_slnt,wght.ttf") format("truetype");
 }

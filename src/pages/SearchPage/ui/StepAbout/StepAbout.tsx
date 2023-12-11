@@ -46,6 +46,7 @@ const StepAbout: FC<StepProps> = ({ step, setStep }) => {
       </p>
       <div className={styles.buttonContainer}>
         <GenderBtn
+          className={styles.button}
           isActive={sectionRequest.gender === "Woman"}
           onClick={() =>
             setSectionRequest({
