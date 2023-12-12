@@ -1,6 +1,7 @@
 import { FC, useContext } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import classnames from "classnames";
 import { StepProps } from "../../types";
 import AppContext from "../../../../context/AppContext.ts";
 import styles from "./StepAbout.module.scss";
@@ -33,6 +34,11 @@ const StepAbout: FC<StepProps> = ({ step, setStep }) => {
     register,
     formState: { errors },
   } = useForm<AgeField>({ mode: "onChange" });
+
+  const inputClass = classnames({
+    [styles.input]: true,
+    [styles.input_error]: Boolean(errors.age),
+  });
 
   return (
     <div className={styles.step}>
@@ -82,23 +88,21 @@ const StepAbout: FC<StepProps> = ({ step, setStep }) => {
       <Input
         labelName="Возраст ребёнка"
         type="number"
-        className={styles.input}
+        className={inputClass}
         {...register("age", {
           min: {
             value: minAge,
-            message: `Минимальный возраст: ${minAge} ${getDeclension(minAge, [
-              "год",
-              "года",
-              "лет",
-            ])}`,
+            message: `Возраст ребёнка должен быть от ${minAge} до ${maxAge} ${getDeclension(
+              maxAge,
+              ["год", "года", "лет"],
+            )}`,
           },
           max: {
             value: maxAge,
-            message: `Максимальный возраст: ${maxAge} ${getDeclension(maxAge, [
-              "год",
-              "года",
-              "лет",
-            ])}`,
+            message: `Возраст ребёнка должен быть от ${minAge} до ${maxAge} ${getDeclension(
+              maxAge,
+              ["год", "года", "лет"],
+            )}`,
           },
           onChange: (e) =>
             setSectionRequest({ ...sectionRequest, age: +e.target.value }),
