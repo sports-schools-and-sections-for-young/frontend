@@ -1,19 +1,27 @@
-@import "../../app/styles/mixins";
+:export {
+  tabletWidth: 1000px;
+  mobileWidth: 750px;
+  maxTabletWidth: 1100px;
+  miniMobileWidth: 500px;
+}
 
 .quiz {
-  @include section(column);
-
+  width: 100%;
+  display: flex;
+  flex-direction: column;
   align-items: center;
   width: 100%;
   padding: 151px 160px 208px;
   margin-top: 110px;
-
-  @include tablet-1100 {
+}
+@media (max-width: 1100px) {
+  .quiz {
     padding: 109px 50px 168px;
     margin-top: 80px;
   }
-
-  @include mobile-750 {
+}
+@media (max-width: 750px) {
+  .quiz {
     background-image: url("../../assets/images/quiz-mobile-up.svg"),
       url("../../assets/images/quiz-mobile-bottom.svg");
     background-position:
@@ -24,8 +32,9 @@
     padding: 148px 50px 160px;
     margin-bottom: 165px;
   }
-
-  @include mobile-500 {
+}
+@media (max-width: 500px) {
+  .quiz {
     padding: 148px 20px 160px;
     margin-top: 100px;
     margin-bottom: 165px;
@@ -34,8 +43,9 @@
 }
 
 .quizContainer {
-  @include section(column);
-
+  width: 100%;
+  display: flex;
+  flex-direction: column;
   align-items: center;
   width: 100%;
   max-width: 1120px;
@@ -43,56 +53,72 @@
   background-repeat: no-repeat;
   background-size: contain;
   background-position: bottom 35px center;
-
-  @include mobile-750 {
+}
+@media (max-width: 750px) {
+  .quizContainer {
     background-image: none;
   }
 }
 
 .title {
-  @include manrope-header(48px, 700, 140%);
-
+  font-family: var(--font-family_main);
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 140%;
   letter-spacing: 0.2px;
   color: var(--text-black-color);
   padding-bottom: 51px;
   text-align: center;
-
-  @include tablet-1100 {
+}
+@media (max-width: 1100px) {
+  .title {
     max-width: 445px;
-
-    @include manrope-header(32px, 600, 125%);
+    font-family: var(--font-family_main);
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 125%;
   }
-
-  @include mobile-500 {
+}
+@media (max-width: 500px) {
+  .title {
     text-align: start;
   }
 }
 
 .description {
-  @include manrope-header(24px, 400, 140%);
-
+  font-family: var(--font-family_main);
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140%;
   letter-spacing: 0.2px;
   color: var(--light-text-color);
   padding-bottom: 70px;
   max-width: 736px;
   text-align: center;
-
-  @include tablet-1100 {
+}
+@media (max-width: 1100px) {
+  .description {
     max-width: 445px;
-
-    @include manrope-header(18px, 500, 155%);
-
+    font-family: var(--font-family_main);
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 155%;
     padding-bottom: 50px;
   }
-
-  @include mobile-500 {
+}
+@media (max-width: 500px) {
+  .description {
     text-align: start;
     padding-bottom: 30px;
   }
 }
 
-.button {
-  @include mobile-500 {
+@media (max-width: 500px) {
+  .button {
     width: 100%;
   }
 }
