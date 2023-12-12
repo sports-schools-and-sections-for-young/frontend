@@ -8,6 +8,14 @@
   justify-content: center;
   padding-top: 85px;
   padding-bottom: 85px;
+
+  @include tablet-1100 {
+    padding: 40px 50px;
+  }
+
+  @include mobile-500 {
+    padding: 40px 20px;
+  }
 }
 
 .sectionContainer {
@@ -17,10 +25,29 @@
   width: 100%;
   max-width: 1118px;
   gap: 32px;
+
+  @include tablet-1100 {
+    align-items: center;
+    max-width: fit-content;
+  }
+
+  @include mobile-750 {
+    flex-direction: column-reverse;
+    gap: 22px;
+  }
 }
 
 .leftPart {
   @include section(column);
+
+  @include mobile-750 {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  @include mobile-500 {
+    padding: 0;
+  }
 }
 
 .title {
@@ -29,6 +56,24 @@
   color: var(--light-black-color);
   max-width: 615px;
   padding-bottom: 22px;
+
+  @include tablet-1100 {
+    @include manrope-header(42px, 700);
+
+    padding-bottom: 32px;
+  }
+
+  @include mobile-750 {
+    @include manrope-header(32px, 700);
+
+    text-align: center;
+    max-width: 100%;
+  }
+
+  @include mobile-500 {
+    padding-top: 31px;
+    text-align: start;
+  }
 }
 
 .description {
@@ -37,6 +82,22 @@
   color: var(--light-text-color);
   padding-bottom: 87px;
   max-width: 500px;
+
+  @include tablet-1100 {
+    padding-bottom: 20px;
+  }
+
+  @include mobile-750 {
+    @include manrope-header(18px, 500, 155%);
+
+    text-align: center;
+    max-width: 100%;
+  }
+
+  @include mobile-500 {
+    text-align: start;
+    padding-bottom: 30px;
+  }
 }
 
 .actionContainer {
@@ -44,10 +105,28 @@
 
   align-items: center;
   gap: 31px;
+
+  @include tablet-1100 {
+    flex-direction: column;
+    align-items: start;
+    margin-top: auto;
+  }
+
+  @include mobile-750 {
+    align-items: center;
+  }
 }
 
 .button {
   min-width: 257px;
+
+  @include tablet-1100 {
+    width: 80%;
+  }
+
+  @include mobile-500 {
+    width: 100%;
+  }
 }
 
 .registrationLink {
@@ -56,91 +135,4 @@
   @include manrope-header(18px, 800, 177%);
 
   letter-spacing: 0.2px;
-}
-
-@media screen and (width <= 1340px) {
-  .sectionContainer {
-    align-items: center;
-    max-width: fit-content;
-  }
-
-  .actionContainer {
-    flex-direction: column;
-    align-items: start;
-    margin-top: auto;
-  }
-
-  .button {
-    width: 80%;
-  }
-}
-
-@media screen and (width <= 1125px) {
-  .title {
-    @include manrope-header(42px, 700);
-
-    padding-bottom: 32px;
-  }
-
-  .about {
-    padding: 40px 50px;
-  }
-
-  .description {
-    padding-bottom: 20px;
-  }
-}
-
-@media screen and (width <= 750px) {
-  .sectionContainer {
-    flex-direction: column-reverse;
-    gap: 22px;
-  }
-
-  .leftPart {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-
-  .title {
-    @include manrope-header(32px, 700);
-
-    text-align: center;
-    max-width: 100%;
-  }
-
-  .description {
-    @include manrope-header(18px, 500, 155%);
-
-    text-align: center;
-    max-width: 100%;
-  }
-
-  .actionContainer {
-    align-items: center;
-  }
-}
-
-@media screen and (width <= 500px) {
-  .about {
-    padding: 40px 20px;
-  }
-
-  .leftPart {
-    padding: 0;
-  }
-
-  .title {
-    padding-top: 31px;
-    text-align: start;
-  }
-
-  .description {
-    text-align: start;
-    padding-bottom: 30px;
-  }
-
-  .button {
-    width: 100%;
-  }
 }

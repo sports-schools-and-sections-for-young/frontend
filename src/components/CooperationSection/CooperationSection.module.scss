@@ -12,6 +12,14 @@
   padding: 68px 160px 0;
   max-width: 1440px;
   width: 100%;
+
+  @include tablet-1100 {
+    padding: 40px 50px;
+  }
+
+  @include mobile-500 {
+    padding: 70px 30px;
+  }
 }
 
 .twoColumns {
@@ -19,10 +27,35 @@
 
   align-items: center;
   gap: 30px;
+
+  @include tablet-1100 {
+    gap: 45px;
+  }
+
+  @include mobile-750 {
+    @include section(column);
+
+    gap: 0;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
 .rightColumn {
   display: contents;
+
+  @include mobile-750 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.leftColumn {
+  @include mobile-750 {
+    align-items: center;
+    justify-content: center;
+  }
 }
 
 .headerQuestion {
@@ -30,6 +63,10 @@
   color: var(--text-black-color);
 
   @include manrope-header(44px, 700);
+
+  @include tablet-1100 {
+    @include manrope-header(32px, 700);
+  }
 }
 
 .description {
@@ -46,45 +83,8 @@
 
 .image {
   margin-top: 108px;
-}
 
-@media screen and (width <= 1100px) {
-  .sectionContainer {
-    padding: 40px 50px;
-  }
-
-  .headerQuestion {
-    @include manrope-header(32px, 700);
-  }
-}
-
-@media screen and (width <= 750px) {
-  .twoColumns {
-    @include section(column);
-
-    gap: 0;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .leftColumn {
-    align-items: center;
-    justify-content: center;
-  }
-
-  .rightColumn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .image {
+  @include mobile-750 {
     margin-top: 50px;
-  }
-}
-
-@media screen and (width <= 500px) {
-  .sectionContainer {
-    padding: 70px 30px;
   }
 }
