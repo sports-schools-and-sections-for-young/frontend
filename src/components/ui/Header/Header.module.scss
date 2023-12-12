@@ -19,6 +19,14 @@
   width: calc(100% - 220px);
   max-width: 1120px;
   align-items: center;
+
+  @include mobile-750 {
+    @include section(row);
+
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+  }
 }
 
 .logo {

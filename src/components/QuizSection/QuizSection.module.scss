@@ -6,6 +6,18 @@
   align-items: center;
   width: 100%;
   padding: 151px 160px 208px;
+
+  @include tablet-1100 {
+    padding: 109px 160px 208px;
+  }
+
+  @include mobile-750 {
+    padding: 40px 50px 180px;
+  }
+
+  @include mobile-500 {
+    padding: 0 20px 80px;
+  }
 }
 
 .quizContainer {
@@ -18,6 +30,18 @@
   background-repeat: no-repeat;
   background-size: 1100px 281px;
   background-position: bottom 35px center;
+
+  @include tablet-1100 {
+    max-width: 924px;
+    background-size: 824px 217px;
+    background-position: bottom 55px center;
+  }
+
+  @include mobile-500 {
+    max-width: 440px;
+    background-size: 350px 83px;
+    background-position: top 165px center;
+  }
 }
 
 .title {
@@ -27,6 +51,16 @@
   color: var(--text-black-color);
   padding-bottom: 51px;
   text-align: center;
+
+  @include tablet-1100 {
+    max-width: 445px;
+
+    @include manrope-header(32px, 700, 140%);
+  }
+
+  @include mobile-500 {
+    text-align: start;
+  }
 }
 
 .description {
@@ -37,4 +71,29 @@
   padding-bottom: 70px;
   max-width: 736px;
   text-align: center;
+
+  @include tablet-1100 {
+    @include manrope-header(18px, 400, 140%);
+
+    padding-bottom: 62px;
+    max-width: 360px;
+  }
+
+  @include mobile-500 {
+    text-align: start;
+  }
+}
+
+.button {
+  @include tablet-1100 {
+    width: 40%;
+  }
+
+  @include mobile-750 {
+    width: 80%;
+  }
+
+  @include mobile-500 {
+    width: 100%;
+  }
 }

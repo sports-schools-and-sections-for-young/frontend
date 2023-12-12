@@ -1,5 +1,5 @@
 import { GEOCODER_KEY, GEOSUGGEST_KEY } from "../variables.ts";
-import { YandexAnswer } from "../../types";
+import { IMapInstance, YandexAnswer } from "../../types";
 import { Weekday } from "../constants/week.ts";
 
 export function getDeclension(number: number, words: string[]) {
@@ -35,6 +35,18 @@ export const getGeosuggestAddresses = async (value: string) => {
   }
 
   return [];
+};
+
+export const getGeoLocation = (
+  map: IMapInstance,
+  defaultLocation: [number, number],
+) => {
+  if (map) {
+    return map.geolocation
+      .get({ provider: "auto", mapStateAutoApply: true })
+      .then((result) => result.geoObjects.position);
+  }
+  return defaultLocation;
 };
 
 export const abbreviateWeekDayName = (

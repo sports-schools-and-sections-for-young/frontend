@@ -1,8 +1,14 @@
+@import "../../app/styles/mixins";
+
 .progressBar {
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 356px;
+
+  @include mobile-750 {
+    width: 267px;
+  }
 
   .line {
     flex-grow: 1;
@@ -43,6 +49,11 @@
     &.incomplete {
       color: #828091;
       background-color: transparent;
+    }
+
+    @include mobile-750 {
+      width: 24px;
+      height: 24px;
     }
   }
 }
