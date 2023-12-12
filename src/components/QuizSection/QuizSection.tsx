@@ -18,6 +18,7 @@ const QuizSection: FC = () => {
           интересах, и мы предоставим персонализированные рекомендации
         </p>
         <Button
+          className={styles.button}
           color={ButtonColor.PRIMARY}
           testId={ButtonTestId.OTHER}
           onClick={() => navigation("/quiz", { replace: true })}
