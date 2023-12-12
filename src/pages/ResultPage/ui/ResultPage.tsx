@@ -14,7 +14,7 @@ import { PreloaderSize } from "../../../components/ui/Preloader/types";
 import { usePriceHandler } from "../../../hooks/usePriceHandler.tsx";
 import TitleWithMobileNavigate from "./TitleWithMobileNavigate/TitleWithMobileNavigate.tsx";
 import { useResize } from "../../../hooks/useResize.tsx";
-import Footer from "../../../components/ui/Footer/Footer.tsx";
+import Footer from "../../../components/Footer/Footer.tsx";
 
 const ResultPage: FC = () => {
   const { setSectionRequest, filteredSections } = useContext(AppContext);
