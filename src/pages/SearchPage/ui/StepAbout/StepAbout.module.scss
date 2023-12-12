@@ -36,6 +36,10 @@
   max-width: 240px;
   margin-bottom: 44px;
 
+  &_error {
+    margin-bottom: 26px;
+  }
+
   @include mobile-750 {
     max-width: 100%;
     margin-bottom: 10px;
