@@ -1,6 +1,6 @@
 /// <reference types="vite-plugin-svgr/client" />
-import { FC, useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { FC, useContext, useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { StepProps } from "../../types";
 import styles from "./StepSports.module.scss";
 import AppContext from "../../../../context/AppContext.ts";
@@ -29,6 +29,20 @@ const StepSports: FC<StepProps> = ({ step, setStep }) => {
   const [fullView, setFullView] = useState(false);
 
   const navigate = useNavigate();
+
+  const { state } = useLocation();
+
+  useEffect(() => {
+    if (state && state.sport) {
+      const uncapitalizedState = state.sport.map((sport: string) =>
+        sport.toLowerCase(),
+      );
+      const selectedSports = sports.filter((sport) =>
+        uncapitalizedState.includes(sport.title.toLowerCase()),
+      );
+      setSectionRequest({ ...sectionRequest, sports: selectedSports });
+    }
+  }, [state]);
 
   const addSport = (sport: Sport) => {
     const updatedSports = sectionRequest.sports
