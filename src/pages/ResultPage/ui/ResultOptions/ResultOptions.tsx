@@ -7,6 +7,7 @@ import { BadgeColor } from "../../../../components/ui/Badge/types";
 import styles from "./ResultOptions.module.scss";
 import AppContext from "../../../../context/AppContext";
 import { ResultOptionsProps } from "../../types";
+import { maxAge, minAge } from "../../../../utils/variables.ts";
 
 const ResultOptions: FC<ResultOptionsProps> = (props) => {
   const { sectionRequest, setSectionRequest } = useContext(AppContext);
@@ -53,7 +54,15 @@ const ResultOptions: FC<ResultOptionsProps> = (props) => {
           <Icon type={IconTypes.CROSS} color={IconColor.SECONDARY} />
         </Badge>
       </li>
-      <li className={sectionRequest.age ? "" : styles.hide}>
+      <li
+        className={
+          sectionRequest.age &&
+          sectionRequest.age >= minAge &&
+          sectionRequest.age <= maxAge
+            ? ""
+            : styles.hide
+        }
+      >
         <Badge isActive color={BadgeColor.PRIMARY} onClick={clearChieldAge}>
           {sectionRequest.age &&
             sectionRequest.age > 0 &&
@@ -62,6 +71,7 @@ const ResultOptions: FC<ResultOptionsProps> = (props) => {
         </Badge>
       </li>
       {sectionRequest.sports &&
+        sectionRequest.sports.length > 0 &&
         sectionRequest.sports.map((sport) => {
           return (
             <li key={sport.id}>
@@ -76,15 +86,21 @@ const ResultOptions: FC<ResultOptionsProps> = (props) => {
             </li>
           );
         })}
-      <li>
-        {(sectionRequest.sports ||
+      <li
+        className={
+          sectionRequest.sports ||
           sectionRequest.gender ||
-          sectionRequest.age) && (
-          <Badge isActive color={BadgeColor.SECONDARY} onClick={clearFilters}>
-            Сбросить все фильтры
-            <Icon type={IconTypes.CROSS} color={IconColor.SECONDARY} />
-          </Badge>
-        )}
+          (sectionRequest.age &&
+            sectionRequest.age >= minAge &&
+            sectionRequest.age <= maxAge)
+            ? ""
+            : styles.hide
+        }
+      >
+        <Badge isActive color={BadgeColor.SECONDARY} onClick={clearFilters}>
+          Сбросить все фильтры
+          <Icon type={IconTypes.CROSS} color={IconColor.SECONDARY} />
+        </Badge>
       </li>
     </ul>
   );

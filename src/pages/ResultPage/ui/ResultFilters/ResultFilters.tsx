@@ -32,14 +32,19 @@ import { usePriceHandler } from "../../../../hooks/usePriceHandler.tsx";
 import TitleWithMobileNavigate from "../TitleWithMobileNavigate/TitleWithMobileNavigate.tsx";
 import GenderBtn from "../../../../components/ui/GenderBtn/GenderBtn.tsx";
 import { maxAge, minAge } from "../../../../utils/variables.ts";
-import { getDeclension } from "../../../../utils/functions/index.ts";
+import {
+  abbreviateWeekDayName,
+  getDeclension,
+} from "../../../../utils/functions/index.ts";
+import { Weekday, weekdays } from "../../../../utils/constants/week.ts";
 
 interface AgeField {
   age: number;
 }
 
 const ResultFilters: FC<IResultFiltersProps> = (props) => {
-  const { clearFilters, setLoader, isOpen, toggleFilterPanel } = props;
+  const { clearFilters, setLoader, isOpen, toggleFilterPanel, isMobile } =
+    props;
   const { sports, sectionRequest, setSectionRequest } = useContext(AppContext);
   const {
     register,
@@ -62,6 +67,22 @@ const ResultFilters: FC<IResultFiltersProps> = (props) => {
       }
       return { ...request, sports: [sport] };
     });
+  };
+
+  const setSchedule = (day: Weekday, isCheck: boolean) => {
+    if (!sectionRequest.schedule || sectionRequest.schedule.length === 0)
+      return [day];
+    const isInclude = sectionRequest.schedule.includes(day);
+    if (isCheck) {
+      return isInclude
+        ? sectionRequest.schedule
+        : [...sectionRequest.schedule, day];
+    }
+    if (isInclude) {
+      const arr = sectionRequest.schedule.filter((d) => d !== day);
+      return arr.length === 0 ? null : arr;
+    }
+    return sectionRequest.schedule;
   };
 
   return (
@@ -92,6 +113,29 @@ const ResultFilters: FC<IResultFiltersProps> = (props) => {
             type="text"
             itemClickHandler={addSport}
           />
+        </li>
+        <li>
+          <p className={`${styles.description} ${styles.description_distant}`}>
+            Дни недели
+          </p>
+          <div className={styles.weekdaysContainer}>
+            {weekdays.map((day, i) => {
+              return (
+                <Checkbox
+                  // eslint-disable-next-line react/no-array-index-key
+                  key={i}
+                  title={abbreviateWeekDayName(day, isMobile)}
+                  checked={sectionRequest.schedule?.includes(day) || false}
+                  onChange={(e) =>
+                    setSectionRequest({
+                      ...sectionRequest,
+                      schedule: setSchedule(day, e.target.checked),
+                    })
+                  }
+                />
+              );
+            })}
+          </div>
         </li>
         <li>
           {" "}
@@ -131,10 +175,12 @@ const ResultFilters: FC<IResultFiltersProps> = (props) => {
           </div>
         </li>
         <li>
+          <p className={`${styles.description} ${styles.description_distant}`}>
+            Возраст ребёнка
+          </p>
           <Input
-            labelName="Возраст ребёнка"
             type="number"
-            className={styles.input}
+            className={styles.numberInput}
             {...register("age", {
               min: {
                 value: minAge,
@@ -163,6 +209,7 @@ const ResultFilters: FC<IResultFiltersProps> = (props) => {
             Удаленность
           </p>
           <CheckboxPanel
+            className={styles.distanceChoose}
             activeOption={sectionRequest.distance || 0}
             btns={distanceButtons}
             setOption={(option) =>
@@ -180,7 +227,7 @@ const ResultFilters: FC<IResultFiltersProps> = (props) => {
           <Input
             labelName="Максимум"
             type="number"
-            className={styles.priceInput}
+            className={styles.numberInput}
             iconType={InputIcon.RUB}
             iconPosition={InputIconPosition.LEFT}
             value={maxPrice > 0 ? maxPrice : ""}

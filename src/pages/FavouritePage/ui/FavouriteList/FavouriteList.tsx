@@ -15,7 +15,7 @@ const FavouriteList: FC = () => {
   return (
     <section className={styles.listContainer}>
       <div className={styles.options}>
-        <p className={styles.description}>Сохранено {favourite.length}</p>
+        <p className={styles.description}>Сохранено: {favourite.length}</p>
         {favourite.length > 0 && (
           <Badge
             isActive

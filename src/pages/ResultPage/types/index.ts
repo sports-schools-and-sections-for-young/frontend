@@ -13,6 +13,7 @@ export interface IResultNavigateProps
 
 export type ResultListProps = {
   mapView: number;
+  isMobile: boolean;
 };
 
 export interface IResultFiltersProps
@@ -21,15 +22,9 @@ export interface IResultFiltersProps
   toggleFilterPanel?: Dispatch<SetStateAction<boolean>>;
   setLoader: Dispatch<SetStateAction<boolean>>;
   isOpen: boolean;
+  isMobile: boolean;
 }
 
 export type mapViewProps = {
   setActiveSection: Dispatch<SetStateAction<Section | null>>;
 };
-
-export interface ITitleWithMobileNavigateProp
-  extends HTMLAttributes<HTMLDivElement> {
-  isFilter?: boolean;
-  toggleFilterPanel?: Dispatch<SetStateAction<boolean>>;
-  clearFilters?: () => void;
-}

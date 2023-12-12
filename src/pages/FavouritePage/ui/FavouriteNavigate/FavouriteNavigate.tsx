@@ -12,6 +12,7 @@ import {
   IconColor,
   IconTypes,
 } from "../../../../components/ui/Icon/types/index.ts";
+import ButtonBackMobile from "../../../../components/ui/ButtonBackMobile/ButtonBackMobile.tsx";
 
 const FavouriteNavigate: FC = () => {
   const navigate = useNavigate();
@@ -19,7 +20,10 @@ const FavouriteNavigate: FC = () => {
   return (
     <nav className={styles.navigate}>
       <ul className={styles.nav_list}>
-        <li>
+        <li className={styles.mobileItem}>
+          <ButtonBackMobile />
+        </li>
+        <li className={styles.desctopItem}>
           <Button
             onClick={() => navigate(-1)}
             color={ButtonColor.SECONDARY}
@@ -28,6 +32,9 @@ const FavouriteNavigate: FC = () => {
             <Icon color={IconColor.SECONDARY} type={IconTypes.LEFT_ICON} />
             Назад
           </Button>
+        </li>
+        <li className={styles.mobileItem}>
+          <h2 className={styles.title}>Избранное</h2>
         </li>
         <li>
           <CloseButton className={styles.close} onClick={() => navigate("/")} />

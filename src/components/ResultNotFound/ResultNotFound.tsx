@@ -17,7 +17,12 @@ const ResultNotFound: FC<ResultNotFoundProps> = ({ setStep, step = 1 }) => {
 
   return (
     <div className={styles.container}>
-      <h2 className={styles.title}>Нет подходящих результатов</h2>
+      <div className={styles.heading}>
+        <h2 className={styles.title}>Ничего не найдено</h2>
+        <h3 className={styles.subtitle}>
+          Попробуйте изменить параметры запроса
+        </h3>
+      </div>
       <img
         className={styles.image}
         src={notfound}

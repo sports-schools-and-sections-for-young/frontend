@@ -1,3 +1,5 @@
+@import "../../../../app/styles/mixins";
+
 .buttonContainer {
   margin-top: 8px;
   display: flex;
@@ -23,20 +25,18 @@
 }
 
 .subtitle {
-  font-size: var(--font-size-xl);
+  @include manrope-header(24px, 600, 135%);
 }
 
 .description {
-  font-size: var(--font-size-l);
-  line-height: var(--font-line-l);
-  font-weight: var(--font-weight-500);
+  @include manrope-header(18px, 600, 155%);
 }
 
 .description_distant {
   padding-bottom: 24px;
 }
 
-.priceInput {
+.numberInput {
   max-width: 156px;
 }
 
@@ -49,7 +49,36 @@
   column-gap: 24px;
 }
 
-@media screen and (width <= 780px) {
+.genderContainer button {
+  width: 100px;
+  height: 100px;
+}
+
+.distanceChoose {
+  height: min-content;
+  justify-content: center;
+}
+
+.weekdaysContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  max-width: 245px;
+}
+
+@include tablet-1000 {
+  .distanceChoose {
+    width: 225px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .distanceChoose button:last-child {
+    width: 100%;
+  }
+}
+
+@include mobile-750 {
   .filters {
     padding: 40px 20px;
     background-color: var(--ui-secondary-bg-color);
@@ -69,9 +98,29 @@
     transition: transform 0.3s cubic-bezier(0, 0.52, 0, 1);
   }
 
+  .weekdaysContainer {
+    max-width: 335px;
+  }
+
+  .genderContainer button {
+    width: 140px;
+  }
+
+  .distanceChoose {
+    width: 324px;
+    flex-wrap: nowrap;
+  }
+
+  .distanceChoose button:last-child {
+    width: 109px;
+  }
+
+  .description {
+    @include manrope-header(20px, 600, 140%);
+  }
+
   .subtitle {
     display: block;
-    font-size: var(--font-size-xl);
   }
 
   .subtitle::after {

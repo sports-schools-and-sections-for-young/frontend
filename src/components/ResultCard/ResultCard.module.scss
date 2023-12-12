@@ -132,6 +132,10 @@
   @include manrope-header(18px, 500, 155%);
 
   color: var(--ui-secondary-color);
+
+  &::before {
+    content: "Расписание - ";
+  }
 }
 
 .rightPart {
@@ -196,11 +200,19 @@
   animation: beat 0.6s 0.3s infinite;
 }
 
-@media screen and (width <=780px) {
+@include mobile-750 {
   .phone {
     @include manrope-header(20px, 600, 140%);
 
     color: var(--text-black-color);
+  }
+
+  .timesheet::before {
+    content: "";
+  }
+
+  .likeButton {
+    top: 77px;
   }
 }
 

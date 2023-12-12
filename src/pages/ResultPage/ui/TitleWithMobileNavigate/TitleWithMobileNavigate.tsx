@@ -2,7 +2,7 @@ import { FC } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./TitleWithMobileNavigate.module.scss";
 import FilterBtn from "../../../../assets/images/icons/filters-btn.svg?react";
-import { ITitleWithMobileNavigateProp } from "../../types";
+import { ITitleWithMobileNavigateProp } from "./types";
 import ButtonBackMobile from "../../../../components/ui/ButtonBackMobile/ButtonBackMobile";
 
 const TitleWithMobileNavigate: FC<ITitleWithMobileNavigateProp> = (props) => {

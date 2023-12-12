@@ -1,10 +1,8 @@
 import { FC, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import classnames from "classnames";
 import styles from "./Header.module.scss";
-import Button from "../Button/Button";
-import { ButtonColor, ButtonTestId } from "../Button/types";
-import Icon from "../Icon/Icon";
-import { IconTypes } from "../Icon/types";
+import Heart from "../../../assets/images/icons/heart.svg?react";
 import ImageCard from "../ImageCard/ImageCard";
 import { ImageCardSize } from "../ImageCard/types";
 import logo from "../../../assets/images/Logo.png";
@@ -12,6 +10,11 @@ import logo from "../../../assets/images/Logo.png";
 const Header: FC = () => {
   const navigate = useNavigate();
   const [favourite, setFavourite] = useState<number>(0);
+
+  const heartClass = classnames({
+    [styles.heartBtn]: true,
+    [styles.heartBtnActive]: favourite > 0,
+  });
 
   useEffect(() => {
     function changeCount(e: CustomEvent) {
@@ -37,7 +40,7 @@ const Header: FC = () => {
             className={styles.image}
             src={logo}
             alt="Логотип СпортХаб"
-            size={ImageCardSize.LOGO_IMG}
+            size={ImageCardSize.AUTH_LOGO_IMG}
           />
         </Link>
         <div className={styles.buttonContainer}>
@@ -46,22 +49,19 @@ const Header: FC = () => {
             className={styles.favouritesBtn}
             onClick={() => navigate("/favourites")}
           >
+            <Heart className={heartClass} />
             {favourite > 0 && (
               <span className={styles.favouritesCount}>{favourite}</span>
             )}
             <span className={styles.btnName}>Избранное</span>
           </button>
-          <Button
+          <button
+            type="button"
             className={styles.button}
-            color={ButtonColor.PRIMARY}
-            testId={ButtonTestId.OTHER}
             onClick={() => navigate("/signin")}
           >
-            <>
-              Войти
-              <Icon type={IconTypes.RIGHT_ICON} />
-            </>
-          </Button>
+            <span className={styles.buttonContent}>Вход (для огранизаций)</span>
+          </button>
         </div>
       </div>
     </header>

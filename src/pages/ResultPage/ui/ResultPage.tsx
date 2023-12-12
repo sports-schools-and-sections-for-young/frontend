@@ -13,6 +13,8 @@ import Preloader from "../../../components/ui/Preloader/Preloader";
 import { PreloaderSize } from "../../../components/ui/Preloader/types";
 import { usePriceHandler } from "../../../hooks/usePriceHandler.tsx";
 import TitleWithMobileNavigate from "./TitleWithMobileNavigate/TitleWithMobileNavigate.tsx";
+import { useResize } from "../../../hooks/useResize.tsx";
+import Footer from "../../../components/ui/Footer/Footer.tsx";
 
 const ResultPage: FC = () => {
   const { setSectionRequest, filteredSections } = useContext(AppContext);
@@ -22,7 +24,7 @@ const ResultPage: FC = () => {
   const [showFilters, setShowFilters] = useState<boolean>(false);
 
   const { handlePriceOptions } = usePriceHandler();
-
+  const { isMobileScreen } = useResize();
   useEffect(() => {
     handlePriceOptions();
   }, []);
@@ -53,12 +55,15 @@ const ResultPage: FC = () => {
             clearFilters={clearFilterList}
             isOpen={showFilters}
             toggleFilterPanel={setShowFilters}
+            isMobile={isMobileScreen}
           />
           {loader && <Preloader size={PreloaderSize.Large} />}
-          {!loader && <ResultList mapView={mapView} />}
+          {!loader && (
+            <ResultList mapView={mapView} isMobile={isMobileScreen} />
+          )}
         </div>
       </main>
-      <footer className={styles.footer}>{}</footer>
+      <Footer />
     </>
   );
 };
