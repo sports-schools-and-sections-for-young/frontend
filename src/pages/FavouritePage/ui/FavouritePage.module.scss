@@ -33,3 +33,10 @@
     display: none;
   }
 }
+
+@include mobile-500 {
+  .favourite {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}

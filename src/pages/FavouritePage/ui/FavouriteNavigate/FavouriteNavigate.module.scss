@@ -35,3 +35,10 @@
     display: none;
   }
 }
+
+@include mobile-500 {
+  .navigate {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}

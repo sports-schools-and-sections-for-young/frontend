@@ -125,6 +125,14 @@
   .container {
     width: calc(100% - 120px);
   }
+
+  .buttonContent {
+    font-size: 14px;
+  }
+
+  .logo {
+    max-width: 220px;
+  }
 }
 
 @include mobile-750 {
@@ -157,8 +165,16 @@
     max-width: 160px;
   }
 
+  .container {
+    width: calc(100% - 45px);
+  }
+
   .button {
     min-width: 32px;
     min-height: 32px;
+  }
+
+  .buttonContainer {
+    column-gap: 25px;
   }
 }

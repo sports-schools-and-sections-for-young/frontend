@@ -203,8 +203,15 @@
 @include mobile-750 {
   .phone {
     @include manrope-header(20px, 600, 140%);
+  }
 
-    color: var(--text-black-color);
+  .location {
+    @include manrope-header(16px, 400, 150%);
+  }
+
+  .section {
+    padding-left: 15px;
+    padding-right: 15px;
   }
 
   .timesheet::before {
@@ -213,6 +220,12 @@
 
   .likeButton {
     top: 77px;
+  }
+}
+
+@include mobile-500 {
+  .price {
+    @include manrope-header(18px, 500, 155%);
   }
 }
 

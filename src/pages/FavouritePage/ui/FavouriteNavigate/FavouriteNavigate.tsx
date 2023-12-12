@@ -21,7 +21,7 @@ const FavouriteNavigate: FC = () => {
     <nav className={styles.navigate}>
       <ul className={styles.nav_list}>
         <li className={styles.mobileItem}>
-          <ButtonBackMobile />
+          <ButtonBackMobile onClick={() => navigate(-1)} />
         </li>
         <li className={styles.desctopItem}>
           <Button

@@ -65,3 +65,10 @@
     content: ":";
   }
 }
+
+@include mobile-500 {
+  .result {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}

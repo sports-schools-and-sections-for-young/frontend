@@ -7,11 +7,12 @@ import { BadgeColor } from "../../../../components/ui/Badge/types";
 import Icon from "../../../../components/ui/Icon/Icon";
 import { IconColor, IconTypes } from "../../../../components/ui/Icon/types";
 import Pagination from "../../../../components/ui/Pagination/Pagination";
+import { useResize } from "../../../../hooks/useResize";
 
 const FavouriteList: FC = () => {
   const [favourite, setFavourite] = useFavourite();
   const [quantity, setQuantity] = useState<number>(0);
-
+  const { isMobileScreen } = useResize();
   return (
     <section className={styles.listContainer}>
       <div className={styles.options}>
@@ -36,6 +37,7 @@ const FavouriteList: FC = () => {
                   section={section}
                   favourite={favourite}
                   setFavourite={setFavourite}
+                  isMobile={isMobileScreen}
                 />
               </li>
             );
