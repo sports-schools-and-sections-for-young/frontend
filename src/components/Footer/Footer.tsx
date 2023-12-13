@@ -1,9 +1,9 @@
 import { FC } from "react";
 import { Link } from "react-router-dom";
 import styles from "./Footer.module.scss";
-import ImageCard from "../ImageCard/ImageCard";
-import { ImageCardSize } from "../ImageCard/types";
-import logo from "../../../assets/images/logo-white.png";
+import ImageCard from "../ui/ImageCard/ImageCard.tsx";
+import { ImageCardSize } from "../ui/ImageCard/types";
+import logo from "../../assets/images/logo-white.png";
 
 const Footer: FC = () => {
   return (

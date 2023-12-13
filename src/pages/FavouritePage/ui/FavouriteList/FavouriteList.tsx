@@ -6,7 +6,7 @@ import Badge from "../../../../components/ui/Badge/Badge";
 import { BadgeColor } from "../../../../components/ui/Badge/types";
 import Icon from "../../../../components/ui/Icon/Icon";
 import { IconColor, IconTypes } from "../../../../components/ui/Icon/types";
-import Pagination from "../../../../components/ui/Pagination/Pagination";
+import Pagination from "../../../../components/Pagination/Pagination";
 
 const FavouriteList: FC = () => {
   const [favourite, setFavourite] = useFavourite();

@@ -37,3 +37,23 @@ export const searchSections = async (sectionRequest: ISectionsRequest) => {
   const res = await fetch(`${API_URL}/search_sections?${queryArray.join("&")}`);
   return checkResponse(res);
 };
+
+export const getSchoolInfo = async () => {
+  const info = await fetch(`http://127.0.0.1:8000/api/profile/2/`, {
+    headers: {
+      Authorization: "Token 73c195200dafca241c31da8f7e0122276dfc1d98",
+    },
+  });
+
+  return checkResponse(info);
+};
+
+export const getSchoolSections = async () => {
+  const sections = await fetch("http://127.0.0.1:8000/api/section/", {
+    headers: {
+      Authorization: "Token 73c195200dafca241c31da8f7e0122276dfc1d98",
+    },
+  });
+
+  return checkResponse(sections);
+};

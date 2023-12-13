@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Link } from "react-router-dom";
 import styles from "./MainFooter.module.scss";
-import Footer from "../ui/Footer/Footer";
+import Footer from "../Footer/Footer";
 
 const MainFooter: FC = () => {
   return (
