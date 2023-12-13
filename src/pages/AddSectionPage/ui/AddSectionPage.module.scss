@@ -1,0 +1,32 @@
+.addSectionPage {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1181px;
+  font-family: var(--font-family_main);
+  color: var(--text-black-color);
+  display: flex;
+  flex-direction: column;
+  gap: 108px;
+  padding-left: 32px;
+  padding-right: 32px;
+}
+
+.title {
+  font-size: var(--font-size-heading-h1);
+  line-height: var(--font-line-heading-h1);
+  font-family: var(--font-family_main);
+  padding-top: 20px;
+  padding-bottom: 40px;
+  display: flex;
+  align-items: center;
+  column-gap: 60px;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  max-width: 162px;
+  margin: 0 auto;
+  margin-bottom: 104px;
+  text-align: center;
+}

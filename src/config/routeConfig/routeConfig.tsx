@@ -7,6 +7,7 @@ import { FavouritePage } from "../../pages/FavouritePage";
 import { AppRoutes } from "../types";
 import Login from "../../pages/Login/Login";
 import Register from "../../pages/Register/Register";
+import { AddSectionPage } from "../../pages/AddSectionPage";
 
 export const RoutePath: Record<AppRoutes, string> = {
   [AppRoutes.MAIN_PAGE]: "/",
@@ -15,6 +16,7 @@ export const RoutePath: Record<AppRoutes, string> = {
   [AppRoutes.FAVOURITE_PAGE]: "/favourites",
   [AppRoutes.SIGN_IN]: "/signin",
   [AppRoutes.REGISTRATION]: "/registration",
+  [AppRoutes.ADD_SECTION_PAGE]: "/addsection",
   [AppRoutes.NOT_FOUND]: "*",
 };
 
@@ -42,6 +44,10 @@ export const routeConfig: Record<AppRoutes, RouteProps> = {
   [AppRoutes.REGISTRATION]: {
     path: RoutePath.registration,
     element: <Register />,
+  },
+  [AppRoutes.ADD_SECTION_PAGE]: {
+    path: RoutePath.add_section_page,
+    element: <AddSectionPage />,
   },
   [AppRoutes.NOT_FOUND]: {
     path: RoutePath.not_found,
