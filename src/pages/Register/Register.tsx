@@ -9,12 +9,10 @@ import SearchHeader from "../SearchPage/ui/SearchHeader/SearchHeader";
 import Input from "../../components/ui/Input/Input";
 import AuthBannerForm from "../../components/ui/AuthBannerForm/AuthBannerForm";
 import Footer from "../../components/ui/Footer/Footer";
+import { registration } from "../../utils/api";
 
 export interface IRegister {
   email: string;
-  name: string;
-  address: string;
-  site: string;
   password: string;
   passwordConfirmation: string;
 }
@@ -32,9 +30,27 @@ function Register() {
 
   const navigate = useNavigate();
 
-  const onSubmit: SubmitHandler<IRegister> = (data) => {
+  const onSubmit: SubmitHandler<IRegister> = async (data) => {
     console.log("data =>", data);
-    reset();
+    try {
+      // Отправка запроса на сервер для регистрации
+      const response = await registration(
+        data.email,
+        data.password,
+        data.passwordConfirmation,
+      );
+
+      // Обработка успешной регистрации
+      console.log("Успешная регистрация", response);
+
+      // Сброс формы после успешной регистрации
+      reset();
+    } catch (error) {
+      // Обработка ошибок при регистрации
+      console.error("Ошибка при регистрации", error);
+    }
+
+    // reset();
   };
 
   return (

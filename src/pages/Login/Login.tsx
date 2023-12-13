@@ -9,6 +9,7 @@ import SearchHeader from "../SearchPage/ui/SearchHeader/SearchHeader";
 import Input from "../../components/ui/Input/Input";
 import AuthBannerForm from "../../components/ui/AuthBannerForm/AuthBannerForm";
 import Footer from "../../components/ui/Footer/Footer";
+import { login } from "../../utils/api";
 
 interface ILogin {
   email: string;
@@ -27,9 +28,22 @@ function Login() {
 
   const navigate = useNavigate();
 
-  const onSubmit: SubmitHandler<ILogin> = (data) => {
-    console.log(`email => ${data.email}   password => ${data.password}`);
+  const onSubmit: SubmitHandler<ILogin> = async (data) => {
     console.log("data =>", data);
+
+    try {
+      const response = await login(data.email, data.password);
+      // Здесь можно обработать ответ от сервера, например, проверить успешность входа
+      console.log("Ответ сервера:", response);
+      // Возможно, здесь нужно установить состояние loggedIn на основе ответа
+      // setLoggedIn(true);
+      // Перенаправление пользователя, если вход успешен
+      // navigate('/dashboard'); // Замените '/dashboard' на нужный путь
+    } catch (error) {
+      // Обработка ошибок, например, вывод ошибки в консоль
+      console.error("Ошибка входа:", error);
+    }
+
     reset();
   };
 
