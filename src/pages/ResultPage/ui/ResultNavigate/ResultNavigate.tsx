@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./ResultNavigate.module.scss";
 import CloseButton from "../../../../components/ui/CloseButton/CloseButton.tsx";
@@ -15,15 +15,18 @@ import {
 } from "../../../../components/ui/Icon/types/index.ts";
 import { CheckboxBtnSize } from "../../../../components/ui/CheckboxBtn/types/index.ts";
 import { IResultNavigateProps } from "../../types/index.ts";
+import AppContext from "../../../../context/AppContext.ts";
 
 const ResultNavigate: FC<IResultNavigateProps> = (props) => {
   const { setMapView, activeView, ...rest } = props;
   const navigate = useNavigate();
+  const { filteredSections } = useContext(AppContext);
 
   return (
     <nav className={styles.navigate} {...rest}>
+      <h3 className={styles.findCount}>Найдено: {filteredSections.length}</h3>
       <ul className={styles.nav_list}>
-        <li>
+        <li className={styles.visible}>
           <Button
             onClick={() => navigate("/search", { state: { step: 4 } })}
             color={ButtonColor.SECONDARY}
@@ -43,7 +46,7 @@ const ResultNavigate: FC<IResultNavigateProps> = (props) => {
             setOption={setMapView}
           />
         </li>
-        <li>
+        <li className={styles.visible}>
           <CloseButton className={styles.close} onClick={() => navigate("/")} />
         </li>
       </ul>

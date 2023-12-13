@@ -1,3 +1,5 @@
+@import "../../../../app/styles/mixins";
+
 .navigate {
   width: 100%;
   max-width: 1376px;
@@ -12,4 +14,31 @@
   padding-top: 32px;
   padding-bottom: 32px;
   align-items: center;
+}
+
+.mobileItem {
+  display: none;
+}
+
+.title {
+  @include manrope-header(20px, 600, 140%);
+
+  color: var(--text-black-color);
+}
+
+@include mobile-750 {
+  .mobileItem {
+    display: block;
+  }
+
+  .desctopItem {
+    display: none;
+  }
+}
+
+@include mobile-500 {
+  .navigate {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
 }
