@@ -3,14 +3,21 @@ import { useNavigate } from "react-router-dom";
 import styles from "./Quiz.module.scss";
 import QuizQuestion from "./QuizQuestion/QuizQuestion";
 import { quizData, quizResultData } from "../../utils/constants/quizData";
-import { QuizResultProps } from "./types/index";
+import { QuizResultProps, QuizSaveData } from "./types/index";
 import QuizRezult from "./QuizResult/QuizResult";
 import QuizNavBar from "./QuizNavBar/QuizNavBar";
 
 const Quiz: FC = () => {
   const navigate = useNavigate();
   const [currentStage, setCurrentStage] = React.useState(0);
-  const [quizResult, setQuizResult] = React.useState({});
+  const [quizResult, setQuizResult] = React.useState<QuizSaveData>({
+    num0: 0,
+    num1: 0,
+    num2: 0,
+    num3: 0,
+    num4: 0,
+    num5: 0,
+  });
   const [quizCategory, setQuizCategory] = React.useState(-1);
   const [quizCategoryObj, setQuizCategoryObj] = React.useState<QuizResultProps>(
     {
@@ -25,7 +32,17 @@ const Quiz: FC = () => {
     },
   );
   function setResult(stageNumber: number, value: number): void {
-    setQuizResult({ ...quizResult, [stageNumber]: value });
+    setQuizResult({ ...quizResult, [`num${stageNumber - 1}`]: value });
+  }
+
+  function setCurrentChoice(stage: number): number {
+    const resItem = Object.entries(quizResult).find(
+      (i) => i[0] === `num${stage}`,
+    );
+    if (resItem) {
+      return resItem[1];
+    }
+    return 0;
   }
 
   function setCategory(): void {
@@ -79,7 +96,11 @@ const Quiz: FC = () => {
             setPreviousStage={setPreviousStage}
           />
           <div className={styles.stageContainer}>
-            <QuizQuestion func={setResult} choice={quizData[currentStage]} />
+            <QuizQuestion
+              func={setResult}
+              choice={quizData[currentStage]}
+              chosen={setCurrentChoice(currentStage)}
+            />
           </div>
         </div>
       )}
