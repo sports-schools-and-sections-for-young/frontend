@@ -21,7 +21,7 @@ interface IAppContext {
   filteredSections: Section[];
   setFilteredSections: Dispatch<SetStateAction<Section[]>>;
   school: School | null;
-  setSchool: Dispatch<SetStateAction<School>>;
+  setSchool: Dispatch<SetStateAction<School | null>>;
 }
 
 export const sectionsRequestDefault: ISectionsRequest = {

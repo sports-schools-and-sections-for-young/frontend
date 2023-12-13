@@ -1,4 +1,5 @@
 import { useContext, useEffect } from "react";
+import { Route, Routes } from "react-router-dom";
 import ProfileNavigation from "./ProfileNavigation/ProfileNavigation.tsx";
 import styles from "./ProfilePage.module.scss";
 import Header from "../../../components/ui/Header/Header.tsx";
@@ -6,6 +7,9 @@ import Footer from "../../../components/Footer/Footer.tsx";
 import { getSchoolInfo, getSchoolSections } from "../../../utils/api";
 import AppContext from "../../../context/AppContext.ts";
 import { SchoolInfo, Section } from "../../../types";
+import Preloader from "../../../components/ui/Preloader/Preloader.tsx";
+import { PreloaderSize } from "../../../components/ui/Preloader/types";
+import ProfileForm from "./ProfileForm/ProfileForm.tsx";
 
 const ProfilePage = () => {
   const { school, setSchool } = useContext(AppContext);
@@ -26,6 +30,10 @@ const ProfilePage = () => {
       <Header />
       <main className={styles.page}>
         <ProfileNavigation />
+        <Routes>
+          <Route path="/" element={<Preloader size={PreloaderSize.Large} />} />
+          <Route path="/edit" element={<ProfileForm />} />
+        </Routes>
       </main>
       <Footer />
     </>

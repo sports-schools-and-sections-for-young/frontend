@@ -18,7 +18,7 @@ export const RoutePath: Record<AppRoutes, string> = {
   [AppRoutes.SIGN_IN]: "/signin",
   [AppRoutes.REGISTRATION]: "/registration",
   [AppRoutes.QUIZ]: "/quiz",
-  [AppRoutes.PROFILE]: "/profile",
+  [AppRoutes.PROFILE]: "/profile/*",
   [AppRoutes.NOT_FOUND]: "*",
 };
 
