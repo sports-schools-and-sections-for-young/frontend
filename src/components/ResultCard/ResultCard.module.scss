@@ -1,11 +1,13 @@
-@import "../../../../app/styles/mixins";
+@import "../../app/styles/mixins";
 
 .section {
   box-sizing: border-box;
-
-  @include section(row);
-
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
+  gap: 12px 110px;
+  position: relative;
+  width: 100%;
+  align-items: center;
   padding: 24px 32px;
   border-radius: 30px;
   background: var(--ui-primary-color);
@@ -14,6 +16,7 @@
 
 .leftPart {
   box-sizing: border-box;
+  min-width: 255px;
 
   @include section(column);
 
@@ -61,13 +64,13 @@
     left: 0;
     width: 32px;
     height: 32px;
-    background-image: url("../../../../assets/images/result-star.svg");
+    background-image: url("../../assets/images/icons/Phone.svg");
     background-repeat: no-repeat;
     background-size: contain;
   }
 }
 
-.raiting {
+.phone {
   @include manrope-header(18px, 500, 155%);
 
   color: var(--text-black-color);
@@ -113,7 +116,7 @@
     left: 16px;
     width: 24px;
     height: 24px;
-    background-image: url("../../../../assets/images/icons/result-map-pin.svg");
+    background-image: url("../../assets/images/icons/result-map-pin.svg");
     background-repeat: no-repeat;
     background-size: contain;
   }
@@ -129,27 +132,26 @@
   @include manrope-header(18px, 500, 155%);
 
   color: var(--ui-secondary-color);
+
+  &::before {
+    content: "Расписание - ";
+  }
 }
 
 .rightPart {
   @include section(column);
-
-  align-items: flex-end;
 }
 
 .likeButton {
+  position: absolute;
+  top: 30px;
+  right: 30px;
   width: 32px;
   height: 32px;
   background-color: transparent;
   cursor: pointer;
-  background-image: url("../../../../assets/images/icons/result-heart.svg");
-  background-size: contain;
   border: none;
   margin-bottom: 48px;
-}
-
-.likedButton {
-  background-image: url("../../../../assets/images/icons/result-heart-active.svg");
 }
 
 .price {
@@ -160,7 +162,83 @@
 }
 
 .transitionButton {
-  background-color: #ff7a60 !important;
-
   @include manrope-header(16px, 600, 16px);
+
+  cursor: pointer;
+  border-radius: var(--common-radius);
+  padding: 12px 24px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: none;
+  position: relative;
+  color: #fff;
+  background-color: #ff7a60;
+  text-decoration: none;
+}
+
+.disabledBtn {
+  background-color: #211d3b2e;
+  pointer-events: none;
+}
+
+.btnLink {
+  text-decoration: none;
+}
+
+.heartBtn path {
+  fill: transparent;
+}
+
+.heartBtnActive path {
+  fill: var(--ui-primary-bg-color);
+}
+
+.heartBtn:hover path {
+  animation: beat 0.6s 0.3s infinite;
+}
+
+@include mobile-750 {
+  .phone {
+    @include manrope-header(20px, 600, 140%);
+  }
+
+  .location {
+    @include manrope-header(16px, 400, 150%);
+  }
+
+  .section {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .timesheet::before {
+    content: "";
+  }
+
+  .likeButton {
+    top: 77px;
+  }
+}
+
+@include mobile-500 {
+  .price {
+    @include manrope-header(18px, 500, 155%);
+  }
+}
+
+@keyframes beat {
+  0% {
+    transform: scale(1);
+  }
+
+  30% {
+    transform: scale(1.03);
+  }
+
+  60% {
+    transform: scale(1);
+  }
 }

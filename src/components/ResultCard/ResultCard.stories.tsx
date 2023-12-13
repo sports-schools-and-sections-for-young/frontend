@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
 import ResultCard from "./ResultCard.tsx";
-import { Section } from "../../../../types";
+import { Section } from "../../types";
 
 const meta = {
   title: "ui/ResultCard",
@@ -40,6 +40,8 @@ const section = {
   aviable: 88,
   schedule: "Вторник, Четверг, Пятница",
   free_class: false,
+  site: "",
+  phone: "333",
 };
 
 export const SectionCard: Story = {

@@ -1,0 +1,78 @@
+@import "../../app/styles/mixins";
+
+.quiz {
+  width: 100%;
+  height: 100vh;
+
+  @include section(column);
+
+  align-items: center;
+  padding: 0 32px;
+
+  @include tablet-1100 {
+    padding: 0 50px;
+  }
+
+  @include mobile-750 {
+    padding: 0;
+  }
+}
+
+.stageContainer {
+  @include section(column);
+
+  align-items: center;
+  width: 100%;
+  height: calc(100vh - 112px);
+  padding-top: 124px;
+  box-sizing: border-box;
+
+  @include tablet-1000 {
+    padding-top: 30px;
+  }
+
+  @include mobile-500 {
+    padding-top: 0;
+  }
+}
+
+.questionContainer {
+  background-color: white;
+  width: 100%;
+  max-width: 1140px;
+  min-height: 100vh;
+
+  @include section(column);
+
+  align-items: center;
+  background-image: url("../../assets/images/main-quiz-background.png");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: top 279px center;
+
+  @include tablet-1100 {
+    background-position: top 310px center;
+  }
+
+  @include mobile-750 {
+    background-image: url("../../assets/images/quiz-mobile-up.svg"),
+      url("../../assets/images/quiz-mobile-bottom.svg");
+    background-position:
+      top right,
+      bottom left;
+    background-repeat: no-repeat, no-repeat;
+    background-size: 50%, 40%;
+  }
+
+  @include mobile-500 {
+    background-size: 70%, 50%;
+  }
+}
+
+.resultContainer {
+  @include section(column);
+
+  min-height: 100vh;
+  align-items: center;
+  width: 100%;
+}

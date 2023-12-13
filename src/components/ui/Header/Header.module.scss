@@ -8,15 +8,25 @@
 
   justify-content: center;
   padding: 26px 0;
+  position: relative;
+  z-index: 2;
 }
 
 .container {
   @include section(row);
 
   justify-content: space-between;
-  width: calc(100% - 320px);
+  width: calc(100% - 220px);
   max-width: 1120px;
   align-items: center;
+
+  @include mobile-750 {
+    @include section(row);
+
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+  }
 }
 
 .logo {
@@ -24,35 +34,147 @@
 }
 
 .button {
-  background: #ff7a60 !important;
-  width: 159px;
+  background: #ff7a60;
+  border: 0;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 275px;
+}
+
+.buttonContent {
+  @include manrope-header(16px, 600, 100%);
+
+  color: #fff;
+  padding: 16px 43px;
 }
 
 .favouritesBtn {
   position: relative;
-  background-image: url("../../../assets/images/icons/result-heart.svg");
   background-color: transparent;
-  background-size: cover;
-  background-repeat: no-repeat;
   border: none;
   width: 36px;
   height: 34px;
+  cursor: pointer;
 }
 
 .favouritesCount {
+  @include manrope-header(14px, 600);
+
   position: absolute;
-  width: 24px;
-  height: 24px;
-  right: -10px;
-  top: -10px;
+  width: 20px;
+  height: 20px;
+  right: -8px;
+  top: -8px;
   border-radius: 12px;
-  background-color: #f00;
-  color: #fff;
+  border: solid 1px var(--blue-background-color);
+  background-color: var(--ui-primary-bg-color);
+  color: var(--blue-background-color);
+}
+
+.heartBtn {
+  width: 35px;
+}
+
+.heartBtn path {
+  transform-box: fill-box;
+  transform-origin: center center;
+  transform: scale(1.3);
+  fill: transparent;
+}
+
+.heartBtnActive path {
+  fill: var(--ui-primary-bg-color);
+}
+
+.btnName {
+  display: none;
+}
+
+.favouritesBtn:hover .btnName {
+  display: block;
   font-size: var(--font-size-l);
+  font-weight: var(--font-weight-600);
+  padding-top: 15px;
+  color: var(--ui-secondary-bg-color);
+  position: absolute;
+  bottom: -43px;
+  left: -47px;
+  width: 130px;
+  height: 44px;
+  background-color: var(--text-black-color);
+  clip-path: polygon(
+    50% 5%,
+    55% 28%,
+    100% 28%,
+    100% 100%,
+    0 100%,
+    0 28%,
+    46% 28%
+  );
 }
 
 .buttonContainer {
   display: flex;
   column-gap: 48px;
   align-items: center;
+}
+
+@include tablet-1000 {
+  .container {
+    width: calc(100% - 120px);
+  }
+
+  .buttonContent {
+    font-size: 14px;
+  }
+
+  .logo {
+    max-width: 220px;
+  }
+}
+
+@include mobile-750 {
+  .button {
+    background-image: url("../../../assets/images/icons/UserCircle.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-color: transparent;
+    content: "";
+    min-width: 40px;
+    min-height: 40px;
+  }
+
+  .logo {
+    max-width: 200px;
+  }
+
+  .buttonContent {
+    display: none;
+  }
+
+  .heartBtn path {
+    transform: scale(1);
+  }
+}
+
+@include mobile-500 {
+  .logo {
+    max-width: 160px;
+  }
+
+  .container {
+    width: calc(100% - 45px);
+  }
+
+  .button {
+    min-width: 32px;
+    min-height: 32px;
+  }
+
+  .buttonContainer {
+    column-gap: 25px;
+  }
 }

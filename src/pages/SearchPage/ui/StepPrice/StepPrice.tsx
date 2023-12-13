@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { FC, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AppContext from "../../../../context/AppContext.ts";
 import styles from "./StepPrice.module.scss";
@@ -21,13 +21,20 @@ import Preloader from "../../../../components/ui/Preloader/Preloader.tsx";
 import { useSectionsFetch } from "../../../../hooks/useSectionsFetch.tsx";
 
 import { usePriceHandler } from "../../../../hooks/usePriceHandler.tsx";
+import ResultNotFound from "../../../../components/ResultNotFound/ResultNotFound.tsx";
+import { PreloaderSize } from "../../../../components/ui/Preloader/types";
+import { StepProps } from "../../types";
+import { useResize } from "../../../../hooks/useResize.tsx";
+import Checkbox from "../../../../components/ui/Checkbox/Checkbox.tsx";
 
-const StepPrice = () => {
+const StepPrice: FC<StepProps> = ({ setStep }) => {
   const { sectionRequest, fetchedSections } = useContext(AppContext);
 
   const [loader, setLoader] = useState(false);
 
   const navigate = useNavigate();
+
+  const { isMobileScreen } = useResize();
 
   const fetchSections = useSectionsFetch(setLoader);
   const { maxPrice, setMaxPrice, setFreeTrial } = usePriceHandler();
@@ -44,50 +51,64 @@ const StepPrice = () => {
         Какая <span className={styles.span}>стоимость</span> занятий вам
         подходит?
       </h2>
-      <p className={styles.subtitle}>
-        Укажите стоимость одного посещения в рублях
-      </p>
       {loader ? (
-        <Preloader />
+        <Preloader size={PreloaderSize.Large} className={styles.preloader} />
+      ) : !fetchedSections.length ? (
+        <ResultNotFound setStep={setStep} step={1} />
       ) : (
-        <RangeBar
-          currentPrice={maxPrice}
-          prices={prices}
-          setCurrentPrice={(price: number) => setMaxPrice(price)}
-        />
+        <>
+          <p className={styles.subtitle}>
+            Укажите стоимость одного посещения в рублях
+          </p>
+          <RangeBar
+            currentPrice={maxPrice}
+            prices={prices}
+            setCurrentPrice={(price: number) => setMaxPrice(price)}
+          />
+          <div className={styles.optionWrapper}>
+            <Input
+              type="number"
+              labelName="Максимум"
+              iconType={InputIcon.RUB}
+              iconPosition={InputIconPosition.LEFT}
+              className={styles.input}
+              value={maxPrice > 0 ? maxPrice : ""}
+              onChange={(evt: React.ChangeEvent<HTMLInputElement>) =>
+                setMaxPrice(+evt.target.value)
+              }
+            />
+            {!isMobileScreen ? (
+              <Badge
+                isActive={sectionRequest.freeTrial}
+                onClick={setFreeTrial}
+                color={BadgeColor.PRIMARY}
+                className={styles.badge}
+              >
+                <Icon type={IconTypes.COOKIE} color={IconColor.SECONDARY} />
+                Бесплатное пробное
+                {sectionRequest.freeTrial && (
+                  <Icon type={IconTypes.CROSS} color={IconColor.SECONDARY} />
+                )}
+              </Badge>
+            ) : (
+              <Checkbox
+                title="Бесплатное пробное"
+                checked={sectionRequest.freeTrial}
+                onChange={setFreeTrial}
+              />
+            )}
+          </div>
+          <Button
+            onClick={() => navigate("/results")}
+            color={ButtonColor.PRIMARY}
+            testId={ButtonTestId.FORWARD}
+            className={styles.button}
+          >
+            Показать варианты
+            <Icon type={IconTypes.RIGHT_ICON} />
+          </Button>
+        </>
       )}
-      <div className={styles.optionWrapper}>
-        <Input
-          type="number"
-          iconType={InputIcon.RUB}
-          iconPosition={InputIconPosition.LEFT}
-          className={styles.input}
-          value={maxPrice}
-          onChange={(evt: React.ChangeEvent<HTMLInputElement>) =>
-            setMaxPrice(+evt.target.value)
-          }
-        />
-        <Badge
-          isActive={sectionRequest.freeTrial}
-          onClick={setFreeTrial}
-          color={BadgeColor.PRIMARY}
-          className={styles.badge}
-        >
-          <Icon type={IconTypes.COOKIE} color={IconColor.SECONDARY} />
-          Бесплатное пробное
-          {sectionRequest.freeTrial && (
-            <Icon type={IconTypes.CROSS} color={IconColor.SECONDARY} />
-          )}
-        </Badge>
-      </div>
-      <Button
-        onClick={() => navigate("/results")}
-        color={ButtonColor.PRIMARY}
-        testId={ButtonTestId.FORWARD}
-      >
-        Показать варианты
-        <Icon type={IconTypes.RIGHT_ICON} />
-      </Button>
     </div>
   );
 };

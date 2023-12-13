@@ -1,3 +1,5 @@
+@import "../../../../app/styles/mixins";
+
 .listContainer {
   display: flex;
   flex-direction: column;
@@ -6,7 +8,6 @@
 }
 
 .cardList {
-  min-width: 500px;
   list-style: none;
   display: flex;
   flex-direction: column;
@@ -16,12 +17,17 @@
 }
 
 .description {
-  font-size: var(--font-size-l);
-  line-height: var(--font-line-l);
-  font-weight: var(--font-weight-500);
+  @include manrope-header(18px, 500, 155%);
 }
 
 .options {
   display: flex;
   column-gap: 20px;
+  align-items: center;
+}
+
+@include mobile-750 {
+  .description {
+    @include manrope-header(20px, 600, 140%);
+  }
 }

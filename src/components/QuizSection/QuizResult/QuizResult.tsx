@@ -24,19 +24,25 @@ const QuizRezult: React.FC<QuizResultProps> = (props) => {
 
   return (
     <div className={styles.quizResult}>
-      <div className={styles.infoWrapper}>
+      <div className={styles.infoUp}>
         <h3 className={styles.title}>
           Обратите внимание на{" "}
           <span className={styles.highlight}>{result.title}</span> <br />
           {result.sports}
         </h3>
         <p className={styles.description}>{result.textUp}</p>
+      </div>
+      <div className={styles.infoDown}>
         <p className={styles.description}>{result.textDown}</p>
         <Button
           className={styles.button}
           color={ButtonColor.PRIMARY}
           testId={ButtonTestId.OTHER}
-          onClick={() => navigate("/search")}
+          onClick={() =>
+            navigate("/search", {
+              state: { step: 1, sport: result.sports.split(", ") },
+            })
+          }
         >
           <>
             Подобрaть занятие
@@ -45,6 +51,7 @@ const QuizRezult: React.FC<QuizResultProps> = (props) => {
         </Button>
       </div>
       <ImageCard
+        className={styles.image}
         size={ImageCardSize.SLIDER_IMG}
         src={resultImage}
         alt={result.sports}

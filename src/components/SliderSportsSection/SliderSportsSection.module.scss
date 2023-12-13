@@ -1,17 +1,54 @@
 @import "../../app/styles/mixins";
 
 .sliderSection {
-  padding-top: 68px;
+  align-items: center;
 
   @include section(column);
 
-  align-items: center;
+  max-width: 1440px;
+  padding: 68px 100px 106px;
+
+  @include tablet-1100 {
+    padding: 0 60px 10px;
+  }
+
+  @include mobile-750 {
+    align-items: center;
+
+    @include section(column);
+
+    width: 100%;
+    max-width: 1440px;
+    padding: 68px 60px 10px;
+  }
+}
+
+.container {
+  max-width: 1440px;
+  width: 100%;
+  box-sizing: border-box;
+
+  @include section(column);
+}
+
+.titleWrapper {
+  margin: auto;
+  display: flex;
+  gap: 30px;
+  padding-left: 50px;
+  padding-right: 50px;
+
+  @include mobile-750 {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-left: 0;
+    padding-right: 0;
+  }
 }
 
 .title {
-  position: relative;
-  display: block;
-  margin: 24px 0 24px 160px;
+  margin: 24px 0;
 
   @include manrope-header(48px, 700);
 
@@ -19,24 +56,35 @@
   letter-spacing: 0.2px;
   max-width: 544px;
   color: var(--text-black-color);
+}
 
-  &::after {
-    position: absolute;
-    top: 0;
-    left: 576px;
-    width: 544px;
-    height: 147px;
-    content: "";
-    background-image: url("../../assets/images/slider-header-background.svg");
-    background-repeat: no-repeat;
-    background-size: contain;
+.image {
+  @include mobile-750 {
+    display: none;
   }
 }
 
-.container {
-  max-width: 1440px;
+@media screen and (width <= 1340px) {
+  .sliderSection {
+    padding: 10px 60px;
+  }
 
-  @include section(column);
+  .headingIconContainer {
+    align-self: flex-start;
+    margin: auto;
+  }
 
-  align-items: center;
+  .title {
+    @include manrope-header(32px, 700);
+
+    &::after {
+      display: none;
+    }
+  }
+}
+
+@media screen and (width <= 500px) {
+  .sliderSection {
+    padding: 48px 20px 76px;
+  }
 }

@@ -1,21 +1,22 @@
 import { FC, useState } from "react";
 import styles from "./FavouriteList.module.scss";
-import ResultCard from "../../../ResultPage/ui/ResultCard/ResultCard";
+import ResultCard from "../../../../components/ResultCard/ResultCard";
 import { useFavourite } from "../../../../hooks/useLocalFavourites";
 import Badge from "../../../../components/ui/Badge/Badge";
 import { BadgeColor } from "../../../../components/ui/Badge/types";
 import Icon from "../../../../components/ui/Icon/Icon";
 import { IconColor, IconTypes } from "../../../../components/ui/Icon/types";
 import Pagination from "../../../../components/ui/Pagination/Pagination";
+import { useResize } from "../../../../hooks/useResize";
 
 const FavouriteList: FC = () => {
   const [favourite, setFavourite] = useFavourite();
   const [quantity, setQuantity] = useState<number>(0);
-
+  const { isMobileScreen } = useResize();
   return (
     <section className={styles.listContainer}>
       <div className={styles.options}>
-        <p className={styles.description}>Сохранено {favourite.length}</p>
+        <p className={styles.description}>Сохранено: {favourite.length}</p>
         {favourite.length > 0 && (
           <Badge
             isActive
@@ -36,6 +37,7 @@ const FavouriteList: FC = () => {
                   section={section}
                   favourite={favourite}
                   setFavourite={setFavourite}
+                  isMobile={isMobileScreen}
                 />
               </li>
             );

@@ -3,6 +3,7 @@ import styles from "./FavouritePage.module.scss";
 import Header from "../../../components/ui/Header/Header";
 import FavouriteNavigate from "./FavouriteNavigate/FavouriteNavigate";
 import FavouriteList from "./FavouriteList/FavouriteList";
+import Footer from "../../../components/Footer/Footer";
 
 const FavouritePage: FC = () => {
   return (
@@ -15,7 +16,7 @@ const FavouritePage: FC = () => {
           <FavouriteList />
         </div>
       </main>
-      <footer className={styles.footer}>{}</footer>
+      <Footer />
     </>
   );
 };

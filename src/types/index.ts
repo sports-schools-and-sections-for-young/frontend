@@ -1,3 +1,5 @@
+import { geolocation } from "yandex-maps";
+
 export interface Sport {
   id: number;
   title: string;
@@ -27,6 +29,8 @@ export interface Section {
   aviable: number;
   price: number;
   free_class: boolean;
+  site: string;
+  phone: string;
 }
 
 export interface YandexAnswer {
@@ -49,4 +53,12 @@ export interface YandexAnswer {
       text: string;
     };
   }[];
+}
+
+export interface IMapInstance {
+  geolocation: {
+    get: (
+      options?: geolocation.IGeolocationOptions,
+    ) => Promise<{ geoObjects: { position: [number, number] } }>;
+  };
 }

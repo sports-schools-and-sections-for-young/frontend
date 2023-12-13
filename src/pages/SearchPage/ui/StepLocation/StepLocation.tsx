@@ -1,6 +1,7 @@
 import { FC, useContext, useMemo, useState } from "react";
 import { useDebouncedCallback } from "use-debounce";
 import { useNavigate } from "react-router-dom";
+import { geolocation } from "yandex-maps";
 import Map from "../../../../components/Map/Map.tsx";
 import { StepProps } from "../../types";
 import styles from "./StepLocation.module.scss";
@@ -28,13 +29,25 @@ import { distanceButtons } from "../../../../utils/constants/distanceButtons.ts"
 import CheckboxPanel from "../../../../components/ui/CheckboxPanel/CheckboxPanel.tsx";
 import {
   getCoordinates,
+  getGeoLocation,
   getGeosuggestAddresses,
 } from "../../../../utils/functions";
+import DistanceCircle from "../../../../components/Map/DistanceCircle/DistanceCircle.tsx";
+import { useResize } from "../../../../hooks/useResize.tsx";
+import Location from "../../../../assets/images/icons/Location.svg?react";
+
+interface IMapInstance {
+  geolocation: {
+    get: (
+      options?: geolocation.IGeolocationOptions,
+    ) => Promise<{ geoObjects: { position: [number, number] } }>;
+  };
+}
 
 const StepLocation: FC<StepProps> = ({ step, setStep }) => {
   const { sectionRequest, setSectionRequest } = useContext(AppContext);
 
-  const [map, setMap] = useState();
+  const [map, setMap] = useState<IMapInstance>();
 
   const navigate = useNavigate();
 
@@ -45,20 +58,7 @@ const StepLocation: FC<StepProps> = ({ step, setStep }) => {
   }, 3000);
   const [addressList, setAddressList] = useState<SearchingItem[]>([]);
 
-  const getGeoLocation = () => {
-    if (map) {
-      // @ts-ignore
-      return map.geolocation
-        .get({ provider: "yandex", mapStateAutoApply: true })
-        .then((result: { geoObjects: { position: [number, number] } }) => {
-          setSectionRequest({
-            ...sectionRequest,
-            location: result.geoObjects.position,
-          });
-        });
-    }
-    return [];
-  };
+  const { isMobileScreen } = useResize();
 
   const getAddress = async (coords: [number, number]) => {
     const res = await fetch(
@@ -75,6 +75,18 @@ const StepLocation: FC<StepProps> = ({ step, setStep }) => {
         .slice(1)
         .join(" ");
     setSearchingAddress(newAddress);
+  };
+
+  const handleGeolocation = async () => {
+    const newLocation = await getGeoLocation(
+      map as IMapInstance,
+      sectionRequest.location,
+    );
+    setSectionRequest({
+      ...sectionRequest,
+      location: newLocation,
+    });
+    await getAddress(newLocation);
   };
 
   const handleChange = async (value: string) => {
@@ -99,6 +111,20 @@ const StepLocation: FC<StepProps> = ({ step, setStep }) => {
     return { map, setMap };
   }, []);
 
+  const checkboxPanel = (
+    <CheckboxPanel
+      activeOption={sectionRequest.distance || 0}
+      className={styles.distancePanel}
+      setOption={(option) =>
+        setSectionRequest((requestData) => ({
+          ...requestData,
+          distance: option,
+        }))
+      }
+      btns={distanceButtons}
+    />
+  );
+
   return (
     <MapContext.Provider value={mapValues}>
       <div className={styles.step}>
@@ -108,21 +134,11 @@ const StepLocation: FC<StepProps> = ({ step, setStep }) => {
         <p className={styles.subtitle}>
           Хочу найти спортивные занятия не дальше чем:
         </p>
-        <CheckboxPanel
-          activeOption={sectionRequest.distance || 0}
-          className={styles.distancePanel}
-          setOption={(option) =>
-            setSectionRequest((requestData) => ({
-              ...requestData,
-              distance: option,
-            }))
-          }
-          btns={distanceButtons}
-        />
+        {!isMobileScreen && checkboxPanel}
         <div className={styles.controlWrapper}>
           <SearchInput
             labelName="Адрес"
-            placeholder="Поиск"
+            placeholder="Введите улицу и номер дома"
             type="text"
             hasFilter={false}
             searchingList={addressList}
@@ -132,19 +148,36 @@ const StepLocation: FC<StepProps> = ({ step, setStep }) => {
             onChange={(e) => handleChange(e.target.value)}
             itemClickHandler={(e: SearchingItem) => handleItemClick(e.title)}
           />
-          <Badge
-            className={styles.badge}
-            onClick={getGeoLocation}
-            isActive={false}
-            color={BadgeColor.PRIMARY}
-          >
-            <Icon type={IconTypes.LOCATION} color={IconColor.SECONDARY} />
-            Моя локация
-          </Badge>
+          {!isMobileScreen && (
+            <Badge
+              className={styles.badge}
+              onClick={handleGeolocation}
+              isActive={false}
+              color={BadgeColor.PRIMARY}
+            >
+              <Icon type={IconTypes.LOCATION} color={IconColor.SECONDARY} />
+              Моя локация
+            </Badge>
+          )}
         </div>
-        <Map center={sectionRequest.location}>
-          <LocationPlacemark setAddress={getAddress} />
-        </Map>
+        {isMobileScreen && checkboxPanel}
+        <div className={styles.mapContainer}>
+          <Map center={sectionRequest.location}>
+            <LocationPlacemark setAddress={getAddress} />
+            {sectionRequest.distance && (
+              <DistanceCircle distance={sectionRequest.distance * 1000} />
+            )}
+          </Map>
+          {isMobileScreen && (
+            <button
+              type="button"
+              className={styles.locationButton}
+              onClick={handleGeolocation}
+            >
+              <Location />
+            </button>
+          )}
+        </div>
         <Button
           onClick={() => {
             navigate("/search", { state: { step: step + 1 } });

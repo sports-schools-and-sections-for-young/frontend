@@ -10,6 +10,7 @@ export enum ImageCardSize {
   NO_RESULT_IMG = "no-result-image",
   LOGO_IMG = "logo-image",
   AUTH_IMG = "auth-image",
+  AUTH_LOGO_IMG = "auth-logo-image",
 }
 
 export interface ImageCardProps extends ImgHTMLAttributes<HTMLImageElement> {
