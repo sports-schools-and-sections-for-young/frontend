@@ -12,9 +12,12 @@ import {
 import Icon from "../../../../components/ui/Icon/Icon.tsx";
 import { IconTypes } from "../../../../components/ui/Icon/types";
 import { StepProps } from "../../types";
+import { useResize } from "../../../../hooks/useResize.tsx";
 
 const StepInitial: FC<StepProps> = ({ step, setStep }) => {
   const navigate = useNavigate();
+
+  const { isMobileScreen } = useResize();
 
   return (
     <div className={styles.step}>
@@ -22,6 +25,7 @@ const StepInitial: FC<StepProps> = ({ step, setStep }) => {
         size={ImageCardSize.SEARCH_IMG}
         src={SearchImage}
         alt="Дети с мячом."
+        className={styles.image}
       />
       <h1 className={styles.title}>
         Ответьте на несколько вопросов, и мы{" "}
@@ -39,6 +43,16 @@ const StepInitial: FC<StepProps> = ({ step, setStep }) => {
       >
         Начать <Icon type={IconTypes.RIGHT_ICON} />
       </Button>
+      {isMobileScreen && (
+        <Button
+          onClick={() => navigate("/")}
+          className={styles.button}
+          color={ButtonColor.SECONDARY}
+          testId={ButtonTestId.BACK}
+        >
+          Вернуться назад
+        </Button>
+      )}
     </div>
   );
 };

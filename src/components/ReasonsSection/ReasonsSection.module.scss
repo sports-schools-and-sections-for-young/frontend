@@ -4,8 +4,17 @@
   @include section(column);
 
   background-color: var(--blue-background-color);
-  padding: 68px 165px 116px;
+  padding-top: 68px;
+  padding-bottom: 116px;
   align-items: center;
+
+  @include tablet-1100 {
+    padding: 40px 50px;
+  }
+
+  @include mobile-500 {
+    padding: 40px 20px;
+  }
 }
 
 .sectionContainer {
@@ -15,6 +24,10 @@
   @include section(column);
 
   align-items: center;
+
+  @include tablet-1100 {
+    align-items: start;
+  }
 }
 
 .title {
@@ -23,14 +36,49 @@
   color: var(--text-black-color);
   letter-spacing: 0.2px;
   padding-top: 24px;
+
+  @include tablet-1100 {
+    @include manrope-header(32px, 700, 100%);
+
+    text-align: start;
+  }
 }
 
 .container {
-  width: 100%;
+  max-width: 100%;
 
   @include section(row);
 
   padding-top: 60px;
   gap: 35px;
   justify-content: space-between;
+
+  @include tablet-1100 {
+    padding-top: 40px;
+    padding-left: 0;
+    padding-right: 0;
+    gap: 25px;
+  }
+
+  @include mobile-750 {
+    display: flex;
+    flex-flow: column nowrap;
+    transition: transform 0.5s ease;
+    align-items: center;
+  }
 }
+
+// .dots {
+//   text-align: center;
+//   margin-top: 24px;
+// }
+
+// .dot {
+//   display: inline-block;
+//   width: 12px;
+//   height: 12px;
+//   border-radius: 50%;
+//   background-color: var(--ui-disabled-color);
+//   margin: 0 12px;
+//   cursor: pointer;
+// }

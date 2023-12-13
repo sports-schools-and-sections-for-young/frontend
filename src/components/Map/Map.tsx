@@ -26,6 +26,7 @@ const YandexMap: FC<YandexMapProps> = (props) => {
             center,
             zoom: 12,
           }}
+          options={{ suppressMapOpenBlock: true }}
         >
           {children}
         </Map>

@@ -60,6 +60,16 @@
   @include tablet-1100 {
     max-width: 445px;
 
+    @include manrope-header(32px, 700, 140%);
+  }
+
+  @include mobile-500 {
+    text-align: start;
+  }
+
+  @include tablet-1100 {
+    max-width: 445px;
+
     @include manrope-header(32px, 600, 125%);
   }
 

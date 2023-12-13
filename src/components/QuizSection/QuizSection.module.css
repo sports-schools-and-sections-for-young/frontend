@@ -22,11 +22,8 @@
 }
 @media (max-width: 750px) {
   .quiz {
-    background-image: url("../../assets/images/quiz-mobile-up.svg"),
-      url("../../assets/images/quiz-mobile-bottom.svg");
-    background-position:
-      top right 20px,
-      bottom left;
+    background-image: url("../../assets/images/quiz-mobile-up.svg"), url("../../assets/images/quiz-mobile-bottom.svg");
+    background-position: top right 20px, bottom left;
     background-repeat: no-repeat, no-repeat;
     background-size: 50%, 40%;
     padding: 148px 50px 160px;
@@ -70,6 +67,21 @@
   color: var(--text-black-color);
   padding-bottom: 51px;
   text-align: center;
+}
+@media (max-width: 1100px) {
+  .title {
+    max-width: 445px;
+    font-family: var(--font-family_main);
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 140%;
+  }
+}
+@media (max-width: 500px) {
+  .title {
+    text-align: start;
+  }
 }
 @media (max-width: 1100px) {
   .title {

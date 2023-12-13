@@ -8,15 +8,27 @@
 
   justify-content: center;
   padding: 26px 0;
+
+  @include tablet-1100 {
+    padding: 14px 16px;
+  }
 }
 
 .container {
   @include section(row);
 
   justify-content: space-between;
-  width: calc(100% - 320px);
+  width: 100%;
   max-width: 1120px;
   align-items: center;
+
+  @include mobile-750 {
+    @include section(row);
+
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+  }
 }
 
 .logo {
@@ -26,6 +38,10 @@
 .button {
   background: #ff7a60 !important;
   width: 159px;
+
+  @include mobile-750 {
+    display: none;
+  }
 }
 
 .favouritesBtn {
@@ -83,4 +99,28 @@
   display: flex;
   column-gap: 48px;
   align-items: center;
+
+  @include mobile-500 {
+    column-gap: 25px;
+  }
+}
+
+.profileButton {
+  display: none;
+
+  @include mobile-750 {
+    display: block;
+    position: relative;
+    background-image: url("../../../assets/images/profile-menu-icon.png");
+    background-color: transparent;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border: none;
+    width: 36px;
+    height: 36px;
+  }
+}
+
+.hiddenText {
+  display: none;
 }
