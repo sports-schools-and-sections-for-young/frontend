@@ -12,7 +12,7 @@ import ResultNotFound from "../../../../components/ResultNotFound/ResultNotFound
 const ResultList: FC<ResultListProps> = (props) => {
   const { sectionRequest, filteredSections } = useContext(AppContext);
   const [activeSection, setActiveSection] = useState<Section | null>(null);
-  const { mapView } = props;
+  const { mapView, isMobile } = props;
 
   const [quantity, setQuantity] = useState<number>(0);
   const [favourite, setFavourite] = useFavourite();
@@ -38,6 +38,7 @@ const ResultList: FC<ResultListProps> = (props) => {
                     section={activeSection}
                     favourite={favourite}
                     setFavourite={setFavourite}
+                    isMobile={isMobile}
                   />
                 </li>
               </>
@@ -50,6 +51,7 @@ const ResultList: FC<ResultListProps> = (props) => {
                       section={section}
                       favourite={favourite}
                       setFavourite={setFavourite}
+                      isMobile={isMobile}
                     />
                   </li>
                 );

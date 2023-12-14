@@ -6,17 +6,30 @@
   align-items: center;
   width: 100%;
   padding: 151px 160px 208px;
+  margin-top: 110px;
 
   @include tablet-1100 {
-    padding: 109px 160px 208px;
+    padding: 109px 50px 168px;
+    margin-top: 80px;
   }
 
   @include mobile-750 {
-    padding: 40px 50px 180px;
+    background-image: url("../../assets/images/quiz-mobile-up.svg"),
+      url("../../assets/images/quiz-mobile-bottom.svg");
+    background-position:
+      top right 20px,
+      bottom left;
+    background-repeat: no-repeat, no-repeat;
+    background-size: 50%, 40%;
+    padding: 148px 50px 160px;
+    margin-bottom: 165px;
   }
 
   @include mobile-500 {
-    padding: 0 20px 80px;
+    padding: 148px 20px 160px;
+    margin-top: 100px;
+    margin-bottom: 165px;
+    background-size: 65%, 50%;
   }
 }
 
@@ -28,19 +41,11 @@
   max-width: 1120px;
   background-image: url("../../assets/images/main-quiz-background.png");
   background-repeat: no-repeat;
-  background-size: 1100px 281px;
+  background-size: contain;
   background-position: bottom 35px center;
 
-  @include tablet-1100 {
-    max-width: 924px;
-    background-size: 824px 217px;
-    background-position: bottom 55px center;
-  }
-
-  @include mobile-500 {
-    max-width: 440px;
-    background-size: 350px 83px;
-    background-position: top 165px center;
+  @include mobile-750 {
+    background-image: none;
   }
 }
 
@@ -61,6 +66,16 @@
   @include mobile-500 {
     text-align: start;
   }
+
+  @include tablet-1100 {
+    max-width: 445px;
+
+    @include manrope-header(32px, 600, 125%);
+  }
+
+  @include mobile-500 {
+    text-align: start;
+  }
 }
 
 .description {
@@ -73,26 +88,20 @@
   text-align: center;
 
   @include tablet-1100 {
-    @include manrope-header(18px, 400, 140%);
+    max-width: 445px;
 
-    padding-bottom: 62px;
-    max-width: 360px;
+    @include manrope-header(18px, 500, 155%);
+
+    padding-bottom: 50px;
   }
 
   @include mobile-500 {
     text-align: start;
+    padding-bottom: 30px;
   }
 }
 
 .button {
-  @include tablet-1100 {
-    width: 40%;
-  }
-
-  @include mobile-750 {
-    width: 80%;
-  }
-
   @include mobile-500 {
     width: 100%;
   }

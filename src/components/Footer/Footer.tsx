@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Link } from "react-router-dom";
 import styles from "./Footer.module.scss";
-import ImageCard from "../ui/ImageCard/ImageCard.tsx";
+import ImageCard from "../ui/ImageCard/ImageCard";
 import { ImageCardSize } from "../ui/ImageCard/types";
 import logo from "../../assets/images/logo-white.png";
 

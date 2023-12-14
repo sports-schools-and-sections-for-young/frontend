@@ -41,6 +41,7 @@ const section = {
   schedule: "Вторник, Четверг, Пятница",
   free_class: false,
   site: "",
+  phone: "333",
 };
 
 export const SectionCard: Story = {

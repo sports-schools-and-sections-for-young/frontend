@@ -162,6 +162,29 @@
   }
 }
 
+.closeResultButton {
+  margin: 4px;
+  border: none;
+  background-color: transparent;
+  background-image: url("../../../assets/images/icons/SearchClose.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 36px;
+  height: 36px;
+  min-height: 36px;
+  cursor: pointer;
+  align-self: flex-end;
+  margin-top: 59px;
+
+  @include mobile-750 {
+    margin-right: 50px;
+  }
+
+  @include mobile-500 {
+    margin-right: 20px;
+  }
+}
+
 .arrowButton {
   width: 36px;
   height: 36px;
