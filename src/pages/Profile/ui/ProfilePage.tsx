@@ -1,6 +1,6 @@
 import { useContext, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
-import ProfileNavigation from "./ProfileNavigation/ProfileNavigation.tsx";
+import ProfileHeader from "./ProfileHeader/ProfileHeader.tsx";
 import styles from "./ProfilePage.module.scss";
 import Header from "../../../components/ui/Header/Header.tsx";
 import Footer from "../../../components/Footer/Footer.tsx";
@@ -29,7 +29,7 @@ const ProfilePage = () => {
     <>
       <Header />
       <main className={styles.page}>
-        <ProfileNavigation />
+        <ProfileHeader />
         <Routes>
           <Route path="/" element={<Preloader size={PreloaderSize.Large} />} />
           <Route path="/edit" element={<ProfileForm />} />

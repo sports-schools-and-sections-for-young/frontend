@@ -1,0 +1,11 @@
+.link {
+  text-decoration: none;
+  font-size: var(--font-size-m);
+  line-height: var(--font-line-m);
+  font-weight: var(--font-weight-600);
+  color: var(--text-black-color);
+}
+
+.active {
+  color: var(--ui-primary-bg-color);
+}

@@ -1,8 +1,7 @@
-.navigation {
-  height: 328px;
-  width: 100%;
+.nav {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid blue;
+  flex-direction: column;
+  gap: 24px;
+  list-style-type: none;
+  padding-right: 73px;
 }
