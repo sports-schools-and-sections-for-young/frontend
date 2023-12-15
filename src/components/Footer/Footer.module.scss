@@ -11,6 +11,8 @@
   padding: 32px 160px;
   align-items: center;
   justify-content: center;
+
+  @include section(row);
 }
 
 .footerContainer {

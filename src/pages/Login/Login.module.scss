@@ -1,3 +1,5 @@
+@import "../../app/styles/mixins";
+
 .form {
   display: flex;
   flex-direction: column;
@@ -6,14 +8,24 @@
   background: var(--blue-background-color);
 }
 
+.header {
+  padding: 32px 32px 20px;
+  display: flex;
+  align-items: center;
+  min-height: 80px;
+  width: 100%;
+
+  @include mobile-750 {
+    padding: 12px 20px 20px;
+  }
+}
+
 .formContainer {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
-  padding-top: 70px;
-  padding-bottom: 101px;
-  height: 100vh;
+  flex: 1;
 }
 
 .formContent {
@@ -25,6 +37,24 @@
   border-radius: var(--wide-radius);
   padding: 44px;
   display: flex;
+
+  @include tablet-1100 {
+    align-items: center;
+    justify-content: center;
+    width: 650px;
+    padding: 20px;
+  }
+
+  @include mobile-750 {
+    flex-direction: column;
+    gap: 20px;
+    height: 780px;
+  }
+
+  @include mobile-500 {
+    gap: 10px;
+    padding: 4px;
+  }
 }
 
 .formColumn {
@@ -32,6 +62,14 @@
   flex-direction: column;
   justify-content: center;
   width: calc(40% - 44px);
+
+  @include tablet-1100 {
+    width: 70%;
+  }
+
+  @include mobile-750 {
+    width: 90%;
+  }
 }
 
 .title {
@@ -39,6 +77,10 @@
   font-weight: 500;
   font-size: var(--font-size-heading-h2);
   color: var(--text-black-color);
+
+  @include mobile-500 {
+    font-size: var(--font-size-heading-h4);
+  }
 }
 
 .formText {
@@ -69,6 +111,10 @@
 .loginButton {
   width: 40%;
   align-self: center;
+
+  @include mobile-500 {
+    width: 100%;
+  }
 }
 
 .inputWrapper {
@@ -90,17 +136,32 @@
   display: flex;
   flex-direction: column;
   padding-top: 20px;
+
+  @include mobile-500 {
+    align-items: start;
+  }
 }
 
 .buttonRow {
   display: flex;
   flex-direction: row;
+
+  @include mobile-500 {
+    flex-direction: column;
+    width: 100%;
+  }
 }
 
 .forgotPassword {
   margin-left: auto;
   align-self: center;
   text-decoration: none;
+
+  @include mobile-500 {
+    padding-top: 16px;
+    margin-left: 0;
+    margin-right: auto;
+  }
 }
 
 .forgotPassword:hover {
@@ -111,33 +172,4 @@
   border: none;
   border-top: 0.5px solid black;
   margin: 56px 0;
-}
-
-.darkPart {
-  background-color: var(--text-black-color);
-  width: 100%;
-  min-height: 170px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-}
-
-.footerContainer {
-  display: flex;
-  gap: 168px;
-  width: 1120px;
-}
-
-.textWrapper {
-  display: flex;
-  flex-direction: column;
-  color: var(--ui-primary-color);
-  font-size: var(--font-size-m);
-  max-width: 690px;
-}
-
-.spanText {
-  padding-top: 24px;
-  font-size: var(--font-size-s);
 }
