@@ -7,13 +7,14 @@
   display: flex;
   flex-direction: column;
   width: 100%;
+  row-gap: 32px;
 }
 
 .title {
   @include manrope-header(32px, 600, 125%);
 
   color: var(--text-black-color);
-  margin-bottom: 40px;
+  margin-bottom: 32px;
 }
 
 .button {
@@ -22,18 +23,23 @@
   cursor: pointer;
 
   &:hover {
-    transform: scale(1.03);
+    opacity: 0.8;
   }
+}
+
+.buttonTrash {
+  grid-column: 3;
 }
 
 .buttonContainer {
   display: grid;
-  grid-template-columns: 90% 1fr 1fr;
+  grid-template-columns: 1fr;
   justify-items: start;
+  column-gap: 50px;
+  margin-bottom: 40px;
 }
 
 .table {
-  margin-top: 40px;
   border-spacing: 0;
   table-layout: fixed;
   width: 100%;
@@ -79,12 +85,24 @@
 
   color: #333;
 
-  &:hover,
-  .sport ~ .schedule ~ .address ~ .price ~ {
+  &:hover {
+    cursor: pointer;
     background-color: rgb(203 229 228 / 50%);
 
-    @include manrope-header(18px, 600, 105%);
+    @include manrope-header(18px, 600, 155%);
   }
+}
+
+.activeRow {
+  background-color: rgb(203 229 228 / 50%);
+
+  @include manrope-header(18px, 600, 155%);
+}
+
+.sectionList {
+  list-style: none;
+  padding-top: 28px;
+  padding-bottom: 28px;
 }
 
 @include tablet-1000 {
@@ -98,5 +116,54 @@
   .sections {
     padding-left: 20px;
     padding-right: 20px;
+  }
+
+  .sectionList {
+    display: flex;
+    flex-direction: column;
+    row-gap: 28px;
+  }
+
+  .buttonContainer {
+    column-gap: 8px;
+    margin-bottom: 20px;
+  }
+
+  .button {
+    opacity: 0.4;
+  }
+
+  .sectionCard {
+    border-radius: 10px;
+    box-shadow: 0 10px 25px 0 rgb(19 28 78 / 13%);
+    padding: 24px 8px;
+    row-gap: 16px;
+  }
+
+  .sectionTitle {
+    @include manrope-header(20px, 600, 140%);
+
+    color: var(--text-black-color);
+    margin-bottom: 8px;
+  }
+
+  .address {
+    @include manrope-header(18px, 500, 155%);
+
+    color: var(--light-text-color);
+    margin-bottom: 12px;
+  }
+
+  .price {
+    @include manrope-header(20px, 600, 140%);
+
+    color: var(--text-black-color);
+  }
+
+  .schedule {
+    @include manrope-header(16px, 400, 150%);
+
+    color: var(--ui-secondary-color);
+    margin-bottom: 16px;
   }
 }

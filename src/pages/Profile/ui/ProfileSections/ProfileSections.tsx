@@ -51,12 +51,28 @@ const ProfileSections: FC = () => {
           <Icon type={IconTypes.PLUS} color={IconColor.SECONDARY} />
           Добавить секцию
         </Button>
-        <button type="button" className={styles.button}>
-          <Edit />
-        </button>
-        <button type="button" className={styles.button}>
-          <Trash />
-        </button>
+        {checkedSections.length === 1 && (
+          <button
+            type="button"
+            className={styles.button}
+            onClick={() =>
+              navigate("/editsection", {
+                state: { forEditing: checkedSections[0] },
+              })
+            }
+          >
+            <Edit />
+          </button>
+        )}
+        {checkedSections.length > 0 && (
+          <button
+            type="button"
+            className={`${styles.button} ${styles.buttonTrash}`}
+            onClick={() => {}}
+          >
+            <Trash />
+          </button>
+        )}
       </div>
       {!isMobileScreen && (
         <table className={styles.table}>
@@ -81,7 +97,11 @@ const ProfileSections: FC = () => {
               school.sections.map((section) => {
                 return (
                   <tr
-                    className={styles.tableRow}
+                    className={`${styles.tableRow} ${
+                      checkedSections.includes(section.id)
+                        ? styles.activeRow
+                        : ""
+                    }`}
                     key={section.id}
                     onClick={() => toggleSection(section.id)}
                   >
@@ -108,16 +128,30 @@ const ProfileSections: FC = () => {
           {school?.sections.map((section) => {
             return (
               <li key={section.id}>
-                <article>
-                  <Badge isActive color={BadgeColor.PRIMARY}>
-                    {section.sport_type}
-                  </Badge>
-                  <button type="button" className={styles.button}>
-                    <Edit />
-                  </button>
-                  <button type="button" className={styles.button}>
-                    <Trash />
-                  </button>
+                <article className={styles.sectionCard}>
+                  <div className={styles.buttonContainer}>
+                    <Badge isActive color={BadgeColor.PRIMARY}>
+                      {section.sport_type}
+                    </Badge>
+                    <button
+                      type="button"
+                      className={styles.button}
+                      onClick={() =>
+                        navigate("/editsection", {
+                          state: { forEditing: checkedSections[0] },
+                        })
+                      }
+                    >
+                      <Edit />
+                    </button>
+                    <button
+                      type="button"
+                      className={`${styles.button} ${styles.buttonTrash}`}
+                      onClick={() => {}}
+                    >
+                      <Trash />
+                    </button>
+                  </div>
                   <h2 className={styles.sectionTitle}>{section.title}</h2>
                   <p className={styles.address}>{section.address}</p>
                   <p className={styles.schedule}>{section.schedule}</p>
