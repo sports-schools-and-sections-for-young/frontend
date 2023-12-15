@@ -1,5 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { useCookies } from "react-cookie";
 import styles from "../Login/Login.module.scss";
 import Button from "../../components/ui/Button/Button";
 import { ButtonColor, ButtonTestId } from "../../components/ui/Button/types";
@@ -7,7 +8,7 @@ import Icon from "../../components/ui/Icon/Icon";
 import { IconColor, IconTypes } from "../../components/ui/Icon/types";
 import Input from "../../components/ui/Input/Input";
 import AuthBannerForm from "../../components/ui/AuthBannerForm/AuthBannerForm";
-import { registration } from "../../utils/api";
+import { registration , login } from "../../utils/api";
 import MainFooter from "../../components/MainFooter/MainFooter";
 import { useResize } from "../../hooks/useResize";
 import ButtonBackMobile from "../../components/ui/ButtonBackMobile/ButtonBackMobile";
@@ -34,28 +35,31 @@ function Register() {
 
   const navigate = useNavigate();
   const { isMobileScreen } = useResize();
+  const [cookies, setCookie] = useCookies(["token"]); // Получаем и устанавливаем куки
 
-  const onSubmit: SubmitHandler<IRegister> = async (data) => {
-    console.log("data =>", data);
+  const onRegisterSubmit: SubmitHandler<IRegister> = async (data) => {
     try {
-      // Отправка запроса на сервер для регистрации
-      const response = await registration(
+      const registrationResponse = await registration(
         data.email,
         data.password,
         data.passwordConfirmation,
       );
+      console.log("Успешная регистрация", registrationResponse);
 
-      // Обработка успешной регистрации
-      console.log("Успешная регистрация", response);
+      if (registrationResponse.email) {
+        const loginResponse = await login(data.email, data.password);
+        console.log("Успешная авторизация", loginResponse);
 
-      // Сброс формы после успешной регистрации
+        const { token } = loginResponse;
+        // Устанавливаем токен в куки с помощью setCookie
+        setCookie("token", token, { path: "/" }); // Устанавливаем токен в корневой путь ('/') куки
+        console.log(cookies.token);
+        navigate("/profile");
+      }
       reset();
     } catch (error) {
-      // Обработка ошибок при регистрации
       console.error("Ошибка при регистрации", error);
     }
-
-    // reset();
   };
 
   return (
@@ -80,7 +84,7 @@ function Register() {
       <div className={styles.formContainer}>
         <form
           className={styles.formContent}
-          onSubmit={handleSubmit(onSubmit)}
+          onSubmit={handleSubmit(onRegisterSubmit)}
           noValidate
         >
           {isMobileScreen ? (

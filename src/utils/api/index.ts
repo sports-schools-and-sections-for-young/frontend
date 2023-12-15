@@ -52,17 +52,7 @@ export const login = async (email: string, password: string): Promise<any> => {
     },
     body: JSON.stringify({ email, password }),
   });
-  // return checkResponse(res);
-  try {
-    const data = await checkResponse(res); // Проверяем статус ответа
-    const { token } = data; // Извлекаем токен из ответа сервера
-    localStorage.setItem("token", token); // Сохраняем токен в localStorage
-    return data; // Возвращаем данные, если запрос успешен
-  } catch (error: any) {
-    // Обработка ошибок
-    console.error("Ошибка:", error.message);
-    throw error;
-  }
+  return checkResponse(res);
 };
 
 // Регистрация

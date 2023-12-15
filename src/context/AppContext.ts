@@ -11,6 +11,7 @@ export interface ISectionsRequest {
   maxPrice: number;
   freeTrial: boolean;
   schedule: Weekday[] | null;
+  token: string | null;
 }
 
 interface IAppContext {
@@ -33,6 +34,7 @@ export const sectionsRequestDefault: ISectionsRequest = {
   maxPrice: Infinity,
   freeTrial: false,
   schedule: null,
+  token: null,
 };
 
 const defaultValue: IAppContext = {

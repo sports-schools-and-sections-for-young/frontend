@@ -1,4 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
 import { SubmitHandler, useForm } from "react-hook-form";
 import styles from "./Login.module.scss";
 import Button from "../../components/ui/Button/Button";
@@ -32,21 +33,19 @@ function Login() {
 
   const navigate = useNavigate();
   const { isMobileScreen } = useResize();
+  const [cookies, setCookie] = useCookies(["token"]); // Получаем и устанавливаем куки
 
-  const onSubmit: SubmitHandler<ILogin> = async (data) => {
-    console.log(`email => ${data.email}   password => ${data.password}`);
-    console.log("data =>", data);
-
+  const onLoginSubmit: SubmitHandler<ILogin> = async (data) => {
     try {
-      const response = await login(data.email, data.password);
-      // Здесь можно обработать ответ от сервера, например, проверить успешность входа
-      console.log("Ответ сервера:", response);
-      // Возможно, здесь нужно установить состояние loggedIn на основе ответа
-      // setLoggedIn(true);
-      // Перенаправление пользователя, если вход успешен
-      // navigate('/dashboard'); // Замените '/dashboard' на нужный путь
+      const loginResponse = await login(data.email, data.password);
+      console.log("Ответ сервера:", loginResponse);
+
+      const { token } = loginResponse;
+      // Устанавливаем токен в куки с помощью setCookie
+      setCookie("token", token, { path: "/" }); // Устанавливаем токен в корневой путь ('/') куки
+      console.log(cookies.token);
+      navigate("/profile");
     } catch (error) {
-      // Обработка ошибок, например, вывод ошибки в консоль
       console.error("Ошибка входа:", error);
     }
 
@@ -75,7 +74,7 @@ function Login() {
       <div className={styles.formContainer}>
         <form
           className={styles.formContent}
-          onSubmit={handleSubmit(onSubmit)}
+          onSubmit={handleSubmit(onLoginSubmit)}
           noValidate
         >
           {isMobileScreen ? (
