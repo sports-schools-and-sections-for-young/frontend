@@ -45,7 +45,7 @@ const section = {
 };
 
 export const SectionCard: Story = {
-  args: { section, favourite: [] },
+  args: { section, favourite: [], isMobile: false },
   render: function Render(args) {
     const [favourite, setFavourite] = useState<Section[]>([]);
 

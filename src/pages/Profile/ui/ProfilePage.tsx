@@ -16,8 +16,12 @@ const ProfilePage = () => {
 
   useEffect(() => {
     const getInfo = async () => {
-      const info: SchoolInfo = await getSchoolInfo();
-      const sections: Section[] = await getSchoolSections();
+      const info: SchoolInfo = await getSchoolInfo(
+        "cb491fa10ce98c5d79ebdd9a429fbd84fa3f7268",
+      );
+      const sections: Section[] = await getSchoolSections(
+        "cb491fa10ce98c5d79ebdd9a429fbd84fa3f7268",
+      );
       setSchool({ info, sections });
     };
     getInfo();
