@@ -17,6 +17,16 @@ export interface NavProps {
 export interface QuizQuestionProps {
   func(stageNumber: number, value: number): void;
   choice: QuestionProps;
+  chosen: number;
+}
+
+export interface QuizSaveData {
+  num0: number;
+  num1: number;
+  num2: number;
+  num3: number;
+  num4: number;
+  num5: number;
 }
 
 export interface ResultProps {

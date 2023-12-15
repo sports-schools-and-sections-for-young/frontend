@@ -1,3 +1,5 @@
+@import "../../../app//styles/mixins.scss";
+
 .favourite {
   margin: 0 auto;
   width: 100%;
@@ -17,9 +19,8 @@
 }
 
 .title {
-  font-size: var(--font-size-heading-h3);
-  line-height: var(--font-line-heading-h3);
-  font-family: var(--font-family_main);
+  @include manrope-header(44px, 700, 125%);
+
   padding-top: 20px;
   padding-bottom: 20px;
   display: flex;
@@ -27,9 +28,15 @@
   column-gap: 60px;
 }
 
-.footer {
-  background-color: var(--text-black-color);
-  width: 100%;
-  min-height: 170px;
-  margin-top: 70px;
+@include mobile-750 {
+  .title {
+    display: none;
+  }
+}
+
+@include mobile-500 {
+  .favourite {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
 }

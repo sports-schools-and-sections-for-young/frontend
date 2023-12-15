@@ -1,3 +1,5 @@
+@import "../../app/styles/mixins";
+
 .container {
   display: flex;
   flex-direction: column;
@@ -6,11 +8,23 @@
   margin: 0 auto;
 }
 
+.heading {
+  display: flex;
+  flex-direction: column;
+  row-gap: 18px;
+  align-items: center;
+}
+
 .title {
   color: var(--text-black-color);
-  font-size: var(--font-size-heading-h3);
-  line-height: var(--font-line-heading-h3);
-  font-weight: var(--font-weight-600);
+
+  @include manrope-header(32px, 600, 125%);
+}
+
+.subtitle {
+  color: var(--light-text-color);
+
+  @include manrope-header(24px, 500, 145%);
 }
 
 .image {
@@ -19,4 +33,23 @@
   max-width: 335px;
   max-height: 335px;
   object-fit: contain;
+}
+
+@include mobile-750 {
+  .title {
+    @include manrope-header(24px, 600, 135%);
+  }
+
+  .subtitle {
+    @include manrope-header(18px, 500, 145%);
+  }
+
+  .heading {
+    row-gap: 12px;
+    align-items: flex-start;
+  }
+
+  .container {
+    row-gap: 36px;
+  }
 }

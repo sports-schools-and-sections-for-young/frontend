@@ -5,8 +5,7 @@
   align-items: center;
   justify-content: center;
   gap: 12px;
-  height: 32px;
-  border: none;
+  height: 31px;
   border-radius: var(--extra-narrow-radius);
   color: var(--ui-primary-bg-color);
   cursor: pointer;
@@ -14,6 +13,11 @@
   line-height: var(--font-line-m);
   font-weight: var(--font-weight-600);
   outline: none;
+  border: 1px solid transparent;
+
+  &:hover {
+    border: 1px solid var(--ui-primary-bg-color);
+  }
 }
 
 .active {

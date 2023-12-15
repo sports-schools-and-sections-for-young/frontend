@@ -13,12 +13,16 @@ export interface IResultNavigateProps
 
 export type ResultListProps = {
   mapView: number;
+  isMobile: boolean;
 };
 
 export interface IResultFiltersProps
   extends HTMLAttributes<HTMLHeadingElement> {
   clearFilters: () => void;
+  toggleFilterPanel?: Dispatch<SetStateAction<boolean>>;
   setLoader: Dispatch<SetStateAction<boolean>>;
+  isOpen: boolean;
+  isMobile: boolean;
 }
 
 export type mapViewProps = {

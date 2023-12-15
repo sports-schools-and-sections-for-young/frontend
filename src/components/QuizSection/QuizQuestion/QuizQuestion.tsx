@@ -7,7 +7,7 @@ import Icon from "../../ui/Icon/Icon.tsx";
 import { IconTypes } from "../../ui/Icon/types/index.ts";
 
 const QuizQuestion: FC<QuizQuestionProps> = (props) => {
-  const { func, choice } = props;
+  const { func, choice, chosen } = props;
   const { stage, question, options } = choice;
   const [currentValue, setCurrentValue] = React.useState(0);
 
@@ -15,7 +15,7 @@ const QuizQuestion: FC<QuizQuestionProps> = (props) => {
     if (currentValue > 0) func(stage, currentValue);
   }
   React.useEffect(() => {
-    setCurrentValue(0);
+    setCurrentValue(chosen);
   }, [stage]);
   return (
     <div className={styles.container}>
@@ -45,7 +45,7 @@ const QuizQuestion: FC<QuizQuestionProps> = (props) => {
           className={styles.button}
           color={ButtonColor.PRIMARY}
           testId={ButtonTestId.FORWARD}
-          onClick={() => setResults()}
+          onClick={setResults}
         >
           Дальше
           <Icon type={IconTypes.RIGHT_ICON} />

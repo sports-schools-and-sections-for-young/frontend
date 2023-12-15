@@ -168,13 +168,15 @@ const StepLocation: FC<StepProps> = ({ step, setStep }) => {
               <DistanceCircle distance={sectionRequest.distance * 1000} />
             )}
           </Map>
-          <button
-            type="button"
-            className={styles.locationButton}
-            onClick={handleGeolocation}
-          >
-            <Location />
-          </button>
+          {isMobileScreen && (
+            <button
+              type="button"
+              className={styles.locationButton}
+              onClick={handleGeolocation}
+            >
+              <Location />
+            </button>
+          )}
         </div>
         <Button
           onClick={() => {

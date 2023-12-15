@@ -34,6 +34,10 @@ export const searchSections = async (sectionRequest: ISectionsRequest) => {
     queryArray.push(`distance=${sectionRequest.distance}`);
   }
 
+  if (sectionRequest.schedule) {
+    queryArray.push(`schedule=${sectionRequest.schedule.join(",")}`);
+  }
+
   const res = await fetch(`${API_URL}/search_sections?${queryArray.join("&")}`);
   return checkResponse(res);
 };

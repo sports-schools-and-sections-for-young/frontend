@@ -1,37 +1,41 @@
 import React, { Dispatch, FC, SetStateAction } from "react";
-import { Link } from "react-router-dom";
+import classnames from "classnames";
 import styles from "./ResultCard.module.scss";
-import Button from "../ui/Button/Button.tsx";
-import { ButtonColor, ButtonTestId } from "../ui/Button/types";
+import Heart from "../../assets/images/icons/heart.svg?react";
 import Icon from "../ui/Icon/Icon.tsx";
 import { IconTypes } from "../ui/Icon/types";
-import { getDeclension } from "../../utils/functions";
 import { Section } from "../../types";
+import { abbreviateWeekDayName } from "../../utils/functions/index.ts";
+import { weekdays } from "../../utils/constants/week.ts";
 
 interface ResultCardProps {
   section: Section | null;
   favourite: Section[];
   setFavourite: Dispatch<SetStateAction<Section[]>>;
+  isMobile: boolean;
 }
 
 const ResultCard: FC<ResultCardProps> = ({
   section,
   favourite,
   setFavourite,
+  isMobile,
 }) => {
   if (!section) return null;
-  const {
-    id,
-    sport_type,
-    title,
-    address,
-    price,
-    rating,
-    review_amount,
-    schedule,
-  } = section;
+  const { id, sport_type, title, address, price, phone, schedule, site } =
+    section;
+
+  const buttonClass = classnames({
+    [styles.transitionButton]: true,
+    [styles.disabledBtn]: site.length < 1,
+  });
 
   const isLiked = favourite.some((f) => f.id === id);
+
+  const heartBtnClass = classnames({
+    [styles.heartBtn]: true,
+    [styles.heartBtnActive]: isLiked,
+  });
 
   const toggleLike = (section: Section) => {
     if (isLiked) {
@@ -42,36 +46,26 @@ const ResultCard: FC<ResultCardProps> = ({
   };
 
   const sheduleDays = (): React.ReactNode => {
-    return schedule.length > 0
-      ? schedule
-          .split(",")
-          .map((item) => {
-            if (item === "Понедельник") return "Пн";
-            if (item === "Вторник") return "Вт";
-            if (item === "Среда") return "Ср";
-            if (item === "Четверг") return "Чт";
-            if (item === "Пятница") return "Пт";
-            if (item === "Суббота") return "Сб";
-            if (item === "Воскресенье") return "Вс";
-            return item;
-          })
-          .join(", ")
-      : "Пн,Вт,Ср,Чт,Пт,Сб,Вс";
+    if (schedule.length < 1) {
+      return weekdays
+        .map((item) => abbreviateWeekDayName(item, isMobile))
+        .join(", ");
+    }
+    return schedule
+      .split(",")
+      .map((item) => abbreviateWeekDayName(item, isMobile))
+      .filter((item) => item.length > 0)
+      .join(", ");
   };
+  const schoolSchedule = sheduleDays();
+
   return (
     <article className={styles.section} key={id}>
       <div className={styles.leftPart}>
         <p className={styles.sportType}>{sport_type}</p>
         <h3 className={styles.title}>{title}</h3>
         <div className={styles.feedback}>
-          <p className={styles.raiting}>{rating}</p>
-          <Link to="/" className={styles.reviews}>
-            {`${review_amount} ${getDeclension(review_amount, [
-              "отзыв",
-              "отзыва",
-              "отзывов",
-            ])}`}
-          </Link>
+          <p className={styles.phone}>{phone}</p>
         </div>
         <div className={styles.place}>
           <p className={styles.distance}>14 км</p>
@@ -79,28 +73,24 @@ const ResultCard: FC<ResultCardProps> = ({
             Ул. {address.street}, {address.house}
           </p>
         </div>
-        <div className={styles.timesheet}>Расписание - {sheduleDays()}</div>
+        {schoolSchedule && (
+          <div className={styles.timesheet}>{schoolSchedule}</div>
+        )}
       </div>
       <div className={styles.rightPart}>
         <button
           type="button"
           aria-label="Поставить или снять лайк"
           onClick={() => toggleLike(section)}
-          className={`${styles.likeButton} ${
-            isLiked ? styles.likedButton : ""
-          }`}
-        />
-        <p className={styles.price}>{price} ₽ за занятие</p>
-        <Button
-          className={styles.transitionButton}
-          color={ButtonColor.PRIMARY}
-          testId={ButtonTestId.OTHER}
+          className={styles.likeButton}
         >
-          <>
-            Перейти на сайт
-            <Icon type={IconTypes.RIGHT_ICON} />
-          </>
-        </Button>
+          <Heart className={heartBtnClass} />
+        </button>
+        <p className={styles.price}>{price} ₽ за занятие</p>
+        <a href={site} target="_blank" rel="noreferrer" className={buttonClass}>
+          Перейти на сайт
+          <Icon type={IconTypes.RIGHT_ICON} />
+        </a>
       </div>
     </article>
   );
