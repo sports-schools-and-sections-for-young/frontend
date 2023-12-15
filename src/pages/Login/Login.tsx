@@ -5,10 +5,14 @@ import Button from "../../components/ui/Button/Button";
 import { ButtonColor, ButtonTestId } from "../../components/ui/Button/types";
 import Icon from "../../components/ui/Icon/Icon";
 import { IconColor, IconTypes } from "../../components/ui/Icon/types";
-import SearchHeader from "../SearchPage/ui/SearchHeader/SearchHeader";
 import Input from "../../components/ui/Input/Input";
 import AuthBannerForm from "../../components/ui/AuthBannerForm/AuthBannerForm";
-import Footer from "../../components/Footer/Footer";
+import MainFooter from "../../components/MainFooter/MainFooter";
+import { useResize } from "../../hooks/useResize";
+import ButtonBackMobile from "../../components/ui/ButtonBackMobile/ButtonBackMobile";
+import ImageCard from "../../components/ui/ImageCard/ImageCard";
+import { ImageCardSize } from "../../components/ui/ImageCard/types";
+import banner from "../../assets/images/auth-mobile-img.png";
 
 interface ILogin {
   email: string;
@@ -27,6 +31,8 @@ function Login() {
 
   const navigate = useNavigate();
 
+  const { isMobileScreen } = useResize();
+
   const onSubmit: SubmitHandler<ILogin> = (data) => {
     console.log(`email => ${data.email}   password => ${data.password}`);
     console.log("data =>", data);
@@ -35,28 +41,49 @@ function Login() {
 
   return (
     <main className={styles.form}>
-      <SearchHeader>
-        <Button
-          onClick={() => navigate("/")}
-          color={ButtonColor.SECONDARY}
-          testId={ButtonTestId.BACK}
-        >
-          <Icon color={IconColor.SECONDARY} type={IconTypes.LEFT_ICON} />
-          Назад
-        </Button>
-      </SearchHeader>
+      <header className={styles.header}>
+        {isMobileScreen ? (
+          <ButtonBackMobile
+            className={styles.arrowButton}
+            onClick={() => navigate("/")}
+          />
+        ) : (
+          <Button
+            onClick={() => navigate("/")}
+            color={ButtonColor.SECONDARY}
+            testId={ButtonTestId.BACK}
+          >
+            <Icon color={IconColor.SECONDARY} type={IconTypes.LEFT_ICON} />
+            Назад
+          </Button>
+        )}
+      </header>
       <div className={styles.formContainer}>
         <form
           className={styles.formContent}
           onSubmit={handleSubmit(onSubmit)}
           noValidate
         >
-          <AuthBannerForm
-            title="Вход для"
-            text="Войдите для просмотра и редактирования своих секций"
-          />
+          {isMobileScreen ? (
+            <ImageCard
+              size={ImageCardSize.AUTH_MOBILE_IMG}
+              src={banner}
+              alt="Дети в спортивном зале"
+            />
+          ) : (
+            <AuthBannerForm
+              title="Вход для"
+              text="Войдите для просмотра и редактирования своих секций"
+            />
+          )}
+
           <div className={styles.formColumn}>
-            <h3 className={styles.title}>Вход</h3>
+            {isMobileScreen ? (
+              <h3 className={styles.title}>Вход для организаций</h3>
+            ) : (
+              <h3 className={styles.title}>Вход</h3>
+            )}
+
             <div className={styles.formInputs}>
               <div className={styles.inputWrapper}>
                 <Input
@@ -143,7 +170,7 @@ function Login() {
           </div>
         </form>
       </div>
-      <Footer />
+      <MainFooter />
     </main>
   );
 }

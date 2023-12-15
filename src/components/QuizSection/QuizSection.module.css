@@ -22,8 +22,11 @@
 }
 @media (max-width: 750px) {
   .quiz {
-    background-image: url("../../assets/images/quiz-mobile-up.svg"), url("../../assets/images/quiz-mobile-bottom.svg");
-    background-position: top right 20px, bottom left;
+    background-image: url("../../assets/images/quiz-mobile-up.svg"),
+      url("../../assets/images/quiz-mobile-bottom.svg");
+    background-position:
+      top right 20px,
+      bottom left;
     background-repeat: no-repeat, no-repeat;
     background-size: 50%, 40%;
     padding: 148px 50px 160px;
