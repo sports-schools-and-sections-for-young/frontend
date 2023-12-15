@@ -2,6 +2,8 @@
 
 .footer {
   @include section(row);
+
+  margin-top: auto;
 }
 
 .darkPart {

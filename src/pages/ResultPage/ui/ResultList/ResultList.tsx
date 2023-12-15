@@ -6,7 +6,7 @@ import { ResultListProps } from "../../types";
 import MapView from "../MapView/MapView";
 import { Section } from "../../../../types";
 import { useFavourite } from "../../../../hooks/useLocalFavourites";
-import Pagination from "../../../../components/ui/Pagination/Pagination";
+import Pagination from "../../../../components/Pagination/Pagination";
 import ResultNotFound from "../../../../components/ResultNotFound/ResultNotFound";
 
 const ResultList: FC<ResultListProps> = (props) => {

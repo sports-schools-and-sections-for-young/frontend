@@ -11,14 +11,7 @@ export interface Section {
   sport_type: string;
   year_from: number;
   year_until: number;
-  address: {
-    index: string;
-    city: string;
-    metro: string;
-    district: string;
-    street: string;
-    house: string;
-  };
+  address: string;
   latitude: string;
   longitude: string;
   rating: number;
@@ -31,6 +24,22 @@ export interface Section {
   free_class: boolean;
   site: string;
   phone: string;
+}
+
+export interface SchoolInfo {
+  id: number;
+  title: string | null;
+  logo: string | null;
+  address: string | null;
+  email: string | null;
+  site: string | null;
+  description: string | null;
+  phone: string | null;
+}
+
+export interface School {
+  info: SchoolInfo;
+  sections: Section[];
 }
 
 export interface YandexAnswer {
