@@ -1,3 +1,5 @@
+@import "../../../app/styles/mixins";
+
 .container {
   display: flex;
   flex-direction: column;
@@ -7,6 +9,10 @@
   height: 610px;
   border-radius: 20px;
   box-shadow: 0 10px 25px 0 rgb(0 0 0 / 10%);
+
+  @include tablet-1100 {
+    display: none;
+  }
 }
 
 .logo {
