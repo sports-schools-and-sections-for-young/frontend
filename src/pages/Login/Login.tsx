@@ -8,13 +8,13 @@ import Icon from "../../components/ui/Icon/Icon";
 import { IconColor, IconTypes } from "../../components/ui/Icon/types";
 import Input from "../../components/ui/Input/Input";
 import AuthBannerForm from "../../components/ui/AuthBannerForm/AuthBannerForm";
-import { login } from "../../utils/api";
 import MainFooter from "../../components/MainFooter/MainFooter";
 import { useResize } from "../../hooks/useResize";
 import ButtonBackMobile from "../../components/ui/ButtonBackMobile/ButtonBackMobile";
 import ImageCard from "../../components/ui/ImageCard/ImageCard";
 import { ImageCardSize } from "../../components/ui/ImageCard/types";
 import banner from "../../assets/images/auth-mobile-img.png";
+import { handleLogin } from "../../utils/api";
 
 interface ILogin {
   email: string;
@@ -31,23 +31,13 @@ function Login() {
     mode: "onChange",
   });
 
-  const navigate = useNavigate();
   const { isMobileScreen } = useResize();
-  const [cookies, setCookie] = useCookies(["token"]); // Получаем и устанавливаем куки
+  const navigate = useNavigate();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [cookies, setCookie] = useCookies(["token"]);
 
   const onLoginSubmit: SubmitHandler<ILogin> = async (data) => {
-    try {
-      const loginResponse = await login(data.email, data.password);
-      console.log("Ответ сервера:", loginResponse);
-
-      const { token } = loginResponse;
-      // Устанавливаем токен в куки с помощью setCookie
-      setCookie("token", token, { path: "/" }); // Устанавливаем токен в корневой путь ('/') куки
-      console.log(cookies.token);
-      navigate("/profile");
-    } catch (error) {
-      console.error("Ошибка входа:", error);
-    }
+    await handleLogin(data.email, data.password, navigate, setCookie);
 
     reset();
   };

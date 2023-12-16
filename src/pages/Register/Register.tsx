@@ -8,7 +8,7 @@ import Icon from "../../components/ui/Icon/Icon";
 import { IconColor, IconTypes } from "../../components/ui/Icon/types";
 import Input from "../../components/ui/Input/Input";
 import AuthBannerForm from "../../components/ui/AuthBannerForm/AuthBannerForm";
-import { registration , login } from "../../utils/api";
+import { registration, handleLogin } from "../../utils/api";
 import MainFooter from "../../components/MainFooter/MainFooter";
 import { useResize } from "../../hooks/useResize";
 import ButtonBackMobile from "../../components/ui/ButtonBackMobile/ButtonBackMobile";
@@ -35,7 +35,8 @@ function Register() {
 
   const navigate = useNavigate();
   const { isMobileScreen } = useResize();
-  const [cookies, setCookie] = useCookies(["token"]); // Получаем и устанавливаем куки
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [cookies, setCookie] = useCookies(["token"]);
 
   const onRegisterSubmit: SubmitHandler<IRegister> = async (data) => {
     try {
@@ -44,17 +45,9 @@ function Register() {
         data.password,
         data.passwordConfirmation,
       );
-      console.log("Успешная регистрация", registrationResponse);
-
+      // console.log("Успешная регистрация", registrationResponse);
       if (registrationResponse.email) {
-        const loginResponse = await login(data.email, data.password);
-        console.log("Успешная авторизация", loginResponse);
-
-        const { token } = loginResponse;
-        // Устанавливаем токен в куки с помощью setCookie
-        setCookie("token", token, { path: "/" }); // Устанавливаем токен в корневой путь ('/') куки
-        console.log(cookies.token);
-        navigate("/profile");
+        await handleLogin(data.email, data.password, navigate, setCookie);
       }
       reset();
     } catch (error) {

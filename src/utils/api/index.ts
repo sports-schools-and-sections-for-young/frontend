@@ -42,7 +42,6 @@ export const searchSections = async (sectionRequest: ISectionsRequest) => {
   return checkResponse(res);
 };
 
-// Вход
 export const login = async (email: string, password: string): Promise<any> => {
   const res = await fetch(`${API_URL}/login/`, {
     method: "POST",
@@ -55,7 +54,23 @@ export const login = async (email: string, password: string): Promise<any> => {
   return checkResponse(res);
 };
 
-// Регистрация
+export const handleLogin = async (
+  email: string,
+  password: string,
+  navigate: any,
+  setCookie: any,
+) => {
+  try {
+    const loginResponse = await login(email, password);
+    // console.log("Успешная авторизация", loginResponse);
+    const { token } = loginResponse;
+    setCookie("token", token, { path: "/" });
+    navigate("/profile");
+  } catch (error) {
+    console.error("Ошибка при входе", error);
+  }
+};
+
 export const registration = async (
   email: string,
   password: string,
