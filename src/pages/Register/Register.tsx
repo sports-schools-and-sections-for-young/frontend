@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { useCookies } from "react-cookie";
 import styles from "../Login/Login.module.scss";
 import Button from "../../components/ui/Button/Button";
 import { ButtonColor, ButtonTestId } from "../../components/ui/Button/types";
@@ -12,6 +13,7 @@ import {
   InputIconPosition,
 } from "../../components/ui/InputField/types";
 import AuthBannerForm from "../../components/ui/AuthBannerForm/AuthBannerForm";
+import { registration, handleLogin } from "../../utils/api";
 import MainFooter from "../../components/MainFooter/MainFooter";
 import { useResize } from "../../hooks/useResize";
 import ButtonBackMobile from "../../components/ui/ButtonBackMobile/ButtonBackMobile";
@@ -21,9 +23,6 @@ import banner from "../../assets/images/auth-mobile-img.png";
 
 export interface IRegister {
   email: string;
-  name: string;
-  address: string;
-  site: string;
   password: string;
   passwordConfirmation: string;
 }
@@ -41,12 +40,25 @@ function Register() {
 
   const navigate = useNavigate();
   const [passwordVisible, setPasswordVisible] = useState(false);
-
   const { isMobileScreen } = useResize();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [cookies, setCookie] = useCookies(["token"]);
 
-  const onSubmit: SubmitHandler<IRegister> = (data) => {
-    console.log("data =>", data);
-    reset();
+  const onRegisterSubmit: SubmitHandler<IRegister> = async (data) => {
+    try {
+      const registrationResponse = await registration(
+        data.email,
+        data.password,
+        data.passwordConfirmation,
+      );
+      // console.log("Успешная регистрация", registrationResponse);
+      if (registrationResponse.email) {
+        await handleLogin(data.email, data.password, navigate, setCookie);
+      }
+      reset();
+    } catch (error) {
+      console.error("Ошибка при регистрации", error);
+    }
   };
 
   return (
@@ -71,7 +83,7 @@ function Register() {
       <div className={styles.formContainer}>
         <form
           className={styles.formContent}
-          onSubmit={handleSubmit(onSubmit)}
+          onSubmit={handleSubmit(onRegisterSubmit)}
           noValidate
         >
           {isMobileScreen ? (

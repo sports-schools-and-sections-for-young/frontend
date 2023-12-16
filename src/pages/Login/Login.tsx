@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
 import { SubmitHandler, useForm } from "react-hook-form";
 import styles from "./Login.module.scss";
 import Button from "../../components/ui/Button/Button";
@@ -18,6 +19,7 @@ import ButtonBackMobile from "../../components/ui/ButtonBackMobile/ButtonBackMob
 import ImageCard from "../../components/ui/ImageCard/ImageCard";
 import { ImageCardSize } from "../../components/ui/ImageCard/types";
 import banner from "../../assets/images/auth-mobile-img.png";
+import { handleLogin } from "../../utils/api";
 
 interface ILogin {
   email: string;
@@ -36,12 +38,14 @@ function Login() {
 
   const navigate = useNavigate();
   const [passwordVisible, setPasswordVisible] = useState(false);
-
   const { isMobileScreen } = useResize();
 
-  const onSubmit: SubmitHandler<ILogin> = (data) => {
-    console.log(`email => ${data.email}   password => ${data.password}`);
-    console.log("data =>", data);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [cookies, setCookie] = useCookies(["token"]);
+
+  const onLoginSubmit: SubmitHandler<ILogin> = async (data) => {
+    await handleLogin(data.email, data.password, navigate, setCookie);
+
     reset();
   };
 
@@ -67,7 +71,7 @@ function Login() {
       <div className={styles.formContainer}>
         <form
           className={styles.formContent}
-          onSubmit={handleSubmit(onSubmit)}
+          onSubmit={handleSubmit(onLoginSubmit)}
           noValidate
         >
           {isMobileScreen ? (

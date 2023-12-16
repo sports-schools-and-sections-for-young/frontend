@@ -6,6 +6,8 @@ import Heart from "../../../assets/images/icons/heart.svg?react";
 import ImageCard from "../ImageCard/ImageCard";
 import { ImageCardSize } from "../ImageCard/types";
 import logo from "../../../assets/images/Logo.png";
+import Button from "../Button/Button.tsx";
+import { ButtonColor, ButtonTestId } from "../Button/types";
 
 const Header: FC = () => {
   const navigate = useNavigate();
@@ -55,13 +57,21 @@ const Header: FC = () => {
             )}
             <span className={styles.btnName}>Избранное</span>
           </button>
-          <button
-            type="button"
+          {/* <button */}
+          {/*  type="button" */}
+          {/*  className={styles.button} */}
+          {/*  onClick={() => navigate("/signin")} */}
+          {/* > */}
+          {/*  <span className={styles.buttonContent}>Вход (для огранизаций)</span> */}
+          {/* </button> */}
+          <Button
+            color={ButtonColor.LOGIN}
+            testId={ButtonTestId.OTHER}
             className={styles.button}
             onClick={() => navigate("/signin")}
           >
-            <span className={styles.buttonContent}>Вход (для огранизаций)</span>
-          </button>
+            Вход (для организаций)
+          </Button>
         </div>
       </div>
     </header>
