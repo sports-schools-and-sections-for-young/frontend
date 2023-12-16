@@ -1,14 +1,20 @@
 import { Link, useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
 import { SubmitHandler, useForm } from "react-hook-form";
 import styles from "./Login.module.scss";
 import Button from "../../components/ui/Button/Button";
 import { ButtonColor, ButtonTestId } from "../../components/ui/Button/types";
 import Icon from "../../components/ui/Icon/Icon";
 import { IconColor, IconTypes } from "../../components/ui/Icon/types";
-import SearchHeader from "../SearchPage/ui/SearchHeader/SearchHeader";
 import Input from "../../components/ui/Input/Input";
 import AuthBannerForm from "../../components/ui/AuthBannerForm/AuthBannerForm";
-import Footer from "../../components/Footer/Footer";
+import MainFooter from "../../components/MainFooter/MainFooter";
+import { useResize } from "../../hooks/useResize";
+import ButtonBackMobile from "../../components/ui/ButtonBackMobile/ButtonBackMobile";
+import ImageCard from "../../components/ui/ImageCard/ImageCard";
+import { ImageCardSize } from "../../components/ui/ImageCard/types";
+import banner from "../../assets/images/auth-mobile-img.png";
+import { handleLogin } from "../../utils/api";
 
 interface ILogin {
   email: string;
@@ -25,38 +31,62 @@ function Login() {
     mode: "onChange",
   });
 
+  const { isMobileScreen } = useResize();
   const navigate = useNavigate();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [cookies, setCookie] = useCookies(["token"]);
 
-  const onSubmit: SubmitHandler<ILogin> = (data) => {
-    console.log(`email => ${data.email}   password => ${data.password}`);
-    console.log("data =>", data);
+  const onLoginSubmit: SubmitHandler<ILogin> = async (data) => {
+    await handleLogin(data.email, data.password, navigate, setCookie);
+
     reset();
   };
 
   return (
     <main className={styles.form}>
-      <SearchHeader>
-        <Button
-          onClick={() => navigate("/")}
-          color={ButtonColor.SECONDARY}
-          testId={ButtonTestId.BACK}
-        >
-          <Icon color={IconColor.SECONDARY} type={IconTypes.LEFT_ICON} />
-          Назад
-        </Button>
-      </SearchHeader>
+      <header className={styles.header}>
+        {isMobileScreen ? (
+          <ButtonBackMobile
+            className={styles.arrowButton}
+            onClick={() => navigate("/")}
+          />
+        ) : (
+          <Button
+            onClick={() => navigate("/")}
+            color={ButtonColor.SECONDARY}
+            testId={ButtonTestId.BACK}
+          >
+            <Icon color={IconColor.SECONDARY} type={IconTypes.LEFT_ICON} />
+            Назад
+          </Button>
+        )}
+      </header>
       <div className={styles.formContainer}>
         <form
           className={styles.formContent}
-          onSubmit={handleSubmit(onSubmit)}
+          onSubmit={handleSubmit(onLoginSubmit)}
           noValidate
         >
-          <AuthBannerForm
-            title="Вход для"
-            text="Войдите для просмотра и редактирования своих секций"
-          />
+          {isMobileScreen ? (
+            <ImageCard
+              size={ImageCardSize.AUTH_MOBILE_IMG}
+              src={banner}
+              alt="Дети в спортивном зале"
+            />
+          ) : (
+            <AuthBannerForm
+              title="Вход для"
+              text="Войдите для просмотра и редактирования своих секций"
+            />
+          )}
+
           <div className={styles.formColumn}>
-            <h3 className={styles.title}>Вход</h3>
+            {isMobileScreen ? (
+              <h3 className={styles.title}>Вход для организаций</h3>
+            ) : (
+              <h3 className={styles.title}>Вход</h3>
+            )}
+
             <div className={styles.formInputs}>
               <div className={styles.inputWrapper}>
                 <Input
@@ -143,7 +173,7 @@ function Login() {
           </div>
         </form>
       </div>
-      <Footer />
+      <MainFooter />
     </main>
   );
 }

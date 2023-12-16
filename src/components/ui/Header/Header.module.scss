@@ -34,12 +34,6 @@
 }
 
 .button {
-  background: #ff7a60;
-  border: 0;
-  border-radius: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   max-width: 275px;
 }
 
@@ -48,6 +42,7 @@
 
   color: #fff;
   padding: 16px 43px;
+  width: 100%;
 }
 
 .favouritesBtn {
@@ -177,4 +172,24 @@
   .buttonContainer {
     column-gap: 25px;
   }
+}
+
+.profileButton {
+  display: none;
+
+  @include mobile-750 {
+    display: block;
+    position: relative;
+    background-image: url("../../../assets/images/profile-menu-icon.png");
+    background-color: transparent;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border: none;
+    width: 36px;
+    height: 36px;
+  }
+}
+
+.hiddenText {
+  display: none;
 }
