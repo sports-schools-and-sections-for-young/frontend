@@ -1,8 +1,8 @@
 import React, { FC, useEffect } from "react";
 import styles from "./Pagination.module.scss";
-import Button from "../Button/Button";
-import { ButtonColor, ButtonTestId } from "../Button/types";
-import { Section } from "../../../types";
+import Button from "../ui/Button/Button.tsx";
+import { ButtonColor, ButtonTestId } from "../ui/Button/types";
+import { Section } from "../../types";
 
 interface PaginationPops<T> {
   value: number;

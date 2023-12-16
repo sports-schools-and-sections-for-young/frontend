@@ -1,5 +1,5 @@
 import { createContext, Dispatch, SetStateAction } from "react";
-import { Section, Sport } from "../types";
+import { School, Section, Sport } from "../types";
 import { Weekday } from "../utils/constants/week";
 
 export interface ISectionsRequest {
@@ -22,6 +22,8 @@ interface IAppContext {
   setFetchedSections: Dispatch<SetStateAction<Section[]>>;
   filteredSections: Section[];
   setFilteredSections: Dispatch<SetStateAction<Section[]>>;
+  school: School | null;
+  setSchool: Dispatch<SetStateAction<School | null>>;
 }
 
 export const sectionsRequestDefault: ISectionsRequest = {
@@ -44,6 +46,8 @@ const defaultValue: IAppContext = {
   setFetchedSections: () => {},
   filteredSections: [],
   setFilteredSections: () => {},
+  school: null,
+  setSchool: () => {},
 };
 
 const AppContext = createContext<IAppContext>(defaultValue);

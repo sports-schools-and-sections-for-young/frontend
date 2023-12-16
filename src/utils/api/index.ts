@@ -1,5 +1,6 @@
 import { API_URL } from "../variables.ts";
 import { ISectionsRequest } from "../../context/AppContext.ts";
+import { CreateSection, UpdateSection } from "./types";
 
 const checkResponse = (res: Response) =>
   res.ok ? res.json() : Promise.reject(res);
@@ -85,4 +86,66 @@ export const registration = async (
     body: JSON.stringify({ email, password, check_password }),
   });
   return checkResponse(res);
+};
+
+export const getSchoolInfo = async (token: string) => {
+  const info = await fetch(`${API_URL}/sport_school/`, {
+    headers: {
+      Authorization: `Token ${token}`,
+    },
+  });
+
+  return checkResponse(info);
+};
+
+export const getSchoolSections = async (token: string) => {
+  const sections = await fetch(`${API_URL}/section/`, {
+    headers: {
+      Authorization: `Token ${token}`,
+    },
+  });
+
+  return checkResponse(sections);
+};
+
+export const createSection = async (
+  token: string,
+  createBody: CreateSection,
+) => {
+  const info = await fetch(`${API_URL}/create_section/`, {
+    headers: {
+      Authorization: `Token ${token}`,
+    },
+    method: "POST",
+    body: JSON.stringify(createBody),
+  });
+
+  return checkResponse(info);
+};
+
+export const updateSection = async (
+  token: string,
+  id: number,
+  updateBody: UpdateSection,
+) => {
+  const info = await fetch(`${API_URL}/section/${id}/update/`, {
+    headers: {
+      Authorization: `Token ${token}`,
+    },
+    method: "PATCH",
+    body: JSON.stringify(updateBody),
+  });
+
+  return checkResponse(info);
+};
+
+export const deleteSection = async (token: string, id: number) => {
+  const info = await fetch(`${API_URL}/section/${id}/delete/`, {
+    headers: {
+      Authorization: `Token ${token}`,
+    },
+    method: "DELETE",
+  });
+
+  return checkResponse(info);
 };

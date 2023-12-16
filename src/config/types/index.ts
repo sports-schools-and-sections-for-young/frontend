@@ -7,4 +7,5 @@ export enum AppRoutes {
   REGISTRATION = "registration",
   NOT_FOUND = "not_found",
   QUIZ = "quiz_page",
+  PROFILE = "profile",
 }

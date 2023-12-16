@@ -1,0 +1,16 @@
+.link {
+  text-decoration: none;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 140%;
+  color: var(--text-black-color);
+}
+
+.active {
+  color: var(--ui-primary-bg-color);
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 135%;
+}
