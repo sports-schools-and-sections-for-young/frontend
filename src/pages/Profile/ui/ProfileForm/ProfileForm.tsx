@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { useCookies } from "react-cookie";
 import styles from "./ProfileForm.module.scss";
 import Gear from "../../../../assets/images/icons/Gear.svg?react";
 import Input from "../../../../components/ui/Input/Input.tsx";
@@ -20,6 +21,8 @@ const ProfileForm = () => {
   const { school, setSchool } = useContext(AppContext);
 
   const [isEditing, setIsEditing] = useState(false);
+
+  const [cookies] = useCookies(["token"]);
 
   const {
     register,
@@ -51,14 +54,14 @@ const ProfileForm = () => {
     try {
       if (!school) {
         const newInfo: SchoolInfo = await createSchoolInfo(
-          "e6a3393d17464616a787fd54d10255129fec239d",
+          cookies.token,
           body as CreateSchool,
         );
         setSchool({ sections: [], info: newInfo });
         setIsEditing(false);
       } else {
         const newInfo: SchoolInfo = await updateSchoolInfo(
-          "e6a3393d17464616a787fd54d10255129fec239d",
+          cookies.token,
           body as UpdateSchool,
         );
         setSchool({
