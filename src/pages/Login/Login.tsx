@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { SubmitHandler, useForm } from "react-hook-form";
 import styles from "./Login.module.scss";
@@ -5,6 +6,10 @@ import Button from "../../components/ui/Button/Button";
 import { ButtonColor, ButtonTestId } from "../../components/ui/Button/types";
 import Icon from "../../components/ui/Icon/Icon";
 import { IconColor, IconTypes } from "../../components/ui/Icon/types";
+import {
+  InputIcon,
+  InputIconPosition,
+} from "../../components/ui/InputField/types";
 import Input from "../../components/ui/Input/Input";
 import AuthBannerForm from "../../components/ui/AuthBannerForm/AuthBannerForm";
 import MainFooter from "../../components/MainFooter/MainFooter";
@@ -30,6 +35,7 @@ function Login() {
   });
 
   const navigate = useNavigate();
+  const [passwordVisible, setPasswordVisible] = useState(false);
 
   const { isMobileScreen } = useResize();
 
@@ -124,7 +130,10 @@ function Login() {
                   name="password"
                   placeholder="Пароль *"
                   id="password-input"
-                  type="password"
+                  type={passwordVisible ? "text" : "password"}
+                  iconType={InputIcon.EYE}
+                  iconPosition={InputIconPosition.RIGHT}
+                  onClickIcon={() => setPasswordVisible(!passwordVisible)}
                 />
                 {errors?.password && (
                   <span className={styles.inputError}>

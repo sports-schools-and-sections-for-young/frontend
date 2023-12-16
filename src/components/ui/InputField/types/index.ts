@@ -3,6 +3,7 @@ export enum InputIcon {
   DOWN_ARROW = "downarrow",
   UP_ARROW = "uparrow",
   MAGNIGY = "magnify",
+  EYE = "eye",
 }
 
 export enum InputIconPosition {
