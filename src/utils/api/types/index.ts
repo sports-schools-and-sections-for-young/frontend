@@ -23,3 +23,14 @@ export interface CreateSection {
 }
 
 export interface UpdateSection extends Partial<CreateSection> {}
+
+export interface CreateSchool {
+  title: string;
+  address: string;
+  email: string;
+  site?: string;
+  description: string;
+  phone: string;
+}
+
+export interface UpdateSchool extends Partial<CreateSchool> {}

@@ -1,6 +1,13 @@
 import { API_URL } from "../variables.ts";
 import { ISectionsRequest } from "../../context/AppContext.ts";
-import { CreateSection, LoginBody, RegisterBody, UpdateSection } from "./types";
+import {
+  CreateSchool,
+  CreateSection,
+  LoginBody,
+  RegisterBody,
+  UpdateSchool,
+  UpdateSection,
+} from "./types";
 
 const checkResponse = (res: Response) =>
   res.ok ? res.json() : Promise.reject(res);
@@ -117,6 +124,38 @@ export const deleteSection = async (token: string, id: number) => {
       Authorization: `Token ${token}`,
     },
     method: "DELETE",
+  });
+
+  return checkResponse(info);
+};
+
+export const createSchoolInfo = async (
+  token: string,
+  createBody: CreateSchool,
+) => {
+  const info = await fetch(`${API_URL}/create_sport_organization/`, {
+    headers: {
+      Authorization: `Token ${token}`,
+      "Content-type": "application/json",
+    },
+    method: "POST",
+    body: JSON.stringify(createBody),
+  });
+
+  return checkResponse(info);
+};
+
+export const updateSchoolInfo = async (
+  token: string,
+  updateBody: UpdateSchool,
+) => {
+  const info = await fetch(`${API_URL}/sport_school/update/`, {
+    headers: {
+      Authorization: `Token ${token}`,
+      "Content-type": "application/json",
+    },
+    method: "PATCH",
+    body: JSON.stringify(updateBody),
   });
 
   return checkResponse(info);
