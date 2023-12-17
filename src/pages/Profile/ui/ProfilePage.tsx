@@ -1,5 +1,6 @@
 import { useContext, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
+import { useCookies } from "react-cookie";
 import ProfileHeader from "./ProfileHeader/ProfileHeader.tsx";
 import styles from "./ProfilePage.module.scss";
 import Header from "../../../components/ui/Header/Header.tsx";
@@ -14,17 +15,25 @@ import ProfileForm from "./ProfileForm/ProfileForm.tsx";
 const ProfilePage = () => {
   const { school, setSchool } = useContext(AppContext);
 
+  const [cookies] = useCookies(["token"]);
+
   useEffect(() => {
-    const getInfo = async () => {
-      const info: SchoolInfo = await getSchoolInfo(
-        "cb491fa10ce98c5d79ebdd9a429fbd84fa3f7268",
-      );
-      const sections: Section[] = await getSchoolSections(
-        "cb491fa10ce98c5d79ebdd9a429fbd84fa3f7268",
-      );
-      setSchool({ info, sections });
+    const getInfo = async (token: string) => {
+      try {
+        const info: SchoolInfo = await getSchoolInfo(token);
+        const sections: Section[] = await getSchoolSections(token);
+        setSchool({ info, sections });
+      } catch (e) {
+        console.log(e);
+      }
     };
-    getInfo();
+    const { token } = cookies;
+
+    console.log(token);
+
+    if (token) {
+      getInfo(token);
+    }
   }, []);
 
   console.log(school);
