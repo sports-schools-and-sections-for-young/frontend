@@ -50,6 +50,7 @@ module.exports = {
     "@typescript-eslint/no-explicit-any": ["warn"],
     "react/jsx-no-bind": "off",
     "no-nested-ternary": "off",
+    "jsx-a11y/control-has-associated-label": "off",
   },
   settings: {
     "import/resolver": {

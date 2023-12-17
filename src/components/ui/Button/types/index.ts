@@ -16,4 +16,5 @@ export enum ButtonColor {
   DELETE = "delete",
   DISABLED = "disabled",
   LOGIN = "login",
+  WARNING = "warning",
 }

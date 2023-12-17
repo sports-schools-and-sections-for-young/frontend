@@ -1,4 +1,5 @@
-import { FC, useContext, useState } from "react";
+import { FC, useContext, useEffect, useState } from "react";
+import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import styles from "./ProfileSections.module.scss";
 import Button from "../../../../components/ui/Button/Button";
@@ -15,7 +16,7 @@ import { BadgeColor } from "../../../../components/ui/Badge/types";
 import Trash from "../../../../assets/images/icons/delete-section.svg?react";
 import Edit from "../../../../assets/images/icons/edit-section.svg?react";
 import { Section } from "../../../../types";
-import { deleteSection, getSchoolInfo } from "../../../../utils/api";
+import { deleteSection } from "../../../../utils/api";
 import ResultNotFound from "../../../../components/ResultNotFound/ResultNotFound";
 import { ActionType } from "../../../../components/ResultNotFound/types";
 import Schedule from "../../../../components/ui/Shedule/Schedule";
@@ -25,11 +26,20 @@ import ModalContent from "../../../../components/ModalContent/ModalContent";
 
 const ProfileSections: FC = () => {
   const navigate = useNavigate();
+  const [cookies] = useCookies(["token"]);
+  const { token } = cookies;
   const { school, setSchool } = useContext(AppContext);
   const { isMobileScreen } = useResize();
   const [deleteModal, setDeleteModal] = useState<boolean>(false);
   const [infoModal, setInfoModal] = useState<boolean>(false);
+
   const [checkedSection, setCheckedSection] = useState<number | null>(null);
+
+  useEffect(() => {
+    if (!school && isMobileScreen) {
+      setTimeout(() => setInfoModal(true), 3000);
+    }
+  }, [isMobileScreen, infoModal]);
 
   const toggleSection = (id: number) => {
     if (id === checkedSection) {
@@ -41,7 +51,7 @@ const ProfileSections: FC = () => {
 
   const handleDelete = () => {
     if (checkedSection && school) {
-      deleteSection("71f13ec46fa7bcfe885c29b21cdbf0e6e383e6e9", checkedSection)
+      deleteSection(token, checkedSection)
         .then((res) => (res.ok ? checkedSection : Promise.reject(res)))
         .then((id) => {
           setSchool({
@@ -55,16 +65,11 @@ const ProfileSections: FC = () => {
     }
   };
   const checkProgileFilling = () => {
-    console.log("tik");
-
-    getSchoolInfo("71f13ec46fa7bcfe885c29b21cdbf0e6e383e6e9")
-      .then((info) =>
-        Object.values(info).every((item) => item !== null)
-          ? navigate("/addsection")
-          : setInfoModal(true),
-      )
-      .catch((e) => console.log(e));
-    /* navigate("/addsection") */
+    if (school) {
+      navigate("/addsection");
+    } else {
+      setInfoModal(true);
+    }
   };
 
   return (
@@ -135,27 +140,23 @@ const ProfileSections: FC = () => {
               </>
             )}
           </div>
-          <table className={styles.table}>
-            <thead className={styles.tableHeading}>
-              <tr>
-                <th className={styles.checkCol}>{}</th>
-                <th className={styles.sportCol}>Виды спорта</th>
-                <th className={styles.dayCol}>Дни недели</th>
-                <th className={styles.addressCol}>Адрес</th>
-                <th className={styles.priceCol}>Цена</th>
-              </tr>
-            </thead>
-            <tbody>
-              {school &&
-                school.sections.map((section: Section) => {
+          {school && (
+            <table className={styles.table}>
+              <thead className={styles.tableHeading}>
+                <tr>
+                  <th className={styles.checkCol}>{}</th>
+                  <th className={styles.sportCol}>Виды спорта</th>
+                  <th className={styles.dayCol}>Дни недели</th>
+                  <th className={styles.addressCol}>Адрес</th>
+                  <th className={styles.priceCol}>Цена</th>
+                </tr>
+              </thead>
+              <tbody>
+                {school.sections.map((section: Section) => {
                   return (
                     <tr
-                      className={`${styles.tableRow} ${
-                        checkedSection === section.id
-                      })
-                          ? styles.activeRow
-                          : ""
-                        }`}
+                      className={`${styles.tableRow} 
+                    ${checkedSection === section.id ? styles.activeRow : ""}`}
                       key={section.id}
                       onClick={() => toggleSection(section.id)}
                     >
@@ -179,8 +180,9 @@ const ProfileSections: FC = () => {
                     </tr>
                   );
                 })}
-            </tbody>
-          </table>
+              </tbody>
+            </table>
+          )}
         </>
       ) : (
         <ul className={styles.sectionList}>

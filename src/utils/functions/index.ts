@@ -1,6 +1,7 @@
+import { ChangeEvent } from "react";
 import { GEOCODER_KEY, GEOSUGGEST_KEY } from "../variables.ts";
-import { IMapInstance, Section, Sport, YandexAnswer } from "../../types";
-import { Weekday } from "../constants/week.ts";
+import { IMapInstance, Sport, YandexAnswer } from "../../types";
+import { Weekday, weekdays } from "../constants/week.ts";
 
 export function getDeclension(number: number, words: string[]) {
   return words[
@@ -63,8 +64,62 @@ export const abbreviateWeekDayName = (
   return "";
 };
 
-export const parseSport = (section: Section, sports: Sport[]): string =>
-  sports.find((s) => s.id === +section.sport_type)?.title || "";
+export const formatPhoneInput = function (
+  e: ChangeEvent<HTMLInputElement>,
+): string {
+  let content: string | string[] = e.target.value;
+  content = Array.from(content).filter(
+    (ltr) => ltr.charCodeAt(0) > 47 && ltr.charCodeAt(0) < 58,
+  );
+
+  switch (content[0]) {
+    case "8":
+      content[0] = "7";
+      break;
+    case "0":
+    case "1":
+    case "2":
+    case "3":
+    case "4":
+    case "5":
+    case "6":
+    case "9":
+      content.unshift("7");
+      break;
+    default:
+      break;
+  }
+
+  if (!content[0]) {
+    e.target.value = "";
+    return e.target.value;
+  }
+
+  const [countryCode, operatorCode, number3, number21, number22] = [
+    content[0],
+    content.slice(1, 4).join(""),
+    content.slice(4, 7).join(""),
+    content.slice(7, 9).join(""),
+    content.slice(9, 11).join(""),
+  ];
+
+  e.target.value = countryCode.length ? `+${countryCode}` : "";
+  if (operatorCode.length) e.target.value += `(${operatorCode}`;
+  if (number3.length) e.target.value += `)${number3}`;
+  if (number21.length) e.target.value += `-${number21}`;
+  if (number22.length) e.target.value += `-${number22}`;
+
+  return e.target.value;
+};
+
+export const parseSport = (sport_type: number, sports: Sport[]): string =>
+  sports.find((s) => s.id === sport_type)?.title || "?";
+
+export const parseSchedule = (schedule: unknown): string => {
+  if (!Array.isArray(schedule)) return "?";
+  const xz = schedule as [];
+  return xz.map((d: number) => weekdays[d - 1]).join(",");
+};
 
 export const getDistanceToSchool = (schoolCoords: number[]) => {
   const earthRadius = 6371;

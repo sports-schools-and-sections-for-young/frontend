@@ -1,5 +1,6 @@
 import { useContext, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
+import { useCookies } from "react-cookie";
 import ProfileHeader from "./ProfileHeader/ProfileHeader.tsx";
 import styles from "./ProfilePage.module.scss";
 import Header from "../../../components/ui/Header/Header.tsx";
@@ -9,32 +10,40 @@ import AppContext from "../../../context/AppContext.ts";
 import { SchoolInfo, Section } from "../../../types";
 import ProfileForm from "./ProfileForm/ProfileForm.tsx";
 import ProfileSections from "./ProfileSections/ProfileSections.tsx";
-import { parseSport } from "../../../utils/functions/index.ts";
-import { weekdays } from "../../../utils/constants/week.ts";
+import { parseSchedule, parseSport } from "../../../utils/functions/index.ts";
 
 const ProfilePage = () => {
   const { school, setSchool, sports } = useContext(AppContext);
 
+  const [cookies] = useCookies(["token"]);
+
   useEffect(() => {
-    const getInfo = async () => {
-      const info: SchoolInfo = await getSchoolInfo(
-        "71f13ec46fa7bcfe885c29b21cdbf0e6e383e6e9",
-      );
-      const sections: Section[] = await getSchoolSections(
-        "71f13ec46fa7bcfe885c29b21cdbf0e6e383e6e9",
-      );
-      setSchool({
-        info,
-        sections: sections.map((s) => {
+    const getInfo = async (token: string) => {
+      try {
+        const info: SchoolInfo = await getSchoolInfo(token);
+        const sections: Section[] = await getSchoolSections(token);
+        const parsedSections = sections.map((s: Section) => {
           return {
             ...s,
-            sport_type: parseSport(s, sports),
-            schedule: s.schedule.map((d: number) => weekdays[d - 1]).join(","),
+            sport_type: parseSport(+s.sport_type, sports),
+            schedule: parseSchedule(s.schedule),
           };
-        }),
-      });
+        });
+        setSchool({
+          info,
+          sections: parsedSections,
+        });
+      } catch (e) {
+        console.log(e);
+      }
     };
-    getInfo();
+    const { token } = cookies;
+
+    console.log(token);
+
+    if (token) {
+      getInfo(token);
+    }
   }, []);
 
   console.log(school);

@@ -16,7 +16,7 @@ const ModalContent: FC<IModalContentProps> = (props) => {
     actionDescription,
   } = props;
 
-  const divide = title.indexOf("хотите") + 6;
+  const divide = description ? title.indexOf("хотите") + 6 : title.length;
   const divideSucc = title.lastIndexOf(" ");
 
   return (
@@ -33,21 +33,21 @@ const ModalContent: FC<IModalContentProps> = (props) => {
           ?
         </h2>
       )}
-      {type === ModalType.SUCCSESS || type === ModalType.FAILURE ? (
+      {(type === ModalType.SUCCSESS || type === ModalType.FAILURE) && (
         <h2 className={styles.title}>
           {title.slice(0, divideSucc)}
           <span className={styles.highlighting}>
-            {title.slice(divideSucc, title.length - 1)}
+            {title.slice(divideSucc, title.length)}
           </span>
-          ?
         </h2>
-      ) : (
-        <h2 className={styles.title}>{title}</h2>
       )}
+      {type === ModalType.INFO && <h2 className={styles.title}>{title}</h2>}
       <p className={styles.description}>{description}</p>
       <div
         className={`${styles.buttonContainer} ${
-          type === ModalType.INFO ? styles.oneButton : ""
+          !(type === ModalType.DELETE || type === ModalType.EXIT)
+            ? styles.oneButton
+            : ""
         }`}
       >
         {type !== ModalType.SUCCSESS && type !== ModalType.FAILURE && (

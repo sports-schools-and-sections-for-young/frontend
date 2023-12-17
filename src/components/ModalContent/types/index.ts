@@ -9,7 +9,8 @@ export enum ModalType {
 export interface IModalContentProps {
   type?: ModalType;
   title: string;
-  description: string;
+  description?: string;
+
   closeModal: () => void;
   back?: () => void;
   action: () => void;

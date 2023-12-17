@@ -71,7 +71,12 @@
 @include mobile-500 {
   .container {
     min-width: 320px;
+    width: 100%;
     row-gap: 10px;
+    position: fixed;
+    background: #fff;
+    bottom: 0;
+    border-radius: 10px;
   }
 
   .title {
