@@ -14,13 +14,23 @@ import {
 import Icon from "../../../../components/ui/Icon/Icon.tsx";
 import { IconTypes } from "../../../../components/ui/Icon/types";
 import { CreateSchool, UpdateSchool } from "../../../../utils/api/types";
-import { createSchoolInfo, updateSchoolInfo } from "../../../../utils/api";
+import {
+  createSchoolInfo,
+  deleteAccount,
+  updateSchoolInfo,
+} from "../../../../utils/api";
 import { SchoolInfo } from "../../../../types";
+import Modal from "../../../../components/Modal/Modal.tsx";
+import ConfirmModal from "../ConfirmModal/ConfirmModal.tsx";
+
+type ProfileFormModals = "deletion" | "logout" | null;
 
 const ProfileForm = () => {
   const { school, setSchool } = useContext(AppContext);
 
   const [isEditing, setIsEditing] = useState(false);
+
+  const [modal, setModal] = useState<ProfileFormModals>(null);
 
   const [cookies] = useCookies(["token"]);
 
@@ -30,8 +40,6 @@ const ProfileForm = () => {
     handleSubmit,
     setValue,
   } = useForm<UpdateSchool>({ mode: "onChange" });
-
-  console.log(school);
 
   useEffect(() => {
     setValue("title", school?.info.title ? school.info.title : "");
@@ -73,6 +81,14 @@ const ProfileForm = () => {
     } catch (e) {
       console.log(e);
     }
+  };
+
+  const handleDeletion = async () => {
+    const deletion = await deleteAccount(
+      school?.info.id as number,
+      cookies.token,
+    );
+    console.log(deletion);
   };
 
   return (
@@ -183,6 +199,44 @@ const ProfileForm = () => {
             </Button>
           )}
         </form>
+        <button
+          type="button"
+          className={styles.deleteButton}
+          onClick={() => setModal("deletion")}
+        >
+          Удалить профиль
+        </button>
+        {modal === "deletion" && (
+          <Modal closeModal={() => setModal(null)}>
+            <ConfirmModal closeModal={() => setModal(null)}>
+              <p className={styles.titleModal}>
+                Вы уверены что хотите{" "}
+                <span className={styles.span}>удалить аккаунт</span> с
+                платформы?
+              </p>
+              <p className={styles.warning}>
+                Все данные организации, расписание, виды спорта, стоимость будут
+                удалены без возможности восстановления.
+              </p>
+              <div className={styles.buttonContainer}>
+                <Button
+                  onClick={handleDeletion}
+                  color={ButtonColor.WARNING}
+                  testId={ButtonTestId.OTHER}
+                >
+                  Удалить профиль
+                </Button>
+                <Button
+                  onClick={() => setModal(null)}
+                  color={ButtonColor.SECONDARY}
+                  testId={ButtonTestId.BACK}
+                >
+                  Вернуться назад
+                </Button>
+              </div>
+            </ConfirmModal>
+          </Modal>
+        )}
       </div>
     </div>
   );

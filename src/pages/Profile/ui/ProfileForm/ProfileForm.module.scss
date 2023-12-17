@@ -48,9 +48,47 @@
 .form {
   display: flex;
   flex-direction: column;
+  margin-bottom: 41px;
 }
 
 .submitButton {
   max-width: 210px;
   margin-top: 43px;
+}
+
+.deleteButton {
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 140%;
+  color: #f21515;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.titleModal {
+  font-size: var(--font-size-heading-h3);
+  line-height: var(--font-line-heading-h3);
+  font-weight: var(--font-weight-600);
+  color: var(--text-black-color);
+  text-align: center;
+}
+
+.span {
+  color: var(--span-color);
+}
+
+.warning {
+  font-size: var(--font-size-l);
+  line-height: var(--font-line-l);
+  font-weight: var(--font-weight-500);
+  color: var(--light-text-color);
+  text-align: center;
+}
+
+.buttonContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
 }

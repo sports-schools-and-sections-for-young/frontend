@@ -187,3 +187,15 @@ export const updateSchoolInfo = async (
 
   return checkResponse(info);
 };
+
+export const deleteAccount = async (id: number, token: string) => {
+  const info = await fetch(`${API_URL}/user/${id}/delete/`, {
+    headers: {
+      Authorization: `Token ${token}`,
+      "Content-type": "application/json",
+    },
+    method: "DELETE",
+  });
+
+  return checkResponse(info);
+};
