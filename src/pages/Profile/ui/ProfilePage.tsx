@@ -10,12 +10,12 @@ import AppContext from "../../../context/AppContext.ts";
 import { SchoolInfo, Section } from "../../../types";
 import Preloader from "../../../components/ui/Preloader/Preloader.tsx";
 import { PreloaderSize } from "../../../components/ui/Preloader/types";
-import ProfileForm from "./ProfileForm/ProfileForm.tsx";
+import ProfileForms from "./ProfileForms/ProfileForms.tsx";
 
 const ProfilePage = () => {
   const { school, setSchool } = useContext(AppContext);
 
-  const [cookies] = useCookies(["token"]);
+  const [cookies, removeCookie] = useCookies(["token"]);
 
   useEffect(() => {
     const getInfo = async (token: string) => {
@@ -24,12 +24,13 @@ const ProfilePage = () => {
         const sections: Section[] = await getSchoolSections(token);
         setSchool({ info, sections });
       } catch (e) {
-        console.log(e);
+        if (e instanceof Response && e.status === 401) {
+          removeCookie("token", null);
+          setSchool(null);
+        }
       }
     };
     const { token } = cookies;
-
-    console.log(token);
 
     if (token) {
       getInfo(token);
@@ -45,7 +46,7 @@ const ProfilePage = () => {
         <ProfileHeader />
         <Routes>
           <Route path="/" element={<Preloader size={PreloaderSize.Large} />} />
-          <Route path="/edit" element={<ProfileForm />} />
+          <Route path="/edit" element={<ProfileForms />} />
         </Routes>
       </main>
       <Footer />

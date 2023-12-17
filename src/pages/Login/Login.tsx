@@ -41,7 +41,7 @@ function Login() {
   const { isMobileScreen } = useResize();
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [cookies, setCookie] = useCookies(["token"]);
+  const [_, setCookie] = useCookies(["token"]);
 
   const onLoginSubmit: SubmitHandler<ILogin> = async (data) => {
     await handleLogin(data.email, data.password, navigate, setCookie);

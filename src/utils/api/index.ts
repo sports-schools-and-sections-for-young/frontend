@@ -188,8 +188,8 @@ export const updateSchoolInfo = async (
   return checkResponse(info);
 };
 
-export const deleteAccount = async (id: number, token: string) => {
-  const info = await fetch(`${API_URL}/user/${id}/delete/`, {
+export const deleteAccount = async (token: string) => {
+  const data = await fetch(`${API_URL}/user/delete/`, {
     headers: {
       Authorization: `Token ${token}`,
       "Content-type": "application/json",
@@ -197,5 +197,21 @@ export const deleteAccount = async (id: number, token: string) => {
     method: "DELETE",
   });
 
-  return checkResponse(info);
+  return checkResponse(data);
+};
+
+export const changePassword = async (
+  token: string,
+  body: { old_password: string; new_password: string; check_password: string },
+) => {
+  const data = await fetch(`${API_URL}/reset_password/`, {
+    headers: {
+      Authorization: `Token ${token}`,
+      "Content-type": "application/json",
+    },
+    method: "PUT",
+    body: JSON.stringify(body),
+  });
+
+  return checkResponse(data);
 };
