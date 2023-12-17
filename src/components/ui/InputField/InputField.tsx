@@ -1,4 +1,4 @@
-import { forwardRef, InputHTMLAttributes } from "react";
+import { useState, forwardRef, InputHTMLAttributes } from "react";
 import classnames from "classnames";
 import styles from "./InputField.module.scss";
 
@@ -6,6 +6,7 @@ import DownArrow from "../../../assets/images/icons/input-caretdown.svg?react";
 import UpArrow from "../../../assets/images/icons/input-caretup.svg?react";
 import Ruble from "../../../assets/images/icons/input-ruble.svg?react";
 import Magnify from "../../../assets/images/icons/inpit-magnifyingmlass.svg?react";
+import Eye from "../../../assets/images/icons/Eye.svg?react";
 import { InputIcon, InputIconPosition } from "./types";
 
 export interface InputFieldProps extends InputHTMLAttributes<HTMLInputElement> {
@@ -14,6 +15,7 @@ export interface InputFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   iconPosition?: InputIconPosition;
   hasError?: boolean;
   errorMessage?: string;
+  onClickIcon?: () => void;
 }
 
 const InputIcons = {
@@ -21,6 +23,7 @@ const InputIcons = {
   [InputIcon.DOWN_ARROW]: <DownArrow className={styles.icon} />,
   [InputIcon.UP_ARROW]: <UpArrow className={styles.icon} />,
   [InputIcon.MAGNIGY]: <Magnify className={styles.icon} />,
+  [InputIcon.EYE]: <Eye className={styles.icon} />,
 };
 
 const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
@@ -32,8 +35,11 @@ const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
       hasError,
       errorMessage,
       disabled,
+      onClickIcon,
       ...rest
     } = props;
+
+    const [isPasswordVisible, setPasswordVisible] = useState(false);
 
     const inputClassName = classnames({
       [styles.input]: true,
@@ -47,6 +53,13 @@ const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
       [styles[iconPosition]]: true,
     });
 
+    const handleIconClick = () => {
+      if (onClickIcon) {
+        onClickIcon();
+      }
+      setPasswordVisible((prevState: boolean) => !prevState);
+    };
+
     return (
       <div className={styles.inputWrapper}>
         <input
@@ -54,8 +67,25 @@ const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
           className={inputClassName}
           ref={ref}
           {...rest}
+          type={
+            rest.type === "password"
+              ? isPasswordVisible
+                ? "text"
+                : "password"
+              : rest.type
+          }
         />
-        {iconType && <span className={inputIcon}>{InputIcons[iconType]}</span>}
+        {iconType && (
+          <div
+            className={inputIcon}
+            onClick={handleIconClick}
+            role="button"
+            tabIndex={0}
+            aria-label="Показать/скрыть пароль"
+          >
+            {InputIcons[iconType]}
+          </div>
+        )}
         {errorMessage && (
           <div className={styles.errorMessage}>{errorMessage}</div>
         )}

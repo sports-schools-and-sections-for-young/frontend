@@ -15,4 +15,5 @@ export enum ButtonColor {
   SECONDARY = "secondary",
   DELETE = "delete",
   DISABLED = "disabled",
+  LOGIN = "login",
 }

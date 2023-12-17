@@ -1,6 +1,6 @@
 import { API_URL } from "../variables.ts";
 import { ISectionsRequest } from "../../context/AppContext.ts";
-import { CreateSection, LoginBody, RegisterBody, UpdateSection } from "./types";
+import { CreateSection, UpdateSection } from "./types";
 
 const checkResponse = (res: Response) =>
   res.ok ? res.json() : Promise.reject(res);
@@ -43,6 +43,51 @@ export const searchSections = async (sectionRequest: ISectionsRequest) => {
   return checkResponse(res);
 };
 
+export const login = async (email: string, password: string): Promise<any> => {
+  const res = await fetch(`${API_URL}/login/`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ email, password }),
+  });
+  return checkResponse(res);
+};
+
+export const handleLogin = async (
+  email: string,
+  password: string,
+  navigate: any,
+  setCookie: any,
+) => {
+  try {
+    const loginResponse = await login(email, password);
+    // console.log("Успешная авторизация", loginResponse);
+    const { token } = loginResponse;
+    setCookie("token", token, { path: "/" });
+    navigate("/profile");
+  } catch (error) {
+    console.error("Ошибка при входе", error);
+  }
+};
+
+export const registration = async (
+  email: string,
+  password: string,
+  check_password: string,
+): Promise<any> => {
+  const res = await fetch(`${API_URL}/register/`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ email, password, check_password }),
+  });
+  return checkResponse(res);
+};
+
 export const getSchoolInfo = async (token: string) => {
   const info = await fetch(`${API_URL}/sport_school/`, {
     headers: {
@@ -63,23 +108,6 @@ export const getSchoolSections = async (token: string) => {
   return checkResponse(sections);
 };
 
-export const register = async (registerBody: RegisterBody) => {
-  const data = await fetch(`${API_URL}/register/`, {
-    method: "POST",
-    body: JSON.stringify(registerBody),
-  });
-
-  return checkResponse(data);
-};
-
-export const login = async (loginBody: LoginBody) => {
-  const data = await fetch(`${API_URL}/login/`, {
-    method: "POST",
-    body: JSON.stringify(loginBody),
-  });
-
-  return checkResponse(data);
-};
 export const createSection = async (
   token: string,
   createBody: CreateSection,
@@ -115,9 +143,9 @@ export const deleteSection = async (token: string, id: number) => {
   const info = await fetch(`${API_URL}/section/${id}/delete/`, {
     headers: {
       Authorization: `Token ${token}`,
-      "Content-Type": "application/json",
     },
     method: "DELETE",
   });
-  return info;
+
+  return checkResponse(info);
 };
