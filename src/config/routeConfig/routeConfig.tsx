@@ -10,6 +10,10 @@ import Register from "../../pages/Register/Register";
 import Quiz from "../../components/QuizSection/Quiz";
 import { ProfilePage } from "../../pages/Profile";
 
+type ProtectedRouteProps = {
+  onlyForAuth?: boolean;
+} & RouteProps;
+
 export const RoutePath: Record<AppRoutes, string> = {
   [AppRoutes.MAIN_PAGE]: "/",
   [AppRoutes.SEARCH_PAGE]: "/search",
@@ -22,7 +26,7 @@ export const RoutePath: Record<AppRoutes, string> = {
   [AppRoutes.NOT_FOUND]: "*",
 };
 
-export const routeConfig: Record<AppRoutes, RouteProps> = {
+export const routeConfig: Record<AppRoutes, ProtectedRouteProps> = {
   [AppRoutes.MAIN_PAGE]: {
     path: RoutePath.main_page,
     element: <MainPage />,
@@ -42,10 +46,12 @@ export const routeConfig: Record<AppRoutes, RouteProps> = {
   [AppRoutes.SIGN_IN]: {
     path: RoutePath.sign_in,
     element: <Login />,
+    onlyForAuth: false,
   },
   [AppRoutes.REGISTRATION]: {
     path: RoutePath.registration,
     element: <Register />,
+    onlyForAuth: false,
   },
   [AppRoutes.QUIZ]: {
     path: RoutePath.quiz_page,
@@ -54,6 +60,7 @@ export const routeConfig: Record<AppRoutes, RouteProps> = {
   [AppRoutes.PROFILE]: {
     path: RoutePath.profile,
     element: <ProfilePage />,
+    onlyForAuth: true,
   },
   [AppRoutes.NOT_FOUND]: {
     path: RoutePath.not_found,

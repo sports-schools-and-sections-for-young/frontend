@@ -1,12 +1,7 @@
-import { useLocation } from "react-router-dom";
 import styles from "./ProfileNavigation.module.scss";
 import NavLink from "../../../../components/ui/NavLink/NavLink.tsx";
 
 const ProfileNavigation = () => {
-  const location = useLocation();
-
-  console.log(location.pathname);
-
   return (
     <nav>
       <ul className={styles.nav}>
