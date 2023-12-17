@@ -8,6 +8,7 @@ import { Section } from "../../../../types";
 import { useFavourite } from "../../../../hooks/useLocalFavourites";
 import Pagination from "../../../../components/Pagination/Pagination";
 import ResultNotFound from "../../../../components/ResultNotFound/ResultNotFound";
+import { ActionType } from "../../../../components/ResultNotFound/types";
 
 const ResultList: FC<ResultListProps> = (props) => {
   const { sectionRequest, filteredSections } = useContext(AppContext);
@@ -20,7 +21,11 @@ const ResultList: FC<ResultListProps> = (props) => {
   return (
     <section className={styles.listContainer}>
       {filteredSections.length < 1 ? (
-        <ResultNotFound />
+        <ResultNotFound
+          title="Нет подходящих результатов"
+          subtitle="Попробуйте изменить параметры запроса"
+          type={ActionType.FIND}
+        />
       ) : (
         <>
           <p className={styles.description}>

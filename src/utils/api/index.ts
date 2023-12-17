@@ -1,5 +1,6 @@
 import { API_URL } from "../variables.ts";
 import { ISectionsRequest } from "../../context/AppContext.ts";
+import { CreateSection, LoginBody, RegisterBody, UpdateSection } from "./types";
 
 const checkResponse = (res: Response) =>
   res.ok ? res.json() : Promise.reject(res);
@@ -35,29 +36,88 @@ export const searchSections = async (sectionRequest: ISectionsRequest) => {
   }
 
   if (sectionRequest.schedule) {
-    queryArray.push(`schedule=${sectionRequest.schedule.join(",")}`);
+    queryArray.push(`schedule=${sectionRequest.schedule}`);
   }
 
   const res = await fetch(`${API_URL}/search_sections?${queryArray.join("&")}`);
   return checkResponse(res);
 };
 
-export const getSchoolInfo = async () => {
-  const info = await fetch(`http://127.0.0.1:8000/api/sport_school/`, {
+export const getSchoolInfo = async (token: string) => {
+  const info = await fetch(`${API_URL}/sport_school/`, {
     headers: {
-      Authorization: "Token 31cce130509da40fe7e4c49167cbf604a31b2603",
+      Authorization: `Token ${token}`,
     },
   });
 
   return checkResponse(info);
 };
 
-export const getSchoolSections = async () => {
-  const sections = await fetch("http://127.0.0.1:8000/api/section/", {
+export const getSchoolSections = async (token: string) => {
+  const sections = await fetch(`${API_URL}/section/`, {
     headers: {
-      Authorization: "Token 31cce130509da40fe7e4c49167cbf604a31b2603",
+      Authorization: `Token ${token}`,
     },
   });
 
   return checkResponse(sections);
+};
+
+export const register = async (registerBody: RegisterBody) => {
+  const data = await fetch(`${API_URL}/register/`, {
+    method: "POST",
+    body: JSON.stringify(registerBody),
+  });
+
+  return checkResponse(data);
+};
+
+export const login = async (loginBody: LoginBody) => {
+  const data = await fetch(`${API_URL}/login/`, {
+    method: "POST",
+    body: JSON.stringify(loginBody),
+  });
+
+  return checkResponse(data);
+};
+export const createSection = async (
+  token: string,
+  createBody: CreateSection,
+) => {
+  const info = await fetch(`${API_URL}/create_section/`, {
+    headers: {
+      Authorization: `Token ${token}`,
+    },
+    method: "POST",
+    body: JSON.stringify(createBody),
+  });
+
+  return checkResponse(info);
+};
+
+export const updateSection = async (
+  token: string,
+  id: number,
+  updateBody: UpdateSection,
+) => {
+  const info = await fetch(`${API_URL}/section/${id}/update/`, {
+    headers: {
+      Authorization: `Token ${token}`,
+    },
+    method: "PATCH",
+    body: JSON.stringify(updateBody),
+  });
+
+  return checkResponse(info);
+};
+
+export const deleteSection = async (token: string, id: number) => {
+  const info = await fetch(`${API_URL}/section/${id}/delete/`, {
+    headers: {
+      Authorization: `Token ${token}`,
+      "Content-Type": "application/json",
+    },
+    method: "DELETE",
+  });
+  return info;
 };

@@ -7,8 +7,6 @@ import Footer from "../../../components/Footer/Footer.tsx";
 import { getSchoolInfo, getSchoolSections } from "../../../utils/api";
 import AppContext from "../../../context/AppContext.ts";
 import { SchoolInfo, Section } from "../../../types";
-import Preloader from "../../../components/ui/Preloader/Preloader.tsx";
-import { PreloaderSize } from "../../../components/ui/Preloader/types";
 import ProfileForm from "./ProfileForm/ProfileForm.tsx";
 import ProfileSections from "./ProfileSections/ProfileSections.tsx";
 
@@ -17,8 +15,12 @@ const ProfilePage = () => {
 
   useEffect(() => {
     const getInfo = async () => {
-      const info: SchoolInfo = await getSchoolInfo();
-      const sections: Section[] = await getSchoolSections();
+      const info: SchoolInfo = await getSchoolInfo(
+        "c9ab59f7cd24ef8735749254bea3666a14e1b769",
+      );
+      const sections: Section[] = await getSchoolSections(
+        "c9ab59f7cd24ef8735749254bea3666a14e1b769",
+      );
       setSchool({ info, sections });
     };
     getInfo();
@@ -32,15 +34,7 @@ const ProfilePage = () => {
       <main className={styles.page}>
         <ProfileHeader />
         <Routes>
-          <Route
-            path="/"
-            element={
-              <>
-                <ProfileSections />
-                <Preloader size={PreloaderSize.Large} />
-              </>
-            }
-          />
+          <Route path="/" element={<ProfileSections />} />
           <Route path="/edit" element={<ProfileForm />} />
         </Routes>
       </main>

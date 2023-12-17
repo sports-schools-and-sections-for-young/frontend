@@ -19,18 +19,12 @@ type Story = StoryObj<typeof meta>;
 const section = {
   id: 11,
   sport_organization: "СДЮШОР",
-  sport_type: "Шахматы",
+  sport_type: 1,
   title: "Я у мамы молодец",
   year_from: 3,
   year_until: 9,
-  address: {
-    index: "195276",
-    city: "Санкт-Петербург",
-    metro: "Ладожская",
-    district: "Красногвардейский р-н",
-    street: "Ударников",
-    house: "34 лит 3",
-  },
+  address:
+    "195276,Санкт-Петербург,Ладожская,Красногвардейский р-н,Ударников,34 лит 3",
   latitude: "60.073512",
   longitude: "30.360793",
   gender: "",
@@ -38,14 +32,14 @@ const section = {
   rating: 2.33,
   review_amount: 3,
   aviable: 88,
-  schedule: "Вторник, Четверг, Пятница",
+  schedule: [1, 5],
   free_class: false,
   site: "",
   phone: "333",
 };
 
 export const SectionCard: Story = {
-  args: { section, favourite: [] },
+  args: { section, favourite: [], isMobile: false },
   render: function Render(args) {
     const [favourite, setFavourite] = useState<Section[]>([]);
 

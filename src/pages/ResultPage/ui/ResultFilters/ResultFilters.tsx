@@ -70,16 +70,17 @@ const ResultFilters: FC<IResultFiltersProps> = (props) => {
   };
 
   const setSchedule = (day: Weekday, isCheck: boolean) => {
+    const dayNumber = weekdays.indexOf(day) + 1;
     if (!sectionRequest.schedule || sectionRequest.schedule.length === 0)
-      return [day];
-    const isInclude = sectionRequest.schedule.includes(day);
+      return [dayNumber];
+    const isInclude = sectionRequest.schedule.includes(dayNumber);
     if (isCheck) {
       return isInclude
         ? sectionRequest.schedule
-        : [...sectionRequest.schedule, day];
+        : [...sectionRequest.schedule, dayNumber];
     }
     if (isInclude) {
-      const arr = sectionRequest.schedule.filter((d) => d !== day);
+      const arr = sectionRequest.schedule.filter((d) => d !== dayNumber);
       return arr.length === 0 ? null : arr;
     }
     return sectionRequest.schedule;
@@ -125,7 +126,11 @@ const ResultFilters: FC<IResultFiltersProps> = (props) => {
                   // eslint-disable-next-line react/no-array-index-key
                   key={i}
                   title={abbreviateWeekDayName(day, isMobile)}
-                  checked={sectionRequest.schedule?.includes(day) || false}
+                  checked={
+                    sectionRequest.schedule?.includes(
+                      weekdays.indexOf(day) + 1,
+                    ) || false
+                  }
                   onChange={(e) =>
                     setSectionRequest({
                       ...sectionRequest,

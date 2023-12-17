@@ -140,6 +140,12 @@
     row-gap: 16px;
   }
 
+  .title {
+    @include manrope-header(20px, 600, 140%);
+
+    margin-bottom: 0;
+  }
+
   .sectionTitle {
     @include manrope-header(20px, 600, 140%);
 
@@ -158,6 +164,10 @@
     @include manrope-header(20px, 600, 140%);
 
     color: var(--text-black-color);
+
+    &::after {
+      content: "₽ за занятие";
+    }
   }
 
   .schedule {

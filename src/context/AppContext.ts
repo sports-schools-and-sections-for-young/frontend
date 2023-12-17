@@ -1,6 +1,5 @@
 import { createContext, Dispatch, SetStateAction } from "react";
 import { School, Section, Sport } from "../types";
-import { Weekday } from "../utils/constants/week";
 
 export interface ISectionsRequest {
   gender: "Man" | "Woman" | null;
@@ -10,7 +9,7 @@ export interface ISectionsRequest {
   distance: number | null;
   maxPrice: number;
   freeTrial: boolean;
-  schedule: Weekday[] | null;
+  schedule: number[] | null;
 }
 
 interface IAppContext {
