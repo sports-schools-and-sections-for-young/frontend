@@ -94,6 +94,7 @@
 
 .distance {
   position: relative;
+  text-wrap: nowrap;
 
   @include section(row);
 

@@ -13,5 +13,7 @@ export enum ButtonHeight {
 export enum ButtonColor {
   PRIMARY = "primary",
   SECONDARY = "secondary",
+  DELETE = "delete",
   DISABLED = "disabled",
+  LOGIN = "login",
 }

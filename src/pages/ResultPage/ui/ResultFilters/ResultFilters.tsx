@@ -70,17 +70,22 @@ const ResultFilters: FC<IResultFiltersProps> = (props) => {
   };
 
   const setSchedule = (day: Weekday, isCheck: boolean) => {
-    if (!sectionRequest.schedule || sectionRequest.schedule.length === 0)
-      return [day];
+    if (!sectionRequest.schedule) return day;
     const isInclude = sectionRequest.schedule.includes(day);
+    if (!sectionRequest.schedule.includes(",") && isInclude) {
+      return null;
+    }
     if (isCheck) {
       return isInclude
         ? sectionRequest.schedule
-        : [...sectionRequest.schedule, day];
+        : sectionRequest.schedule.concat(",", day);
     }
     if (isInclude) {
-      const arr = sectionRequest.schedule.filter((d) => d !== day);
-      return arr.length === 0 ? null : arr;
+      const stringOfdays =
+        sectionRequest.schedule.indexOf(day) === 0
+          ? sectionRequest.schedule.replace(`${day},`, "")
+          : sectionRequest.schedule.replace(`,${day}`, "");
+      return stringOfdays.length === 0 ? null : stringOfdays;
     }
     return sectionRequest.schedule;
   };

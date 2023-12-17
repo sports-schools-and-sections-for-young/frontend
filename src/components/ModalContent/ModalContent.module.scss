@@ -1,0 +1,88 @@
+@import "../../app/styles/mixins";
+
+.container {
+  display: flex;
+  padding: 40px;
+  flex-direction: column;
+  row-gap: 30px;
+  max-width: 516px;
+}
+
+.title {
+  @include manrope-header(32px, 600, 125%);
+
+  color: var(--text-black-color);
+  text-align: center;
+}
+
+.description {
+  @include manrope-header(18px, 500, 155%);
+
+  color: var(--light-text-color);
+  text-align: center;
+}
+
+.closeBtn {
+  align-self: end;
+}
+
+.highlighting {
+  @include manrope-header(32px, 600, 125%);
+
+  color: var(--span-color);
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  width: 100%;
+  column-gap: 20px;
+}
+
+.oneButton {
+  flex-direction: column;
+}
+
+@include mobile-750 {
+  .container {
+    min-width: 375px;
+    row-gap: 28px;
+  }
+
+  .buttonContainer {
+    flex-direction: column;
+    row-gap: 20px;
+  }
+
+  .title {
+    @include manrope-header(24px, 600, 135%);
+  }
+
+  .highlighting {
+    @include manrope-header(24px, 600, 135%);
+  }
+
+  .description {
+    @include manrope-header(16px, 500, 150%);
+  }
+}
+
+@include mobile-500 {
+  .container {
+    min-width: 320px;
+    row-gap: 10px;
+  }
+
+  .title {
+    text-align: left;
+  }
+
+  .highlighting {
+    @include manrope-header(24px, 600, 135%);
+  }
+
+  .description {
+    text-align: left;
+  }
+}

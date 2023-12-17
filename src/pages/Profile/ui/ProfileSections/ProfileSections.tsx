@@ -1,4 +1,4 @@
-import { ChangeEvent, FC, useContext, useState } from "react";
+import { FC, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./ProfileSections.module.scss";
 import Button from "../../../../components/ui/Button/Button";
@@ -14,116 +14,175 @@ import Badge from "../../../../components/ui/Badge/Badge";
 import { BadgeColor } from "../../../../components/ui/Badge/types";
 import Trash from "../../../../assets/images/icons/delete-section.svg?react";
 import Edit from "../../../../assets/images/icons/edit-section.svg?react";
+import { Section } from "../../../../types";
+import { deleteSection, getSchoolInfo } from "../../../../utils/api";
+import ResultNotFound from "../../../../components/ResultNotFound/ResultNotFound";
+import { ActionType } from "../../../../components/ResultNotFound/types";
+import Schedule from "../../../../components/ui/Shedule/Schedule";
+import Modal from "../../../../components/Modal/Modal";
+import { ModalType } from "../../../../components/ModalContent/types";
+import ModalContent from "../../../../components/ModalContent/ModalContent";
 
 const ProfileSections: FC = () => {
   const navigate = useNavigate();
-  const { school } = useContext(AppContext);
+  const { school, setSchool } = useContext(AppContext);
   const { isMobileScreen } = useResize();
-  const [checkedSections, setCheckedSections] = useState<number[]>([]);
-
-  const toggleSections = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.checked && school) {
-      setCheckedSections(school.sections.map((s) => s.id));
-    } else {
-      setCheckedSections([]);
-    }
-  };
+  const [deleteModal, setDeleteModal] = useState<boolean>(false);
+  const [infoModal, setInfoModal] = useState<boolean>(false);
+  const [checkedSection, setCheckedSection] = useState<number | null>(null);
 
   const toggleSection = (id: number) => {
-    if (!checkedSections.includes(id)) {
-      setCheckedSections((prev) => [...prev, id]);
-    } else {
-      setCheckedSections((prev) => prev.filter((s) => s !== id));
+    if (id === checkedSection) {
+      setCheckedSection(null);
+      return;
     }
+    setCheckedSection(id);
+  };
+
+  const handleDelete = () => {
+    if (checkedSection && school) {
+      deleteSection("71f13ec46fa7bcfe885c29b21cdbf0e6e383e6e9", checkedSection)
+        .then((res) => (res.ok ? checkedSection : Promise.reject(res)))
+        .then((id) => {
+          setSchool({
+            info: school.info,
+            sections: school.sections?.filter((p) => p.id !== id),
+          });
+          setDeleteModal(false);
+          setCheckedSection(null);
+        })
+        .catch((e) => console.log(e));
+    }
+  };
+  const checkProgileFilling = () => {
+    console.log("tik");
+
+    getSchoolInfo("71f13ec46fa7bcfe885c29b21cdbf0e6e383e6e9")
+      .then((info) =>
+        Object.values(info).every((item) => item !== null)
+          ? navigate("/addsection")
+          : setInfoModal(true),
+      )
+      .catch((e) => console.log(e));
+    /* navigate("/addsection") */
   };
 
   return (
     <section className={styles.sections}>
-      <h2 className={styles.title}>Секции</h2>
-      <div className={styles.buttonContainer}>
-        <Button
-          testId={ButtonTestId.OTHER}
-          color={ButtonColor.SECONDARY}
-          withMinWidth
-          type="button"
-          onClick={() => navigate("/addsection")}
-        >
-          <Icon type={IconTypes.PLUS} color={IconColor.SECONDARY} />
-          Добавить секцию
-        </Button>
-        {checkedSections.length === 1 && (
-          <button
-            type="button"
-            className={styles.button}
-            onClick={() =>
-              navigate("/editsection", {
-                state: { forEditing: checkedSections[0] },
-              })
-            }
-          >
-            <Edit />
-          </button>
-        )}
-        {checkedSections.length > 0 && (
-          <button
-            type="button"
-            className={`${styles.button} ${styles.buttonTrash}`}
-            onClick={() => {}}
-          >
-            <Trash />
-          </button>
-        )}
-      </div>
-      {!isMobileScreen && (
-        <table className={styles.table}>
-          <thead className={styles.tableHeading}>
-            <tr>
-              <th className={styles.checkCol}>
-                <input
-                  type="checkbox"
-                  className={styles.tableCheckbox}
-                  onChange={toggleSections}
-                  checked={checkedSections.length === school?.sections.length}
-                />
-              </th>
-              <th className={styles.sportCol}>Виды спорта</th>
-              <th className={styles.dayCol}>Дни недели</th>
-              <th className={styles.addressCol}>Адрес</th>
-              <th className={styles.priceCol}>Цена</th>
-            </tr>
-          </thead>
-          <tbody>
-            {school &&
-              school.sections.map((section) => {
-                return (
-                  <tr
-                    className={`${styles.tableRow} ${
-                      checkedSections.includes(section.id)
-                        ? styles.activeRow
-                        : ""
-                    }`}
-                    key={section.id}
-                    onClick={() => toggleSection(section.id)}
-                  >
-                    <td>
-                      <input
-                        className={styles.tableCheckbox}
-                        type="checkbox"
-                        checked={checkedSections.includes(section.id)}
-                        onChange={() => toggleSection(section.id)}
-                      />
-                    </td>
-                    <td className={styles.sport}>{section.sport_type}</td>
-                    <td className={styles.schedule}>{section.schedule}</td>
-                    <td className={styles.address}>{section.address}</td>
-                    <td className={styles.price}>{section.price}</td>
-                  </tr>
-                );
-              })}
-          </tbody>
-        </table>
+      {deleteModal && (
+        <Modal closeModal={() => setDeleteModal(false)}>
+          <ModalContent
+            type={ModalType.DELETE}
+            closeModal={() => setDeleteModal(false)}
+            title="Вы уверены, что хотите удалить секцию?"
+            description="Все данные о секции будут удалены без возможности восстановления."
+            action={handleDelete}
+            actionDescription="Удалить секцию"
+          />
+        </Modal>
       )}
-      {isMobileScreen && (
+      {infoModal && (
+        <Modal closeModal={() => setInfoModal(false)}>
+          <ModalContent
+            closeModal={() => setInfoModal(false)}
+            title="Заполните профиль"
+            description="После заполнения профиля Вы сможете добавлять секции "
+            action={() => navigate("/profile/edit")}
+            actionDescription="Заполнить профиль"
+          />
+        </Modal>
+      )}
+      <h2 className={styles.title}>Секции</h2>
+      {school && school.sections.length < 1 ? (
+        <ResultNotFound
+          title="Пока ничего не добавлено"
+          type={ActionType.ADD}
+        />
+      ) : !isMobileScreen ? (
+        <>
+          <div className={styles.buttonContainer}>
+            <Button
+              testId={ButtonTestId.OTHER}
+              color={ButtonColor.SECONDARY}
+              withMinWidth
+              type="button"
+              onClick={checkProgileFilling}
+            >
+              <Icon type={IconTypes.PLUS} color={IconColor.SECONDARY} />
+              Добавить секцию
+            </Button>
+            {checkedSection && (
+              <>
+                <button
+                  type="button"
+                  className={styles.button}
+                  onClick={() => {
+                    navigate("/editsection", {
+                      state: { forEditing: checkedSection },
+                    });
+                    setCheckedSection(null);
+                  }}
+                >
+                  <Edit />
+                </button>
+                <button
+                  type="button"
+                  className={`${styles.button} ${styles.buttonTrash}`}
+                  onClick={() => setDeleteModal(true)}
+                >
+                  <Trash />
+                </button>
+              </>
+            )}
+          </div>
+          <table className={styles.table}>
+            <thead className={styles.tableHeading}>
+              <tr>
+                <th className={styles.checkCol}>{}</th>
+                <th className={styles.sportCol}>Виды спорта</th>
+                <th className={styles.dayCol}>Дни недели</th>
+                <th className={styles.addressCol}>Адрес</th>
+                <th className={styles.priceCol}>Цена</th>
+              </tr>
+            </thead>
+            <tbody>
+              {school &&
+                school.sections.map((section: Section) => {
+                  return (
+                    <tr
+                      className={`${styles.tableRow} ${
+                        checkedSection === section.id
+                      })
+                          ? styles.activeRow
+                          : ""
+                        }`}
+                      key={section.id}
+                      onClick={() => toggleSection(section.id)}
+                    >
+                      <td>
+                        <input
+                          className={styles.tableCheckbox}
+                          type="checkbox"
+                          readOnly
+                          checked={checkedSection === section.id}
+                        />
+                      </td>
+                      <td className={styles.sport}>{section.sport_type}</td>
+                      <td className={styles.schedule}>
+                        <Schedule
+                          schedule={section.schedule}
+                          isMobile={isMobileScreen}
+                        />
+                      </td>
+                      <td className={styles.address}>{section.address}</td>
+                      <td className={styles.price}>{section.price}</td>
+                    </tr>
+                  );
+                })}
+            </tbody>
+          </table>
+        </>
+      ) : (
         <ul className={styles.sectionList}>
           {school?.sections.map((section) => {
             return (
@@ -136,25 +195,34 @@ const ProfileSections: FC = () => {
                     <button
                       type="button"
                       className={styles.button}
-                      onClick={() =>
+                      onClick={() => {
                         navigate("/editsection", {
-                          state: { forEditing: checkedSections[0] },
-                        })
-                      }
+                          state: { forEditing: checkedSection },
+                        });
+                        setCheckedSection(null);
+                      }}
                     >
                       <Edit />
                     </button>
                     <button
                       type="button"
                       className={`${styles.button} ${styles.buttonTrash}`}
-                      onClick={() => {}}
+                      onClick={() => {
+                        setCheckedSection(section.id);
+                        setDeleteModal(true);
+                      }}
                     >
                       <Trash />
                     </button>
                   </div>
                   <h2 className={styles.sectionTitle}>{section.title}</h2>
                   <p className={styles.address}>{section.address}</p>
-                  <p className={styles.schedule}>{section.schedule}</p>
+                  <span className={styles.schedule}>
+                    <Schedule
+                      schedule={section.schedule}
+                      isMobile={isMobileScreen}
+                    />
+                  </span>
                   <p className={styles.price}>{section.price}</p>
                 </article>
               </li>
