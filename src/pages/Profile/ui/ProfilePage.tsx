@@ -13,9 +13,10 @@ import { PreloaderSize } from "../../../components/ui/Preloader/types";
 import ProfileForms from "./ProfileForms/ProfileForms.tsx";
 
 const ProfilePage = () => {
-  const { school, setSchool } = useContext(AppContext);
+  const { setSchool } = useContext(AppContext);
 
-  const [cookies, removeCookie] = useCookies(["token"]);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [cookies, _, removeCookie] = useCookies(["token"]);
 
   useEffect(() => {
     const getInfo = async (token: string) => {
@@ -25,7 +26,7 @@ const ProfilePage = () => {
         setSchool({ info, sections });
       } catch (e) {
         if (e instanceof Response && e.status === 401) {
-          removeCookie("token", null);
+          removeCookie("token");
           setSchool(null);
         }
       }
@@ -36,8 +37,6 @@ const ProfilePage = () => {
       getInfo(token);
     }
   }, []);
-
-  console.log(school);
 
   return (
     <>

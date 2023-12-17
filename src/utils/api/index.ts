@@ -69,9 +69,11 @@ export const handleLogin = async (
 ) => {
   try {
     const loginResponse = await login(email, password);
-    // console.log("Успешная авторизация", loginResponse);
     const { token } = loginResponse;
-    setCookie("token", token, { path: "/" });
+    const date = new Date();
+    date.setTime(date.getTime() + 2592000e3);
+    setCookie("token", token, { path: "/", expires: date });
+    setCookie("token", token, { path: "/profile", expires: date });
     navigate("/profile");
   } catch (error) {
     console.error("Ошибка при входе", error);

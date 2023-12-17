@@ -25,13 +25,14 @@ const ProfileForms = () => {
 
   const [modal, setModal] = useState<ProfileFormModals>(null);
 
-  const [cookies, removeCookie] = useCookies(["token"]);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [cookies, _, removeCookie] = useCookies(["token"]);
 
   const handleDeletion = async () => {
     try {
       await deleteAccount(cookies.token);
       setSchool(null);
-      removeCookie("token", null);
+      removeCookie("token");
     } catch (e) {
       console.log(e);
     }
@@ -39,7 +40,7 @@ const ProfileForms = () => {
 
   const handleLogout = () => {
     setSchool(null);
-    removeCookie("token", null);
+    removeCookie("token");
   };
 
   return (

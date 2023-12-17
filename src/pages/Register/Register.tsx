@@ -117,12 +117,9 @@ function Register() {
                   placeholder="E-mail *"
                   id="email-input"
                   type="email"
+                  hasError={Boolean(errors.email)}
+                  errorMessage={errors.email?.message}
                 />
-                {errors?.email && (
-                  <span className={styles.inputError}>
-                    {errors.email.message}
-                  </span>
-                )}
               </div>
               <div className={styles.inputWrapper}>
                 <Input
@@ -144,12 +141,9 @@ function Register() {
                   iconType={InputIcon.EYE}
                   iconPosition={InputIconPosition.RIGHT}
                   onClickIcon={() => setPasswordVisible(!passwordVisible)}
+                  hasError={Boolean(errors.password)}
+                  errorMessage={errors.password?.message}
                 />
-                {errors?.password && (
-                  <span className={styles.inputError}>
-                    {errors.password.message}
-                  </span>
-                )}
               </div>
 
               <div className={styles.inputWrapper}>
@@ -167,12 +161,9 @@ function Register() {
                   iconType={InputIcon.EYE}
                   iconPosition={InputIconPosition.RIGHT}
                   onClickIcon={() => setPasswordVisible(!passwordVisible)}
+                  hasError={Boolean(errors.passwordConfirmation)}
+                  errorMessage={errors.passwordConfirmation?.message}
                 />
-                {errors?.passwordConfirmation && (
-                  <span className={styles.inputError}>
-                    {errors.passwordConfirmation.message}
-                  </span>
-                )}
               </div>
             </div>
             <Button
