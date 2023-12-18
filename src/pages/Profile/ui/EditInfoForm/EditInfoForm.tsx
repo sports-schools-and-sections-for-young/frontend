@@ -124,6 +124,10 @@ const EditInfoForm: FC<EditFormProps> = ({ isEditing, setIsEditing }) => {
         type="text"
         {...register("phone", {
           required: "Введите номер телефона",
+          minLength: {
+            value: 15,
+            message: "Не менее 10 цифр",
+          },
           onChange: (e) => formatPhoneInput(e),
         })}
         hasError={Boolean(errors.phone)}
@@ -136,7 +140,7 @@ const EditInfoForm: FC<EditFormProps> = ({ isEditing, setIsEditing }) => {
         {...register("site", {
           pattern: {
             value:
-              /(https:\/\/www\.|http:\/\/www\.|https:\/\/|http:\/\/)[a-zA-Z0-9]{2,}(\.[a-zA-Z0-9]{2,})(\.[a-zA-Z0-9]{2,})?/,
+              /(https:\/\/www\.|http:\/\/www\.|https:\/\/|http:\/\/)[a-zA-Z0-9А-ЯЁёәіңғүұқөһӘІҢҒҮҰҚӨҺ]{2,}(\.[a-zA-Z0-9А-ЯЁёәіңғүұқөһӘІҢҒҮҰҚӨҺ]{2,})(\.[a-zA-Z0-9А-ЯЁёәіңғүұқөһӘІҢҒҮҰҚӨҺ]{2,})?/,
             message: "Введите адрес сайта в формате http://адрес",
           },
         })}
@@ -150,7 +154,7 @@ const EditInfoForm: FC<EditFormProps> = ({ isEditing, setIsEditing }) => {
         {...register("email", {
           required: "Введите E-mail",
           pattern: {
-            value: /[a-zA-Z0-9_.]+@[a-zA-Z0-9_]+\.[a-z]{2,}/,
+            value: /^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$/,
             message: "Введите корректное значение e-mail",
           },
         })}

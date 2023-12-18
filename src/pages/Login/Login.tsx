@@ -100,7 +100,7 @@ function Login() {
                   {...register("email", {
                     required: "Введите E-mail",
                     pattern: {
-                      value: /[a-zA-Z0-9_.]+@[a-zA-Z0-9_]+\.[a-z]{2,}/,
+                      value: /^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$/,
                       message: "Введите корректное значение e-mail",
                     },
                   })}

@@ -1,5 +1,6 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
+import { useLocation } from "react-router-dom";
 import styles from "./ProfileForms.module.scss";
 import Gear from "../../../../assets/images/icons/Gear.svg?react";
 import AppContext from "../../../../context/AppContext.ts";
@@ -28,6 +29,14 @@ const ProfileForms = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [cookies, _, removeCookie] = useCookies(["token"]);
 
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location?.state?.redirected) {
+      setIsInfoEditing(true);
+    }
+  }, []);
+
   const handleDeletion = async () => {
     try {
       await deleteAccount(cookies.token);
@@ -40,7 +49,8 @@ const ProfileForms = () => {
 
   const handleLogout = () => {
     setSchool(null);
-    removeCookie("token");
+    removeCookie("token", { path: "/" });
+    removeCookie("token", { path: "/profile" });
   };
 
   return (
