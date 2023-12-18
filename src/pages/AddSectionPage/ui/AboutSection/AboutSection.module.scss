@@ -1,0 +1,42 @@
+@import "../../../../app/styles/mixins";
+
+.step {
+  @include step;
+}
+
+.title {
+  font-size: var(--font-size-heading-h3);
+  font-weight: var(--font-weight-500);
+  line-height: var(--font-line-heading-h3);
+  max-width: 850px;
+  text-align: center;
+  margin: 0 0 20px;
+}
+
+.span {
+  color: var(--span-color);
+}
+
+.subtitle {
+  font-size: var(--font-size-l);
+  font-weight: var(--font-weight-500);
+  line-height: var(--font-line-l);
+  color: #211d3b6b;
+  margin-bottom: 73px;
+}
+
+.buttonContainer {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 54px;
+}
+
+.input {
+  max-width: 240px;
+}
+
+.ageInputContainer {
+  max-width: 352px;
+  display: flex;
+  gap: 32px;
+}

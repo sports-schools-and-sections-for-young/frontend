@@ -1,36 +1,39 @@
 import { ButtonHTMLAttributes, FC } from "react";
 import classnames from "classnames";
 import styles from "./Button.module.scss";
-
-export enum ButtonSize {
-  SMALL = "small",
-  MEDIUM = "medium",
-  LARGE = "large",
-}
-
-export enum ButtonColor {
-  PRIMARY = "primary",
-  SECONDARY = "secondary",
-}
+import { ButtonColor, ButtonTestId } from "./types";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
-  size: ButtonSize;
+  withMinWidth?: boolean;
   color: ButtonColor;
+  testId: ButtonTestId;
 }
 
 const Button: FC<ButtonProps> = (props) => {
-  const { className = "", children, size, color, ...rest } = props;
+  const {
+    className = "",
+    withMinWidth = false,
+    color,
+    testId,
+    children,
+    ...rest
+  } = props;
 
   const buttonClass = classnames({
-    [styles.button]: true,
-    [styles[size]]: true,
-    [styles[color]]: true,
     [className]: true,
+    [styles.button]: true,
+    [styles.withMinWidth]: withMinWidth,
+    [styles[color]]: true,
   });
 
   return (
-    <button type="button" className={buttonClass} {...rest}>
+    <button
+      data-testid={testId}
+      type="button"
+      className={buttonClass}
+      {...rest}
+    >
       {children}
     </button>
   );

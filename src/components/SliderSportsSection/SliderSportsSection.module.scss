@@ -1,0 +1,90 @@
+@import "../../app/styles/mixins";
+
+.sliderSection {
+  align-items: center;
+
+  @include section(column);
+
+  max-width: 1440px;
+  padding: 68px 100px 106px;
+
+  @include tablet-1100 {
+    padding: 0 60px 10px;
+  }
+
+  @include mobile-750 {
+    align-items: center;
+
+    @include section(column);
+
+    width: 100%;
+    max-width: 1440px;
+    padding: 68px 60px 10px;
+  }
+}
+
+.container {
+  max-width: 1440px;
+  width: 100%;
+  box-sizing: border-box;
+
+  @include section(column);
+}
+
+.titleWrapper {
+  margin: auto;
+  display: flex;
+  gap: 30px;
+  padding-left: 50px;
+  padding-right: 50px;
+
+  @include mobile-750 {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+.title {
+  margin: 24px 0;
+
+  @include manrope-header(48px, 700);
+
+  align-self: flex-start;
+  letter-spacing: 0.2px;
+  max-width: 544px;
+  color: var(--text-black-color);
+}
+
+.image {
+  @include mobile-750 {
+    display: none;
+  }
+}
+
+@media screen and (width <= 1340px) {
+  .sliderSection {
+    padding: 10px 60px;
+  }
+
+  .headingIconContainer {
+    align-self: flex-start;
+    margin: auto;
+  }
+
+  .title {
+    @include manrope-header(32px, 700);
+
+    &::after {
+      display: none;
+    }
+  }
+}
+
+@media screen and (width <= 500px) {
+  .sliderSection {
+    padding: 48px 20px 76px;
+  }
+}

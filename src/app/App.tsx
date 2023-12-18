@@ -1,23 +1,51 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import AppRouter from "./providers/Router/AppRouter.tsx";
 import "./styles/index.scss";
-import { School, Sport } from "../types";
-import AppContext from "../context";
+import { School, Section, Sport } from "../types";
+import AppContext, {
+  ISectionsRequest,
+  sectionsRequestDefault,
+} from "../context/AppContext.ts";
+import { getSports } from "../utils/api";
 
 function App() {
   const [sports, setSports] = useState<Sport[]>([]);
-  const [schools, setSchools] = useState<School[]>([]);
+  const [sectionRequest, setSectionRequest] = useState<ISectionsRequest>(
+    sectionsRequestDefault,
+  );
+  const [fetchedSections, setFetchedSections] = useState<Section[]>([]);
+  const [filteredSections, setFilteredSections] = useState<Section[]>([]);
+  const [school, setSchool] = useState<School | null>(null);
 
-  const value = useMemo(() => {
-    return { sports, schools, setSports, setSchools };
-  }, [sports, schools]);
+  const appContextValues = useMemo(() => {
+    return {
+      sports,
+      setSports,
+      sectionRequest,
+      setSectionRequest,
+      fetchedSections,
+      setFetchedSections,
+      filteredSections,
+      setFilteredSections,
+      school,
+      setSchool,
+    };
+  }, [sports, sectionRequest, fetchedSections, filteredSections, school]);
+
+  useEffect(() => {
+    const getSportsFromApi = async () => {
+      const sportsFromApi = await getSports();
+      setSports(sportsFromApi);
+    };
+    if (!sports.length) {
+      getSportsFromApi();
+    }
+  }, [sports.length]);
 
   return (
-    <AppContext.Provider value={value}>
+    <AppContext.Provider value={appContextValues}>
       <div className="app">
-        <header style={{borderBottom: '1px solid red', display: 'flex', justifyContent: 'center'}}>Я хедер</header>
         <AppRouter />
-        <footer style={{borderTop: '1px solid red', display: 'flex', justifyContent: 'center'}}>Я футер</footer>
       </div>
     </AppContext.Provider>
   );

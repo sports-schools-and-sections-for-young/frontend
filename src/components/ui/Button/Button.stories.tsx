@@ -1,5 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import Button, { ButtonColor, ButtonSize } from "./Button.tsx";
+import Button from "./Button.tsx";
+import { ButtonColor, ButtonTestId } from "./types";
+import Icon from "../Icon/Icon.tsx";
+import { IconColor, IconTypes } from "../Icon/types";
+import styles from "./Button.module.scss";
 
 const meta = {
   title: "ui/Button",
@@ -14,50 +18,47 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const SmallPrimary: Story = {
+export const Forward: Story = {
   args: {
-    size: ButtonSize.SMALL,
+    type: "button",
+    testId: ButtonTestId.FORWARD,
     color: ButtonColor.PRIMARY,
-    children: "Кнопка",
+    children: (
+      <>
+        {" "}
+        Продолжить
+        <Icon type={IconTypes.RIGHT_ICON} />
+      </>
+    ),
   },
 };
 
-export const MediumPrimary: Story = {
+export const Back: Story = {
   args: {
-    size: ButtonSize.MEDIUM,
+    type: "button",
+    testId: ButtonTestId.BACK,
+    color: ButtonColor.SECONDARY,
+    children: (
+      <>
+        <Icon type={IconTypes.LEFT_ICON} color={IconColor.SECONDARY} />
+        Назад
+      </>
+    ),
+  },
+};
+
+export const Login: Story = {
+  args: {
+    type: "button",
+    testId: ButtonTestId.FORWARD,
     color: ButtonColor.PRIMARY,
-    children: "Кнопка",
-  },
-};
-
-export const LargePrimary: Story = {
-  args: {
-    size: ButtonSize.LARGE,
-    color: ButtonColor.PRIMARY,
-    children: "Кнопка",
-  },
-};
-
-export const SmallSecondary: Story = {
-  args: {
-    size: ButtonSize.SMALL,
-    color: ButtonColor.SECONDARY,
-    children: "Кнопка",
-  },
-};
-
-export const MediumSecondary: Story = {
-  args: {
-    size: ButtonSize.MEDIUM,
-    color: ButtonColor.SECONDARY,
-    children: "Кнопка",
-  },
-};
-
-export const LargeSecondary: Story = {
-  args: {
-    size: ButtonSize.LARGE,
-    color: ButtonColor.SECONDARY,
-    children: "Кнопка",
+    className: styles.login,
+    children: (
+      <>
+        {" "}
+        Войти
+        <Icon type={IconTypes.RIGHT_ICON} />
+      </>
+    ),
   },
 };

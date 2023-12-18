@@ -1,0 +1,54 @@
+@import "../../../../app/styles/mixins";
+
+.header {
+  width: 100%;
+
+  @include mobile-750 {
+    margin-top: 70px;
+  }
+}
+
+.firstLine {
+  padding: 32px 32px 0;
+  display: flex;
+  align-items: center;
+  min-height: 80px;
+
+  @include mobile-750 {
+    padding: 12px 20px 0;
+  }
+}
+
+.full {
+  justify-content: space-between;
+}
+
+.minimal {
+  justify-content: flex-end;
+}
+
+.secondLine {
+  display: flex;
+  justify-content: center;
+  margin-top: 24px;
+}
+
+.logo {
+  width: 180px;
+  height: 60px;
+
+  @include mobile-750 {
+    width: 120px;
+    height: 41px;
+  }
+}
+
+.close {
+  width: 36px;
+  height: 36px;
+  margin-left: 110px;
+
+  @include mobile-750 {
+    margin-left: 0;
+  }
+}

@@ -1,0 +1,201 @@
+@import "../../../app/styles/mixins";
+
+@mixin item() {
+  color: var(--bg-color);
+
+  @include section(row);
+
+  justify-content: center;
+  align-items: center;
+  min-width: 26px;
+  width: 26px;
+  height: 26px;
+  border: 1px solid rgb(33 29 59 / 18%);
+  background-color: transparent;
+  border-radius: 50%;
+  box-sizing: border-box;
+
+  @include tablet-1100 {
+    min-width: 23px;
+    width: 23px;
+    height: 23px;
+  }
+
+  @include mobile-750 {
+    min-width: 16px;
+    width: 16px;
+    height: 16px;
+
+    p {
+      display: none;
+    }
+  }
+}
+
+.quizNav {
+  max-width: 1204px;
+  box-sizing: border-box;
+  position: relative;
+
+  @include section(row);
+
+  justify-content: space-between;
+  align-items: center;
+  padding: 32px 0;
+
+  @include tablet-1000 {
+    @include section(column);
+
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+  @include mobile-750 {
+    padding: 108px 50px 32px;
+  }
+
+  @include mobile-500 {
+    padding: 108px 20px 50px;
+  }
+}
+
+.navBar {
+  max-width: 632px;
+  height: 32px;
+
+  @include section(row);
+
+  justify-content: space-between;
+  align-items: center;
+
+  @include tablet-1100 {
+    max-width: 604px;
+  }
+
+  @include tablet-1000 {
+    align-self: center;
+    padding-top: 72px;
+  }
+
+  @include mobile-750 {
+    max-width: 335px;
+    padding-top: 47px;
+  }
+}
+
+.navItem {
+  @include item;
+}
+
+.navItemUnlock {
+  @include item;
+
+  border: 1px solid var(--primary-color);
+  background-color: var(--ui-primary-bg-color);
+}
+
+.resultItem {
+  @include item;
+}
+
+.resultItemUnlock {
+  @include item;
+
+  background-color: var(--primary-color);
+  background-image: url("../../../assets/images/icons/trophy.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 18px;
+
+  @include mobile-750 {
+    background-size: 12px;
+  }
+}
+
+.navLine {
+  width: 11%;
+  height: 1px;
+  border: none;
+  border-bottom: 1px solid rgb(33 29 59 / 18%);
+  box-sizing: border-box;
+  color: var(--ui-primary-bg-color);
+
+  @include tablet-1100 {
+    width: 9%;
+  }
+
+  @include mobile-750 {
+    width: 30px;
+  }
+}
+
+.navLineUnlock {
+  border-bottom: 1px solid var(--ui-primary-bg-color);
+}
+
+.closeButton {
+  margin: 4px;
+  border: none;
+  background-color: transparent;
+  background-image: url("../../../assets/images/icons/SearchClose.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+
+  @include tablet-1000 {
+    position: absolute;
+    right: 0;
+    top: 32px;
+  }
+
+  @include mobile-750 {
+    top: 108px;
+    right: 50px;
+  }
+
+  @include mobile-500 {
+    right: 20px;
+    width: 32px;
+    height: 32px;
+  }
+}
+
+.closeResultButton {
+  margin: 4px;
+  border: none;
+  background-color: transparent;
+  background-image: url("../../../assets/images/icons/SearchClose.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 36px;
+  height: 36px;
+  min-height: 36px;
+  cursor: pointer;
+  align-self: flex-end;
+  margin-top: 59px;
+
+  @include mobile-750 {
+    margin-right: 50px;
+  }
+
+  @include mobile-500 {
+    margin-right: 20px;
+  }
+}
+
+.arrowButton {
+  width: 36px;
+  height: 36px;
+}
+
+.resultTitle {
+  @include manrope-header(32px, 400);
+
+  color: rgb(33 29 59 / 42%);
+
+  @include tablet-1100 {
+    display: none;
+  }
+}

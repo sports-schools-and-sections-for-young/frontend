@@ -1,0 +1,43 @@
+.reason {
+  max-width: 350px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  border-radius: var(--max-radius);
+  background-color: var(--ui-primary-color);
+}
+
+.imageBlock {
+  position: relative;
+}
+
+.image {
+  border-radius: 20px;
+}
+
+.title {
+  position: absolute;
+  z-index: 2;
+  top: 16px;
+  left: 16px;
+}
+
+.about {
+  color: var(--light-black-color);
+  font-family: var(--font-family_main);
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 0.2px;
+  padding: 0 16px;
+}
+
+.description {
+  color: var(--light-black-color);
+  font: var(--font-m);
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0.2px;
+  padding: 0 16px 16px;
+}

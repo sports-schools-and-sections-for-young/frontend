@@ -1,0 +1,50 @@
+// SIZES
+.small {
+  width: 20px;
+  height: 20px;
+}
+
+.normal {
+  width: 24px;
+  height: 24px;
+}
+
+.extraSmall {
+  width: 16px;
+  height: 16px;
+}
+
+.big {
+  width: 48px;
+  height: 48px;
+}
+
+// COLORS
+
+.primary * {
+  fill: #fff;
+  color: #fff;
+}
+
+.secondary * {
+  fill: #2b5fc7;
+  color: #2b5fc7;
+}
+
+.pale * {
+  fill: #828091;
+  color: #828091;
+}
+
+/* кастомные стили для стрелок */
+.primary .arrow-icon * {
+  color: #fff;
+}
+
+.secondary .arrow-icon * {
+  color: #2b5fc7;
+}
+
+.pale .arrow-icon * {
+  color: #828091;
+}

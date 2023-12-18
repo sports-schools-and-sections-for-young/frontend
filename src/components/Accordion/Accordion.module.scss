@@ -1,0 +1,19 @@
+.container {
+  max-width: 621px;
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+  margin-right: 20px;
+}
+
+@media screen and (width <= 1340px) {
+  .container {
+    max-width: 472px;
+  }
+}
+
+@media screen and (width <= 1340px) {
+  .container {
+    margin-right: 0;
+  }
+}

@@ -1,0 +1,84 @@
+@import "../../app/styles/mixins";
+
+.footer {
+  @include section(row);
+
+  margin-top: auto;
+}
+
+.darkPart {
+  background-color: var(--text-black-color);
+  width: 100%;
+  min-height: 170px;
+  padding: 32px 160px;
+  align-items: center;
+  justify-content: center;
+
+  @include section(row);
+}
+
+.footerContainer {
+  @include section(row);
+
+  gap: 168px;
+  max-width: 1120px;
+  align-items: center;
+}
+
+.textWrapper {
+  @include section(column);
+
+  color: var(--ui-primary-color);
+
+  @include manrope-header(14px, 400, 150%);
+
+  max-width: 690px;
+}
+
+.spanText {
+  padding-top: 24px;
+
+  @include manrope-header(14px, 400, 150%);
+}
+
+.image {
+  width: 263px;
+}
+
+@media screen and (width <= 1100px) {
+  .darkPart {
+    padding: 17px 52px;
+  }
+
+  .image {
+    width: 195px;
+  }
+}
+
+@media screen and (width <= 750px) {
+  .darkPart {
+    padding: 7px 20px;
+  }
+
+  .image {
+    display: none;
+  }
+}
+
+@media screen and (width <= 500px) {
+  .footerContainer {
+    gap: 8px;
+  }
+
+  .textWrapper {
+    max-width: 690px;
+
+    @include manrope-header(12px, 400, 150%);
+  }
+
+  .spanText {
+    padding-top: 8px;
+
+    @include manrope-header(12px, 400, 150%);
+  }
+}

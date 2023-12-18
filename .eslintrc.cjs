@@ -22,6 +22,8 @@ module.exports = {
   },
   plugins: ["react-refresh"],
   rules: {
+    "no-irregular-whitespace": "off",
+    camelcase: "off",
     "react-refresh/only-export-components": [
       "warn",
       { allowConstantExport: true },
@@ -32,6 +34,7 @@ module.exports = {
       1,
       { extensions: [".js", ".jsx", ".ts", ".tsx"] },
     ],
+    "import/no-extraneous-dependencies": ["error", { devDependencies: true }],
     "react/function-component-definition": "off",
     "no-shadow": "off",
     "arrow-body-style": "off",
@@ -41,6 +44,13 @@ module.exports = {
     "import/extensions": "off",
     "react/jsx-props-no-spreading": "off",
     "react/require-default-props": "off",
+    "jsx-a11y/no-noninteractive-element-interactions": "off",
+    "jsx-a11y/click-events-have-key-events": "off",
+    "no-underscore-dangle": "off",
+    "@typescript-eslint/no-explicit-any": ["warn"],
+    "react/jsx-no-bind": "off",
+    "no-nested-ternary": "off",
+    "jsx-a11y/control-has-associated-label": "off",
   },
   settings: {
     "import/resolver": {

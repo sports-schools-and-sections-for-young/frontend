@@ -1,0 +1,84 @@
+@import "../../../../app/styles/mixins";
+
+.step {
+  @include step;
+}
+
+.title {
+  @include step-title;
+}
+
+.span {
+  color: var(--span-color);
+}
+
+.subtitle {
+  @include step-subtitle;
+
+  margin-bottom: 56px;
+
+  @include mobile-750 {
+    margin-bottom: 24px;
+  }
+}
+
+@mixin sport-list {
+  list-style-type: none;
+  max-width: 540px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px 12px;
+}
+
+.selected {
+  @include sport-list;
+
+  margin-bottom: 32px;
+
+  @include mobile-750 {
+    margin-bottom: 24px;
+  }
+}
+
+.notSelected {
+  @include sport-list;
+
+  margin-top: 30px;
+
+  @include mobile-750 {
+    margin-top: 4px;
+  }
+}
+
+.input {
+  width: 442px;
+}
+
+.fullViewButton {
+  margin: 24px 0 64px;
+  font-size: var(--font-size-m);
+  line-height: var(--font-line-m);
+  font-weight: var(--font-weight-500);
+  color: #003fbc;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  @include mobile-750 {
+    margin: 20px 0 36px;
+  }
+}
+
+.icon {
+  margin-bottom: 2px;
+}
+
+.button {
+  @include mobile-750 {
+    width: 100%;
+  }
+}

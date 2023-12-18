@@ -1,0 +1,42 @@
+@import "../../../app//styles/mixins.scss";
+
+.favourite {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1181px;
+  font-family: var(--font-family_main);
+  color: var(--text-black-color);
+  display: flex;
+  flex-direction: column;
+  padding-left: 32px;
+  padding-right: 32px;
+}
+
+.favouriteContainer {
+  display: flex;
+  column-gap: 33px;
+  margin-top: 26px;
+}
+
+.title {
+  @include manrope-header(44px, 700, 125%);
+
+  padding-top: 20px;
+  padding-bottom: 20px;
+  display: flex;
+  align-items: center;
+  column-gap: 60px;
+}
+
+@include mobile-750 {
+  .title {
+    display: none;
+  }
+}
+
+@include mobile-500 {
+  .favourite {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
