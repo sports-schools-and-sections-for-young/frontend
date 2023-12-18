@@ -128,11 +128,6 @@ const EditInfoForm: FC<EditFormProps> = ({ isEditing, setIsEditing }) => {
             value: 15,
             message: "Не менее 10 цифр",
           },
-          maxLength: {
-            value: 16,
-            message: "Не более 11 цифр",
-          },
-
           onChange: (e) => formatPhoneInput(e),
         })}
         hasError={Boolean(errors.phone)}

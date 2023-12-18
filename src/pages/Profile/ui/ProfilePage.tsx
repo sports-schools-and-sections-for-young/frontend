@@ -36,7 +36,8 @@ const ProfilePage = () => {
         });
       } catch (e) {
         if (e instanceof Response && e.status === 401) {
-          removeCookie("token");
+          removeCookie("token", { path: "/" });
+          removeCookie("token", { path: "/profile" });
           setSchool(null);
         }
       }
