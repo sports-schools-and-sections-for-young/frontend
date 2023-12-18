@@ -37,7 +37,7 @@ const FavouriteNavigate: FC = () => {
           <h2 className={styles.title}>Избранное</h2>
         </li>
         <li>
-          <CloseButton className={styles.close} onClick={() => navigate("/")} />
+          <CloseButton className={styles.close} onClick={() => navigate(-1)} />
         </li>
       </ul>
     </nav>

@@ -14,7 +14,7 @@ import AppContext from "../../../context/AppContext.ts";
 import { SchoolInfo, Section, Sport } from "../../../types";
 import ProfileForm from "./ProfileForms/ProfileForms.tsx";
 import ProfileSections from "./ProfileSections/ProfileSections.tsx";
-import { parseSchedule, parseSport } from "../../../utils/functions/index.ts";
+import { parseSchedule, parseSport } from "../../../utils/functions";
 
 const ProfilePage = () => {
   const { setSchool } = useContext(AppContext);

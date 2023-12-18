@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import { SubmitHandler, useForm } from "react-hook-form";
+import classnames from "classnames";
 import styles from "./Login.module.scss";
 import Button from "../../components/ui/Button/Button";
 import { ButtonColor, ButtonTestId } from "../../components/ui/Button/types";
@@ -20,6 +21,8 @@ import ImageCard from "../../components/ui/ImageCard/ImageCard";
 import { ImageCardSize } from "../../components/ui/ImageCard/types";
 import banner from "../../assets/images/auth-mobile-img.png";
 import { handleLogin } from "../../utils/api";
+import { ResponseType } from "../../utils/api/types";
+import { LoginErrors } from "./types";
 
 interface ILogin {
   email: string;
@@ -40,14 +43,30 @@ function Login() {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const { isMobileScreen } = useResize();
 
+  const [error, setError] = useState<LoginErrors | null>(null);
+
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [_, setCookie] = useCookies(["token"]);
 
   const onLoginSubmit: SubmitHandler<ILogin> = async (data) => {
-    await handleLogin(data.email, data.password, navigate, setCookie);
-
-    reset();
+    setError(null);
+    const res = await handleLogin(
+      data.email,
+      data.password,
+      navigate,
+      setCookie,
+    );
+    if (res === ResponseType.ERROR) {
+      setError(LoginErrors.ERROR);
+    } else if (res === ResponseType.WRONG) {
+      setError(LoginErrors.WRONG);
+    } else reset();
   };
+
+  const lineClass = classnames({
+    [styles.horizontalLine]: true,
+    [styles.horizontalLine_error]: Boolean(error),
+  });
 
   return (
     <main className={styles.form}>
@@ -167,7 +186,8 @@ function Login() {
                 </Link>
               </div>
             </div>
-            <hr className={styles.horizontalLine} />
+            {error && <span className={styles.error}>{error}</span>}
+            <hr className={lineClass} />
             <span className={styles.formText}>
               Школа еще не зарегистрирована?
               <Link to="/registration" className={styles.formLink}>

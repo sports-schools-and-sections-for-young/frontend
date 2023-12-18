@@ -1,5 +1,4 @@
-import React, { FC, useContext } from "react";
-import AppContext from "../../../../context/AppContext.ts";
+import React, { FC } from "react";
 import styles from "./PriceSection.module.scss";
 import { SportSectionProps } from "../../types";
 import Input from "../../../../components/ui/Input/Input.tsx";
@@ -7,15 +6,13 @@ import {
   InputIcon,
   InputIconPosition,
 } from "../../../../components/ui/InputField/types";
-import { usePriceHandler } from "../../../../hooks/usePriceHandler.tsx";
 import Badge from "../../../../components/ui/Badge/Badge.tsx";
 import { BadgeColor } from "../../../../components/ui/Badge/types";
 import Icon from "../../../../components/ui/Icon/Icon.tsx";
 import { IconColor, IconTypes } from "../../../../components/ui/Icon/types";
 
-const PriceSection: FC<SportSectionProps> = () => {
-  const { sectionRequest } = useContext(AppContext);
-  const { maxPrice, setMaxPrice, setFreeTrial } = usePriceHandler();
+const PriceSection: FC<SportSectionProps> = (props) => {
+  const { setRequest, request } = props;
 
   return (
     <section className={styles.step}>
@@ -29,20 +26,22 @@ const PriceSection: FC<SportSectionProps> = () => {
           iconType={InputIcon.RUB}
           iconPosition={InputIconPosition.LEFT}
           className={styles.input}
-          value={maxPrice}
+          value={request.price}
           onChange={(evt: React.ChangeEvent<HTMLInputElement>) =>
-            setMaxPrice(+evt.target.value)
+            setRequest({ ...request, price: +evt.target.value })
           }
         />
         <Badge
-          isActive={sectionRequest.freeTrial}
-          onClick={setFreeTrial}
+          isActive={request.free_class}
+          onClick={() =>
+            setRequest({ ...request, free_class: !request.free_class })
+          }
           color={BadgeColor.PRIMARY}
           className={styles.badge}
         >
           <Icon type={IconTypes.COOKIE} color={IconColor.SECONDARY} />
           Бесплатное пробное
-          {sectionRequest.freeTrial && (
+          {request.free_class && (
             <Icon type={IconTypes.CROSS} color={IconColor.SECONDARY} />
           )}
         </Badge>
