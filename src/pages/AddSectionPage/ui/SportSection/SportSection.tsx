@@ -1,6 +1,6 @@
 /// <reference types="vite-plugin-svgr/client" />
 import { FC, useContext, useState, useEffect } from "react";
-import { SportSectionProps  } from "../../types";
+import { SportSectionProps } from "../../types";
 import styles from "./SportSection.module.scss";
 import AppContext from "../../../../context/AppContext.ts";
 import Badge from "../../../../components/ui/Badge/Badge.tsx";
@@ -56,9 +56,7 @@ const SportSection: FC<SportSectionProps> = ({ setValid }) => {
       <h2 className={styles.title}>
         1.&nbsp;Выберите <span className={styles.span}>вид спорта</span>
       </h2>
-      <p className={styles.subtitle}>
-        Можете выбрать только один вариант
-      </p>
+      <p className={styles.subtitle}>Можете выбрать только один вариант</p>
       <ul className={styles.selected}>
         {sectionRequest.sports?.map((sport) => (
           <Badge
