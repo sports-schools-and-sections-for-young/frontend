@@ -16,7 +16,7 @@
   @include section(row);
 
   justify-content: space-between;
-  width: calc(100% - 220px);
+  width: calc(100% - 40px);
   max-width: 1120px;
   align-items: center;
 
@@ -117,9 +117,17 @@
   align-items: center;
 }
 
+.hiddenText {
+  display: none;
+}
+
+.profileButton {
+  margin-right: 85px;
+}
+
 @include tablet-1000 {
   .container {
-    width: calc(100% - 120px);
+    width: calc(100% - 20px);
   }
 
   .buttonContent {
@@ -132,17 +140,6 @@
 }
 
 @include mobile-750 {
-  .button {
-    background-image: url("../../../assets/images/icons/UserCircle.svg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    background-color: transparent;
-    content: "";
-    min-width: 40px;
-    min-height: 40px;
-  }
-
   .logo {
     max-width: 200px;
   }
@@ -171,14 +168,11 @@
   }
 
   .buttonContainer {
-    column-gap: 25px;
+    column-gap: 5px;
+    margin-left: auto;
   }
-}
 
-.hiddenText {
-  display: none;
-}
-
-.profileButton {
-  margin-right: 85px;
+  .profileButton {
+    margin-right: 5px;
+  }
 }
