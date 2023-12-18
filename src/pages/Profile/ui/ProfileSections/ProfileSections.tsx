@@ -32,6 +32,7 @@ const ProfileSections: FC = () => {
   const { isMobileScreen } = useResize();
   const [deleteModal, setDeleteModal] = useState<boolean>(false);
   const [infoModal, setInfoModal] = useState<boolean>(false);
+  const [succsessModal, setSuccsessModal] = useState<boolean>(false);
 
   const [checkedSection, setCheckedSection] = useState<number | null>(null);
 
@@ -70,6 +71,7 @@ const ProfileSections: FC = () => {
           });
           setDeleteModal(false);
           setCheckedSection(null);
+          setSuccsessModal(true);
         })
         .catch((e) => console.log(e));
     }
@@ -84,6 +86,16 @@ const ProfileSections: FC = () => {
 
   return (
     <section className={styles.sections}>
+      {succsessModal && (
+        <Modal closeModal={() => {}}>
+          <ModalContent
+            type={ModalType.SUCCSESS}
+            title="Секция успешно удалена!"
+            back={() => setSuccsessModal(false)}
+            actionDescription="Удалить секцию"
+          />
+        </Modal>
+      )}
       {deleteModal && (
         <Modal closeModal={() => setDeleteModal(false)}>
           <ModalContent
