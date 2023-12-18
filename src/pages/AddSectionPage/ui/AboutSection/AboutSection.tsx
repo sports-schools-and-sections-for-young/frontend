@@ -1,7 +1,6 @@
-import { FC, useContext } from "react";
+import { ChangeEvent, FC } from "react";
 import { useForm } from "react-hook-form";
 import { SportSectionProps } from "../../types";
-import AppContext from "../../../../context/AppContext.ts";
 import styles from "./AboutSection.module.scss";
 import GenderBtn from "../../../../components/ui/GenderBtn/GenderBtn.tsx";
 import Icon from "../../../../components/ui/Icon/Icon.tsx";
@@ -20,18 +19,21 @@ interface AgeField {
   ageTo: number;
 }
 
-const AboutSection: FC<SportSectionProps> = () => {
-  const { sectionRequest, setSectionRequest } = useContext(AppContext);
+const AboutSection: FC<SportSectionProps> = (props) => {
+  const { request, setRequest } = props;
 
-  // useEffect(() => {
-  //   const isGenderSelected = sectionRequest.gender !== null;
-  //   const isAgeRangeValid = sectionRequest.ageFrom <= sectionRequest.ageTo;
-  //   setValid(isGenderSelected && isAgeRangeValid);
-  // }, [sectionRequest.gender, sectionRequest.ageFrom, sectionRequest.ageTo, setValid]);
+  const multiGenderToggle = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.checked) {
+      setRequest({ ...request, gender: "" });
+    } else {
+      setRequest({ ...request, gender: "Woman" });
+    }
+  };
 
   const {
     register,
     formState: { errors },
+    clearErrors,
   } = useForm<AgeField>({ mode: "onChange" });
 
   return (
@@ -43,11 +45,11 @@ const AboutSection: FC<SportSectionProps> = () => {
       <p className={styles.subtitle}>Выберите пол и возрастной диапазон</p>
       <div className={styles.buttonContainer}>
         <GenderBtn
-          isActive={sectionRequest.gender === "Woman"}
+          isActive={request.gender === "Woman"}
           onClick={() =>
-            setSectionRequest({
-              ...sectionRequest,
-              gender: sectionRequest.gender === "Woman" ? null : "Woman",
+            setRequest({
+              ...request,
+              gender: request.gender === "Woman" ? "" : "Woman",
             })
           }
         >
@@ -59,11 +61,11 @@ const AboutSection: FC<SportSectionProps> = () => {
           девочка
         </GenderBtn>
         <GenderBtn
-          isActive={sectionRequest.gender === "Man"}
+          isActive={request.gender === "Man"}
           onClick={() =>
-            setSectionRequest({
-              ...sectionRequest,
-              gender: sectionRequest.gender === "Man" ? null : "Man",
+            setRequest({
+              ...request,
+              gender: request.gender === "Man" ? "" : "Man",
             })
           }
         >
@@ -74,7 +76,12 @@ const AboutSection: FC<SportSectionProps> = () => {
           />{" "}
           мальчик
         </GenderBtn>
-        <Checkbox title="Оба пола" className={styles.checkbox} />
+        <Checkbox
+          checked={request.gender.length < 1}
+          onChange={(e) => multiGenderToggle(e)}
+          title="Оба пола"
+          className={styles.checkbox}
+        />
       </div>
       <div className={styles.ageInputContainer}>
         <Input
@@ -95,12 +102,19 @@ const AboutSection: FC<SportSectionProps> = () => {
               message: `Максимальный возраст: ${maxAge} ${getDeclension(
                 maxAge,
                 ["год", "года", "лет"],
+                ["год", "года", "лет"],
               )}`,
             },
+            onBlur: () => {
+              if (request.year_from < 1 || errors.ageFrom) {
+                setRequest({ ...request, year_from: minAge });
+                clearErrors();
+              }
+            },
             onChange: (e) =>
-              setSectionRequest({ ...sectionRequest, age: +e.target.value }),
+              setRequest({ ...request, year_from: +e.target.value }),
           })}
-          value={sectionRequest.age || ""}
+          value={request.year_from || ""}
           hasError={Boolean(errors.ageFrom)}
           errorMessage={errors.ageFrom?.message}
         />
@@ -122,12 +136,19 @@ const AboutSection: FC<SportSectionProps> = () => {
               message: `Максимальный возраст: ${maxAge} ${getDeclension(
                 maxAge,
                 ["год", "года", "лет"],
+                ["год", "года", "лет"],
               )}`,
             },
+            onBlur: () => {
+              if (request.year_until < 1 || errors.ageTo) {
+                setRequest({ ...request, year_until: maxAge });
+                clearErrors();
+              }
+            },
             onChange: (e) =>
-              setSectionRequest({ ...sectionRequest, age: +e.target.value }),
+              setRequest({ ...request, year_until: +e.target.value }),
           })}
-          value={sectionRequest.age || ""}
+          value={request.year_until || ""}
           hasError={Boolean(errors.ageTo)}
           errorMessage={errors.ageTo?.message}
         />

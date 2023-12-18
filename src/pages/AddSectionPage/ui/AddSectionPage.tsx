@@ -1,7 +1,7 @@
-import { FC, useContext, useEffect, useState } from "react";
-// import { useNavigate } from "react-router-dom";
+import React, { FC, useContext, useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
 import styles from "./AddSectionPage.module.scss";
 import Header from "../../../components/ui/Header/Header";
 import FavouriteNavigate from "../../FavouritePage/ui/FavouriteNavigate/FavouriteNavigate";
@@ -17,8 +17,9 @@ import Icon from "../../../components/ui/Icon/Icon.tsx";
 import { IconTypes } from "../../../components/ui/Icon/types";
 import { maxAge, minAge } from "../../../utils/variables.ts";
 import { AddSectionRequest } from "../types";
-import { createSection } from "../../../utils/api";
+import { createSection, updateSection } from "../../../utils/api";
 import AppContext from "../../../context/AppContext.ts";
+import Input from "../../../components/ui/Input/Input.tsx";
 
 const defaultSectionRequest = {
   title: "",
@@ -32,9 +33,16 @@ const defaultSectionRequest = {
   free_class: false,
 };
 
+interface TitleField {
+  title: string;
+}
+
 const AddSectionPage: FC = () => {
   const [isSportSectionValid, setIsSportSectionValid] = useState(false);
-  const [isAboutSectionValid, setIsAboutSectionValid] = useState(false);
+  const [isAboutSectionValid, setIsAboutSectionValid] =
+    useState(
+      false,
+    ); /* About не контролю. Есть дефолт значения. Если юзер вводит не то, я возвращаю в дефолт */
   const [isLocationSectionValid, setIsLocationSectionValid] = useState(false);
   const [isPriceSectionValid, setIsPriceSectionValid] = useState(false);
   const [isAddDaysSectionValid, setIsAddDaysSectionValid] = useState(false);
@@ -47,6 +55,13 @@ const AddSectionPage: FC = () => {
     defaultSectionRequest,
   );
 
+  const navigate = useNavigate();
+
+  const {
+    register,
+    formState: { errors },
+  } = useForm<TitleField>({ mode: "onChange" });
+
   useEffect(() => {
     if (location.state.forEditing) {
       const section = school?.sections.find(
@@ -58,15 +73,7 @@ const AddSectionPage: FC = () => {
     }
   }, [location.state.forEditing, school?.sections]);
 
-  console.log(
-    school?.sections.find(
-      (section) => section.id === location.state.forEditing,
-    ),
-  );
-
   const [cookies] = useCookies(["token"]);
-
-  console.log(request);
 
   const allSectionsValid =
     isSportSectionValid &&
@@ -76,6 +83,15 @@ const AddSectionPage: FC = () => {
     isAddDaysSectionValid;
 
   console.log(allSectionsValid);
+
+  const handleSubmit = async () => {
+    if (!location.state.forEditing) {
+      await createSection(cookies.token, request);
+    } else {
+      await updateSection(cookies.token, location.state.forEditing, request);
+    }
+    navigate("/profile");
+  };
 
   return (
     <>
@@ -87,6 +103,31 @@ const AddSectionPage: FC = () => {
             ? "Добавление секции"
             : "Редактирование секции"}
         </h2>
+        <div className={styles.sectionTitleContainer}>
+          <h3 className={styles.sectionTitle}>
+            Введите <span className={styles.span}>название секции</span>
+          </h3>
+          <Input
+            placeholder="Название секции"
+            type="text"
+            {...register("title", {
+              minLength: {
+                value: 5,
+                message: "Не менее 5 символов",
+              },
+              maxLength: {
+                value: 255,
+                message: "Не более 255 символов",
+              },
+              required: "Введите название",
+              onChange: (evt: React.ChangeEvent<HTMLInputElement>) =>
+                setRequest({ ...request, title: evt.target.value }),
+            })}
+            value={request.title}
+            hasError={Boolean(errors.title)}
+            errorMessage={errors.title?.message}
+          />
+        </div>
         <SportSection
           setValid={setIsSportSectionValid}
           request={request}
@@ -118,7 +159,7 @@ const AddSectionPage: FC = () => {
             color={ButtonColor.PRIMARY}
             withMinWidth
             type="button"
-            onClick={() => createSection(cookies.token, request)}
+            onClick={handleSubmit}
           >
             Сохранить
             <Icon type={IconTypes.RIGHT_ICON} />

@@ -18,6 +18,23 @@ export const getSports = async () => {
   return checkResponse(res);
 };
 
+export const getAllSports = async () => {
+  const res = await fetch(`${API_URL}/sport_types_all`);
+  return checkResponse(res);
+};
+
+export const addSportType = async (token: string, sportType: string) => {
+  const info = await fetch(`${API_URL}/create_sport_types/`, {
+    headers: {
+      Authorization: `Token ${token}`,
+      "Content-Type": "application/json",
+    },
+    method: "POST",
+    body: JSON.stringify({ title: sportType }),
+  });
+  return checkResponse(info);
+};
+
 export const searchSections = async (sectionRequest: ISectionsRequest) => {
   const queryArray: string[] = [];
 
@@ -156,13 +173,19 @@ export const updateSection = async (
   id: number,
   updateBody: UpdateSection,
 ) => {
+  const coords = await getCoordinates(updateBody.address as string);
+
   const info = await fetch(`${API_URL}/section/${id}/update/`, {
     headers: {
       Authorization: `Token ${token}`,
       "Content-type": "application/json",
     },
     method: "PATCH",
-    body: JSON.stringify(updateBody),
+    body: JSON.stringify({
+      ...updateBody,
+      latitude: coords[0],
+      longitude: coords[1],
+    }),
   });
 
   return checkResponse(info);
