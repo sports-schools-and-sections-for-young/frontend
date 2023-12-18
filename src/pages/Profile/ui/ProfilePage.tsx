@@ -8,14 +8,15 @@ import Footer from "../../../components/Footer/Footer.tsx";
 import { getSchoolInfo, getSchoolSections } from "../../../utils/api";
 import AppContext from "../../../context/AppContext.ts";
 import { SchoolInfo, Section } from "../../../types";
-import ProfileForm from "./ProfileForm/ProfileForm.tsx";
+import ProfileForm from "./ProfileForms/ProfileForms.tsx";
 import ProfileSections from "./ProfileSections/ProfileSections.tsx";
 import { parseSchedule, parseSport } from "../../../utils/functions/index.ts";
 
 const ProfilePage = () => {
-  const { school, setSchool, sports } = useContext(AppContext);
+  const { setSchool, sports } = useContext(AppContext);
 
-  const [cookies] = useCookies(["token"]);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [cookies, _, removeCookie] = useCookies(["token"]);
 
   useEffect(() => {
     const getInfo = async (token: string) => {
@@ -34,19 +35,18 @@ const ProfilePage = () => {
           sections: parsedSections,
         });
       } catch (e) {
-        console.log(e);
+        if (e instanceof Response && e.status === 401) {
+          removeCookie("token");
+          setSchool(null);
+        }
       }
     };
     const { token } = cookies;
-
-    console.log(token);
 
     if (token) {
       getInfo(token);
     }
   }, []);
-
-  console.log(school);
 
   return (
     <>

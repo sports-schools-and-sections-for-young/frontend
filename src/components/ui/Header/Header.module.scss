@@ -175,22 +175,10 @@
   }
 }
 
-.profileButton {
-  display: none;
-
-  @include mobile-750 {
-    display: block;
-    position: relative;
-    background-image: url("../../../assets/images/profile-menu-icon.png");
-    background-color: transparent;
-    background-size: cover;
-    background-repeat: no-repeat;
-    border: none;
-    width: 36px;
-    height: 36px;
-  }
-}
-
 .hiddenText {
   display: none;
+}
+
+.profileButton {
+  margin-right: 85px;
 }

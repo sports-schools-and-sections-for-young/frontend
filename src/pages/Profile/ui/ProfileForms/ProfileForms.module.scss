@@ -14,12 +14,16 @@
 
 .formContainer {
   max-width: 736px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .optionsContainer {
   display: flex;
   justify-content: space-between;
   margin-bottom: 36px;
+  width: 100%;
 }
 
 .options {
@@ -45,23 +49,24 @@
   color: var(--text-black-color);
 }
 
-.form {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 41px;
-}
-
-.submitButton {
-  max-width: 210px;
-  margin-top: 43px;
-}
-
 .deleteButton {
   font-size: 20px;
   font-style: normal;
   font-weight: 600;
   line-height: 140%;
   color: #f21515;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.logoutButton {
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 140%;
+  color: var(--light-text-color);
   border: none;
   background: transparent;
   cursor: pointer;

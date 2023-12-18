@@ -42,7 +42,7 @@ function Register() {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const { isMobileScreen } = useResize();
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [cookies, setCookie] = useCookies(["token"]);
+  const [_, setCookie] = useCookies(["token"]);
 
   const onRegisterSubmit: SubmitHandler<IRegister> = async (data) => {
     try {
@@ -51,7 +51,6 @@ function Register() {
         data.password,
         data.passwordConfirmation,
       );
-      // console.log("Успешная регистрация", registrationResponse);
       if (registrationResponse.email) {
         await handleLogin(data.email, data.password, navigate, setCookie);
       }
@@ -156,7 +155,7 @@ function Register() {
                       "Пароли должны совпадать",
                   })}
                   name="passwordConfirmation"
-                  placeholder="Подтвердить пароля *"
+                  placeholder="Подтвердить пароль *"
                   id="password-confirmation-input"
                   type={passwordVisible ? "text" : "password"}
                   iconType={InputIcon.EYE}
