@@ -1,7 +1,7 @@
-import React, {FC, useContext } from "react";
+import React, { FC, useContext } from "react";
 import AppContext from "../../../../context/AppContext.ts";
 import styles from "./PriceSection.module.scss";
-import { SportSectionProps  } from "../../types";
+import { SportSectionProps } from "../../types";
 import Input from "../../../../components/ui/Input/Input.tsx";
 import {
   InputIcon,
@@ -34,7 +34,7 @@ const PriceSection: FC<SportSectionProps> = () => {
             setMaxPrice(+evt.target.value)
           }
         />
-          <Badge
+        <Badge
           isActive={sectionRequest.freeTrial}
           onClick={setFreeTrial}
           color={BadgeColor.PRIMARY}

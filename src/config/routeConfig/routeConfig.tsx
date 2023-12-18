@@ -9,11 +9,11 @@ import Login from "../../pages/Login/Login";
 import Register from "../../pages/Register/Register";
 import Quiz from "../../components/QuizSection/Quiz";
 import { ProfilePage } from "../../pages/Profile";
+import { AddSectionPage } from "../../pages/AddSectionPage";
 
 type ProtectedRouteProps = {
   onlyForAuth?: boolean;
 } & RouteProps;
-import { AddSectionPage } from "../../pages/AddSectionPage";
 
 export const RoutePath: Record<AppRoutes, string> = {
   [AppRoutes.MAIN_PAGE]: "/",

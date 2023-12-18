@@ -51,7 +51,7 @@
 }
 
 .fullViewButton {
-  margin: 24px 0 0 0;
+  margin: 24px 0 0;
   font-size: var(--font-size-m);
   line-height: var(--font-line-m);
   font-weight: var(--font-weight-500);
@@ -66,4 +66,17 @@
 
 .icon {
   margin-bottom: 2px;
+}
+
+.addsportList {
+  width: 335px;
+  margin-top: 24px;
+
+  & input {
+    max-height: 32px;
+  }
+
+  & input + div {
+    top: 5px;
+  }
 }

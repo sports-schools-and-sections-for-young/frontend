@@ -20,12 +20,11 @@
 .optionWrapper {
   max-width: 454px;
   width: 100%;
-  margin: 40px 0 0 0;
+  margin: 40px 0 0;
   display: flex;
   gap: 24px;
   justify-content: center;
   align-items: center;
-
 }
 
 .input {
@@ -39,7 +38,6 @@
   font-size: var(--font-size-s);
   line-height: var(--font--line-s);
   height: 48px;
-  
 }
 
 .preloader {

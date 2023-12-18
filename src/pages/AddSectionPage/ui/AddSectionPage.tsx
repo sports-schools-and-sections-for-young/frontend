@@ -51,6 +51,7 @@ const AddSectionPage: FC = () => {
       <FavouriteNavigate />
       <main className={styles.addSectionPage}>
         <h2 className={styles.title}>Добавление секции</h2>
+
         <SportSection
           setValid={setIsSportSectionValid}
           request={request}

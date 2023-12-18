@@ -1,6 +1,6 @@
 import { FC, useContext } from "react";
 import { useForm } from "react-hook-form";
-import { SportSectionProps  } from "../../types";
+import { SportSectionProps } from "../../types";
 import AppContext from "../../../../context/AppContext.ts";
 import styles from "./AboutSection.module.scss";
 import GenderBtn from "../../../../components/ui/GenderBtn/GenderBtn.tsx";
@@ -74,10 +74,7 @@ const AboutSection: FC<SportSectionProps> = () => {
           />{" "}
           мальчик
         </GenderBtn>
-        <Checkbox 
-          title="Оба пола" 
-          className={styles.checkbox}
-        />
+        <Checkbox title="Оба пола" className={styles.checkbox} />
       </div>
       <div className={styles.ageInputContainer}>
         <Input
@@ -97,7 +94,7 @@ const AboutSection: FC<SportSectionProps> = () => {
               value: maxAge,
               message: `Максимальный возраст: ${maxAge} ${getDeclension(
                 maxAge,
-                ["год", "года", "лет"]
+                ["год", "года", "лет"],
               )}`,
             },
             onChange: (e) =>
@@ -124,7 +121,7 @@ const AboutSection: FC<SportSectionProps> = () => {
               value: maxAge,
               message: `Максимальный возраст: ${maxAge} ${getDeclension(
                 maxAge,
-                ["год", "года", "лет"]
+                ["год", "года", "лет"],
               )}`,
             },
             onChange: (e) =>
