@@ -1,0 +1,87 @@
+@import "../../app/styles/mixins";
+
+.modalSection {
+  max-width: 640px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  gap: 40px;
+  margin: 20px;
+
+  @include mobile-750 {
+    max-width: 375px;
+    gap: 30px;
+  }
+}
+
+.imgContainer {
+  width: 100%;
+
+  @include mobile-750 {
+    width: 375px;
+  }
+}
+
+.img {
+  width: 100%;
+  height: auto;
+}
+
+.textContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  text-align: center;
+  max-width: 640px;
+  padding: 0 20px;
+
+  @include mobile-750 {
+    max-width: 295px;
+    text-align: start;
+
+  }
+}
+
+.title {
+  font-family: Manrope;
+  font-size: 32px;
+  line-height: 125%;
+  font-weight: 600;
+  max-width: 419px;
+
+  @include mobile-750 {
+    font-size: 24px;
+    line-height: 32px;
+    align-items: start;
+  }
+}
+
+.subtitle {
+  font-size: 18px;
+  line-height: 155%;
+  font-weight: 500;
+  font-family: Manrope;
+  color: #6f89a4;
+  display: flex;
+  max-width: 419px;
+}
+
+.buttonContainer {
+  display: flex;
+  width: 100%;
+  gap: 20px;
+  justify-content: center;
+
+  @include mobile-750 {
+    flex-direction: column;
+  }
+}
+
+.button {
+  width: 100%;
+}
+
+.span {
+  color: var(--span-color);
+}
