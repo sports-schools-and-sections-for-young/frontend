@@ -102,7 +102,6 @@ const AboutSection: FC<SportSectionProps> = (props) => {
               message: `Максимальный возраст: ${maxAge} ${getDeclension(
                 maxAge,
                 ["год", "года", "лет"],
-                ["год", "года", "лет"],
               )}`,
             },
             onBlur: () => {
@@ -135,7 +134,6 @@ const AboutSection: FC<SportSectionProps> = (props) => {
               value: maxAge,
               message: `Максимальный возраст: ${maxAge} ${getDeclension(
                 maxAge,
-                ["год", "года", "лет"],
                 ["год", "года", "лет"],
               )}`,
             },

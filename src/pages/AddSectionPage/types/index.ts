@@ -4,7 +4,7 @@ export interface AddSectionRequest {
   title: string;
   gender: string;
   sport_type: string | number | null;
-  schedule: number[] | string;
+  schedule: number[];
   year_from: number;
   year_until: number;
   price: number;

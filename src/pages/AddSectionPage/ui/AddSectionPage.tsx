@@ -1,4 +1,4 @@
-import React, { FC, useContext, useEffect, useState } from "react";
+import React, { FC, useState } from "react";
 import { useCookies } from "react-cookie";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
@@ -18,7 +18,6 @@ import { IconTypes } from "../../../components/ui/Icon/types";
 import { maxAge, minAge } from "../../../utils/variables.ts";
 import { AddSectionRequest } from "../types";
 import { createSection, updateSection } from "../../../utils/api";
-import AppContext from "../../../context/AppContext.ts";
 import Input from "../../../components/ui/Input/Input.tsx";
 
 const defaultSectionRequest = {
@@ -47,8 +46,6 @@ const AddSectionPage: FC = () => {
   const [isPriceSectionValid, setIsPriceSectionValid] = useState(false);
   const [isAddDaysSectionValid, setIsAddDaysSectionValid] = useState(false);
 
-  const { school } = useContext(AppContext);
-
   const location = useLocation();
 
   const [request, setRequest] = useState<AddSectionRequest>(
@@ -62,16 +59,16 @@ const AddSectionPage: FC = () => {
     formState: { errors },
   } = useForm<TitleField>({ mode: "onChange" });
 
-  useEffect(() => {
-    if (location.state.forEditing) {
-      const section = school?.sections.find(
-        (section) => section.id === location.state.forEditing,
-      );
-      if (section) {
-        setRequest(section);
-      }
-    }
-  }, [location.state.forEditing, school?.sections]);
+  // useEffect(() => {
+  //   if (location.state.forEditing) {
+  //     const section = school?.sections.find(
+  //       (section) => section.id === location.state.forEditing,
+  //     );
+  //     if (section) {
+  //       setRequest(section);
+  //     }
+  //   }
+  // }, [location.state.forEditing, school?.sections]);
 
   const [cookies] = useCookies(["token"]);
 
@@ -81,8 +78,6 @@ const AddSectionPage: FC = () => {
     isLocationSectionValid &&
     isPriceSectionValid &&
     isAddDaysSectionValid;
-
-  console.log(allSectionsValid);
 
   const handleSubmit = async () => {
     if (!location.state.forEditing) {
@@ -160,6 +155,7 @@ const AddSectionPage: FC = () => {
             withMinWidth
             type="button"
             onClick={handleSubmit}
+            disabled={allSectionsValid}
           >
             Сохранить
             <Icon type={IconTypes.RIGHT_ICON} />

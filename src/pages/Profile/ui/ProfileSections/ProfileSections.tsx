@@ -49,8 +49,6 @@ const ProfileSections: FC = () => {
     };
   }, [school]);
 
-  console.log(school);
-
   const toggleSection = (id: number) => {
     if (id === checkedSection) {
       setCheckedSection(null);
