@@ -132,6 +132,7 @@ const EditInfoForm: FC<EditFormProps> = ({ isEditing, setIsEditing }) => {
             value: 16,
             message: "Не более 11 цифр",
           },
+
           onChange: (e) => formatPhoneInput(e),
         })}
         hasError={Boolean(errors.phone)}
