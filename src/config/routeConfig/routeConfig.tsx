@@ -13,6 +13,7 @@ import { ProfilePage } from "../../pages/Profile";
 type ProtectedRouteProps = {
   onlyForAuth?: boolean;
 } & RouteProps;
+import { AddSectionPage } from "../../pages/AddSectionPage";
 
 export const RoutePath: Record<AppRoutes, string> = {
   [AppRoutes.MAIN_PAGE]: "/",
@@ -23,6 +24,7 @@ export const RoutePath: Record<AppRoutes, string> = {
   [AppRoutes.REGISTRATION]: "/registration",
   [AppRoutes.QUIZ]: "/quiz",
   [AppRoutes.PROFILE]: "/profile/*",
+  [AppRoutes.ADD_SECTION_PAGE]: "/addsection",
   [AppRoutes.NOT_FOUND]: "*",
 };
 
@@ -61,6 +63,10 @@ export const routeConfig: Record<AppRoutes, ProtectedRouteProps> = {
     path: RoutePath.profile,
     element: <ProfilePage />,
     onlyForAuth: true,
+  },
+  [AppRoutes.ADD_SECTION_PAGE]: {
+    path: RoutePath.add_section_page,
+    element: <AddSectionPage />,
   },
   [AppRoutes.NOT_FOUND]: {
     path: RoutePath.not_found,
