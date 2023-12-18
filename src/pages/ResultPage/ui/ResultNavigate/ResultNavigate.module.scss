@@ -1,0 +1,62 @@
+@import "../../../../app/styles/mixins";
+
+.navigate {
+  padding-top: 132px;
+  position: absolute;
+  top: 10px;
+  left: 0;
+  width: 100%;
+  padding-left: 32px;
+  padding-right: 32px;
+}
+
+.nav_list {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 32px;
+  padding-bottom: 32px;
+  align-items: center;
+}
+
+.findCount {
+  display: none;
+}
+
+.visible {
+  display: block;
+}
+
+@include mobile-750 {
+  .navigate {
+    position: relative;
+    padding-top: 0;
+    padding-left: 0;
+    padding-right: 0;
+    order: 3;
+  }
+
+  .nav_list {
+    justify-content: center;
+    padding-top: 12px;
+    padding-bottom: 0;
+  }
+
+  .nav_list div {
+    height: 40px;
+  }
+
+  .nav_list button {
+    height: 32px;
+  }
+
+  .visible {
+    display: none;
+  }
+
+  .findCount {
+    @include manrope-header(20px, 600, 140%);
+
+    display: block;
+  }
+}

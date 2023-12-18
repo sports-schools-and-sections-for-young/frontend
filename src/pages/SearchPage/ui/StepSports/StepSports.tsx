@@ -1,5 +1,6 @@
 /// <reference types="vite-plugin-svgr/client" />
-import { FC, useContext, useState } from "react";
+import { FC, useContext, useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { StepProps } from "../../types";
 import styles from "./StepSports.module.scss";
 import AppContext from "../../../../context/AppContext.ts";
@@ -26,6 +27,22 @@ import {
 const StepSports: FC<StepProps> = ({ step, setStep }) => {
   const { sports, sectionRequest, setSectionRequest } = useContext(AppContext);
   const [fullView, setFullView] = useState(false);
+
+  const navigate = useNavigate();
+
+  const { state } = useLocation();
+
+  useEffect(() => {
+    if (state && state.sport) {
+      const uncapitalizedState = state.sport.map((sport: string) =>
+        sport.toLowerCase(),
+      );
+      const selectedSports = sports.filter((sport) =>
+        uncapitalizedState.includes(sport.title.toLowerCase()),
+      );
+      setSectionRequest({ ...sectionRequest, sports: selectedSports });
+    }
+  }, [state]);
 
   const addSport = (sport: Sport) => {
     const updatedSports = sectionRequest.sports
@@ -81,8 +98,9 @@ const StepSports: FC<StepProps> = ({ step, setStep }) => {
         itemClickHandler={addSport}
         iconType={InputIcon.DOWN_ARROW}
         iconPosition={InputIconPosition.RIGHT}
+        placeholder="Выберите вид спорта"
       />
-      <ul className={styles.selected}>
+      <ul className={styles.notSelected}>
         {fullView
           ? notSelectedSports.map((sport) => (
               <Badge
@@ -133,7 +151,10 @@ const StepSports: FC<StepProps> = ({ step, setStep }) => {
         )}
       </button>
       <Button
-        onClick={() => setStep(step + 1)}
+        onClick={() => {
+          navigate("/search", { state: { step: step + 1 } });
+          setStep(step + 1);
+        }}
         className={styles.button}
         color={ButtonColor.PRIMARY}
         testId={ButtonTestId.FORWARD}

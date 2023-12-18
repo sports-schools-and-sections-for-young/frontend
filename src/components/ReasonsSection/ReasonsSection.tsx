@@ -30,6 +30,11 @@ const ReasonsSection: FC<ReasonsSectionProps> = (props) => {
           })}
         </div>
       </div>
+      {/* <div className={styles.dots}>
+        <span className={styles.dot}></span>
+        <span className={styles.dot}></span>
+        <span className={styles.dot}></span>
+      </div> */}
     </section>
   );
 };

@@ -27,12 +27,14 @@ const CooperationSection = () => {
             </p>
             <Accordeon accordionArr={accordionData.accordionArr} />
           </div>
-          <ImageCard
-            className={styles.image}
-            src={cooperation}
-            alt="Дети с мячами"
-            size={ImageCardSize.REASON_IMG}
-          />
+          <div className={styles.rightColumn}>
+            <ImageCard
+              className={styles.image}
+              src={cooperation}
+              alt="Дети с мячами"
+              size={ImageCardSize.REASON_IMG}
+            />
+          </div>
         </div>
       </div>
     </section>

@@ -3,7 +3,6 @@
 .cooperation {
   @include section(column);
 
-  box-sizing: border-box;
   min-height: 875px;
   align-items: center;
 }
@@ -13,13 +12,50 @@
   padding: 68px 160px 0;
   max-width: 1440px;
   width: 100%;
+
+  @include tablet-1100 {
+    padding: 40px 50px;
+  }
+
+  @include mobile-500 {
+    padding: 70px 30px;
+  }
 }
 
 .twoColumns {
   @include section(row);
 
-  justify-content: space-between;
+  align-items: center;
   gap: 30px;
+
+  @include tablet-1100 {
+    gap: 45px;
+  }
+
+  @include mobile-750 {
+    @include section(column);
+
+    gap: 0;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.rightColumn {
+  display: contents;
+
+  @include mobile-750 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.leftColumn {
+  @include mobile-750 {
+    align-items: center;
+    justify-content: center;
+  }
 }
 
 .headerQuestion {
@@ -27,6 +63,10 @@
   color: var(--text-black-color);
 
   @include manrope-header(44px, 700);
+
+  @include tablet-1100 {
+    @include manrope-header(32px, 700);
+  }
 }
 
 .description {
@@ -42,6 +82,9 @@
 }
 
 .image {
-  position: relative;
-  top: 108px;
+  margin-top: 108px;
+
+  @include mobile-750 {
+    margin-top: 50px;
+  }
 }

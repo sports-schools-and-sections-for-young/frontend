@@ -1,0 +1,244 @@
+@import "../../app/styles/mixins";
+
+.section {
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
+  gap: 12px 110px;
+  position: relative;
+  width: 100%;
+  align-items: center;
+  padding: 24px 32px;
+  border-radius: 30px;
+  background: var(--ui-primary-color);
+  box-shadow: 0 10px 25px 0 rgb(19 28 78 / 13%);
+}
+
+.leftPart {
+  box-sizing: border-box;
+  min-width: 255px;
+
+  @include section(column);
+
+  align-items: flex-start;
+}
+
+.sportType {
+  @include section(row);
+
+  justify-content: center;
+  width: fit-content;
+  border-radius: 8px;
+  padding: 8px 12px;
+  border: 1px solid var(--light-text-color);
+  background: var(--lightblue-background-color);
+  color: var(--light-text-color);
+
+  @include manrope-header(16px, 600, 100%);
+
+  margin-bottom: 16px;
+}
+
+.title {
+  @include manrope-header(24px, 600, 135%);
+
+  color: var(--text-black-color);
+  padding-bottom: 6px;
+}
+
+.feedback {
+  position: relative;
+
+  @include section(row);
+
+  align-items: center;
+  height: 32px;
+  gap: 8px;
+  padding-left: 40px;
+  margin-bottom: 16px;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 32px;
+    height: 32px;
+    background-image: url("../../assets/images/icons/Phone.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+}
+
+.phone {
+  @include manrope-header(18px, 500, 155%);
+
+  color: var(--text-black-color);
+}
+
+.reviews {
+  @include manrope-header(18px, 500, 155%);
+
+  text-decoration: underline;
+  cursor: pointer;
+  color: var(--text-black-color);
+}
+
+.place {
+  @include section(row);
+
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.distance {
+  position: relative;
+
+  @include section(row);
+
+  width: fit-content;
+  align-items: center;
+  gap: 8px;
+  height: 40px;
+  padding: 8px 16px 8px 40px;
+  border-radius: 8px;
+
+  @include manrope-header(16px, 600, 16px);
+
+  background: var(--lightblue-background-color);
+  color: var(--light-text-color);
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 8px;
+    left: 16px;
+    width: 24px;
+    height: 24px;
+    background-image: url("../../assets/images/icons/result-map-pin.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+}
+
+.location {
+  @include manrope-header(18px, 500, 155%);
+
+  color: var(--light-text-color);
+}
+
+.timesheet {
+  @include manrope-header(18px, 500, 155%);
+
+  color: var(--ui-secondary-color);
+
+  &::before {
+    content: "Расписание - ";
+  }
+}
+
+.rightPart {
+  @include section(column);
+}
+
+.likeButton {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  width: 32px;
+  height: 32px;
+  background-color: transparent;
+  cursor: pointer;
+  border: none;
+  margin-bottom: 48px;
+}
+
+.price {
+  @include manrope-header(24px, 600, 135%);
+
+  color: var(--text-black-color);
+  margin-bottom: 24px;
+}
+
+.transitionButton {
+  @include manrope-header(16px, 600, 16px);
+
+  cursor: pointer;
+  border-radius: var(--common-radius);
+  padding: 12px 24px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: none;
+  position: relative;
+  color: #fff;
+  background-color: #ff7a60;
+  text-decoration: none;
+}
+
+.disabledBtn {
+  background-color: #211d3b2e;
+  pointer-events: none;
+}
+
+.btnLink {
+  text-decoration: none;
+}
+
+.heartBtn path {
+  fill: transparent;
+}
+
+.heartBtnActive path {
+  fill: var(--ui-primary-bg-color);
+}
+
+.heartBtn:hover path {
+  animation: beat 0.6s 0.3s infinite;
+}
+
+@include mobile-750 {
+  .phone {
+    @include manrope-header(20px, 600, 140%);
+  }
+
+  .location {
+    @include manrope-header(16px, 400, 150%);
+  }
+
+  .section {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .timesheet::before {
+    content: "";
+  }
+
+  .likeButton {
+    top: 77px;
+  }
+}
+
+@include mobile-500 {
+  .price {
+    @include manrope-header(18px, 500, 155%);
+  }
+}
+
+@keyframes beat {
+  0% {
+    transform: scale(1);
+  }
+
+  30% {
+    transform: scale(1.03);
+  }
+
+  60% {
+    transform: scale(1);
+  }
+}

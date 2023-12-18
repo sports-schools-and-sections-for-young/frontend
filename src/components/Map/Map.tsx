@@ -2,6 +2,7 @@ import { YMaps, Map } from "@pbe/react-yandex-maps";
 import { FC, HTMLAttributes, useContext } from "react";
 import styles from "./Map.module.scss";
 import MapContext from "../../context/MapContext.ts";
+import { GEOCODER_KEY } from "../../utils/variables.ts";
 
 interface YandexMapProps extends HTMLAttributes<HTMLElement> {
   center: number[];
@@ -13,7 +14,7 @@ const YandexMap: FC<YandexMapProps> = (props) => {
   const { setMap } = useContext(MapContext);
 
   return (
-    <YMaps query={{ apikey: "c3c2fbae-a37e-49a6-90b6-7628cb38ddee" }}>
+    <YMaps query={{ apikey: GEOCODER_KEY }}>
       <div className={styles.mapWrapper}>
         <Map
           className={styles.map}
@@ -25,6 +26,7 @@ const YandexMap: FC<YandexMapProps> = (props) => {
             center,
             zoom: 12,
           }}
+          options={{ suppressMapOpenBlock: true }}
         >
           {children}
         </Map>

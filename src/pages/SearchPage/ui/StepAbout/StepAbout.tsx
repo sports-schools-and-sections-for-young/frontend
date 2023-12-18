@@ -1,5 +1,7 @@
 import { FC, useContext } from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import classnames from "classnames";
 import { StepProps } from "../../types";
 import AppContext from "../../../../context/AppContext.ts";
 import styles from "./StepAbout.module.scss";
@@ -26,10 +28,17 @@ interface AgeField {
 const StepAbout: FC<StepProps> = ({ step, setStep }) => {
   const { sectionRequest, setSectionRequest } = useContext(AppContext);
 
+  const navigate = useNavigate();
+
   const {
     register,
     formState: { errors },
   } = useForm<AgeField>({ mode: "onChange" });
+
+  const inputClass = classnames({
+    [styles.input]: true,
+    [styles.input_error]: Boolean(errors.age),
+  });
 
   return (
     <div className={styles.step}>
@@ -43,11 +52,12 @@ const StepAbout: FC<StepProps> = ({ step, setStep }) => {
       </p>
       <div className={styles.buttonContainer}>
         <GenderBtn
-          isActive={sectionRequest.gender === "female"}
+          className={styles.button}
+          isActive={sectionRequest.gender === "Woman"}
           onClick={() =>
             setSectionRequest({
               ...sectionRequest,
-              gender: sectionRequest.gender === "female" ? null : "female",
+              gender: sectionRequest.gender === "Woman" ? null : "Woman",
             })
           }
         >
@@ -59,11 +69,11 @@ const StepAbout: FC<StepProps> = ({ step, setStep }) => {
           девочка
         </GenderBtn>
         <GenderBtn
-          isActive={sectionRequest.gender === "male"}
+          isActive={sectionRequest.gender === "Man"}
           onClick={() =>
             setSectionRequest({
               ...sectionRequest,
-              gender: sectionRequest.gender === "male" ? null : "male",
+              gender: sectionRequest.gender === "Man" ? null : "Man",
             })
           }
         >
@@ -78,23 +88,21 @@ const StepAbout: FC<StepProps> = ({ step, setStep }) => {
       <Input
         labelName="Возраст ребёнка"
         type="number"
-        className={styles.input}
+        className={inputClass}
         {...register("age", {
           min: {
             value: minAge,
-            message: `Минимальный возраст: ${minAge} ${getDeclension(minAge, [
-              "год",
-              "года",
-              "лет",
-            ])}`,
+            message: `Возраст ребёнка должен быть от ${minAge} до ${maxAge} ${getDeclension(
+              maxAge,
+              ["год", "года", "лет"],
+            )}`,
           },
           max: {
             value: maxAge,
-            message: `Максимальный возраст: ${maxAge} ${getDeclension(maxAge, [
-              "год",
-              "года",
-              "лет",
-            ])}`,
+            message: `Возраст ребёнка должен быть от ${minAge} до ${maxAge} ${getDeclension(
+              maxAge,
+              ["год", "года", "лет"],
+            )}`,
           },
           onChange: (e) =>
             setSectionRequest({ ...sectionRequest, age: +e.target.value }),
@@ -104,7 +112,10 @@ const StepAbout: FC<StepProps> = ({ step, setStep }) => {
         errorMessage={errors.age?.message}
       />
       <Button
-        onClick={() => setStep(step + 1)}
+        onClick={() => {
+          navigate("/search", { state: { step: step + 1 } });
+          setStep(step + 1);
+        }}
         className={styles.button}
         color={ButtonColor.PRIMARY}
         testId={ButtonTestId.FORWARD}

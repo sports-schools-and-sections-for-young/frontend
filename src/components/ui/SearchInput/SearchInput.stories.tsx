@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
 import SearchInput, { SearchingItem } from "./SearchInput.tsx";
 import { GEOSUGGEST_KEY } from "../../../utils/variables.ts";
-import { YandexAnswer } from "../../../pages/SearchPage/ui/StepLocation/StepLocation.tsx";
+import { YandexAnswer } from "../../../types/index.ts";
 
 const sports = [
   {

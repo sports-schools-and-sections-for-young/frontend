@@ -35,3 +35,16 @@
   fill: #828091;
   color: #828091;
 }
+
+/* кастомные стили для стрелок */
+.primary .arrow-icon * {
+  color: #fff;
+}
+
+.secondary .arrow-icon * {
+  color: #2b5fc7;
+}
+
+.pale .arrow-icon * {
+  color: #828091;
+}

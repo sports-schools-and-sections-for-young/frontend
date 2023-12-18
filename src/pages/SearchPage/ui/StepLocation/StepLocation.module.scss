@@ -5,12 +5,11 @@
 }
 
 .title {
-  font-size: var(--font-size-heading-h2);
-  font-weight: var(--font-weight-700);
-  line-height: var(--font-line-heading-h2);
-  max-width: 850px;
-  text-align: center;
-  margin: 32px 0 20px;
+  @include step-title;
+
+  @include mobile-750 {
+    width: 100%;
+  }
 }
 
 .span {
@@ -18,15 +17,21 @@
 }
 
 .subtitle {
-  font-size: var(--font-size-l);
-  font-weight: var(--font-weight-500);
-  line-height: var(--font-line-l);
-  color: #211d3b6b;
+  @include step-subtitle;
+
   margin-bottom: 30px;
+
+  @include mobile-750 {
+    margin-bottom: 16px;
+  }
 }
 
 .distancePanel {
   margin-bottom: 56px;
+
+  @include mobile-750 {
+    margin-bottom: 36px;
+  }
 }
 
 .badge {
@@ -42,6 +47,14 @@
   width: 100%;
   max-width: 909px;
   margin-bottom: 14px;
+
+  @include tablet-1000 {
+    max-width: 700px;
+  }
+
+  @include mobile-750 {
+    margin-bottom: 0;
+  }
 }
 
 .input {
@@ -50,4 +63,38 @@
 
 .button {
   margin-top: 80px;
+
+  @include mobile-750 {
+    margin-top: 36px;
+    width: 100%;
+  }
+}
+
+.mapContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  max-width: 909px;
+
+  @include tablet-1000 {
+    max-width: 700px;
+  }
+}
+
+.locationButton {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  bottom: 30px;
+  left: 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  background: #fffefd;
+  box-shadow:
+    4px 4px 25px 0 rgb(145 135 211 / 25%),
+    -4px -4px 20px 0 rgb(145 135 211 / 20%);
 }

@@ -1,3 +1,5 @@
+@import "../../app/styles/mixins";
+
 .rangebar {
   position: relative;
   display: flex;
@@ -5,7 +7,11 @@
   align-items: center;
   justify-content: center;
   height: 75px;
-  width: 454px;
+  max-width: 454px;
+
+  @include mobile-500 {
+    max-width: 335px;
+  }
 }
 
 .input {
@@ -16,6 +22,32 @@
   background-image: linear-gradient(#003fbc, #003fbc);
   background-size: 0% 100%;
   background-repeat: no-repeat;
+
+  @include mobile-500 {
+    max-width: 335px;
+  }
+}
+
+.input__cover_left {
+  list-style: none;
+  height: 2px;
+  width: 11px;
+  margin-bottom: -2px;
+  background-color: #fff;
+  z-index: 1;
+  position: absolute;
+  left: 0;
+}
+
+.input__cover_right {
+  list-style: none;
+  height: 2px;
+  width: 11px;
+  margin-bottom: -2px;
+  background-color: #fff;
+  z-index: 1;
+  position: absolute;
+  right: 0;
 }
 
 /* track */
@@ -71,4 +103,9 @@
   justify-content: center;
   align-items: flex-end;
   height: 75px;
+
+  @include mobile-500 {
+    max-width: 335px;
+    height: 55px;
+  }
 }

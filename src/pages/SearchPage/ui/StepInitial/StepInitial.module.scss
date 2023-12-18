@@ -11,6 +11,15 @@
   max-width: 750px;
   text-align: center;
   margin: 52px 0 72px;
+  color: var(--text-black-color);
+
+  @include mobile-750 {
+    font-size: var(--font-size-heading-h3);
+    font-weight: var(--font-weight-600);
+    line-height: var(--font-line-heading-h3);
+    text-align: left;
+    margin: 40px 0 30px;
+  }
 }
 
 .span {
@@ -19,4 +28,15 @@
 
 .button {
   width: 209px;
+
+  @include mobile-750 {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+}
+
+.image {
+  @include mobile-750 {
+    width: 100vw;
+  }
 }

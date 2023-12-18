@@ -1,13 +1,16 @@
 import { createContext, Dispatch, SetStateAction } from "react";
-import { Section, Sport } from "../types";
+import { School, Section, Sport } from "../types";
+import { Weekday } from "../utils/constants/week";
 
 export interface ISectionsRequest {
-  gender: "male" | "female" | null;
+  gender: "Man" | "Woman" | null;
   sports: Sport[] | null;
   age: number | null;
   location: [number, number];
   distance: number | null;
-  maxPrice: number | null;
+  maxPrice: number;
+  freeTrial: boolean;
+  schedule: Weekday[] | null;
 }
 
 interface IAppContext {
@@ -19,6 +22,8 @@ interface IAppContext {
   setFetchedSections: Dispatch<SetStateAction<Section[]>>;
   filteredSections: Section[];
   setFilteredSections: Dispatch<SetStateAction<Section[]>>;
+  school: School | null;
+  setSchool: Dispatch<SetStateAction<School | null>>;
 }
 
 export const sectionsRequestDefault: ISectionsRequest = {
@@ -27,7 +32,9 @@ export const sectionsRequestDefault: ISectionsRequest = {
   age: null,
   location: [59.936846, 30.312185],
   distance: null,
-  maxPrice: null,
+  maxPrice: Infinity,
+  freeTrial: false,
+  schedule: null,
 };
 
 const defaultValue: IAppContext = {
@@ -39,6 +46,8 @@ const defaultValue: IAppContext = {
   setFetchedSections: () => {},
   filteredSections: [],
   setFilteredSections: () => {},
+  school: null,
+  setSchool: () => {},
 };
 
 const AppContext = createContext<IAppContext>(defaultValue);

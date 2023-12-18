@@ -4,6 +4,7 @@ import Icon from "../ui/Icon/Icon";
 import { stepsData } from "../../utils/constants/stepsData";
 import styles from "./ProgressBar.module.scss";
 import { ProgressBarProps } from "./types";
+import { useResize } from "../../hooks/useResize.tsx";
 
 const ProgressBar: React.FC<ProgressBarProps> = ({ currentStep, setStep }) => {
   const handleStepClick = useCallback(
@@ -12,6 +13,8 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ currentStep, setStep }) => {
     },
     [setStep],
   );
+
+  const { isMobileScreen } = useResize();
 
   const getButtonClass = (stepId: number) => {
     if (stepId === currentStep) {
@@ -53,7 +56,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ currentStep, setStep }) => {
         >
           <Icon
             type={stepData.iconType}
-            size={IconSize.NORMAL}
+            size={!isMobileScreen ? IconSize.NORMAL : IconSize.EXTRA_SMALL}
             color={getIconColor(stepData.id)}
           />
         </button>,

@@ -1,0 +1,11 @@
+$max-tablet-width: 1100px;
+$tablet-width: 1000px;
+$mobile-width: 750px;
+$mini-mobile-width: 500px;
+
+:export {
+  tabletWidth: $tablet-width;
+  mobileWidth: $mobile-width;
+  maxTabletWidth: $max-tablet-width;
+  miniMobileWidth: $mini-mobile-width;
+}

@@ -1,3 +1,5 @@
+@import "variables/screenWidths.module";
+
 @mixin manrope-header($size, $weight, $lineHeight: 125%) {
   font-family: var(--font-family_main);
   font-size: $size;
@@ -17,4 +19,65 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
+
+  @include mobile-750 {
+    padding: 0 20px;
+  }
+}
+
+@mixin step-title {
+  font-size: var(--font-size-heading-h2);
+  font-weight: var(--font-weight-700);
+  line-height: var(--font-line-heading-h2);
+  max-width: 850px;
+  text-align: center;
+  margin: 32px 0 20px;
+  color: var(--text-black-color);
+
+  @include mobile-750 {
+    font-size: var(--font-size-heading-h4);
+    font-weight: var(--font-weight-600);
+    line-height: var(--font-line-heading-h4);
+    text-align: left;
+    margin: 52px 0 16px;
+    width: 100%;
+  }
+}
+
+@mixin step-subtitle {
+  font-size: var(--font-size-l);
+  font-weight: var(--font-weight-500);
+  line-height: var(--font-line-l);
+  color: #211d3b6b;
+
+  @include mobile-750 {
+    font-size: var(--font-size-m);
+    font-weight: var(--font-weight-400);
+    line-height: var(--font-line-m);
+    width: 100%;
+  }
+}
+
+@mixin tablet-1100 {
+  @media (max-width: $max-tablet-width) {
+    @content;
+  }
+}
+
+@mixin tablet-1000 {
+  @media (max-width: $tablet-width) {
+    @content;
+  }
+}
+
+@mixin mobile-750 {
+  @media (max-width: $mobile-width) {
+    @content;
+  }
+}
+
+@mixin mobile-500 {
+  @media (max-width: $mini-mobile-width) {
+    @content;
+  }
 }

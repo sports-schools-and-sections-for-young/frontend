@@ -1,9 +1,11 @@
 import { FC } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./QuizSection.module.scss";
 import Button from "../ui/Button/Button";
 import { ButtonColor, ButtonTestId } from "../ui/Button/types";
 
 const QuizSection: FC = () => {
+  const navigation = useNavigate();
   return (
     <section className={styles.quiz}>
       <div className={styles.quizContainer}>
@@ -15,7 +17,12 @@ const QuizSection: FC = () => {
           вас. Просто ответьте на несколько вопросов о предпочтениях и
           интересах, и мы предоставим персонализированные рекомендации
         </p>
-        <Button color={ButtonColor.PRIMARY} testId={ButtonTestId.OTHER}>
+        <Button
+          className={styles.button}
+          color={ButtonColor.PRIMARY}
+          testId={ButtonTestId.OTHER}
+          onClick={() => navigation("/quiz", { replace: true })}
+        >
           Пройти квиз!
         </Button>
       </div>

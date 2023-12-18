@@ -4,6 +4,7 @@
   --font-weight-700: 700;
   --font-weight-600: 600;
   --font-weight-500: 500;
+  --font-weight-400: 400;
   --font-size-xl: 24px;
   --font-line-xl: 20px;
   --font-size-l: 18px;
@@ -29,6 +30,10 @@
   --font-line-heading-h3: 125%;
   --font-heading-h3: var(--font-size-heading-h3) / var(--font-line-heading-h3) /
     var(--font-weight-600);
+  --font-size-heading-h4: 24px;
+  --font-line-heading-h4: 135%;
+  --font-heading-h4: var(--font-size-heading-h4) / var(--font-line-heading-h4) /
+    var(--font-weight-600);
 
   // Colors
   --bg-color: #fffefd;
@@ -44,8 +49,6 @@
   --text-gray-color: #807c7c;
   --text-black-color: #020842;
   --label-color: #817676;
-
-  // добавила новые цвета(Юля)
   --blue-background-color: #cbe5e4;
   --light-text-color: #6f89a4;
   --light-black-color: #111;

@@ -70,3 +70,27 @@ export const NoResultImage: Story = {
     size: ImageCardSize.NO_RESULT_IMG,
   },
 };
+
+export const LogoImage: Story = {
+  args: {
+    src: "/src/assets/images/Logo.png",
+    alt: "Logo image",
+    size: ImageCardSize.LOGO_IMG,
+  },
+};
+
+export const AuthLogo: Story = {
+  args: {
+    src: "/src/assets/images/Logo.png",
+    alt: "Logo image",
+    size: ImageCardSize.AUTH_LOGO_IMG,
+  },
+};
+
+export const AuthImage: Story = {
+  args: {
+    src: "/src/assets/images/main-image-cooperation.png",
+    alt: "Auth image",
+    size: ImageCardSize.AUTH_IMG,
+  },
+};

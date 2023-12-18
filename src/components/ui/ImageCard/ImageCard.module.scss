@@ -32,10 +32,40 @@
   height: 463px;
 }
 
+@media screen and (width <= 1200px) {
+  .reason-image {
+    max-width: 400px;
+    aspect-ratio: 16/17;
+    height: 416px;
+  }
+}
+
+@media screen and (width <= 885px) {
+  .reason-image {
+    max-width: 350px;
+    aspect-ratio: 16/17;
+    height: 376px;
+  }
+}
+
 .main-image {
   max-width: 445px;
   aspect-ratio: 16/19;
-  height: 527px;
+  max-height: 527px;
+}
+
+@media screen and (width <= 1340px) {
+  .main-image {
+    max-width: 400px;
+    max-height: 430px;
+  }
+}
+
+@media screen and (width <= 997px) {
+  .main-image {
+    max-width: 300px;
+    max-height: 330px;
+  }
 }
 
 .why-we-image {
@@ -48,6 +78,32 @@
   max-width: 335px;
   aspect-ratio: 1;
   height: 335px;
+}
+
+.logo-image {
+  max-width: 170px;
+  aspect-ratio: 3;
+  height: 40px;
+}
+
+.auth-logo-image {
+  max-width: 263px;
+  max-height: 90px;
+  aspect-ratio: 3;
+}
+
+.auth-image {
+  max-width: 254px;
+  max-height: 264px;
+  width: auto;
+  height: auto;
+}
+
+.auth-mobile-image {
+  max-width: 375px;
+  max-height: 200px;
+  width: auto;
+  height: auto;
 }
 
 .imageSize {

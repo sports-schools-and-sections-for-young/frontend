@@ -1,0 +1,33 @@
+@import "../../../../app/styles/mixins";
+
+.listContainer {
+  display: flex;
+  flex-direction: column;
+  row-gap: 32px;
+  width: 100%;
+}
+
+.cardList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  row-gap: 32px;
+  width: 100%;
+  padding-bottom: 116px;
+}
+
+.description {
+  @include manrope-header(18px, 500, 155%);
+}
+
+.options {
+  display: flex;
+  column-gap: 20px;
+  align-items: center;
+}
+
+@include mobile-750 {
+  .description {
+    @include manrope-header(20px, 600, 140%);
+  }
+}

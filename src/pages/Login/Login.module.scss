@@ -1,0 +1,167 @@
+@import "../../app/styles/mixins";
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+  background: var(--blue-background-color);
+}
+
+.header {
+  padding: 32px 32px 20px;
+  display: flex;
+  align-items: center;
+  min-height: 80px;
+  width: 100%;
+
+  @include mobile-750 {
+    padding: 12px 20px 20px;
+  }
+}
+
+.formContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  flex: 1;
+}
+
+.formContent {
+  width: 1120px;
+  height: 700px;
+  flex-direction: row;
+  gap: 60px;
+  background-color: var(--ui-primary-color);
+  border-radius: var(--wide-radius);
+  padding: 44px;
+  display: flex;
+
+  @include tablet-1100 {
+    align-items: center;
+    justify-content: center;
+    width: 650px;
+    padding: 20px;
+  }
+
+  @include mobile-750 {
+    flex-direction: column;
+    gap: 20px;
+    height: 780px;
+  }
+
+  @include mobile-500 {
+    gap: 10px;
+    padding: 4px;
+  }
+}
+
+.formColumn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: calc(40% - 44px);
+
+  @include tablet-1100 {
+    width: 70%;
+  }
+
+  @include mobile-750 {
+    width: 90%;
+  }
+}
+
+.title {
+  margin: 20px 0;
+  font-weight: 500;
+  font-size: var(--font-size-heading-h2);
+  color: var(--text-black-color);
+
+  @include mobile-500 {
+    font-size: var(--font-size-heading-h4);
+  }
+}
+
+.formText {
+  margin: 0;
+  padding: 10px 0 0;
+  text-align: center;
+  font-weight: 400;
+  font-size: var(--font-size-s);
+  color: var(--text-gray-color);
+}
+
+.formLink {
+  text-decoration: none;
+  color: var(--secondary-color);
+  font-size: var(--font-size-s);
+  padding-left: 15px;
+}
+
+.formLink:hover {
+  color: var(--span-color);
+}
+
+.formButton {
+  width: 100%;
+  align-self: center;
+}
+
+.loginButton {
+  width: 40%;
+  align-self: center;
+
+  @include mobile-500 {
+    width: 100%;
+  }
+}
+
+.inputWrapper {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 8px;
+  position: relative;
+}
+
+.buttonWrapper {
+  display: flex;
+  flex-direction: column;
+  padding-top: 20px;
+
+  @include mobile-500 {
+    align-items: start;
+  }
+}
+
+.buttonRow {
+  display: flex;
+  flex-direction: row;
+
+  @include mobile-500 {
+    flex-direction: column;
+    width: 100%;
+  }
+}
+
+.forgotPassword {
+  margin-left: auto;
+  align-self: center;
+  text-decoration: none;
+
+  @include mobile-500 {
+    padding-top: 16px;
+    margin-left: 0;
+    margin-right: auto;
+  }
+}
+
+.forgotPassword:hover {
+  color: var(--span-color);
+}
+
+.horizontalLine {
+  border: none;
+  border-top: 0.5px solid black;
+  margin: 56px 0;
+}
