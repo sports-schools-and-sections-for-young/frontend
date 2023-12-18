@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import styles from "./AboutSection.module.scss";
 import ImageCard from "../ui/ImageCard/ImageCard";
 import { ImageCardSize } from "../ui/ImageCard/types";
-import mainImg from "../../assets/images/main-image.png";
+import mainImg from "../../assets/images/main-image01.png";
 import Button from "../ui/Button/Button";
 import { ButtonColor, ButtonTestId } from "../ui/Button/types";
 import Icon from "../ui/Icon/Icon";
