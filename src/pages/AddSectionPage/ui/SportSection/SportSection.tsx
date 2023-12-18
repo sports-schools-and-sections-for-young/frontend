@@ -23,19 +23,22 @@ import {
   ButtonColor,
   ButtonTestId,
 } from "../../../../components/ui/Button/types/index.ts";
+import Modal from "../../../../components/Modal/Modal.tsx";
+import ModalContent from "../../../../components/ModalContent/ModalContent.tsx";
+import { ModalType } from "../../../../components/ModalContent/types/index.ts";
 
 const SportSection: FC<SportSectionProps> = (props) => {
   const [cookies] = useCookies(["token"]);
   const { token } = cookies;
 
-  const { request, setRequest } = props;
+  const { request, setRequest, setValid } = props;
   const [sports, setSports] = useState<Sport[]>([]);
   const [newSport, setNewSport] = useState<string | null>(null);
+  const [isSuccsess, setIsSuccsess] = useState<boolean>(false);
   const [fullView, setFullView] = useState(false);
   const [addNewSport, setAddNewSport] = useState(false);
 
   useEffect(() => {
-    // Проверяем, выбран ли хотя бы один вид спорта
     const loadSportList = async () => {
       const list = await getAllSports();
       setSports(list);
@@ -43,7 +46,13 @@ const SportSection: FC<SportSectionProps> = (props) => {
     loadSportList();
   }, []);
 
-  console.log(request, "><state");
+  useEffect(() => {
+    if (!request.sport_type) {
+      setValid(false);
+    } else {
+      setValid(true);
+    }
+  }, [request.sport_type]);
 
   const chooseSport = (sportId: number) => {
     setRequest({ ...request, sport_type: sportId });
@@ -55,17 +64,28 @@ const SportSection: FC<SportSectionProps> = (props) => {
         .then((res) => {
           setSports([...sports, res]);
           setNewSport(null);
+          setIsSuccsess(true);
         })
         .catch((e) => {
           console.log("Ошибка добавления нового типа спорта", e);
         });
     } else {
-      console.log("спорт уже есть в списке");
+      console.log("Cпорт уже есть в списке");
     }
   };
 
   return (
     <section className={styles.step}>
+      {isSuccsess && (
+        <Modal closeModal={() => setIsSuccsess(false)}>
+          <ModalContent
+            type={ModalType.SUCCSESS}
+            title="Новый спорт добавлен!"
+            back={() => setIsSuccsess(false)}
+            actionDescription="Вернуться в профиль"
+          />
+        </Modal>
+      )}
       <h2 className={styles.title}>
         1.&nbsp;Выберите <span className={styles.span}>вид спорта</span>
       </h2>

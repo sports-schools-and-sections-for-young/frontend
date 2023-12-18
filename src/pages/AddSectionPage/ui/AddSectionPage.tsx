@@ -29,7 +29,10 @@ const defaultSectionRequest = {
 
 const AddSectionPage: FC = () => {
   const [isSportSectionValid, setIsSportSectionValid] = useState(false);
-  const [isAboutSectionValid, setIsAboutSectionValid] = useState(false);
+  const [isAboutSectionValid, setIsAboutSectionValid] =
+    useState(
+      false,
+    ); /* About не контролю. Есть дефолт значения. Если юзер вводит не то, я возвращаю в дефолт */
   const [isLocationSectionValid, setIsLocationSectionValid] = useState(false);
   const [isPriceSectionValid, setIsPriceSectionValid] = useState(false);
   const [isAddDaysSectionValid, setIsAddDaysSectionValid] = useState(false);

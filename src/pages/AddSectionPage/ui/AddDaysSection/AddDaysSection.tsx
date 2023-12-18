@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { SportSectionProps } from "../../types";
 import styles from "./AddDaysSection.module.scss";
 import Badge from "../../../../components/ui/Badge/Badge.tsx";
@@ -20,7 +20,15 @@ const daysOfWeek: DayOfWeek[] = [
 ];
 
 const AddDaysSection: FC<SportSectionProps> = (props) => {
-  const { request, setRequest } = props;
+  const { request, setRequest, setValid } = props;
+
+  useEffect(() => {
+    if (request.schedule.length === 0) {
+      setValid(false);
+    } else {
+      setValid(true);
+    }
+  }, [request.schedule]);
 
   const toggleDay = (dayId: number) => {
     if (request.schedule.includes(dayId)) {
