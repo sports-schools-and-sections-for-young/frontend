@@ -34,12 +34,6 @@
 }
 
 .button {
-  background: #ff7a60;
-  border: 0;
-  border-radius: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   max-width: 275px;
 }
 
@@ -48,6 +42,7 @@
 
   color: #fff;
   padding: 16px 43px;
+  width: 100%;
 }
 
 .favouritesBtn {
@@ -177,4 +172,12 @@
   .buttonContainer {
     column-gap: 25px;
   }
+}
+
+.hiddenText {
+  display: none;
+}
+
+.profileButton {
+  margin-right: 85px;
 }

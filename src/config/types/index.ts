@@ -8,4 +8,5 @@ export enum AppRoutes {
   NOT_FOUND = "not_found",
   QUIZ = "quiz_page",
   ADD_SECTION_PAGE = "add_section_page",
+  PROFILE = "profile",
 }

@@ -1,0 +1,43 @@
+.header {
+  min-height: 328px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background: linear-gradient(180deg, #e5fffe 0%, #fff 27.95%);
+  box-shadow: 0 10px 25px 0 rgb(19 28 78 / 13%);
+}
+
+.container {
+  max-width: 1120px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 80px;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.title {
+  font-size: var(--font-size-heading-h2);
+  line-height: var(--font-line-heading-h2);
+  font-weight: var(--font-weight-700);
+  color: var(--text-black-color);
+}
+
+.schoolName {
+  font-size: var(--font-size-heading-h3);
+  line-height: var(--font-line-heading-h3);
+  font-weight: var(--font-weight-600);
+  color: var(--text-black-color);
+}
+
+.address {
+  font-size: var(--font-size-l);
+  line-height: var(--font-line-l);
+  font-weight: var(--font-weight-500);
+  color: var(--light-text-color);
+}

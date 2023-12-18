@@ -33,6 +33,22 @@ export interface Section {
   phone: string;
 }
 
+export interface SchoolInfo {
+  id: number;
+  title: string | null;
+  logo: string | null;
+  address: string | null;
+  email: string | null;
+  site: string | null;
+  description: string | null;
+  phone: string | null;
+}
+
+export interface School {
+  info: SchoolInfo;
+  sections: Section[];
+}
+
 export interface YandexAnswer {
   suggest_reqid: string;
   results: {
