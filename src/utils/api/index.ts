@@ -16,6 +16,23 @@ export const getSports = async () => {
   return checkResponse(res);
 };
 
+export const getAllSports = async () => {
+  const res = await fetch(`${API_URL}/sport_types_all`);
+  return checkResponse(res);
+};
+
+export const addSportType = async (token: string, sportType: string) => {
+  const info = await fetch(`${API_URL}/create_sport_types/`, {
+    headers: {
+      Authorization: `Token ${token}`,
+      "Content-Type": "application/json",
+    },
+    method: "POST",
+    body: JSON.stringify({ title: sportType }),
+  });
+  return checkResponse(info);
+};
+
 export const searchSections = async (sectionRequest: ISectionsRequest) => {
   const queryArray: string[] = [];
 

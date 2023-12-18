@@ -69,7 +69,7 @@ const ModalContent: FC<IModalContentProps> = (props) => {
             color={ButtonColor.SECONDARY}
             testId={ButtonTestId.BACK}
             withMinWidth
-            onClick={() => back}
+            onClick={back}
           >
             Вернуться назад
           </Button>

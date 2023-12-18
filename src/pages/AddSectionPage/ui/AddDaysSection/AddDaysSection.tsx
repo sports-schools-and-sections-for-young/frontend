@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useEffect } from "react";
 import { SportSectionProps } from "../../types";
 import styles from "./AddDaysSection.module.scss";
 import Badge from "../../../../components/ui/Badge/Badge.tsx";
@@ -19,14 +19,25 @@ const daysOfWeek: DayOfWeek[] = [
   { id: 7, title: "Воскресенье" },
 ];
 
-const AddDaysSection: FC<SportSectionProps> = () => {
-  const [selectedDays, setSelectedDays] = useState<number[]>([]);
+const AddDaysSection: FC<SportSectionProps> = (props) => {
+  const { request, setRequest, setValid } = props;
+
+  useEffect(() => {
+    if (request.schedule.length === 0) {
+      setValid(false);
+    } else {
+      setValid(true);
+    }
+  }, [request.schedule]);
 
   const toggleDay = (dayId: number) => {
-    if (selectedDays.includes(dayId)) {
-      setSelectedDays(selectedDays.filter((id) => id !== dayId));
+    if (request.schedule.includes(dayId)) {
+      setRequest({
+        ...request,
+        schedule: request.schedule.filter((id) => id !== dayId),
+      });
     } else {
-      setSelectedDays([...selectedDays, dayId]);
+      setRequest({ ...request, schedule: [...request.schedule, dayId] });
     }
   };
 
@@ -40,12 +51,8 @@ const AddDaysSection: FC<SportSectionProps> = () => {
         {daysOfWeek.map((day) => (
           <Badge
             key={day.id}
-            color={
-              selectedDays.includes(day.id)
-                ? BadgeColor.PRIMARY
-                : BadgeColor.PRIMARY
-            }
-            isActive={selectedDays.includes(day.id)}
+            color={BadgeColor.PRIMARY}
+            isActive={request.schedule.includes(day.id)}
             onClick={() => toggleDay(day.id)}
           >
             {day.title}
