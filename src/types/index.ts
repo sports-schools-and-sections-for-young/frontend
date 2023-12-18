@@ -8,7 +8,7 @@ export interface Sport {
 export interface Section {
   id: number;
   sport_organization: string;
-  sport_type: string;
+  sport_type: string | number | null;
   year_from: number;
   year_until: number;
   address: string;

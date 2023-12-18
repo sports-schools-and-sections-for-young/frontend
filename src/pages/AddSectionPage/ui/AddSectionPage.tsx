@@ -1,5 +1,7 @@
-import { FC, useState } from "react";
+import { FC, useContext, useEffect, useState } from "react";
 // import { useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
+import { useLocation } from "react-router-dom";
 import styles from "./AddSectionPage.module.scss";
 import Header from "../../../components/ui/Header/Header";
 import FavouriteNavigate from "../../FavouritePage/ui/FavouriteNavigate/FavouriteNavigate";
@@ -15,6 +17,8 @@ import Icon from "../../../components/ui/Icon/Icon.tsx";
 import { IconTypes } from "../../../components/ui/Icon/types";
 import { maxAge, minAge } from "../../../utils/variables.ts";
 import { AddSectionRequest } from "../types";
+import { createSection } from "../../../utils/api";
+import AppContext from "../../../context/AppContext.ts";
 
 const defaultSectionRequest = {
   title: "",
@@ -25,6 +29,7 @@ const defaultSectionRequest = {
   year_until: maxAge,
   price: 0,
   address: "",
+  free_class: false,
 };
 
 const AddSectionPage: FC = () => {
@@ -34,9 +39,34 @@ const AddSectionPage: FC = () => {
   const [isPriceSectionValid, setIsPriceSectionValid] = useState(false);
   const [isAddDaysSectionValid, setIsAddDaysSectionValid] = useState(false);
 
+  const { school } = useContext(AppContext);
+
+  const location = useLocation();
+
   const [request, setRequest] = useState<AddSectionRequest>(
     defaultSectionRequest,
   );
+
+  useEffect(() => {
+    if (location.state.forEditing) {
+      const section = school?.sections.find(
+        (section) => section.id === location.state.forEditing,
+      );
+      if (section) {
+        setRequest(section);
+      }
+    }
+  }, [location.state.forEditing, school?.sections]);
+
+  console.log(
+    school?.sections.find(
+      (section) => section.id === location.state.forEditing,
+    ),
+  );
+
+  const [cookies] = useCookies(["token"]);
+
+  console.log(request);
 
   const allSectionsValid =
     isSportSectionValid &&
@@ -45,12 +75,18 @@ const AddSectionPage: FC = () => {
     isPriceSectionValid &&
     isAddDaysSectionValid;
 
+  console.log(allSectionsValid);
+
   return (
     <>
       <Header />
       <FavouriteNavigate />
       <main className={styles.addSectionPage}>
-        <h2 className={styles.title}>Добавление секции</h2>
+        <h2 className={styles.title}>
+          {!location.state.forEditing
+            ? "Добавление секции"
+            : "Редактирование секции"}
+        </h2>
         <SportSection
           setValid={setIsSportSectionValid}
           request={request}
@@ -82,8 +118,7 @@ const AddSectionPage: FC = () => {
             color={ButtonColor.PRIMARY}
             withMinWidth
             type="button"
-            onClick={() => {}}
-            disabled={!allSectionsValid}
+            onClick={() => createSection(cookies.token, request)}
           >
             Сохранить
             <Icon type={IconTypes.RIGHT_ICON} />

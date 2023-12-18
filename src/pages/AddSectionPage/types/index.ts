@@ -3,12 +3,13 @@ import { Dispatch, SetStateAction } from "react";
 export interface AddSectionRequest {
   title: string;
   gender: string;
-  sport_type: number | null;
-  schedule: number[];
+  sport_type: string | number | null;
+  schedule: number[] | string;
   year_from: number;
   year_until: number;
   price: number;
   address: string;
+  free_class: boolean;
 }
 
 export interface SportSectionProps {

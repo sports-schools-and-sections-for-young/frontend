@@ -76,7 +76,7 @@ const ProfileSections: FC = () => {
   };
   const checkProgileFilling = () => {
     if (school) {
-      navigate("/addsection");
+      navigate("/addsection", { state: { edit: true } });
     } else {
       setInfoModal(true);
     }
@@ -134,7 +134,7 @@ const ProfileSections: FC = () => {
                   type="button"
                   className={styles.button}
                   onClick={() => {
-                    navigate("/editsection", {
+                    navigate("/addsection", {
                       state: { forEditing: checkedSection },
                     });
                     setCheckedSection(null);

@@ -14,6 +14,11 @@ import Modal from "../../../../components/Modal/Modal.tsx";
 import ConfirmModal from "../ConfirmModal/ConfirmModal.tsx";
 import EditInfoForm from "../EditInfoForm/EditInfoForm.tsx";
 import EditPasswordForm from "../EditPasswordForm/EditPasswordForm.tsx";
+import Input from "../../../../components/ui/Input/Input.tsx";
+import {
+  InputIcon,
+  InputIconPosition,
+} from "../../../../components/ui/InputField/types";
 
 type ProfileFormModals = "deletion" | "logout" | null;
 
@@ -23,6 +28,8 @@ const ProfileForms = () => {
   const [isInfoEditing, setIsInfoEditing] = useState(false);
 
   const [isPasswordEditing, setIsPasswordEditing] = useState(false);
+  const [passwordVisible, setPasswordVisible] = useState(false);
+  const [password, setPassword] = useState("");
 
   const [modal, setModal] = useState<ProfileFormModals>(null);
 
@@ -39,9 +46,10 @@ const ProfileForms = () => {
 
   const handleDeletion = async () => {
     try {
-      await deleteAccount(cookies.token);
+      await deleteAccount(cookies.token, password);
       setSchool(null);
-      removeCookie("token");
+      removeCookie("token", { path: "/" });
+      removeCookie("token", { path: "/profile" });
     } catch (e) {
       console.log(e);
     }
@@ -117,6 +125,20 @@ const ProfileForms = () => {
                 Все данные организации, расписание, виды спорта, стоимость будут
                 удалены без возможности восстановления.
               </p>
+              <p className={styles.warning}>
+                Для удаления профиля подтвердите текущий пароль
+              </p>
+              <Input
+                name="password"
+                placeholder="Пароль *"
+                id="password-input"
+                type={passwordVisible ? "text" : "password"}
+                iconType={InputIcon.EYE}
+                iconPosition={InputIconPosition.RIGHT}
+                onClickIcon={() => setPasswordVisible(!passwordVisible)}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
               <div className={styles.buttonContainer}>
                 <Button
                   onClick={handleDeletion}
