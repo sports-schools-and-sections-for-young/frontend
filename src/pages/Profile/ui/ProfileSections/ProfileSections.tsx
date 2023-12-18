@@ -36,10 +36,20 @@ const ProfileSections: FC = () => {
   const [checkedSection, setCheckedSection] = useState<number | null>(null);
 
   useEffect(() => {
-    if (!school && isMobileScreen) {
-      setTimeout(() => setInfoModal(true), 3000);
+    const timer = setTimeout(() => {
+      if (!school) {
+        setInfoModal(true);
+      }
+    }, 1000);
+    if (school) {
+      clearTimeout(timer);
     }
-  }, [isMobileScreen, infoModal]);
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [school]);
+
+  console.log(school);
 
   const toggleSection = (id: number) => {
     if (id === checkedSection) {
@@ -87,12 +97,14 @@ const ProfileSections: FC = () => {
         </Modal>
       )}
       {infoModal && (
-        <Modal closeModal={() => setInfoModal(false)}>
+        <Modal closeModal={() => {}}>
           <ModalContent
-            closeModal={() => setInfoModal(false)}
+            closeModal={() => {}}
             title="Заполните профиль"
             description="После заполнения профиля Вы сможете добавлять секции "
-            action={() => navigate("/profile/edit")}
+            action={() =>
+              navigate("/profile/edit", { state: { redirected: true } })
+            }
             actionDescription="Заполнить профиль"
           />
         </Modal>
