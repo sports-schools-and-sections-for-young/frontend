@@ -5,15 +5,19 @@ import ProfileHeader from "./ProfileHeader/ProfileHeader.tsx";
 import styles from "./ProfilePage.module.scss";
 import Header from "../../../components/ui/Header/Header.tsx";
 import Footer from "../../../components/Footer/Footer.tsx";
-import { getSchoolInfo, getSchoolSections } from "../../../utils/api";
+import {
+  getSchoolInfo,
+  getSchoolSections,
+  getSports,
+} from "../../../utils/api";
 import AppContext from "../../../context/AppContext.ts";
-import { SchoolInfo, Section } from "../../../types";
+import { SchoolInfo, Section, Sport } from "../../../types";
 import ProfileForm from "./ProfileForms/ProfileForms.tsx";
 import ProfileSections from "./ProfileSections/ProfileSections.tsx";
 import { parseSchedule, parseSport } from "../../../utils/functions/index.ts";
 
 const ProfilePage = () => {
-  const { setSchool, sports } = useContext(AppContext);
+  const { setSchool } = useContext(AppContext);
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [cookies, _, removeCookie] = useCookies(["token"]);
@@ -21,6 +25,7 @@ const ProfilePage = () => {
   useEffect(() => {
     const getInfo = async (token: string) => {
       try {
+        const sports: Sport[] = await getSports();
         const info: SchoolInfo = await getSchoolInfo(token);
         const sections: Section[] = await getSchoolSections(token);
         const parsedSections = sections.map((s: Section) => {

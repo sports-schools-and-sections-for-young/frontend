@@ -1,6 +1,6 @@
 import { FC, useContext, useState } from "react";
 import { useDebouncedCallback } from "use-debounce";
-import { SportSectionProps  } from "../../types";
+import { SportSectionProps } from "../../types";
 import styles from "./LocationSection.module.scss";
 import AppContext from "../../../../context/AppContext.ts";
 import SearchInput, {
@@ -18,7 +18,6 @@ import Checkbox from "../../../../components/ui/Checkbox/Checkbox.tsx";
 
 const LocationSection: FC<SportSectionProps> = () => {
   const { sectionRequest, setSectionRequest } = useContext(AppContext);
-
 
   const [searchingAddress, setSearchingAddress] = useState("");
   const debounced = useDebouncedCallback(async (value: string) => {
@@ -46,34 +45,34 @@ const LocationSection: FC<SportSectionProps> = () => {
   };
 
   return (
-      <section className={styles.step}>
-        <h3 className={styles.title}>5. Введите&nbsp;
-          <span className={styles.span}>адрес</span> проведения занятий
-        </h3>
-        <p className={styles.subtitle}>
-          Введите адрес, где будут проходить занятия секции
-        </p>
-        <div className={styles.controlWrapper}>
-          <SearchInput
-            labelName="Адрес"
-            placeholder="Поиск"
-            type="text"
-            hasFilter={false}
-            searchingList={addressList}
-            value={searchingAddress}
-            iconType={InputIcon.MAGNIGY}
-            iconPosition={InputIconPosition.RIGHT}
-            onChange={(e) => handleChange(e.target.value)}
-            itemClickHandler={(e: SearchingItem) => handleItemClick(e.title)}
-          />
-        </div>
-        <Checkbox 
-          title="Адрес совпадает с адресом школы"
-          className={styles.checkbox}
-           />
-      </section>
+    <section className={styles.step}>
+      <h3 className={styles.title}>
+        5. Введите&nbsp;
+        <span className={styles.span}>адрес</span> проведения занятий
+      </h3>
+      <p className={styles.subtitle}>
+        Введите адрес, где будут проходить занятия секции
+      </p>
+      <div className={styles.controlWrapper}>
+        <SearchInput
+          labelName="Адрес"
+          placeholder="Поиск"
+          type="text"
+          hasFilter={false}
+          searchingList={addressList}
+          value={searchingAddress}
+          iconType={InputIcon.MAGNIGY}
+          iconPosition={InputIconPosition.RIGHT}
+          onChange={(e) => handleChange(e.target.value)}
+          itemClickHandler={(e: SearchingItem) => handleItemClick(e.title)}
+        />
+      </div>
+      <Checkbox
+        title="Адрес совпадает с адресом школы"
+        className={styles.checkbox}
+      />
+    </section>
   );
 };
 
 export default LocationSection;
-
