@@ -24,6 +24,7 @@
   display: flex;
   gap: 24px;
   justify-content: center;
+  align-items: center;
 
 }
 
@@ -38,6 +39,7 @@
   font-size: var(--font-size-s);
   line-height: var(--font--line-s);
   height: 48px;
+  
 }
 
 .preloader {

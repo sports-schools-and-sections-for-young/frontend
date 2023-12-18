@@ -29,7 +29,7 @@ const AddDaysSection: FC<SportSectionProps> = () => {
       setSelectedDays([...selectedDays, dayId]);
     }
   };
-
+  
   return (
     <section className={styles.step}>
       <h2 className={styles.title}>

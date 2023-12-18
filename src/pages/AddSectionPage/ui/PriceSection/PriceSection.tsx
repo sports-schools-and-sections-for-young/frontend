@@ -2,7 +2,6 @@ import React, {FC, useContext } from "react";
 import AppContext from "../../../../context/AppContext.ts";
 import styles from "./PriceSection.module.scss";
 import { SportSectionProps  } from "../../types";
-
 import Input from "../../../../components/ui/Input/Input.tsx";
 import {
   InputIcon,
@@ -26,6 +25,7 @@ const PriceSection: FC<SportSectionProps> = () => {
       <div className={styles.optionWrapper}>
         <Input
           type="number"
+          labelName="Цена"
           iconType={InputIcon.RUB}
           iconPosition={InputIconPosition.LEFT}
           className={styles.input}
