@@ -1,7 +1,7 @@
 import { ChangeEvent } from "react";
 import { GEOCODER_KEY, GEOSUGGEST_KEY } from "../variables.ts";
-import { IMapInstance, YandexAnswer } from "../../types";
-import { Weekday } from "../constants/week.ts";
+import { IMapInstance, Sport, YandexAnswer } from "../../types";
+import { Weekday, weekdays } from "../constants/week.ts";
 
 export function getDeclension(number: number, words: string[]) {
   return words[
@@ -110,4 +110,37 @@ export const formatPhoneInput = function (
   if (number22.length) e.target.value += `-${number22}`;
 
   return e.target.value;
+};
+
+export const parseSport = (sport_type: number, sports: Sport[]): string =>
+  sports.find((s) => s.id === sport_type)?.title || "?";
+
+export const parseSchedule = (schedule: unknown): string => {
+  if (!Array.isArray(schedule)) return "?";
+  const xz = schedule as [];
+  return xz.map((d: number) => weekdays[d - 1]).join(",");
+};
+
+export const getDistanceToSchool = (schoolCoords: number[]) => {
+  const earthRadius = 6371;
+  const toRadians = (degrees: number) => (degrees * Math.PI) / 180;
+  const userCoords = [0, 0];
+  if (window.navigator.geolocation) {
+    window.navigator.geolocation.getCurrentPosition((p) => {
+      userCoords.splice(0, 2, p.coords.latitude, p.coords.longitude);
+    });
+  } else {
+    return "?";
+  }
+  const dLat = toRadians(schoolCoords[0] - userCoords[0]);
+  const dLon = toRadians(schoolCoords[1] - userCoords[1]);
+
+  const a =
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.sin(dLon / 2) *
+      Math.sin(dLon / 2) *
+      Math.cos(toRadians(userCoords[0])) *
+      Math.cos(toRadians(userCoords[1]));
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  return Math.floor(earthRadius * c);
 };
