@@ -8,12 +8,12 @@ import Footer from "../../../components/Footer/Footer.tsx";
 import { getSchoolInfo, getSchoolSections } from "../../../utils/api";
 import AppContext from "../../../context/AppContext.ts";
 import { SchoolInfo, Section } from "../../../types";
-import Preloader from "../../../components/ui/Preloader/Preloader.tsx";
-import { PreloaderSize } from "../../../components/ui/Preloader/types";
-import ProfileForms from "./ProfileForms/ProfileForms.tsx";
+import ProfileForm from "./ProfileForms/ProfileForms.tsx";
+import ProfileSections from "./ProfileSections/ProfileSections.tsx";
+import { parseSchedule, parseSport } from "../../../utils/functions/index.ts";
 
 const ProfilePage = () => {
-  const { setSchool } = useContext(AppContext);
+  const { setSchool, sports } = useContext(AppContext);
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [cookies, _, removeCookie] = useCookies(["token"]);
@@ -23,7 +23,17 @@ const ProfilePage = () => {
       try {
         const info: SchoolInfo = await getSchoolInfo(token);
         const sections: Section[] = await getSchoolSections(token);
-        setSchool({ info, sections });
+        const parsedSections = sections.map((s: Section) => {
+          return {
+            ...s,
+            sport_type: parseSport(+s.sport_type, sports),
+            schedule: parseSchedule(s.schedule),
+          };
+        });
+        setSchool({
+          info,
+          sections: parsedSections,
+        });
       } catch (e) {
         if (e instanceof Response && e.status === 401) {
           removeCookie("token");
@@ -44,8 +54,8 @@ const ProfilePage = () => {
       <main className={styles.page}>
         <ProfileHeader />
         <Routes>
-          <Route path="/" element={<Preloader size={PreloaderSize.Large} />} />
-          <Route path="/edit" element={<ProfileForms />} />
+          <Route path="/" element={<ProfileSections />} />
+          <Route path="/edit" element={<ProfileForm />} />
         </Routes>
       </main>
       <Footer />

@@ -1,12 +1,12 @@
-import React, { Dispatch, FC, SetStateAction } from "react";
+import { Dispatch, FC, SetStateAction } from "react";
 import classnames from "classnames";
 import styles from "./ResultCard.module.scss";
 import Heart from "../../assets/images/icons/heart.svg?react";
 import Icon from "../ui/Icon/Icon.tsx";
 import { IconTypes } from "../ui/Icon/types";
 import { Section } from "../../types";
-import { abbreviateWeekDayName } from "../../utils/functions/index.ts";
-import { weekdays } from "../../utils/constants/week.ts";
+import Schedule from "../ui/Shedule/Schedule.tsx";
+import { getDistanceToSchool } from "../../utils/functions/index.ts";
 
 interface ResultCardProps {
   section: Section | null;
@@ -22,8 +22,18 @@ const ResultCard: FC<ResultCardProps> = ({
   isMobile,
 }) => {
   if (!section) return null;
-  const { id, sport_type, title, address, price, phone, schedule, site } =
-    section;
+  const {
+    id,
+    sport_type,
+    title,
+    address,
+    price,
+    phone,
+    schedule,
+    site,
+    latitude,
+    longitude,
+  } = section;
 
   const buttonClass = classnames({
     [styles.transitionButton]: true,
@@ -45,20 +55,6 @@ const ResultCard: FC<ResultCardProps> = ({
     }
   };
 
-  const sheduleDays = (): React.ReactNode => {
-    if (schedule.length < 1) {
-      return weekdays
-        .map((item) => abbreviateWeekDayName(item, isMobile))
-        .join(", ");
-    }
-    return schedule
-      .split(",")
-      .map((item) => abbreviateWeekDayName(item, isMobile))
-      .filter((item) => item.length > 0)
-      .join(", ");
-  };
-  const schoolSchedule = sheduleDays();
-
   return (
     <article className={styles.section} key={id}>
       <div className={styles.leftPart}>
@@ -68,13 +64,15 @@ const ResultCard: FC<ResultCardProps> = ({
           <p className={styles.phone}>{phone}</p>
         </div>
         <div className={styles.place}>
-          <p className={styles.distance}>14 км</p>
-          <p className={styles.location}>
-            Ул. {address.street}, {address.house}
+          <p className={styles.distance}>
+            {getDistanceToSchool([+latitude, +longitude])} км
           </p>
+          <p className={styles.location}>{address}</p>
         </div>
-        {schoolSchedule && (
-          <div className={styles.timesheet}>{schoolSchedule}</div>
+        {schedule && (
+          <div className={styles.timesheet}>
+            <Schedule schedule={schedule} isMobile={isMobile} />
+          </div>
         )}
       </div>
       <div className={styles.rightPart}>

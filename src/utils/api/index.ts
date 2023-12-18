@@ -42,7 +42,7 @@ export const searchSections = async (sectionRequest: ISectionsRequest) => {
   }
 
   if (sectionRequest.schedule) {
-    queryArray.push(`schedule=${sectionRequest.schedule.join(",")}`);
+    queryArray.push(`schedule=${sectionRequest.schedule}`);
   }
 
   const res = await fetch(`${API_URL}/search_sections?${queryArray.join("&")}`);
@@ -155,7 +155,7 @@ export const deleteSection = async (token: string, id: number) => {
     method: "DELETE",
   });
 
-  return checkResponse(info);
+  return info;
 };
 
 export const createSchoolInfo = async (

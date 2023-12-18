@@ -11,14 +11,7 @@ export interface Section {
   sport_type: string;
   year_from: number;
   year_until: number;
-  address: {
-    index: string;
-    city: string;
-    metro: string;
-    district: string;
-    street: string;
-    house: string;
-  };
+  address: string;
   latitude: string;
   longitude: string;
   rating: number;
