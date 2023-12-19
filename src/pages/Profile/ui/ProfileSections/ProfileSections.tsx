@@ -90,7 +90,11 @@ const ProfileSections: FC = () => {
   return (
     <section className={styles.sections}>
       {succsessModal && (
-        <Modal closeModal={() => {}}>
+        <Modal
+          closeModal={() => {
+            setSuccsessModal(false);
+          }}
+        >
           <ModalContent
             type={ModalType.SUCCSESS}
             title="Секция успешно удалена!"
