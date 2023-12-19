@@ -80,7 +80,7 @@ const AddSectionPage: FC = () => {
     isAddDaysSectionValid;
 
   const handleSubmit = async () => {
-    if (!location.state.forEditing) {
+    if (!location?.state?.forEditing) {
       await createSection(cookies.token, request);
     } else {
       await updateSection(cookies.token, location.state.forEditing, request);
@@ -94,7 +94,7 @@ const AddSectionPage: FC = () => {
       <FavouriteNavigate />
       <main className={styles.addSectionPage}>
         <h2 className={styles.title}>
-          {!location.state.forEditing
+          {!location?.state?.forEditing
             ? "Добавление секции"
             : "Редактирование секции"}
         </h2>
@@ -115,6 +115,11 @@ const AddSectionPage: FC = () => {
                 message: "Не более 255 символов",
               },
               required: "Введите название",
+              pattern: {
+                value:
+                  /^[A-ZА-ЯЁ][а-яА-Яa-zA-ZЁёәіңғүұқөһӘІҢҒҮҰҚӨҺ0-9№"\-\s]*$/imu,
+                message: "Ввёден недопустимый символ",
+              },
               onChange: (evt: React.ChangeEvent<HTMLInputElement>) =>
                 setRequest({ ...request, title: evt.target.value }),
             })}

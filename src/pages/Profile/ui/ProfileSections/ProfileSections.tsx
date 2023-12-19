@@ -74,6 +74,7 @@ const ProfileSections: FC = () => {
         .catch((e) => console.log(e));
     }
   };
+
   const checkProgileFilling = () => {
     if (school) {
       navigate("/addsection", { state: { edit: true } });

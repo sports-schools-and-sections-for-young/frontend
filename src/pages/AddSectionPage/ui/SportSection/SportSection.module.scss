@@ -80,3 +80,12 @@
     top: 5px;
   }
 }
+
+.chosenSport {
+  font-size: var(--font-size-heading-h3);
+  font-weight: var(--font-weight-500);
+  line-height: var(--font-line-heading-h3);
+  color: var(--span-color);
+  cursor: pointer;
+  margin-bottom: 34px;
+}

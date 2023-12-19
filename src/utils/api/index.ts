@@ -201,7 +201,6 @@ export const deleteSection = async (token: string, id: number) => {
 
   return info;
 };
-
 export const createSchoolInfo = async (
   token: string,
   createBody: CreateSchool,

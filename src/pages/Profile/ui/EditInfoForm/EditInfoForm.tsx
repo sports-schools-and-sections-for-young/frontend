@@ -92,8 +92,8 @@ const EditInfoForm: FC<EditFormProps> = ({ isEditing, setIsEditing }) => {
           },
           required: "Введите название",
           pattern: {
-            value: /^[а-яА-Яa-zA-ZЁёәіңғүұқөһӘІҢҒҮҰҚӨҺ\-\s]*$/imu,
-            message: "Поле может содержать только буквы, пробелы и дефисы",
+            value: /^[A-ZА-ЯЁ][а-яА-Яa-zA-ZЁёәіңғүұқөһӘІҢҒҮҰҚӨҺ0-9№"\-\s]*$/imu,
+            message: "Ввёден недопустимый символ",
           },
         })}
         hasError={Boolean(errors.title)}
@@ -110,9 +110,9 @@ const EditInfoForm: FC<EditFormProps> = ({ isEditing, setIsEditing }) => {
           },
           required: "Введите адрес",
           pattern: {
-            value: /^[0-9а-яА-Яa-zA-ZЁёәіңғүұқөһӘІҢҒҮҰҚӨҺ.,\-\s]*$/imu,
+            value: /^[0-9а-яА-Яa-zA-ZЁёәіңғүұқөһӘІҢҒҮҰҚӨҺ.,/\-\s]*$/imu,
             message:
-              "Поле может содержать только буквы, цифры, пробелы, дефисы, точки и запятые",
+              "Поле может содержать только буквы, цифры, пробелы, дефисы, слэш, точки и запятые",
           },
         })}
         hasError={Boolean(errors.address)}
