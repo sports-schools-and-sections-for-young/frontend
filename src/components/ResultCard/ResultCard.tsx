@@ -1,4 +1,4 @@
-import { Dispatch, FC, SetStateAction } from "react";
+import { Dispatch, FC, SetStateAction, useContext } from "react";
 import classnames from "classnames";
 import styles from "./ResultCard.module.scss";
 import Heart from "../../assets/images/icons/heart.svg?react";
@@ -7,6 +7,7 @@ import { IconTypes } from "../ui/Icon/types";
 import { Section } from "../../types";
 import Schedule from "../ui/Shedule/Schedule.tsx";
 import { getDistanceToSchool } from "../../utils/functions/index.ts";
+import AppContext from "../../context/AppContext.ts";
 
 interface ResultCardProps {
   section: Section | null;
@@ -21,6 +22,7 @@ const ResultCard: FC<ResultCardProps> = ({
   setFavourite,
   isMobile,
 }) => {
+  const { sectionRequest } = useContext(AppContext);
   if (!section) return null;
   const {
     id,
@@ -65,7 +67,11 @@ const ResultCard: FC<ResultCardProps> = ({
         </div>
         <div className={styles.place}>
           <p className={styles.distance}>
-            {getDistanceToSchool([+latitude, +longitude])} км
+            {getDistanceToSchool(
+              [+latitude, +longitude],
+              sectionRequest.location,
+            )}{" "}
+            км
           </p>
           <p className={styles.location}>{address}</p>
         </div>
