@@ -4,9 +4,11 @@ import { ISectionsRequest } from "../../context/AppContext.ts";
 import {
   CreateSchool,
   CreateSection,
+  ResponseType,
   UpdateSchool,
   UpdateSection,
 } from "./types";
+import { getCoordinates } from "../functions";
 
 const checkResponse = (res: Response) =>
   res.ok ? res.json() : Promise.reject(res);
@@ -14,6 +16,23 @@ const checkResponse = (res: Response) =>
 export const getSports = async () => {
   const res = await fetch(`${API_URL}/sport_types`);
   return checkResponse(res);
+};
+
+export const getAllSports = async () => {
+  const res = await fetch(`${API_URL}/sport_types_all`);
+  return checkResponse(res);
+};
+
+export const addSportType = async (token: string, sportType: string) => {
+  const info = await fetch(`${API_URL}/create_sport_types/`, {
+    headers: {
+      Authorization: `Token ${token}`,
+      "Content-Type": "application/json",
+    },
+    method: "POST",
+    body: JSON.stringify({ title: sportType }),
+  });
+  return checkResponse(info);
 };
 
 export const searchSections = async (sectionRequest: ISectionsRequest) => {
@@ -70,13 +89,24 @@ export const handleLogin = async (
   try {
     const loginResponse = await login(email, password);
     const { token } = loginResponse;
-    const date = new Date();
-    date.setTime(date.getTime() + 2592000e3);
-    setCookie("token", token, { path: "/", expires: date });
-    setCookie("token", token, { path: "/profile", expires: date });
-    navigate("/profile");
+    if (token) {
+      const date = new Date();
+      date.setTime(date.getTime() + 2592000e3);
+      setCookie("token", token, { path: "/", expires: date });
+      setCookie("token", token, { path: "/profile", expires: date });
+      navigate("/profile");
+    } else {
+      return ResponseType.WRONG;
+    }
+    return ResponseType.SUCCESS;
   } catch (error) {
-    console.error("Ошибка при входе", error);
+    if (error instanceof Response) {
+      const res = await error.json();
+      if (res.message === "Пользователь с такими данными не существует!") {
+        return ResponseType.WRONG;
+      }
+    }
+    return ResponseType.ERROR;
   }
 };
 
@@ -120,12 +150,19 @@ export const createSection = async (
   token: string,
   createBody: CreateSection,
 ) => {
+  const coords = await getCoordinates(createBody.address);
+
   const info = await fetch(`${API_URL}/create_section/`, {
     headers: {
       Authorization: `Token ${token}`,
+      "Content-type": "application/json",
     },
     method: "POST",
-    body: JSON.stringify(createBody),
+    body: JSON.stringify({
+      ...createBody,
+      latitude: coords[0],
+      longitude: coords[1],
+    }),
   });
 
   return checkResponse(info);
@@ -136,12 +173,19 @@ export const updateSection = async (
   id: number,
   updateBody: UpdateSection,
 ) => {
+  const coords = await getCoordinates(updateBody.address as string);
+
   const info = await fetch(`${API_URL}/section/${id}/update/`, {
     headers: {
       Authorization: `Token ${token}`,
+      "Content-type": "application/json",
     },
     method: "PATCH",
-    body: JSON.stringify(updateBody),
+    body: JSON.stringify({
+      ...updateBody,
+      latitude: coords[0],
+      longitude: coords[1],
+    }),
   });
 
   return checkResponse(info);
@@ -190,16 +234,17 @@ export const updateSchoolInfo = async (
   return checkResponse(info);
 };
 
-export const deleteAccount = async (token: string) => {
-  const data = await fetch(`${API_URL}/user/delete/`, {
+export const deleteAccount = async (token: string, password: string) => {
+  const res = await fetch(`${API_URL}/user/delete/`, {
     headers: {
       Authorization: `Token ${token}`,
       "Content-type": "application/json",
     },
     method: "DELETE",
+    body: JSON.stringify({ current_password: password }),
   });
 
-  return checkResponse(data);
+  return res.ok ? "OK" : Promise.reject(res);
 };
 
 export const changePassword = async (

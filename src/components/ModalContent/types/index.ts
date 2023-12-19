@@ -10,9 +10,8 @@ export interface IModalContentProps {
   type?: ModalType;
   title: string;
   description?: string;
-
-  closeModal: () => void;
+  closeModal?: () => void;
   back?: () => void;
-  action: () => void;
+  action?: () => void;
   actionDescription: string;
 }

@@ -67,3 +67,16 @@
 .icon {
   margin-bottom: 2px;
 }
+
+.addsportList {
+  width: 335px;
+  margin-top: 24px;
+
+  & input {
+    max-height: 32px;
+  }
+
+  & input + div {
+    top: 5px;
+  }
+}

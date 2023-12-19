@@ -164,4 +164,16 @@
   border: none;
   border-top: 0.5px solid black;
   margin: 56px 0;
+
+  &_error {
+    margin: 0 0 56px;
+  }
+}
+
+.error {
+  font-size: var(--font-size-s);
+  line-height: var(--font-line-s);
+  font-weight: var(--font-weight-400);
+  color: #f21515;
+  margin: 18px 0;
 }

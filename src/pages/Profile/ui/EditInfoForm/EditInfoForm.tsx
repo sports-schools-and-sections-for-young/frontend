@@ -140,7 +140,7 @@ const EditInfoForm: FC<EditFormProps> = ({ isEditing, setIsEditing }) => {
         {...register("site", {
           pattern: {
             value:
-              /(https:\/\/www\.|http:\/\/www\.|https:\/\/|http:\/\/)[a-zA-Z0-9А-ЯЁёәіңғүұқөһӘІҢҒҮҰҚӨҺ]{2,}(\.[a-zA-Z0-9А-ЯЁёәіңғүұқөһӘІҢҒҮҰҚӨҺ]{2,})(\.[a-zA-Z0-9А-ЯЁёәіңғүұқөһӘІҢҒҮҰҚӨҺ]{2,})?/,
+              /(https:\/\/www\.|http:\/\/www\.|https:\/\/|http:\/\/)[a-zA-Z0-9А-ЯЁёәіңғүұқөһӘІҢҒҮҰҚӨҺ-]{2,}(\.[a-zA-Z0-9А-ЯЁёәіңғүұқөһӘІҢҒҮҰҚӨҺ-]{2,})(\.[a-zA-Z0-9А-ЯЁёәіңғүұқөһӘІҢҒҮҰҚӨҺ]{2,})?/,
             message: "Введите адрес сайта в формате http://адрес",
           },
         })}

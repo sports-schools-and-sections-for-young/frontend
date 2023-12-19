@@ -10,6 +10,7 @@ import logo from "../../../assets/images/Logo.png";
 import Button from "../Button/Button.tsx";
 import { ButtonColor, ButtonTestId } from "../Button/types";
 import ProfileButton from "../ProfileButton/ProfileButton.tsx";
+import { useResize } from "../../../hooks/useResize.tsx";
 
 const Header: FC = () => {
   const navigate = useNavigate();
@@ -21,6 +22,8 @@ const Header: FC = () => {
     [styles.heartBtn]: true,
     [styles.heartBtnActive]: favourite > 0,
   });
+
+  const { isMobileScreen } = useResize();
 
   useEffect(() => {
     function changeCount(e: CustomEvent) {
@@ -61,7 +64,7 @@ const Header: FC = () => {
             )}
             <span className={styles.btnName}>Избранное</span>
           </button>
-          {cookies.token ? (
+          {cookies.token || (isMobileScreen && !cookies.token) ? (
             <ProfileButton
               className={styles.profileButton}
               onClick={() => navigate("/profile")}
