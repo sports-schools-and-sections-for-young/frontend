@@ -1,6 +1,6 @@
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import styles from "./AddSectionPage.module.scss";
 import Header from "../../../components/ui/Header/Header";
@@ -19,6 +19,7 @@ import { maxAge, minAge } from "../../../utils/variables.ts";
 import { AddSectionRequest } from "../types";
 import { createSection, updateSection } from "../../../utils/api";
 import Input from "../../../components/ui/Input/Input.tsx";
+import ModalSection from "../../../components/ModalSection/ModalSection.tsx";
 
 const defaultSectionRequest = {
   title: "",
@@ -46,13 +47,17 @@ const AddSectionPage: FC = () => {
   const [isPriceSectionValid, setIsPriceSectionValid] = useState(false);
   const [isAddDaysSectionValid, setIsAddDaysSectionValid] = useState(false);
 
+  const [successModal, setSuccessModal] = useState(false);
+
   const location = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const [request, setRequest] = useState<AddSectionRequest>(
     defaultSectionRequest,
   );
-
-  const navigate = useNavigate();
 
   const {
     register,
@@ -85,7 +90,7 @@ const AddSectionPage: FC = () => {
     } else {
       await updateSection(cookies.token, location.state.forEditing, request);
     }
-    navigate("/profile");
+    setSuccessModal(true);
   };
 
   return (
@@ -117,8 +122,9 @@ const AddSectionPage: FC = () => {
               required: "Введите название",
               pattern: {
                 value:
-                  /^[A-ZА-ЯЁ][а-яА-Яa-zA-ZЁёәіңғүұқөһӘІҢҒҮҰҚӨҺ0-9№"\-\s]*$/imu,
-                message: "Ввёден недопустимый символ",
+                  /^[A-ZА-ЯЁ][а-яА-Яa-zA-ZЁёәіңғүұқөһӘІҢҒҮҰҚӨҺ0-9№"\-\s]*$/,
+                message:
+                  "Название начинается с маленькой буквы или содержит недопустимый символ",
               },
               onChange: (evt: React.ChangeEvent<HTMLInputElement>) =>
                 setRequest({ ...request, title: evt.target.value }),
@@ -166,6 +172,9 @@ const AddSectionPage: FC = () => {
             <Icon type={IconTypes.RIGHT_ICON} />
           </Button>
         </div>
+        {successModal && (
+          <ModalSection isEditing={location?.state?.isEditing} />
+        )}
       </main>
       <MainFooter />
     </>

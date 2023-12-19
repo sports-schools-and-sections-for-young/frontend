@@ -92,8 +92,9 @@ const EditInfoForm: FC<EditFormProps> = ({ isEditing, setIsEditing }) => {
           },
           required: "Введите название",
           pattern: {
-            value: /^[A-ZА-ЯЁ][а-яА-Яa-zA-ZЁёәіңғүұқөһӘІҢҒҮҰҚӨҺ0-9№"\-\s]*$/imu,
-            message: "Ввёден недопустимый символ",
+            value: /^[A-ZА-ЯЁ][а-яА-Яa-zA-ZЁёәіңғүұқөһӘІҢҒҮҰҚӨҺ0-9№"\-\s]*$/,
+            message:
+              "Название начинается с маленькой буквы или содержит недопустимый символ",
           },
         })}
         hasError={Boolean(errors.title)}

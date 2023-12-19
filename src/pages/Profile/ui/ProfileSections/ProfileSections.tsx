@@ -37,6 +37,10 @@ const ProfileSections: FC = () => {
   const [checkedSection, setCheckedSection] = useState<number | null>(null);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     const timer = setTimeout(() => {
       if (!school) {
         setInfoModal(true);
