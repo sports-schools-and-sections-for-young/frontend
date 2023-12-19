@@ -192,19 +192,15 @@ export const updateSection = async (
 };
 
 export const deleteSection = async (token: string, id: number) => {
-  const res = await fetch(`${API_URL}/section/${id}/delete/`, {
+  const info = await fetch(`${API_URL}/section/${id}/delete/`, {
     headers: {
       Authorization: `Token ${token}`,
-      "Content-type": "application/json",
     },
     method: "DELETE",
   });
 
-  console.log(res);
-
-  return res;
+  return info;
 };
-
 export const createSchoolInfo = async (
   token: string,
   createBody: CreateSchool,

@@ -61,10 +61,7 @@ const ProfileSections: FC = () => {
   const handleDelete = () => {
     if (checkedSection && school) {
       deleteSection(token, checkedSection)
-        .then((res) => {
-          console.log(res);
-          return res.ok ? checkedSection : Promise.reject(res);
-        })
+        .then((res) => (res.ok ? checkedSection : Promise.reject(res)))
         .then((id) => {
           setSchool({
             info: school.info,
@@ -77,6 +74,7 @@ const ProfileSections: FC = () => {
         .catch((e) => console.log(e));
     }
   };
+
   const checkProgileFilling = () => {
     if (school) {
       navigate("/addsection", { state: { edit: true } });
