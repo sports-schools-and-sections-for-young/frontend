@@ -26,6 +26,7 @@ import { PreloaderSize } from "../../../../components/ui/Preloader/types";
 import { StepProps } from "../../types";
 import { useResize } from "../../../../hooks/useResize.tsx";
 import Checkbox from "../../../../components/ui/Checkbox/Checkbox.tsx";
+import { ActionType } from "../../../../components/ResultNotFound/types";
 
 const StepPrice: FC<StepProps> = ({ setStep }) => {
   const { sectionRequest, fetchedSections } = useContext(AppContext);
@@ -54,7 +55,13 @@ const StepPrice: FC<StepProps> = ({ setStep }) => {
       {loader ? (
         <Preloader size={PreloaderSize.Large} className={styles.preloader} />
       ) : !fetchedSections.length ? (
-        <ResultNotFound setStep={setStep} step={1} />
+        <ResultNotFound
+          title="Нет подходящих результатов"
+          subtitle="Попробуйте изменить параметры запроса"
+          type={ActionType.FIND}
+          setStep={setStep}
+          step={1}
+        />
       ) : (
         <>
           <p className={styles.subtitle}>

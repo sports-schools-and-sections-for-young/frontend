@@ -8,13 +8,10 @@ import CheckboxPanel from "../../../../components/ui/CheckboxPanel/CheckboxPanel
 import {
   ButtonColor,
   ButtonTestId,
-} from "../../../../components/ui/Button/types/index.ts";
-import {
-  IconColor,
-  IconTypes,
-} from "../../../../components/ui/Icon/types/index.ts";
-import { CheckboxBtnSize } from "../../../../components/ui/CheckboxBtn/types/index.ts";
-import { IResultNavigateProps } from "../../types/index.ts";
+} from "../../../../components/ui/Button/types";
+import { IconColor, IconTypes } from "../../../../components/ui/Icon/types";
+import { CheckboxBtnSize } from "../../../../components/ui/CheckboxBtn/types";
+import { IResultNavigateProps } from "../../types";
 import AppContext from "../../../../context/AppContext.ts";
 
 const ResultNavigate: FC<IResultNavigateProps> = (props) => {
