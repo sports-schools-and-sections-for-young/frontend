@@ -121,20 +121,17 @@ export const parseSchedule = (schedule: unknown): string => {
   return xz.map((d: number) => weekdays[d - 1]).join(",");
 };
 
-export const getDistanceToSchool = (schoolCoords: number[]) => {
+export const getDistanceToSchool = (
+  schoolCoords: number[],
+  userCoords: number[],
+) => {
   const earthRadius = 6371;
   const toRadians = (degrees: number) => (degrees * Math.PI) / 180;
-  const userCoords = [0, 0];
-  if (window.navigator.geolocation) {
-    window.navigator.geolocation.getCurrentPosition((p) => {
-      userCoords.splice(0, 2, p.coords.latitude, p.coords.longitude);
-    });
-  } else {
+  if (!userCoords) {
     return "?";
   }
   const dLat = toRadians(schoolCoords[0] - userCoords[0]);
   const dLon = toRadians(schoolCoords[1] - userCoords[1]);
-
   const a =
     Math.sin(dLat / 2) * Math.sin(dLat / 2) +
     Math.sin(dLon / 2) *

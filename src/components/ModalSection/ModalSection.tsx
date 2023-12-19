@@ -14,12 +14,9 @@ interface ModalSectionProps {
 const ModalSection: React.FC<ModalSectionProps> = ({ isEditing }) => {
   const navigate = useNavigate();
 
-  const closeModal = () => {
-    
-  };
+  const closeModal = () => {};
 
   const imageSrc = isEditing ? sectionEditingImg : sectionAddedImg;
-
 
   return (
     <Modal closeModal={closeModal}>
