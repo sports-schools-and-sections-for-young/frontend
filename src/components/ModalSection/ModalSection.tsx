@@ -40,7 +40,7 @@ const ModalSection: React.FC<ModalSectionProps> = ({ isEditing }) => {
               className={styles.button}
               color={ButtonColor.PRIMARY}
               testId={ButtonTestId.FORWARD}
-              onClick={() => navigate("/profile/*", { replace: true })}
+              onClick={() => navigate("/profile/", { replace: true })}
             >
               Перейти в секции
             </Button>
