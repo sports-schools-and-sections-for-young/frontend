@@ -60,7 +60,10 @@ const ProfileSections: FC = () => {
   const handleDelete = () => {
     if (checkedSection && school) {
       deleteSection(token, checkedSection)
-        .then((res) => (res.ok ? checkedSection : Promise.reject(res)))
+        .then((res) => {
+          console.log(res);
+          return res.ok ? checkedSection : Promise.reject(res);
+        })
         .then((id) => {
           setSchool({
             info: school.info,

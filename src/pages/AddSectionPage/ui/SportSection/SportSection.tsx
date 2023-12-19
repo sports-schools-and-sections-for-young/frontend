@@ -26,6 +26,7 @@ import {
 import Modal from "../../../../components/Modal/Modal.tsx";
 import ModalContent from "../../../../components/ModalContent/ModalContent.tsx";
 import { ModalType } from "../../../../components/ModalContent/types/index.ts";
+import Input from "../../../../components/ui/Input/Input.tsx";
 
 const SportSection: FC<SportSectionProps> = (props) => {
   const [cookies] = useCookies(["token"]);
@@ -90,13 +91,23 @@ const SportSection: FC<SportSectionProps> = (props) => {
         1.&nbsp;Выберите <span className={styles.span}>вид спорта</span>
       </h2>
       <p className={styles.subtitle}>Можете выбрать только один вариант</p>
-      <SearchInput
-        searchingList={sports}
-        itemClickHandler={(e) => chooseSport(e.id)}
-        iconType={InputIcon.DOWN_ARROW}
-        iconPosition={InputIconPosition.RIGHT}
-        placeholder="Выберите вид спорта"
-      />
+      {!request.sport_type ? (
+        <SearchInput
+          searchingList={sports}
+          itemClickHandler={(e) => chooseSport(e.id)}
+          iconType={InputIcon.DOWN_ARROW}
+          iconPosition={InputIconPosition.RIGHT}
+          placeholder="Выберите вид спорта"
+        />
+      ) : (
+        <p
+          className={styles.chosenSport}
+          onClick={() => setRequest({ ...request, sport_type: null })}
+        >
+          {sports.find((sport) => sport.id === request.sport_type)?.title}
+        </p>
+      )}
+
       <ul className={styles.selected}>
         {fullView
           ? sports.map((sport) => (
@@ -133,16 +144,12 @@ const SportSection: FC<SportSectionProps> = (props) => {
       {addNewSport && (
         <>
           <div className={styles.addsportList}>
-            <SearchInput
-              searchingList={sports}
-              itemClickHandler={(e) => chooseSport(e.id)}
+            <Input
               value={newSport || ""}
               onChange={(e) =>
                 setNewSport(e.target.value.length > 0 ? e.target.value : null)
               }
-              iconType={InputIcon.DOWN_ARROW}
-              iconPosition={InputIconPosition.RIGHT}
-              placeholder="Выберите вид спорта"
+              placeholder="Название нового вида спорта"
             />
           </div>
           <Button

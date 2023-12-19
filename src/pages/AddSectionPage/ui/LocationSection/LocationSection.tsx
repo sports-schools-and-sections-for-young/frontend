@@ -78,7 +78,6 @@ const LocationSection: FC<SportSectionProps> = (props) => {
   };
 
   const handleCheckbox = () => {
-    console.log(school?.info.address);
     if (!sameAddress && school?.info.address) {
       setRequest({ ...request, address: school.info.address });
     }
