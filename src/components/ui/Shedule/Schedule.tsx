@@ -1,6 +1,7 @@
 import { FC } from "react";
 import styles from "./Schedule.module.scss";
 import { abbreviateWeekDayName } from "../../../utils/functions";
+import { weekdays } from "../../../utils/constants/week";
 
 interface IScheduleProps {
   schedule: string;
@@ -9,7 +10,7 @@ interface IScheduleProps {
 
 const Schedule: FC<IScheduleProps> = (props) => {
   const { schedule, isMobile } = props;
-  const daysArray = schedule.split(",");
+  const daysArray = weekdays.filter((d) => schedule.includes(d));
 
   return (
     <div className={styles.weekdays}>
