@@ -15,6 +15,7 @@ import { CreateSchool, UpdateSchool } from "../../../../utils/api/types";
 import AppContext from "../../../../context/AppContext.ts";
 import { SchoolInfo } from "../../../../types";
 import { createSchoolInfo, updateSchoolInfo } from "../../../../utils/api";
+import { useResize } from "../../../../hooks/useResize.tsx";
 
 export interface EditFormProps {
   isEditing: boolean;
@@ -48,6 +49,8 @@ const EditInfoForm: FC<EditFormProps> = ({ isEditing, setIsEditing }) => {
     setValue,
   ]);
 
+  const { isMobileScreen } = useResize();
+
   const onSubmit: SubmitHandler<UpdateSchool> = async (
     body: CreateSchool | UpdateSchool,
   ) => {
@@ -58,7 +61,7 @@ const EditInfoForm: FC<EditFormProps> = ({ isEditing, setIsEditing }) => {
           body as CreateSchool,
         );
         setSchool({ sections: [], info: newInfo });
-        setIsEditing(false);
+        setIsEditing(isMobileScreen);
       } else {
         const newInfo: SchoolInfo = await updateSchoolInfo(
           cookies.token,
@@ -68,7 +71,7 @@ const EditInfoForm: FC<EditFormProps> = ({ isEditing, setIsEditing }) => {
           sections: school?.sections ? school.sections : [],
           info: newInfo,
         });
-        setIsEditing(false);
+        setIsEditing(isMobileScreen);
       }
     } catch (e) {
       console.log(e);
