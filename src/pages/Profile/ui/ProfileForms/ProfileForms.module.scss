@@ -3,7 +3,7 @@
 .profile {
   max-width: 1120px;
   width: 100%;
-  padding: 69px 0 130px 50px;
+  padding: 69px 50px 130px;
 
   @include mobile-750 {
     padding: 69px 20px 13px;
