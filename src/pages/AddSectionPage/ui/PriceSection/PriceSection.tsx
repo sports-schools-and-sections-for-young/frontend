@@ -26,7 +26,7 @@ const PriceSection: FC<SportSectionProps> = (props) => {
           iconType={InputIcon.RUB}
           iconPosition={InputIconPosition.LEFT}
           className={styles.input}
-          value={request.price}
+          value={request.price > 0 ? request.price : ""}
           onChange={(evt: React.ChangeEvent<HTMLInputElement>) =>
             setRequest({ ...request, price: +evt.target.value })
           }

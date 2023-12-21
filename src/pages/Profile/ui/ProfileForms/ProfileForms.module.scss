@@ -1,7 +1,13 @@
+@import "../../../../app/styles/mixins";
+
 .profile {
   max-width: 1120px;
   width: 100%;
-  padding: 69px 0 130px;
+  padding: 69px 50px 130px;
+
+  @include mobile-750 {
+    padding: 69px 20px 13px;
+  }
 }
 
 .title {
@@ -59,6 +65,10 @@
   background: transparent;
   cursor: pointer;
   margin-bottom: 20px;
+
+  @include mobile-750 {
+    width: 100%;
+  }
 }
 
 .logoutButton {
@@ -70,6 +80,10 @@
   border: none;
   background: transparent;
   cursor: pointer;
+
+  @include mobile-750 {
+    width: 100%;
+  }
 }
 
 .titleModal {
@@ -78,6 +92,13 @@
   font-weight: var(--font-weight-600);
   color: var(--text-black-color);
   text-align: center;
+
+  @include mobile-750 {
+    font-size: var(--font-size-heading-h4);
+    line-height: var(--font-line-heading-h4);
+    text-align: left;
+    padding-bottom: 24px;
+  }
 }
 
 .span {
@@ -90,10 +111,21 @@
   font-weight: var(--font-weight-500);
   color: var(--light-text-color);
   text-align: center;
+
+  @include mobile-750 {
+    font-size: var(--font-size-m);
+    line-height: var(--font-line-m);
+    text-align: left;
+    padding-bottom: 30px;
+  }
 }
 
 .buttonContainer {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
+
+  @include mobile-750 {
+    grid-template-columns: 1fr;
+  }
 }

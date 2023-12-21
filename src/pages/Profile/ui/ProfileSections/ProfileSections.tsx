@@ -81,7 +81,7 @@ const ProfileSections: FC = () => {
 
   const checkProgileFilling = () => {
     if (school) {
-      navigate("/addsection", { state: { edit: true } });
+      navigate("/addsection");
     } else {
       setInfoModal(true);
     }
@@ -90,7 +90,11 @@ const ProfileSections: FC = () => {
   return (
     <section className={styles.sections}>
       {succsessModal && (
-        <Modal closeModal={() => {}}>
+        <Modal
+          closeModal={() => {
+            setSuccsessModal(false);
+          }}
+        >
           <ModalContent
             type={ModalType.SUCCSESS}
             title="Секция успешно удалена!"

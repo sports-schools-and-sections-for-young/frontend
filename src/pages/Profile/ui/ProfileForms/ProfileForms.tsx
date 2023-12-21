@@ -19,13 +19,17 @@ import {
   InputIcon,
   InputIconPosition,
 } from "../../../../components/ui/InputField/types";
+import LogoutModal from "../LogoutModal/LogoutModal.tsx";
+import { useResize } from "../../../../hooks/useResize.tsx";
 
-type ProfileFormModals = "deletion" | "logout" | null;
+export type ProfileFormModals = "deletion" | "logout" | null;
 
 const ProfileForms = () => {
   const { setSchool } = useContext(AppContext);
 
-  const [isInfoEditing, setIsInfoEditing] = useState(false);
+  const { isMobileScreen } = useResize();
+
+  const [isInfoEditing, setIsInfoEditing] = useState(isMobileScreen);
 
   const [isPasswordEditing, setIsPasswordEditing] = useState(false);
   const [passwordVisible, setPasswordVisible] = useState(false);
@@ -59,19 +63,13 @@ const ProfileForms = () => {
     }
   };
 
-  const handleLogout = () => {
-    setSchool(null);
-    removeCookie("token", { path: "/" });
-    removeCookie("token", { path: "/profile" });
-  };
-
   return (
     <div className={styles.profile}>
-      <h2 className={styles.title}>Профиль</h2>
+      {!isMobileScreen && <h2 className={styles.title}>Профиль</h2>}
       <div className={styles.formContainer}>
         <div className={styles.optionsContainer}>
           <p className={styles.options}>Настройки профиля</p>
-          {!isInfoEditing && (
+          {!isInfoEditing && !isMobileScreen && (
             <button
               className={styles.editButton}
               type="button"
@@ -93,7 +91,10 @@ const ProfileForms = () => {
               type="button"
               onClick={() => setIsPasswordEditing(true)}
             >
-              <span className={styles.edit}>Сменить пароль</span> <Gear />
+              {!isMobileScreen && (
+                <span className={styles.edit}>Сменить пароль</span>
+              )}
+              <Gear />
             </button>
           )}
         </div>
@@ -162,36 +163,7 @@ const ProfileForms = () => {
             </ConfirmModal>
           </Modal>
         )}
-        {modal === "logout" && (
-          <Modal closeModal={() => setModal(null)}>
-            <ConfirmModal closeModal={() => setModal(null)}>
-              <p className={styles.titleModal}>
-                Вы уверены что хотите{" "}
-                <span className={styles.span}>выйти из профиля</span>?
-              </p>
-              <p className={styles.warning}>
-                Для внесения изменений в карточки секции потребуется повторный
-                вход
-              </p>
-              <div className={styles.buttonContainer}>
-                <Button
-                  onClick={handleLogout}
-                  color={ButtonColor.PRIMARY}
-                  testId={ButtonTestId.OTHER}
-                >
-                  Выйти из профиля
-                </Button>
-                <Button
-                  onClick={() => setModal(null)}
-                  color={ButtonColor.SECONDARY}
-                  testId={ButtonTestId.BACK}
-                >
-                  Вернуться назад
-                </Button>
-              </div>
-            </ConfirmModal>
-          </Modal>
-        )}
+        {modal === "logout" && <LogoutModal setModal={() => setModal(null)} />}
       </div>
     </div>
   );

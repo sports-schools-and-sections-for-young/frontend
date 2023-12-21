@@ -1,11 +1,22 @@
+@import "../../../../app/styles/mixins";
+
 .form {
   display: flex;
   flex-direction: column;
   margin-bottom: 41px;
   width: 100%;
+
+  @include mobile-750 {
+    margin-bottom: 36px;
+  }
 }
 
 .submitButton {
   max-width: 210px;
   margin-top: 43px;
+
+  @include mobile-750 {
+    max-width: 100%;
+    margin-top: 36px;
+  }
 }

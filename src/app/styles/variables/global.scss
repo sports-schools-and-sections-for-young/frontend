@@ -34,6 +34,10 @@
   --font-line-heading-h4: 135%;
   --font-heading-h4: var(--font-size-heading-h4) / var(--font-line-heading-h4) /
     var(--font-weight-600);
+  --font-size-heading-h5: 20px;
+  --font-line-heading-h5: 140%;
+  --font-heading-h5: var(--font-size-heading-h5) / var(--font-line-heading-h5) /
+    var(--font-weight-600);
 
   // Colors
   --bg-color: #fffefd;

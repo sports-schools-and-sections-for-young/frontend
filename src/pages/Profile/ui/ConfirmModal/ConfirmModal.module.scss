@@ -1,9 +1,15 @@
+@import "../../../../app/styles/mixins";
+
 .modalContainer {
   max-width: 524px;
   padding: 40px;
   display: flex;
   flex-direction: column;
   gap: 30px;
+
+  @include mobile-750 {
+    gap: 0;
+  }
 }
 
 .buttonContainer {
